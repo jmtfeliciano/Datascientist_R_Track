@@ -1,10 +1,67 @@
 ---
-title: "R Notebook"
+title: "Intro to Basics"
 output: html_notebook
 ---
 
-# Intro to Basics
+
+
+### Some basic arithmetic in R
+
 
 ```{r}
-plot(cars)
+# An addition
+5 + 5 
+
+# A subtraction
+5 - 5 
+
+# A multiplication
+3 * 5
+
+ # A division
+(5 + 5) / 2 
+
+# Exponentiation
+2 ^ 5
+
+# Modulo
+28 %% 6
 ```
+
+\ 
+
+\
+
+__Self Note:__  Exponentiation is similar with Javascript, but different from Python (which uses **).  Modulo on the other hand is unique since it is double %%.  
+
+
+
+### Variable Assignment
+
+
+The script below assigns four to variable called my_var:
+```{r}
+my_var <- 4
+my_var
+```
+
+#### Adding variables
+```{r}
+# Assign a value to the variables my_apples and my_oranges
+my_apples <- 5
+my_oranges <- 6 
+
+
+# Add these two variables together
+my_apples + my_oranges
+
+# Create the variable my_fruit
+my_fruit <- my_apples + my_oranges
+```
+
+#### Data Type
+
+- Decimals values like 4.5 are called numerics.
+- Natural numbers like 4 are called integers. Integers - are also numerics.
+- Boolean values (TRUE or FALSE) are called logical.
+- Text (or string) values are called characters.
