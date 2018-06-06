@@ -28,10 +28,6 @@ output: html_notebook
 28 %% 6
 ```
 
-\ 
-
-\
-
 __Self Note:__  Exponentiation is similar with Javascript, but different from Python (which uses **).  Modulo on the other hand is unique since it is double %%.  
 
 
@@ -61,7 +57,33 @@ my_fruit <- my_apples + my_oranges
 
 #### Data Type
 
-- Decimals values like 4.5 are called numerics.
-- Natural numbers like 4 are called integers. Integers - are also numerics.
-- Boolean values (TRUE or FALSE) are called logical.
-- Text (or string) values are called characters.
+- Decimals values like 4.5 are called __numerics__.
+- Natural numbers like 4 are called integers. Integers - are also __numerics__.
+- Boolean values (TRUE or FALSE) are called __logical__.
+- Text (or string) values are called __characters__.
+
+```{r}
+# Declare variables of different types
+my_numeric <- 42
+my_character <- "universe"
+my_logical <- FALSE 
+
+# Check class of my_numeric
+class(my_numeric)
+
+# Check class of my_character
+class(my_character)
+
+# Check class of my_logical
+class(my_logical)
+```
+
+__Self Note:__  class of strings is "character", class of numbers is "numeric", and class of boolean is "logical"
+
+#### Vectors
+
+`c()` is the method to create a vector. The c in `c()` stands for combine.  
+
+```{r}
+
+```

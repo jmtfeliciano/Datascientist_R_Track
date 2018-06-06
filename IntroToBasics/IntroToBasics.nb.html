@@ -220,9 +220,7 @@ $(document).ready(function () {
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p> </p>
-<p><br />
-<strong>Self Note:</strong> Exponentiation is similar with Javascript, but different from Python (which uses **). Modulo on the other hand is unique since it is double %%.</p>
+<p><strong>Self Note:</strong> Exponentiation is similar with Javascript, but different from Python (which uses **). Modulo on the other hand is unique since it is double %%.</p>
 </div>
 <div id="variable-assignment" class="section level3">
 <h3>Variable Assignment</h3>
@@ -262,16 +260,42 @@ my_fruit &lt;- my_apples + my_oranges</code></pre>
 <div id="data-type" class="section level4">
 <h4>Data Type</h4>
 <ul>
-<li>Decimals values like 4.5 are called numerics.</li>
-<li>Natural numbers like 4 are called integers. Integers - are also numerics.</li>
-<li>Boolean values (TRUE or FALSE) are called logical.</li>
-<li>Text (or string) values are called characters.</li>
+<li>Decimals values like 4.5 are called <strong>numerics</strong>.</li>
+<li>Natural numbers like 4 are called integers. Integers - are also <strong>numerics</strong>.</li>
+<li>Boolean values (TRUE or FALSE) are called <strong>logical</strong>.</li>
+<li>Text (or string) values are called <strong>characters</strong>.</li>
 </ul>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBEZWNsYXJlIHZhcmlhYmxlcyBvZiBkaWZmZXJlbnQgdHlwZXNcbm15X251bWVyaWMgPC0gNDJcbm15X2NoYXJhY3RlciA8LSBcInVuaXZlcnNlXCJcbm15X2xvZ2ljYWwgPC0gRkFMU0UgXG5cbiMgQ2hlY2sgY2xhc3Mgb2YgbXlfbnVtZXJpY1xuY2xhc3MobXlfbnVtZXJpYylcblxuIyBDaGVjayBjbGFzcyBvZiBteV9jaGFyYWN0ZXJcbmNsYXNzKG15X2NoYXJhY3RlcilcblxuIyBDaGVjayBjbGFzcyBvZiBteV9sb2dpY2FsXG5jbGFzcyhteV9sb2dpY2FsKVxuYGBgIn0= -->
+<pre class="r"><code># Declare variables of different types
+my_numeric &lt;- 42
+my_character &lt;- &quot;universe&quot;
+my_logical &lt;- FALSE 
+
+# Check class of my_numeric
+class(my_numeric)
+
+# Check class of my_character
+class(my_character)
+
+# Check class of my_logical
+class(my_logical)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Self Note:</strong> class of strings is “character”, class of numbers is “numeric”, and class of boolean is “logical”</p>
+</div>
+<div id="vectors" class="section level4">
+<h4>Vectors</h4>
+<p><code>c()</code> is the method to create a vector. The c in <code>c()</code> stands for combine.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm8gdG8gQmFzaWNzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKCiMjIyBTb21lIGJhc2ljIGFyaXRobWV0aWMgaW4gUgoKCmBgYHtyfQojIEFuIGFkZGl0aW9uCjUgKyA1IAoKIyBBIHN1YnRyYWN0aW9uCjUgLSA1IAoKIyBBIG11bHRpcGxpY2F0aW9uCjMgKiA1CgogIyBBIGRpdmlzaW9uCig1ICsgNSkgLyAyIAoKIyBFeHBvbmVudGlhdGlvbgoyIF4gNQoKIyBNb2R1bG8KMjggJSUgNgpgYGAKClwgCgpcCgpfX1NlbGYgTm90ZTpfXyAgRXhwb25lbnRpYXRpb24gaXMgc2ltaWxhciB3aXRoIEphdmFzY3JpcHQsIGJ1dCBkaWZmZXJlbnQgZnJvbSBQeXRob24gKHdoaWNoIHVzZXMgKiopLiAgTW9kdWxvIG9uIHRoZSBvdGhlciBoYW5kIGlzIHVuaXF1ZSBzaW5jZSBpdCBpcyBkb3VibGUgJSUuICAKCgoKIyMjIFZhcmlhYmxlIEFzc2lnbm1lbnQKCgpUaGUgc2NyaXB0IGJlbG93IGFzc2lnbnMgZm91ciB0byB2YXJpYWJsZSBjYWxsZWQgbXlfdmFyOgpgYGB7cn0KbXlfdmFyIDwtIDQKbXlfdmFyCmBgYAoKIyMjIyBBZGRpbmcgdmFyaWFibGVzCmBgYHtyfQojIEFzc2lnbiBhIHZhbHVlIHRvIHRoZSB2YXJpYWJsZXMgbXlfYXBwbGVzIGFuZCBteV9vcmFuZ2VzCm15X2FwcGxlcyA8LSA1Cm15X29yYW5nZXMgPC0gNiAKCgojIEFkZCB0aGVzZSB0d28gdmFyaWFibGVzIHRvZ2V0aGVyCm15X2FwcGxlcyArIG15X29yYW5nZXMKCiMgQ3JlYXRlIHRoZSB2YXJpYWJsZSBteV9mcnVpdApteV9mcnVpdCA8LSBteV9hcHBsZXMgKyBteV9vcmFuZ2VzCmBgYAoKIyMjIyBEYXRhIFR5cGUKCi0gRGVjaW1hbHMgdmFsdWVzIGxpa2UgNC41IGFyZSBjYWxsZWQgbnVtZXJpY3MuCi0gTmF0dXJhbCBudW1iZXJzIGxpa2UgNCBhcmUgY2FsbGVkIGludGVnZXJzLiBJbnRlZ2VycyAtIGFyZSBhbHNvIG51bWVyaWNzLgotIEJvb2xlYW4gdmFsdWVzIChUUlVFIG9yIEZBTFNFKSBhcmUgY2FsbGVkIGxvZ2ljYWwuCi0gVGV4dCAob3Igc3RyaW5nKSB2YWx1ZXMgYXJlIGNhbGxlZCBjaGFyYWN0ZXJzLgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm8gdG8gQmFzaWNzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKCiMjIyBTb21lIGJhc2ljIGFyaXRobWV0aWMgaW4gUgoKCmBgYHtyfQojIEFuIGFkZGl0aW9uCjUgKyA1IAoKIyBBIHN1YnRyYWN0aW9uCjUgLSA1IAoKIyBBIG11bHRpcGxpY2F0aW9uCjMgKiA1CgogIyBBIGRpdmlzaW9uCig1ICsgNSkgLyAyIAoKIyBFeHBvbmVudGlhdGlvbgoyIF4gNQoKIyBNb2R1bG8KMjggJSUgNgpgYGAKCl9fU2VsZiBOb3RlOl9fICBFeHBvbmVudGlhdGlvbiBpcyBzaW1pbGFyIHdpdGggSmF2YXNjcmlwdCwgYnV0IGRpZmZlcmVudCBmcm9tIFB5dGhvbiAod2hpY2ggdXNlcyAqKikuICBNb2R1bG8gb24gdGhlIG90aGVyIGhhbmQgaXMgdW5pcXVlIHNpbmNlIGl0IGlzIGRvdWJsZSAlJS4gIAoKCgojIyMgVmFyaWFibGUgQXNzaWdubWVudAoKClRoZSBzY3JpcHQgYmVsb3cgYXNzaWducyBmb3VyIHRvIHZhcmlhYmxlIGNhbGxlZCBteV92YXI6CmBgYHtyfQpteV92YXIgPC0gNApteV92YXIKYGBgCgojIyMjIEFkZGluZyB2YXJpYWJsZXMKYGBge3J9CiMgQXNzaWduIGEgdmFsdWUgdG8gdGhlIHZhcmlhYmxlcyBteV9hcHBsZXMgYW5kIG15X29yYW5nZXMKbXlfYXBwbGVzIDwtIDUKbXlfb3JhbmdlcyA8LSA2IAoKCiMgQWRkIHRoZXNlIHR3byB2YXJpYWJsZXMgdG9nZXRoZXIKbXlfYXBwbGVzICsgbXlfb3JhbmdlcwoKIyBDcmVhdGUgdGhlIHZhcmlhYmxlIG15X2ZydWl0Cm15X2ZydWl0IDwtIG15X2FwcGxlcyArIG15X29yYW5nZXMKYGBgCgojIyMjIERhdGEgVHlwZQoKLSBEZWNpbWFscyB2YWx1ZXMgbGlrZSA0LjUgYXJlIGNhbGxlZCBfX251bWVyaWNzX18uCi0gTmF0dXJhbCBudW1iZXJzIGxpa2UgNCBhcmUgY2FsbGVkIGludGVnZXJzLiBJbnRlZ2VycyAtIGFyZSBhbHNvIF9fbnVtZXJpY3NfXy4KLSBCb29sZWFuIHZhbHVlcyAoVFJVRSBvciBGQUxTRSkgYXJlIGNhbGxlZCBfX2xvZ2ljYWxfXy4KLSBUZXh0IChvciBzdHJpbmcpIHZhbHVlcyBhcmUgY2FsbGVkIF9fY2hhcmFjdGVyc19fLgoKYGBge3J9CiMgRGVjbGFyZSB2YXJpYWJsZXMgb2YgZGlmZmVyZW50IHR5cGVzCm15X251bWVyaWMgPC0gNDIKbXlfY2hhcmFjdGVyIDwtICJ1bml2ZXJzZSIKbXlfbG9naWNhbCA8LSBGQUxTRSAKCiMgQ2hlY2sgY2xhc3Mgb2YgbXlfbnVtZXJpYwpjbGFzcyhteV9udW1lcmljKQoKIyBDaGVjayBjbGFzcyBvZiBteV9jaGFyYWN0ZXIKY2xhc3MobXlfY2hhcmFjdGVyKQoKIyBDaGVjayBjbGFzcyBvZiBteV9sb2dpY2FsCmNsYXNzKG15X2xvZ2ljYWwpCmBgYAoKX19TZWxmIE5vdGU6X18gIGNsYXNzIG9mIHN0cmluZ3MgaXMgImNoYXJhY3RlciIsIGNsYXNzIG9mIG51bWJlcnMgaXMgIm51bWVyaWMiLCBhbmQgY2xhc3Mgb2YgYm9vbGVhbiBpcyAibG9naWNhbCIKCiMjIyMgVmVjdG9ycwoKYGMoKWAgaXMgdGhlIG1ldGhvZCB0byBjcmVhdGUgYSB2ZWN0b3IuIFRoZSBjIGluIGBjKClgIHN0YW5kcyBmb3IgY29tYmluZS4gIAoKYGBge3J9CgpgYGAK</div>
 
 
 
