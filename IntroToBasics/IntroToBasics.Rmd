@@ -82,8 +82,26 @@ __Self Note:__  class of strings is "character", class of numbers is "numeric", 
 
 #### Vectors
 
-`c()` is the method to create a vector. The c in `c()` stands for combine.  
+`c()` is the method to create a vector. The c in `c()` stands for combine.  Vectors can hold numeric, character, and logical.  Example:
 
 ```{r}
-
+numeric_vector <- c(1, 10, 49)
+character_vector <- c("a", "b", "c")
+boolean_vector <- c(TRUE, FALSE, TRUE)
 ```
+
+#### Naming pre-existing vectors
+
+Naming vectors are important to keep track of what the data you're holding is for.  For instance, a vector could hold a series of data (e.g. earnings) for each day.  But we need a way to name which data corresponds to which. The code below illustrates the labeling standard.
+
+```{r}
+ # Poker winnings from Monday to Friday
+poker_vector <- c(140, -50, 20, -120, 240)
+# Roulette winnings from Monday to Friday
+roulette_vector <- c(-24, -50, 100, -350, 10)
+# Assign days as names of poker_vector
+names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+# Assign days as names of roulette_vectors
+names(roulette_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+
