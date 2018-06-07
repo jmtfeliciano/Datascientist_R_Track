@@ -110,13 +110,35 @@ We can compare a vector to an argument using logical comparison operators (e.g. 
 
 ```{r}
 poker_vector <- c(140, -50, 20, -120, 240)
-days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-names(poker_vector) <- days_vector
 # Which days did you make money on poker?
 selection_vector <- poker_vector > 0
 # Print out selection_vector
 selection_vector
-
 ```
 
 In the script above, it returned a vector with logical values indicating if profit was made with each day.  
+
+#### Filtering using Selection by comparison.  
+
+From the previous example, selection_vector returned an array of logical values.  
+
+In the previous examples, we were able to select elements in a vector in a variety of ways such as poker_vector[1], poker_vector[2,4], poker_vector[3:5].
+
+Using this idea, we can filter our vector by passing it with another vector full of logical values:
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+poker_vector <- c(140, -50, 20, -120, 240)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+# Which days did you make money on poker?
+selection_vector <- poker_vector > 0
+# Select from poker_vector these days
+poker_winning_days <- poker_vector[selection_vector]
+poker_winning_days
+```
+
+Here, we had a selection_vector with logical values.  And by passing that vector to poker_vector[args] as the argument, it returned the values that meets the desired paramater.  
+
+
+
