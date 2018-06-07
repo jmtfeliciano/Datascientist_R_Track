@@ -172,20 +172,168 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Cmd+Shift+Enter</em>.</p>
+<div id="vectors" class="section level4">
+<h4>Vectors</h4>
+<p><code>c()</code> is the method to create a vector. The c in <code>c()</code> stands for combine. Vectors can hold numeric, character, and logical. Example:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtZXJpY192ZWN0b3IgPC0gYygxLCAxMCwgNDkpXG5jaGFyYWN0ZXJfdmVjdG9yIDwtIGMoXCJhXCIsIFwiYlwiLCBcImNcIilcbmJvb2xlYW5fdmVjdG9yIDwtIGMoVFJVRSwgRkFMU0UsIFRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>numeric_vector &lt;- c(1, 10, 49)
+character_vector &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+boolean_vector &lt;- c(TRUE, FALSE, TRUE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Cmd+Option+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
+</div>
+<div id="naming-pre-existing-vectors" class="section level4">
+<h4>Naming pre-existing vectors</h4>
+<p>Naming vectors are important to keep track of what the data you’re holding is for. For instance, a vector could hold a series of data (e.g. earnings) for each day. But we need a way to name which data corresponds to which. The code below illustrates the labeling standard.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICMgUG9rZXIgd2lubmluZ3MgZnJvbSBNb25kYXkgdG8gRnJpZGF5XG5wb2tlcl92ZWN0b3IgPC0gYygxNDAsIC01MCwgMjAsIC0xMjAsIDI0MClcbiMgUm91bGV0dGUgd2lubmluZ3MgZnJvbSBNb25kYXkgdG8gRnJpZGF5XG5yb3VsZXR0ZV92ZWN0b3IgPC0gYygtMjQsIC01MCwgMTAwLCAtMzUwLCAxMClcbiMgQXNzaWduIGRheXMgYXMgbmFtZXMgb2YgcG9rZXJfdmVjdG9yXG5uYW1lcyhwb2tlcl92ZWN0b3IpIDwtIGMoXCJNb25kYXlcIiwgXCJUdWVzZGF5XCIsIFwiV2VkbmVzZGF5XCIsIFwiVGh1cnNkYXlcIiwgXCJGcmlkYXlcIilcbiMgQXNzaWduIGRheXMgYXMgbmFtZXMgb2Ygcm91bGV0dGVfdmVjdG9yc1xubmFtZXMocm91bGV0dGVfdmVjdG9yKSA8LSBjKFwiTW9uZGF5XCIsIFwiVHVlc2RheVwiLCBcIldlZG5lc2RheVwiLCBcIlRodXJzZGF5XCIsIFwiRnJpZGF5XCIpXG5gYGAifQ== -->
+<pre class="r"><code> # Poker winnings from Monday to Friday
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+# Roulette winnings from Monday to Friday
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+# Assign days as names of poker_vector
+names(poker_vector) &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+# Assign days as names of roulette_vectors
+names(roulette_vector) &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="naming-vectors-with-reusable-labels" class="section level4">
+<h4>Naming vectors with reusable labels</h4>
+<p>In the previous code, we had to manually retype the labels to each variables. Reusability is key like in any OOL.</p>
+<p>We could refactor the code before into the following code:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApXG5yb3VsZXR0ZV92ZWN0b3IgPC0gYygtMjQsIC01MCwgMTAwLCAtMzUwLCAxMClcbmRheXNfdmVjdG9yIDwtIGMoXCJNb25kYXlcIiwgXCJUdWVzZGF5XCIsIFwiV2VkbmVzZGF5XCIsIFwiVGh1cnNkYXlcIiwgXCJGcmlkYXlcIilcbm5hbWVzKHBva2VyX3ZlY3RvcikgPC0gZGF5c192ZWN0b3IgIFxubmFtZXMocm91bGV0dGVfdmVjdG9yKSA8LSBkYXlzX3ZlY3RvclxuYGBgIn0= -->
+<pre class="r"><code>poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector  
+names(roulette_vector) &lt;- days_vector</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="sum" class="section level4">
+<h4><code>sum()</code></h4>
+<p><code>sum()</code> is a very useful method to sum vector components. Going back to the example in the previous sections, <code>sum()</code> can be used in the following way to calculate the net profits from winnings:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQb2tlciBhbmQgcm91bGV0dGUgd2lubmluZ3MgZnJvbSBNb25kYXkgdG8gRnJpZGF5OlxucG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApXG5yb3VsZXR0ZV92ZWN0b3IgPC0gYygtMjQsIC01MCwgMTAwLCAtMzUwLCAxMClcbmRheXNfdmVjdG9yIDwtIGMoXCJNb25kYXlcIiwgXCJUdWVzZGF5XCIsIFwiV2VkbmVzZGF5XCIsIFwiVGh1cnNkYXlcIiwgXCJGcmlkYXlcIilcbm5hbWVzKHBva2VyX3ZlY3RvcikgPC0gZGF5c192ZWN0b3Jcbm5hbWVzKHJvdWxldHRlX3ZlY3RvcikgPC0gZGF5c192ZWN0b3JcbiMgVG90YWwgd2lubmluZ3Mgd2l0aCBwb2tlclxudG90YWxfcG9rZXIgPC0gc3VtKHBva2VyX3ZlY3RvcilcbiMgVG90YWwgd2lubmluZ3Mgd2l0aCByb3VsZXR0ZVxudG90YWxfcm91bGV0dGUgPC0gc3VtKHJvdWxldHRlX3ZlY3RvcilcbiMgVG90YWwgd2lubmluZ3Mgb3ZlcmFsbFxudG90YWxfd2VlayA8LSB0b3RhbF9wb2tlciArIHRvdGFsX3JvdWxldHRlIFxuIyBQcmludCBvdXQgdG90YWxfd2Vla1xudG90YWxfd2Vla1xuYGBgIn0= -->
+<pre class="r"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+roulette_vector &lt;- c(-24, -50, 100, -350, 10)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+names(roulette_vector) &lt;- days_vector
+# Total winnings with poker
+total_poker &lt;- sum(poker_vector)
+# Total winnings with roulette
+total_roulette &lt;- sum(roulette_vector)
+# Total winnings overall
+total_week &lt;- total_poker + total_roulette 
+# Print out total_week
+total_week</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIC04NFxuIn0= -->
+<pre><code>[1] -84</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="indexing-in-r" class="section level4">
+<h4>Indexing in R</h4>
+<p>The first element is 1, not 0, as in most programming languages. Let’s say we want to access the poker data from Wednesday:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQb2tlciBhbmQgcm91bGV0dGUgd2lubmluZ3MgZnJvbSBNb25kYXkgdG8gRnJpZGF5OlxucG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApXG5kYXlzX3ZlY3RvciA8LSBjKFwiTW9uZGF5XCIsIFwiVHVlc2RheVwiLCBcIldlZG5lc2RheVwiLCBcIlRodXJzZGF5XCIsIFwiRnJpZGF5XCIpXG5uYW1lcyhwb2tlcl92ZWN0b3IpIDwtIGRheXNfdmVjdG9yXG4jIERlZmluZSBhIG5ldyB2YXJpYWJsZSBiYXNlZCBvbiBhIHNlbGVjdGlvblxucG9rZXJfd2VkbmVzZGF5IDwtIHBva2VyX3ZlY3RvclszXVxucG9rZXJfd2VkbmVzZGF5XG5gYGAifQ== -->
+<pre class="r"><code># Poker and roulette winnings from Monday to Friday:
+poker_vector &lt;- c(140, -50, 20, -120, 240)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+# Define a new variable based on a selection
+poker_wednesday &lt;- poker_vector[3]
+poker_wednesday</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2VkbmVzZGF5IFxuICAgICAgIDIwIFxuIn0= -->
+<pre><code>Wednesday 
+       20 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="accessing-multiple-entries-on-an-array-using-vector_name" class="section level4">
+<h4>Accessing multiple entries on an array using vector_name[]</h4>
+<p>Suppose we want to access the poker results for Tuesday, Wednesday and Thursday then save it on another variable:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApXG5kYXlzX3ZlY3RvciA8LSBjKFwiTW9uZGF5XCIsIFwiVHVlc2RheVwiLCBcIldlZG5lc2RheVwiLCBcIlRodXJzZGF5XCIsIFwiRnJpZGF5XCIpXG5uYW1lcyhwb2tlcl92ZWN0b3IpIDwtIGRheXNfdmVjdG9yXG5wb2tlcl9taWR3ZWVrIDwtIHBva2VyX3ZlY3RvcltjKDIsMyw0KV1cbiMgTm90ZTogIGMoMjo0KSB3b3JrcyB0b28hXG5wb2tlcl9taWR3ZWVrXG5gYGAifQ== -->
+<pre class="r"><code>poker_vector &lt;- c(140, -50, 20, -120, 240)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+poker_midweek &lt;- poker_vector[c(2,3,4)]
+# Note:  c(2:4) works too!
+poker_midweek</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBUdWVzZGF5IFdlZG5lc2RheSAgVGh1cnNkYXkgXG4gICAgICAtNTAgICAgICAgIDIwICAgICAgLTEyMCBcbiJ9 -->
+<pre><code>  Tuesday Wednesday  Thursday 
+      -50        20      -120 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Note:</strong> It might be tempting to use c(2-4) instead of c(2,3,4) because of other programming languages but it does not work in R. c(2:4) will work though! Again, c(2,3,4) is the same as c(2:4)</p>
+</div>
+<div id="mean" class="section level4">
+<h4>Mean</h4>
+<p>Mean can simply be used by using <code>mean()</code> method</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApXG5tZWFuKHBva2VyX3ZlY3RvcilcbmBgYCJ9 -->
+<pre class="r"><code>poker_vector &lt;- c(140, -50, 20, -120, 240)
+mean(poker_vector)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQ2XG4ifQ== -->
+<pre><code>[1] 46</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="unique-r-thing-selection-by-comparison." class="section level4">
+<h4>Unique R-Thing: Selection by comparison.</h4>
+<p>We can compare a vector to an argument using logical comparison operators (e.g. &gt;, !=) and will return a vector of logical operators indicating TRUE or FALSE</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApXG5kYXlzX3ZlY3RvciA8LSBjKFwiTW9uZGF5XCIsIFwiVHVlc2RheVwiLCBcIldlZG5lc2RheVwiLCBcIlRodXJzZGF5XCIsIFwiRnJpZGF5XCIpXG5uYW1lcyhwb2tlcl92ZWN0b3IpIDwtIGRheXNfdmVjdG9yXG4jIFdoaWNoIGRheXMgZGlkIHlvdSBtYWtlIG1vbmV5IG9uIHBva2VyP1xuc2VsZWN0aW9uX3ZlY3RvciA8LSBwb2tlcl92ZWN0b3IgPiAwXG4jIFByaW50IG91dCBzZWxlY3Rpb25fdmVjdG9yXG5zZWxlY3Rpb25fdmVjdG9yXG5gYGAifQ== -->
+<pre class="r"><code>poker_vector &lt;- c(140, -50, 20, -120, 240)
+days_vector &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)
+names(poker_vector) &lt;- days_vector
+# Which days did you make money on poker?
+selection_vector &lt;- poker_vector &gt; 0
+# Print out selection_vector
+selection_vector</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgTW9uZGF5ICAgVHVlc2RheSBXZWRuZXNkYXkgIFRodXJzZGF5IFxuICAgICBUUlVFICAgICBGQUxTRSAgICAgIFRSVUUgICAgIEZBTFNFIFxuICAgRnJpZGF5IFxuICAgICBUUlVFIFxuIn0= -->
+<pre><code>   Monday   Tuesday Wednesday  Thursday 
+     TRUE     FALSE      TRUE     FALSE 
+   Friday 
+     TRUE </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In the script above, it returned a vector with logical values indicating if profit was made with each day.</p>
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiVmVjdG9ycyIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgpgYGB7cn0KcGxvdChjYXJzKQpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVmVjdG9ycyIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMjIyBWZWN0b3JzCgpgYygpYCBpcyB0aGUgbWV0aG9kIHRvIGNyZWF0ZSBhIHZlY3Rvci4gVGhlIGMgaW4gYGMoKWAgc3RhbmRzIGZvciBjb21iaW5lLiAgVmVjdG9ycyBjYW4gaG9sZCBudW1lcmljLCBjaGFyYWN0ZXIsIGFuZCBsb2dpY2FsLiAgRXhhbXBsZToKCmBgYHtyfQpudW1lcmljX3ZlY3RvciA8LSBjKDEsIDEwLCA0OSkKY2hhcmFjdGVyX3ZlY3RvciA8LSBjKCJhIiwgImIiLCAiYyIpCmJvb2xlYW5fdmVjdG9yIDwtIGMoVFJVRSwgRkFMU0UsIFRSVUUpCmBgYAoKIyMjIyBOYW1pbmcgcHJlLWV4aXN0aW5nIHZlY3RvcnMKCk5hbWluZyB2ZWN0b3JzIGFyZSBpbXBvcnRhbnQgdG8ga2VlcCB0cmFjayBvZiB3aGF0IHRoZSBkYXRhIHlvdSdyZSBob2xkaW5nIGlzIGZvci4gIEZvciBpbnN0YW5jZSwgYSB2ZWN0b3IgY291bGQgaG9sZCBhIHNlcmllcyBvZiBkYXRhIChlLmcuIGVhcm5pbmdzKSBmb3IgZWFjaCBkYXkuICBCdXQgd2UgbmVlZCBhIHdheSB0byBuYW1lIHdoaWNoIGRhdGEgY29ycmVzcG9uZHMgdG8gd2hpY2guIFRoZSBjb2RlIGJlbG93IGlsbHVzdHJhdGVzIHRoZSBsYWJlbGluZyBzdGFuZGFyZC4KCmBgYHtyfQogIyBQb2tlciB3aW5uaW5ncyBmcm9tIE1vbmRheSB0byBGcmlkYXkKcG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApCiMgUm91bGV0dGUgd2lubmluZ3MgZnJvbSBNb25kYXkgdG8gRnJpZGF5CnJvdWxldHRlX3ZlY3RvciA8LSBjKC0yNCwgLTUwLCAxMDAsIC0zNTAsIDEwKQojIEFzc2lnbiBkYXlzIGFzIG5hbWVzIG9mIHBva2VyX3ZlY3RvcgpuYW1lcyhwb2tlcl92ZWN0b3IpIDwtIGMoIk1vbmRheSIsICJUdWVzZGF5IiwgIldlZG5lc2RheSIsICJUaHVyc2RheSIsICJGcmlkYXkiKQojIEFzc2lnbiBkYXlzIGFzIG5hbWVzIG9mIHJvdWxldHRlX3ZlY3RvcnMKbmFtZXMocm91bGV0dGVfdmVjdG9yKSA8LSBjKCJNb25kYXkiLCAiVHVlc2RheSIsICJXZWRuZXNkYXkiLCAiVGh1cnNkYXkiLCAiRnJpZGF5IikKYGBgCgojIyMjIE5hbWluZyB2ZWN0b3JzIHdpdGggcmV1c2FibGUgbGFiZWxzCgpJbiB0aGUgcHJldmlvdXMgY29kZSwgd2UgaGFkIHRvIG1hbnVhbGx5IHJldHlwZSB0aGUgbGFiZWxzIHRvIGVhY2ggdmFyaWFibGVzLiAgUmV1c2FiaWxpdHkgaXMga2V5IGxpa2UgaW4gYW55IE9PTC4gIAoKV2UgY291bGQgcmVmYWN0b3IgdGhlIGNvZGUgYmVmb3JlIGludG8gdGhlIGZvbGxvd2luZyBjb2RlOgoKYGBge3J9CnBva2VyX3ZlY3RvciA8LSBjKDE0MCwgLTUwLCAyMCwgLTEyMCwgMjQwKQpyb3VsZXR0ZV92ZWN0b3IgPC0gYygtMjQsIC01MCwgMTAwLCAtMzUwLCAxMCkKZGF5c192ZWN0b3IgPC0gYygiTW9uZGF5IiwgIlR1ZXNkYXkiLCAiV2VkbmVzZGF5IiwgIlRodXJzZGF5IiwgIkZyaWRheSIpCm5hbWVzKHBva2VyX3ZlY3RvcikgPC0gZGF5c192ZWN0b3IgIApuYW1lcyhyb3VsZXR0ZV92ZWN0b3IpIDwtIGRheXNfdmVjdG9yCmBgYAoKIyMjIyBgc3VtKClgCgpgc3VtKClgIGlzIGEgdmVyeSB1c2VmdWwgbWV0aG9kIHRvIHN1bSB2ZWN0b3IgY29tcG9uZW50cy4gIEdvaW5nIGJhY2sgdG8gdGhlIGV4YW1wbGUgaW4gdGhlIHByZXZpb3VzIHNlY3Rpb25zLCBgc3VtKClgIGNhbiBiZSB1c2VkIGluIHRoZSBmb2xsb3dpbmcgd2F5IHRvIGNhbGN1bGF0ZSB0aGUgbmV0IHByb2ZpdHMgZnJvbSB3aW5uaW5nczoKCmBgYHtyfQojIFBva2VyIGFuZCByb3VsZXR0ZSB3aW5uaW5ncyBmcm9tIE1vbmRheSB0byBGcmlkYXk6CnBva2VyX3ZlY3RvciA8LSBjKDE0MCwgLTUwLCAyMCwgLTEyMCwgMjQwKQpyb3VsZXR0ZV92ZWN0b3IgPC0gYygtMjQsIC01MCwgMTAwLCAtMzUwLCAxMCkKZGF5c192ZWN0b3IgPC0gYygiTW9uZGF5IiwgIlR1ZXNkYXkiLCAiV2VkbmVzZGF5IiwgIlRodXJzZGF5IiwgIkZyaWRheSIpCm5hbWVzKHBva2VyX3ZlY3RvcikgPC0gZGF5c192ZWN0b3IKbmFtZXMocm91bGV0dGVfdmVjdG9yKSA8LSBkYXlzX3ZlY3RvcgojIFRvdGFsIHdpbm5pbmdzIHdpdGggcG9rZXIKdG90YWxfcG9rZXIgPC0gc3VtKHBva2VyX3ZlY3RvcikKIyBUb3RhbCB3aW5uaW5ncyB3aXRoIHJvdWxldHRlCnRvdGFsX3JvdWxldHRlIDwtIHN1bShyb3VsZXR0ZV92ZWN0b3IpCiMgVG90YWwgd2lubmluZ3Mgb3ZlcmFsbAp0b3RhbF93ZWVrIDwtIHRvdGFsX3Bva2VyICsgdG90YWxfcm91bGV0dGUgCiMgUHJpbnQgb3V0IHRvdGFsX3dlZWsKdG90YWxfd2VlawpgYGAKCmBgYHtyfQoKYGBgCgojIyMjIEluZGV4aW5nIGluIFIKClRoZSBmaXJzdCBlbGVtZW50IGlzIDEsIG5vdCAwLCBhcyBpbiBtb3N0IHByb2dyYW1taW5nIGxhbmd1YWdlcy4gIExldCdzIHNheSB3ZSB3YW50IHRvIGFjY2VzcyB0aGUgcG9rZXIgZGF0YSBmcm9tIFdlZG5lc2RheToKCmBgYHtyfQojIFBva2VyIGFuZCByb3VsZXR0ZSB3aW5uaW5ncyBmcm9tIE1vbmRheSB0byBGcmlkYXk6CnBva2VyX3ZlY3RvciA8LSBjKDE0MCwgLTUwLCAyMCwgLTEyMCwgMjQwKQpkYXlzX3ZlY3RvciA8LSBjKCJNb25kYXkiLCAiVHVlc2RheSIsICJXZWRuZXNkYXkiLCAiVGh1cnNkYXkiLCAiRnJpZGF5IikKbmFtZXMocG9rZXJfdmVjdG9yKSA8LSBkYXlzX3ZlY3RvcgojIERlZmluZSBhIG5ldyB2YXJpYWJsZSBiYXNlZCBvbiBhIHNlbGVjdGlvbgpwb2tlcl93ZWRuZXNkYXkgPC0gcG9rZXJfdmVjdG9yWzNdCnBva2VyX3dlZG5lc2RheQpgYGAKCiMjIyMgQWNjZXNzaW5nIG11bHRpcGxlIGVudHJpZXMgb24gYW4gYXJyYXkgdXNpbmcgdmVjdG9yX25hbWVbXQoKU3VwcG9zZSB3ZSB3YW50IHRvIGFjY2VzcyB0aGUgcG9rZXIgcmVzdWx0cyBmb3IgVHVlc2RheSwgV2VkbmVzZGF5IGFuZCBUaHVyc2RheSB0aGVuIHNhdmUgaXQgb24gYW5vdGhlciB2YXJpYWJsZToKYGBge3J9CnBva2VyX3ZlY3RvciA8LSBjKDE0MCwgLTUwLCAyMCwgLTEyMCwgMjQwKQpkYXlzX3ZlY3RvciA8LSBjKCJNb25kYXkiLCAiVHVlc2RheSIsICJXZWRuZXNkYXkiLCAiVGh1cnNkYXkiLCAiRnJpZGF5IikKbmFtZXMocG9rZXJfdmVjdG9yKSA8LSBkYXlzX3ZlY3Rvcgpwb2tlcl9taWR3ZWVrIDwtIHBva2VyX3ZlY3RvcltjKDIsMyw0KV0KIyBOb3RlOiAgYygyOjQpIHdvcmtzIHRvbyEKcG9rZXJfbWlkd2VlawpgYGAKCl9fTm90ZTpfXyBJdCBtaWdodCBiZSB0ZW1wdGluZyB0byB1c2UgYygyLTQpIGluc3RlYWQgb2YgYygyLDMsNCkgYmVjYXVzZSBvZiBvdGhlciBwcm9ncmFtbWluZyBsYW5ndWFnZXMgYnV0IGl0IGRvZXMgbm90IHdvcmsgaW4gUi4gYygyOjQpIHdpbGwgd29yayB0aG91Z2ghIEFnYWluLCBjKDIsMyw0KSBpcyB0aGUgc2FtZSBhcyBjKDI6NCkKCiMjIyMgTWVhbiAKCk1lYW4gY2FuIHNpbXBseSBiZSB1c2VkIGJ5IHVzaW5nIGBtZWFuKClgIG1ldGhvZAoKYGBge3J9CnBva2VyX3ZlY3RvciA8LSBjKDE0MCwgLTUwLCAyMCwgLTEyMCwgMjQwKQptZWFuKHBva2VyX3ZlY3RvcikKYGBgCgojIyMjIFVuaXF1ZSBSLVRoaW5nOiAgU2VsZWN0aW9uIGJ5IGNvbXBhcmlzb24uCgpXZSBjYW4gY29tcGFyZSBhIHZlY3RvciB0byBhbiBhcmd1bWVudCB1c2luZyBsb2dpY2FsIGNvbXBhcmlzb24gb3BlcmF0b3JzIChlLmcuID4sICE9KSBhbmQgd2lsbCByZXR1cm4gYSB2ZWN0b3Igb2YgbG9naWNhbCBvcGVyYXRvcnMgaW5kaWNhdGluZyBUUlVFIG9yIEZBTFNFCgpgYGB7cn0KcG9rZXJfdmVjdG9yIDwtIGMoMTQwLCAtNTAsIDIwLCAtMTIwLCAyNDApCmRheXNfdmVjdG9yIDwtIGMoIk1vbmRheSIsICJUdWVzZGF5IiwgIldlZG5lc2RheSIsICJUaHVyc2RheSIsICJGcmlkYXkiKQpuYW1lcyhwb2tlcl92ZWN0b3IpIDwtIGRheXNfdmVjdG9yCiMgV2hpY2ggZGF5cyBkaWQgeW91IG1ha2UgbW9uZXkgb24gcG9rZXI/CnNlbGVjdGlvbl92ZWN0b3IgPC0gcG9rZXJfdmVjdG9yID4gMAojIFByaW50IG91dCBzZWxlY3Rpb25fdmVjdG9yCnNlbGVjdGlvbl92ZWN0b3IKCmBgYAoKSW4gdGhlIHNjcmlwdCBhYm92ZSwgaXQgcmV0dXJuZWQgYSB2ZWN0b3Igd2l0aCBsb2dpY2FsIHZhbHVlcyBpbmRpY2F0aW5nIGlmIHByb2ZpdCB3YXMgbWFkZSB3aXRoIGVhY2ggZGF5LiAgCg==</div>
 
 
 

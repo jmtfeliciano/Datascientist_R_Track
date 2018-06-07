@@ -3,14 +3,120 @@ title: "Vectors"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+#### Vectors
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+`c()` is the method to create a vector. The c in `c()` stands for combine.  Vectors can hold numeric, character, and logical.  Example:
 
 ```{r}
-plot(cars)
+numeric_vector <- c(1, 10, 49)
+character_vector <- c("a", "b", "c")
+boolean_vector <- c(TRUE, FALSE, TRUE)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+#### Naming pre-existing vectors
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
+Naming vectors are important to keep track of what the data you're holding is for.  For instance, a vector could hold a series of data (e.g. earnings) for each day.  But we need a way to name which data corresponds to which. The code below illustrates the labeling standard.
+
+```{r}
+ # Poker winnings from Monday to Friday
+poker_vector <- c(140, -50, 20, -120, 240)
+# Roulette winnings from Monday to Friday
+roulette_vector <- c(-24, -50, 100, -350, 10)
+# Assign days as names of poker_vector
+names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+# Assign days as names of roulette_vectors
+names(roulette_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+```
+
+#### Naming vectors with reusable labels
+
+In the previous code, we had to manually retype the labels to each variables.  Reusability is key like in any OOL.  
+
+We could refactor the code before into the following code:
+
+```{r}
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector  
+names(roulette_vector) <- days_vector
+```
+
+#### `sum()`
+
+`sum()` is a very useful method to sum vector components.  Going back to the example in the previous sections, `sum()` can be used in the following way to calculate the net profits from winnings:
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+poker_vector <- c(140, -50, 20, -120, 240)
+roulette_vector <- c(-24, -50, 100, -350, 10)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+names(roulette_vector) <- days_vector
+# Total winnings with poker
+total_poker <- sum(poker_vector)
+# Total winnings with roulette
+total_roulette <- sum(roulette_vector)
+# Total winnings overall
+total_week <- total_poker + total_roulette 
+# Print out total_week
+total_week
+```
+
+```{r}
+
+```
+
+#### Indexing in R
+
+The first element is 1, not 0, as in most programming languages.  Let's say we want to access the poker data from Wednesday:
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+poker_vector <- c(140, -50, 20, -120, 240)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+# Define a new variable based on a selection
+poker_wednesday <- poker_vector[3]
+poker_wednesday
+```
+
+#### Accessing multiple entries on an array using vector_name[]
+
+Suppose we want to access the poker results for Tuesday, Wednesday and Thursday then save it on another variable:
+```{r}
+poker_vector <- c(140, -50, 20, -120, 240)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+poker_midweek <- poker_vector[c(2,3,4)]
+# Note:  c(2:4) works too!
+poker_midweek
+```
+
+__Note:__ It might be tempting to use c(2-4) instead of c(2,3,4) because of other programming languages but it does not work in R. c(2:4) will work though! Again, c(2,3,4) is the same as c(2:4)
+
+#### Mean 
+
+Mean can simply be used by using `mean()` method
+
+```{r}
+poker_vector <- c(140, -50, 20, -120, 240)
+mean(poker_vector)
+```
+
+#### Unique R-Thing:  Selection by comparison.
+
+We can compare a vector to an argument using logical comparison operators (e.g. >, !=) and will return a vector of logical operators indicating TRUE or FALSE
+
+```{r}
+poker_vector <- c(140, -50, 20, -120, 240)
+days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+names(poker_vector) <- days_vector
+# Which days did you make money on poker?
+selection_vector <- poker_vector > 0
+# Print out selection_vector
+selection_vector
+
+```
+
+In the script above, it returned a vector with logical values indicating if profit was made with each day.  
