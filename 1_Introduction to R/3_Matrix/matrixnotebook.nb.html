@@ -178,8 +178,8 @@ $(document).ready(function () {
 <p>To construct a matrix with 1-9, which is filled by finishing up a row by row, we must use the following code:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0cml4KDE6OSwgYnlyb3c9IFRSVUUsbnJvdz0zKVxuYGBgIn0= -->
-<pre class="r"><code>matrix(1:9, byrow= TRUE,nrow=3)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0cml4KDE6OSwgYnlyb3c9IFRSVUUsIG5yb3c9MylcbmBgYCJ9 -->
+<pre class="r"><code>matrix(1:9, byrow= TRUE, nrow=3)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAgICAxICAgIDIgICAgM1xuWzIsXSAgICA0ICAgIDUgICAgNlxuWzMsXSAgICA3ICAgIDggICAgOVxuIn0= -->
 <pre><code>     [,1] [,2] [,3]
@@ -234,10 +234,48 @@ Return of the Jedi      309.306  165.8</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="adding-rows-using-rowsums" class="section level4">
+<h4>Adding rows using <code>rowSums()</code></h4>
+<p>Suppose we want to add both US and non-US numbers to get a sum. Using the code from the previous page, we can simply use rowSums() to get that number:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm93U3VtcyhzdGFyX3dhcnNfbWF0cml4KVxuYGBgIn0= -->
+<pre class="r"><code>rowSums(star_wars_matrix)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgIEEgTmV3IEhvcGUgVGhlIEVtcGlyZSBTdHJpa2VzIEJhY2sgXG4gICAgICAgICAgICAgICAgNzc1LjM5OCAgICAgICAgICAgICAgICAgNTM4LjM3NSBcbiAgICAgUmV0dXJuIG9mIHRoZSBKZWRpIFxuICAgICAgICAgICAgICAgIDQ3NS4xMDYgXG4ifQ== -->
+<pre><code>             A New Hope The Empire Strikes Back 
+                775.398                 538.375 
+     Return of the Jedi 
+                475.106 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="creating-new-matrix-via-cbind" class="section level4">
+<h4>Creating new matrix via <code>cbind()</code></h4>
+<p>Suppose we want to create a new matrix using the results of appending the sums into our dataset, star_wars_matrix. This requires adding another column to our matrix which we can do using <code>cbind()</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtX3ZlY3RvciA8LSByb3dTdW1zKHN0YXJfd2Fyc19tYXRyaXgpXG5hbGxfd2Fyc19tYXRyaXggPC0gY2JpbmQoc3Rhcl93YXJzX21hdHJpeCwgc3VtX3ZlY3RvcilcbmFsbF93YXJzX21hdHJpeCBcbmBgYCJ9 -->
+<pre class="r"><code>sum_vector &lt;- rowSums(star_wars_matrix)
+all_wars_matrix &lt;- cbind(star_wars_matrix, sum_vector)
+all_wars_matrix </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgICAgICAgICAgICAgICAgICBVUyBub24tVVMgc3VtX3ZlY3RvclxuQSBOZXcgSG9wZSAgICAgICAgICAgICAgNDYwLjk5OCAgMzE0LjQgICAgNzc1LjM5OFxuVGhlIEVtcGlyZSBTdHJpa2VzIEJhY2sgMjkwLjQ3NSAgMjQ3LjkgICAgNTM4LjM3NVxuUmV0dXJuIG9mIHRoZSBKZWRpICAgICAgMzA5LjMwNiAgMTY1LjggICAgNDc1LjEwNlxuIn0= -->
+<pre><code>                             US non-US sum_vector
+A New Hope              460.998  314.4    775.398
+The Empire Strikes Back 290.475  247.9    538.375
+Return of the Jedi      309.306  165.8    475.106</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Using <code>cbind()</code>, I created a new matrix called all_wars_matrix with the combined dataset.</p>
+<p><strong>Note:</strong> To add a new matrix by adding 2 or more datasets by row, <code>rbind()</code> can be utilized like we did with <code>cbind()</code></p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWF0cml4IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIENvbnN0cnVjdGluZyBhIG1hdHJpeAoKTGlrZSB2ZWN0b3JzLCBhbGwgZW50cmllcyBtdXN0IGJlIHRoZSBzYW1lLiAgV2UgY2FuIGRlY2xhcmUgYSB2ZWN0b3IgYnkgdXNpbmcgYG1hdHJpeCgpYAoKVG8gY29uc3RydWN0IGEgbWF0cml4IHdpdGggMS05LCB3aGljaCBpcyBmaWxsZWQgYnkgZmluaXNoaW5nIHVwIGEgcm93IGJ5IHJvdywgd2UgbXVzdCB1c2UgdGhlIGZvbGxvd2luZyBjb2RlOgoKYGBge3J9Cm1hdHJpeCgxOjksIGJ5cm93PSBUUlVFLCBucm93PTMpCmBgYAoKTm90ZSB0aGF0IHRoZSB0aGUgZGVmYXVsdCBmb3IgYGJ5cm93YCBpcyBGQUxTRS4gIExldCdzIHNlZSB3aGF0IGhhcHBlbnMgd2hlbiB3ZSBkbyBub3Qgb3ZlcnJpZGUgdGhlIGRlZmF1bHQ6CgpgYGB7cn0KbWF0cml4KDE6OSwgbnJvdz0zKQpgYGAKCiMjIyMgTGFiZWxpbmcgbWF0cml4IHVzaW5nIGNvbG5hbWVzKCkgYW5kIHJvd25hbWVzKCkKClRvIGxhYmVsIG1hdHJpY2VzLCB3ZSBuZWVkIHRvIGNyZWF0ZSBhIHZlY3RvciB3aXRoIHRoZSBsYWJlbHMuICBBbmQgdGhlbiBhdHRhY2ggdGhlbSB0byBvdXIgbWF0cml4IGRhdGEgdXNpbmcgYGNvbG5hbWVzKClgIGFuZCBgcm93bmFtZXMoKWAgYXMgZGVtb25zcmF0ZWQgYmVsb3c6CgpgYGB7cn0KIyBCb3ggb2ZmaWNlIFN0YXIgV2FycyAoaW4gbWlsbGlvbnMhKQpuZXdfaG9wZSA8LSBjKDQ2MC45OTgsIDMxNC40KQplbXBpcmVfc3RyaWtlcyA8LSBjKDI5MC40NzUsIDI0Ny45MDApCnJldHVybl9qZWRpIDwtIGMoMzA5LjMwNiwgMTY1LjgpCiMgQ29uc3RydWN0IG1hdHJpeApzdGFyX3dhcnNfbWF0cml4IDwtIG1hdHJpeChjKG5ld19ob3BlLCBlbXBpcmVfc3RyaWtlcywgcmV0dXJuX2plZGkpLCBucm93ID0gMywgYnlyb3cgPSBUUlVFKQojIFZlY3RvcnMgcmVnaW9uIGFuZCB0aXRsZXMsIHVzZWQgZm9yIG5hbWluZwpyZWdpb24gPC0gYygiVVMiLCAibm9uLVVTIikKdGl0bGVzIDwtIGMoIkEgTmV3IEhvcGUiLCAiVGhlIEVtcGlyZSBTdHJpa2VzIEJhY2siLCAiUmV0dXJuIG9mIHRoZSBKZWRpIikKCiMgTmFtZSB0aGUgY29sdW1ucyB3aXRoIHJlZ2lvbgpjb2xuYW1lcyhzdGFyX3dhcnNfbWF0cml4KSA8LSByZWdpb24KIyBOYW1lIHRoZSByb3dzIHdpdGggdGl0bGVzCnJvd25hbWVzKHN0YXJfd2Fyc19tYXRyaXgpIDwtIHRpdGxlcwojIFByaW50IG91dCBzdGFyX3dhcnNfbWF0cml4CnN0YXJfd2Fyc19tYXRyaXgKYGBgCgoKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWF0cml4IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIENvbnN0cnVjdGluZyBhIG1hdHJpeAoKTGlrZSB2ZWN0b3JzLCBhbGwgZW50cmllcyBtdXN0IGJlIHRoZSBzYW1lLiAgV2UgY2FuIGRlY2xhcmUgYSB2ZWN0b3IgYnkgdXNpbmcgYG1hdHJpeCgpYAoKVG8gY29uc3RydWN0IGEgbWF0cml4IHdpdGggMS05LCB3aGljaCBpcyBmaWxsZWQgYnkgZmluaXNoaW5nIHVwIGEgcm93IGJ5IHJvdywgd2UgbXVzdCB1c2UgdGhlIGZvbGxvd2luZyBjb2RlOgoKYGBge3J9Cm1hdHJpeCgxOjksIGJ5cm93PSBUUlVFLCBucm93PTMpCmBgYAoKTm90ZSB0aGF0IHRoZSB0aGUgZGVmYXVsdCBmb3IgYGJ5cm93YCBpcyBGQUxTRS4gIExldCdzIHNlZSB3aGF0IGhhcHBlbnMgd2hlbiB3ZSBkbyBub3Qgb3ZlcnJpZGUgdGhlIGRlZmF1bHQ6CgpgYGB7cn0KbWF0cml4KDE6OSwgbnJvdz0zKQpgYGAKCiMjIyMgTGFiZWxpbmcgbWF0cml4IHVzaW5nIGNvbG5hbWVzKCkgYW5kIHJvd25hbWVzKCkKClRvIGxhYmVsIG1hdHJpY2VzLCB3ZSBuZWVkIHRvIGNyZWF0ZSBhIHZlY3RvciB3aXRoIHRoZSBsYWJlbHMuICBBbmQgdGhlbiBhdHRhY2ggdGhlbSB0byBvdXIgbWF0cml4IGRhdGEgdXNpbmcgYGNvbG5hbWVzKClgIGFuZCBgcm93bmFtZXMoKWAgYXMgZGVtb25zcmF0ZWQgYmVsb3c6CgpgYGB7cn0KIyBCb3ggb2ZmaWNlIFN0YXIgV2FycyAoaW4gbWlsbGlvbnMhKQpuZXdfaG9wZSA8LSBjKDQ2MC45OTgsIDMxNC40KQplbXBpcmVfc3RyaWtlcyA8LSBjKDI5MC40NzUsIDI0Ny45MDApCnJldHVybl9qZWRpIDwtIGMoMzA5LjMwNiwgMTY1LjgpCiMgQ29uc3RydWN0IG1hdHJpeApzdGFyX3dhcnNfbWF0cml4IDwtIG1hdHJpeChjKG5ld19ob3BlLCBlbXBpcmVfc3RyaWtlcywgcmV0dXJuX2plZGkpLCBucm93ID0gMywgYnlyb3cgPSBUUlVFKQojIFZlY3RvcnMgcmVnaW9uIGFuZCB0aXRsZXMsIHVzZWQgZm9yIG5hbWluZwpyZWdpb24gPC0gYygiVVMiLCAibm9uLVVTIikKdGl0bGVzIDwtIGMoIkEgTmV3IEhvcGUiLCAiVGhlIEVtcGlyZSBTdHJpa2VzIEJhY2siLCAiUmV0dXJuIG9mIHRoZSBKZWRpIikKCiMgTmFtZSB0aGUgY29sdW1ucyB3aXRoIHJlZ2lvbgpjb2xuYW1lcyhzdGFyX3dhcnNfbWF0cml4KSA8LSByZWdpb24KIyBOYW1lIHRoZSByb3dzIHdpdGggdGl0bGVzCnJvd25hbWVzKHN0YXJfd2Fyc19tYXRyaXgpIDwtIHRpdGxlcwojIFByaW50IG91dCBzdGFyX3dhcnNfbWF0cml4CnN0YXJfd2Fyc19tYXRyaXgKYGBgCgojIyMjIEFkZGluZyByb3dzIHVzaW5nIGByb3dTdW1zKClgCgpTdXBwb3NlIHdlIHdhbnQgdG8gYWRkIGJvdGggVVMgYW5kIG5vbi1VUyBudW1iZXJzIHRvIGdldCBhIHN1bS4gIFVzaW5nIHRoZSBjb2RlIGZyb20gdGhlIHByZXZpb3VzIHBhZ2UsIHdlIGNhbiBzaW1wbHkgdXNlIHJvd1N1bXMoKSB0byBnZXQgdGhhdCBudW1iZXI6CgpgYGB7cn0Kcm93U3VtcyhzdGFyX3dhcnNfbWF0cml4KQpgYGAKCiMjIyMgQ3JlYXRpbmcgbmV3IG1hdHJpeCB2aWEgYGNiaW5kKClgCgpTdXBwb3NlIHdlIHdhbnQgdG8gY3JlYXRlIGEgbmV3IG1hdHJpeCB1c2luZyB0aGUgcmVzdWx0cyBvZiBhcHBlbmRpbmcgdGhlIHN1bXMgaW50byBvdXIgZGF0YXNldCwgc3Rhcl93YXJzX21hdHJpeC4gIFRoaXMgcmVxdWlyZXMgYWRkaW5nIGFub3RoZXIgY29sdW1uIHRvIG91ciBtYXRyaXggd2hpY2ggd2UgY2FuIGRvIHVzaW5nIGBjYmluZCgpYAoKYGBge3J9CnN1bV92ZWN0b3IgPC0gcm93U3VtcyhzdGFyX3dhcnNfbWF0cml4KQphbGxfd2Fyc19tYXRyaXggPC0gY2JpbmQoc3Rhcl93YXJzX21hdHJpeCwgc3VtX3ZlY3RvcikKYWxsX3dhcnNfbWF0cml4IApgYGAKClVzaW5nIGBjYmluZCgpYCwgSSBjcmVhdGVkIGEgbmV3IG1hdHJpeCBjYWxsZWQgYWxsX3dhcnNfbWF0cml4IHdpdGggdGhlIGNvbWJpbmVkIGRhdGFzZXQuICAKCl9fTm90ZTpfXyAgVG8gYWRkIGEgbmV3IG1hdHJpeCBieSBhZGRpbmcgMiBvciBtb3JlIGRhdGFzZXRzIGJ5IHJvdywgYHJiaW5kKClgIGNhbiBiZSB1dGlsaXplZCBsaWtlIHdlIGRpZCB3aXRoIGBjYmluZCgpYAo=</div>
 
 
 

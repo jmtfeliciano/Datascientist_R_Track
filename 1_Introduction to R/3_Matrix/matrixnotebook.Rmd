@@ -42,7 +42,24 @@ rownames(star_wars_matrix) <- titles
 star_wars_matrix
 ```
 
+#### Adding rows using `rowSums()`
 
+Suppose we want to add both US and non-US numbers to get a sum.  Using the code from the previous page, we can simply use rowSums() to get that number:
 
+```{r}
+rowSums(star_wars_matrix)
+```
 
+#### Creating new matrix via `cbind()`
 
+Suppose we want to create a new matrix using the results of appending the sums into our dataset, star_wars_matrix.  This requires adding another column to our matrix which we can do using `cbind()`
+
+```{r}
+sum_vector <- rowSums(star_wars_matrix)
+all_wars_matrix <- cbind(star_wars_matrix, sum_vector)
+all_wars_matrix 
+```
+
+Using `cbind()`, I created a new matrix called all_wars_matrix with the combined dataset.  
+
+__Note:__  To add a new matrix by adding 2 or more datasets by row, `rbind()` can be utilized like we did with `cbind()`
