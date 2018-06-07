@@ -172,9 +172,72 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="constructing-a-matrix" class="section level4">
+<h4>Constructing a matrix</h4>
+<p>Like vectors, all entries must be the same. We can declare a vector by using <code>matrix()</code></p>
+<p>To construct a matrix with 1-9, which is filled by finishing up a row by row, we must use the following code:</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0cml4KDE6OSwgYnlyb3c9IFRSVUUsbnJvdz0zKVxuYGBgIn0= -->
+<pre class="r"><code>matrix(1:9, byrow= TRUE,nrow=3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAgICAxICAgIDIgICAgM1xuWzIsXSAgICA0ICAgIDUgICAgNlxuWzMsXSAgICA3ICAgIDggICAgOVxuIn0= -->
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+[3,]    7    8    9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note that the the default for <code>byrow</code> is FALSE. Let’s see what happens when we do not override the default:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF0cml4KDE6OSwgbnJvdz0zKVxuYGBgIn0= -->
+<pre class="r"><code>matrix(1:9, nrow=3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAgICAxICAgIDQgICAgN1xuWzIsXSAgICAyICAgIDUgICAgOFxuWzMsXSAgICAzICAgIDYgICAgOVxuIn0= -->
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="labeling-matrix-using-colnames-and-rownames" class="section level4">
+<h4>Labeling matrix using colnames() and rownames()</h4>
+<p>To label matrices, we need to create a vector with the labels. And then attach them to our matrix data using <code>colnames()</code> and <code>rownames()</code> as demonsrated below:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCb3ggb2ZmaWNlIFN0YXIgV2FycyAoaW4gbWlsbGlvbnMhKVxubmV3X2hvcGUgPC0gYyg0NjAuOTk4LCAzMTQuNClcbmVtcGlyZV9zdHJpa2VzIDwtIGMoMjkwLjQ3NSwgMjQ3LjkwMClcbnJldHVybl9qZWRpIDwtIGMoMzA5LjMwNiwgMTY1LjgpXG4jIENvbnN0cnVjdCBtYXRyaXhcbnN0YXJfd2Fyc19tYXRyaXggPC0gbWF0cml4KGMobmV3X2hvcGUsIGVtcGlyZV9zdHJpa2VzLCByZXR1cm5famVkaSksIG5yb3cgPSAzLCBieXJvdyA9IFRSVUUpXG4jIFZlY3RvcnMgcmVnaW9uIGFuZCB0aXRsZXMsIHVzZWQgZm9yIG5hbWluZ1xucmVnaW9uIDwtIGMoXCJVU1wiLCBcIm5vbi1VU1wiKVxudGl0bGVzIDwtIGMoXCJBIE5ldyBIb3BlXCIsIFwiVGhlIEVtcGlyZSBTdHJpa2VzIEJhY2tcIiwgXCJSZXR1cm4gb2YgdGhlIEplZGlcIilcbiMgTmFtZSB0aGUgY29sdW1ucyB3aXRoIHJlZ2lvblxuY29sbmFtZXMoc3Rhcl93YXJzX21hdHJpeCkgPC0gcmVnaW9uXG4jIE5hbWUgdGhlIHJvd3Mgd2l0aCB0aXRsZXNcbnJvd25hbWVzKHN0YXJfd2Fyc19tYXRyaXgpIDwtIHRpdGxlc1xuIyBQcmludCBvdXQgc3Rhcl93YXJzX21hdHJpeFxuc3Rhcl93YXJzX21hdHJpeFxuYGBgIn0= -->
+<pre class="r"><code># Box office Star Wars (in millions!)
+new_hope &lt;- c(460.998, 314.4)
+empire_strikes &lt;- c(290.475, 247.900)
+return_jedi &lt;- c(309.306, 165.8)
+# Construct matrix
+star_wars_matrix &lt;- matrix(c(new_hope, empire_strikes, return_jedi), nrow = 3, byrow = TRUE)
+# Vectors region and titles, used for naming
+region &lt;- c(&quot;US&quot;, &quot;non-US&quot;)
+titles &lt;- c(&quot;A New Hope&quot;, &quot;The Empire Strikes Back&quot;, &quot;Return of the Jedi&quot;)
+# Name the columns with region
+colnames(star_wars_matrix) &lt;- region
+# Name the rows with titles
+rownames(star_wars_matrix) &lt;- titles
+# Print out star_wars_matrix
+star_wars_matrix</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgICAgICAgICAgICAgICAgICBVUyBub24tVVNcbkEgTmV3IEhvcGUgICAgICAgICAgICAgIDQ2MC45OTggIDMxNC40XG5UaGUgRW1waXJlIFN0cmlrZXMgQmFjayAyOTAuNDc1ICAyNDcuOVxuUmV0dXJuIG9mIHRoZSBKZWRpICAgICAgMzA5LjMwNiAgMTY1LjhcbiJ9 -->
+<pre><code>                             US non-US
+A New Hope              460.998  314.4
+The Empire Strikes Back 290.475  247.9
+Return of the Jedi      309.306  165.8</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWF0cml4IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWF0cml4IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIENvbnN0cnVjdGluZyBhIG1hdHJpeAoKTGlrZSB2ZWN0b3JzLCBhbGwgZW50cmllcyBtdXN0IGJlIHRoZSBzYW1lLiAgV2UgY2FuIGRlY2xhcmUgYSB2ZWN0b3IgYnkgdXNpbmcgYG1hdHJpeCgpYAoKVG8gY29uc3RydWN0IGEgbWF0cml4IHdpdGggMS05LCB3aGljaCBpcyBmaWxsZWQgYnkgZmluaXNoaW5nIHVwIGEgcm93IGJ5IHJvdywgd2UgbXVzdCB1c2UgdGhlIGZvbGxvd2luZyBjb2RlOgoKYGBge3J9Cm1hdHJpeCgxOjksIGJ5cm93PSBUUlVFLCBucm93PTMpCmBgYAoKTm90ZSB0aGF0IHRoZSB0aGUgZGVmYXVsdCBmb3IgYGJ5cm93YCBpcyBGQUxTRS4gIExldCdzIHNlZSB3aGF0IGhhcHBlbnMgd2hlbiB3ZSBkbyBub3Qgb3ZlcnJpZGUgdGhlIGRlZmF1bHQ6CgpgYGB7cn0KbWF0cml4KDE6OSwgbnJvdz0zKQpgYGAKCiMjIyMgTGFiZWxpbmcgbWF0cml4IHVzaW5nIGNvbG5hbWVzKCkgYW5kIHJvd25hbWVzKCkKClRvIGxhYmVsIG1hdHJpY2VzLCB3ZSBuZWVkIHRvIGNyZWF0ZSBhIHZlY3RvciB3aXRoIHRoZSBsYWJlbHMuICBBbmQgdGhlbiBhdHRhY2ggdGhlbSB0byBvdXIgbWF0cml4IGRhdGEgdXNpbmcgYGNvbG5hbWVzKClgIGFuZCBgcm93bmFtZXMoKWAgYXMgZGVtb25zcmF0ZWQgYmVsb3c6CgpgYGB7cn0KIyBCb3ggb2ZmaWNlIFN0YXIgV2FycyAoaW4gbWlsbGlvbnMhKQpuZXdfaG9wZSA8LSBjKDQ2MC45OTgsIDMxNC40KQplbXBpcmVfc3RyaWtlcyA8LSBjKDI5MC40NzUsIDI0Ny45MDApCnJldHVybl9qZWRpIDwtIGMoMzA5LjMwNiwgMTY1LjgpCiMgQ29uc3RydWN0IG1hdHJpeApzdGFyX3dhcnNfbWF0cml4IDwtIG1hdHJpeChjKG5ld19ob3BlLCBlbXBpcmVfc3RyaWtlcywgcmV0dXJuX2plZGkpLCBucm93ID0gMywgYnlyb3cgPSBUUlVFKQojIFZlY3RvcnMgcmVnaW9uIGFuZCB0aXRsZXMsIHVzZWQgZm9yIG5hbWluZwpyZWdpb24gPC0gYygiVVMiLCAibm9uLVVTIikKdGl0bGVzIDwtIGMoIkEgTmV3IEhvcGUiLCAiVGhlIEVtcGlyZSBTdHJpa2VzIEJhY2siLCAiUmV0dXJuIG9mIHRoZSBKZWRpIikKCiMgTmFtZSB0aGUgY29sdW1ucyB3aXRoIHJlZ2lvbgpjb2xuYW1lcyhzdGFyX3dhcnNfbWF0cml4KSA8LSByZWdpb24KIyBOYW1lIHRoZSByb3dzIHdpdGggdGl0bGVzCnJvd25hbWVzKHN0YXJfd2Fyc19tYXRyaXgpIDwtIHRpdGxlcwojIFByaW50IG91dCBzdGFyX3dhcnNfbWF0cml4CnN0YXJfd2Fyc19tYXRyaXgKYGBgCgoKCgoK</div>
 
 
 

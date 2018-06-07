@@ -3,3 +3,46 @@ title: "Matrix"
 output: html_notebook
 ---
 
+#### Constructing a matrix
+
+Like vectors, all entries must be the same.  We can declare a vector by using `matrix()`
+
+To construct a matrix with 1-9, which is filled by finishing up a row by row, we must use the following code:
+
+```{r}
+matrix(1:9, byrow= TRUE, nrow=3)
+```
+
+Note that the the default for `byrow` is FALSE.  Let's see what happens when we do not override the default:
+
+```{r}
+matrix(1:9, nrow=3)
+```
+
+#### Labeling matrix using colnames() and rownames()
+
+To label matrices, we need to create a vector with the labels.  And then attach them to our matrix data using `colnames()` and `rownames()` as demonsrated below:
+
+```{r}
+# Box office Star Wars (in millions!)
+new_hope <- c(460.998, 314.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+# Construct matrix
+star_wars_matrix <- matrix(c(new_hope, empire_strikes, return_jedi), nrow = 3, byrow = TRUE)
+# Vectors region and titles, used for naming
+region <- c("US", "non-US")
+titles <- c("A New Hope", "The Empire Strikes Back", "Return of the Jedi")
+
+# Name the columns with region
+colnames(star_wars_matrix) <- region
+# Name the rows with titles
+rownames(star_wars_matrix) <- titles
+# Print out star_wars_matrix
+star_wars_matrix
+```
+
+
+
+
+
