@@ -1,0 +1,23 @@
+---
+title: "Factors Section"
+output: html_notebook
+---
+
+A factor is a data type that can be used to store categorical variables.  
+
+# Basics on Factors:
+
+Suppose we have a vector for sex and see what the factor method does to the vector:
+
+```{r}
+# Sex vector
+sex_vector <- c("Male", "Female", "Female", "Male", "Male")
+
+# Convert sex_vector to a factor
+factor_sex_vector <- factor(sex_vector)
+
+# Print out factor_sex_vector
+factor_sex_vector
+```
+
+From the print out above, we can see that `factor_sex_vector` returns an object with the list (M, F, F, M, M) and the levels involved (F, M).
