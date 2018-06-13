@@ -5,7 +5,7 @@ output: html_notebook
 
 A factor is a data type that can be used to store categorical variables.  
 
-# Basics on Factors:
+#### Basics on Factors:
 
 Suppose we have a vector for sex and see what the factor method does to the vector:
 
@@ -21,3 +21,78 @@ factor_sex_vector
 ```
 
 From the print out above, we can see that `factor_sex_vector` returns an object with the list (M, F, F, M, M) and the levels involved (F, M).
+
+#### Creating ordinal factors
+
+Suppose we want to create a list with ordinal values for temperature such as Low, Med, High where there is a meaning to the order.  
+
+We can do this by passing two parameters:
+
+1. levels, which passes a vector of categories
+2. order = TRUE, to indicate that levels is ordinal to the order it was specificied in levels
+
+```{r}
+# Temperature vector
+temperature_vector <- c('low', 'high', 'mid', 'low', 'low', 'high')
+# Factor 
+temperature_factor <- factor(temperature_vector, order=TRUE, levels = c('low', 'mid', 'high'))
+# Print factor
+temperature_factor
+```
+
+#### Renaming levels using `levels()`
+
+Suppose in the original factor object, gender were simply F and M.  And now we want a spelled out version as the actual level.  We can use `levels()` to accomplish such feat.
+
+```{r}
+# Code to build factor_survey_vector
+survey_vector <- c("M", "F", "F", "M", "M")
+factor_survey_vector <- factor(survey_vector)
+factor_survey_vector
+
+# Specify the spelled out levels of factor_survey_vector
+# Important Note:  we specified Female before Male because factors is ordered alphabetically
+levels(factor_survey_vector) <- c("Female", "Male")
+factor_survey_vector
+```
+
+Again, this is worth mentioning again but c("Female", "Male") we used because of the order in the original factor based on alphabetical order when the factors were simply M and F.  
+
+#### Summary through `summary()`
+
+This is self-explanatory.  `summary()` summarizes our factor object. It can also be used to summarize vectors.  Both will be shown in the following code:
+
+```{r}
+# Build factor_survey_vector with clean levels
+survey_vector <- c("M", "F", "F", "M", "M")
+factor_survey_vector <- factor(survey_vector)
+levels(factor_survey_vector) <- c("Female", "Male")
+factor_survey_vector
+
+# Generate summary for survey_vector
+summary(survey_vector)
+
+# Generate summary for factor_survey_vector
+summary(factor_survey_vector)
+```
+
+#### Comparing levels
+
+We can use comparison operators when `order = TRUE'.  As an example, let's compare the speed of the 2nd and 5th individual in a vector:
+
+```{r}
+# Create factor_speed_vector
+speed_vector <- c("medium", "slow", "slow", "medium", "fast")
+factor_speed_vector <- factor(speed_vector, ordered = TRUE, levels = c("slow", "medium", "fast"))
+# Factor value for second data analyst
+da2 <- factor_speed_vector[2]
+# Factor value for fifth data analyst
+da5 <- factor_speed_vector[5]
+
+# Is data analyst 2 faster than data analyst 5?
+da2 > da5
+```
+
+The script returns a FALSE.  So the 2nd individual is actually slower.  
+
+

@@ -173,8 +173,8 @@ $(document).ready(function () {
 
 <!-- rnb-text-begin -->
 <p>A factor is a data type that can be used to store categorical variables.</p>
-<div id="basics-on-factors" class="section level1">
-<h1>Basics on Factors:</h1>
+<div id="basics-on-factors" class="section level4">
+<h4>Basics on Factors:</h4>
 <p>Suppose we have a vector for sex and see what the factor method does to the vector:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -193,10 +193,122 @@ Levels: Female Male</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>From the print out above, we can see that <code>factor_sex_vector</code> returns an object with the list (M, F, F, M, M) and the levels involved (F, M).</p>
+</div>
+<div id="creating-ordinal-factors" class="section level4">
+<h4>Creating ordinal factors</h4>
+<p>Suppose we want to create a list with ordinal values for temperature such as Low, Med, High where there is a meaning to the order.</p>
+<p>We can do this by passing two parameters:</p>
+<ol style="list-style-type: decimal">
+<li>levels, which passes a vector of categories</li>
+<li>order = TRUE, to indicate that levels is ordinal to the order it was specificied in levels</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUZW1wZXJhdHVyZSB2ZWN0b3JcbnRlbXBlcmF0dXJlX3ZlY3RvciA8LSBjKCdsb3cnLCAnaGlnaCcsICdtaWQnLCAnbG93JywgJ2xvdycsICdoaWdoJylcbiMgRmFjdG9yIFxudGVtcGVyYXR1cmVfZmFjdG9yIDwtIGZhY3Rvcih0ZW1wZXJhdHVyZV92ZWN0b3IsIG9yZGVyPVRSVUUsIGxldmVscyA9IGMoJ2xvdycsICdtaWQnLCAnaGlnaCcpKVxuIyBQcmludCBmYWN0b3JcbnRlbXBlcmF0dXJlX2ZhY3RvclxuYGBgIn0= -->
+<pre class="r"><code># Temperature vector
+temperature_vector &lt;- c('low', 'high', 'mid', 'low', 'low', 'high')
+# Factor 
+temperature_factor &lt;- factor(temperature_vector, order=TRUE, levels = c('low', 'mid', 'high'))
+# Print factor
+temperature_factor</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIGxvdyAgaGlnaCBtaWQgIGxvdyAgbG93ICBoaWdoXG5MZXZlbHM6IGxvdyA8IG1pZCA8IGhpZ2hcbiJ9 -->
+<pre><code>[1] low  high mid  low  low  high
+Levels: low &lt; mid &lt; high</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="renaming-levels-using-levels" class="section level4">
+<h4>Renaming levels using <code>levels()</code></h4>
+<p>Suppose in the original factor object, gender were simply F and M. And now we want a spelled out version as the actual level. We can use <code>levels()</code> to accomplish such feat.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb2RlIHRvIGJ1aWxkIGZhY3Rvcl9zdXJ2ZXlfdmVjdG9yXG5zdXJ2ZXlfdmVjdG9yIDwtIGMoXCJNXCIsIFwiRlwiLCBcIkZcIiwgXCJNXCIsIFwiTVwiKVxuZmFjdG9yX3N1cnZleV92ZWN0b3IgPC0gZmFjdG9yKHN1cnZleV92ZWN0b3IpXG5mYWN0b3Jfc3VydmV5X3ZlY3RvclxuYGBgIn0= -->
+<pre class="r"><code># Code to build factor_survey_vector
+survey_vector &lt;- c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector &lt;- factor(survey_vector)
+factor_survey_vector</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE0gRiBGIE0gTVxuTGV2ZWxzOiBGIE1cbiJ9 -->
+<pre><code>[1] M F F M M
+Levels: F M</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTcGVjaWZ5IHRoZSBsZXZlbHMgb2YgZmFjdG9yX3N1cnZleV92ZWN0b3JcbiMgSW1wb3J0YW50IE5vdGU6ICB3ZSBzcGVjaWZpZWQgRmVtYWxlIGJlZm9yZSBNYWxlIGJlY2F1c2UgZmFjdG9ycyBpcyBvcmRlcmVkIGFscGhhYmV0aWNhbGx5XG5sZXZlbHMoZmFjdG9yX3N1cnZleV92ZWN0b3IpIDwtIGMoXCJGZW1hbGVcIiwgXCJNYWxlXCIpXG5mYWN0b3Jfc3VydmV5X3ZlY3RvclxuYGBgIn0= -->
+<pre class="r"><code># Specify the levels of factor_survey_vector
+# Important Note:  we specified Female before Male because factors is ordered alphabetically
+levels(factor_survey_vector) &lt;- c(&quot;Female&quot;, &quot;Male&quot;)
+factor_survey_vector</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE1hbGUgICBGZW1hbGUgRmVtYWxlIE1hbGUgICBNYWxlICBcbkxldmVsczogRmVtYWxlIE1hbGVcbiJ9 -->
+<pre><code>[1] Male   Female Female Male   Male  
+Levels: Female Male</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Again, this is worth mentioning again but c(“Female”, “Male”) we used because of the order in the original factor based on alphabetical order when the factors were simply M and F.</p>
+</div>
+<div id="summary-through-summary" class="section level4">
+<h4>Summary through <code>summary()</code></h4>
+<p>This is self-explanatory. <code>summary()</code> summarizes our factor object. It can also be used to summarize vectors. Both will be shown in the following code:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCdWlsZCBmYWN0b3Jfc3VydmV5X3ZlY3RvciB3aXRoIGNsZWFuIGxldmVsc1xuc3VydmV5X3ZlY3RvciA8LSBjKFwiTVwiLCBcIkZcIiwgXCJGXCIsIFwiTVwiLCBcIk1cIilcbmZhY3Rvcl9zdXJ2ZXlfdmVjdG9yIDwtIGZhY3RvcihzdXJ2ZXlfdmVjdG9yKVxubGV2ZWxzKGZhY3Rvcl9zdXJ2ZXlfdmVjdG9yKSA8LSBjKFwiRmVtYWxlXCIsIFwiTWFsZVwiKVxuZmFjdG9yX3N1cnZleV92ZWN0b3JcbmBgYCJ9 -->
+<pre class="r"><code># Build factor_survey_vector with clean levels
+survey_vector &lt;- c(&quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;)
+factor_survey_vector &lt;- factor(survey_vector)
+levels(factor_survey_vector) &lt;- c(&quot;Female&quot;, &quot;Male&quot;)
+factor_survey_vector</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE1hbGUgICBGZW1hbGUgRmVtYWxlIE1hbGUgICBNYWxlICBcbkxldmVsczogRmVtYWxlIE1hbGVcbiJ9 -->
+<pre><code>[1] Male   Female Female Male   Male  
+Levels: Female Male</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZW5lcmF0ZSBzdW1tYXJ5IGZvciBzdXJ2ZXlfdmVjdG9yXG5zdW1tYXJ5KHN1cnZleV92ZWN0b3IpXG5gYGAifQ== -->
+<pre class="r"><code># Generate summary for survey_vector
+summary(survey_vector)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgTGVuZ3RoICAgICBDbGFzcyAgICAgIE1vZGUgXG4gICAgICAgIDUgY2hhcmFjdGVyIGNoYXJhY3RlciBcbiJ9 -->
+<pre><code>   Length     Class      Mode 
+        5 character character </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZW5lcmF0ZSBzdW1tYXJ5IGZvciBmYWN0b3Jfc3VydmV5X3ZlY3Rvclxuc3VtbWFyeShmYWN0b3Jfc3VydmV5X3ZlY3RvcilcbmBgYCJ9 -->
+<pre class="r"><code># Generate summary for factor_survey_vector
+summary(factor_survey_vector)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRmVtYWxlICAgTWFsZSBcbiAgICAgMiAgICAgIDMgXG4ifQ== -->
+<pre><code>Female   Male 
+     2      3 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="comparing-levels" class="section level4">
+<h4>Comparing levels</h4>
+<p>We can use comparison operators when `order = TRUE’. As an example, let’s compare the speed of the 2nd and 5th individual in a vector:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgZmFjdG9yX3NwZWVkX3ZlY3Rvclxuc3BlZWRfdmVjdG9yIDwtIGMoXCJtZWRpdW1cIiwgXCJzbG93XCIsIFwic2xvd1wiLCBcIm1lZGl1bVwiLCBcImZhc3RcIilcbmZhY3Rvcl9zcGVlZF92ZWN0b3IgPC0gZmFjdG9yKHNwZWVkX3ZlY3Rvciwgb3JkZXJlZCA9IFRSVUUsIGxldmVscyA9IGMoXCJzbG93XCIsIFwibWVkaXVtXCIsIFwiZmFzdFwiKSlcbiMgRmFjdG9yIHZhbHVlIGZvciBzZWNvbmQgZGF0YSBhbmFseXN0XG5kYTIgPC0gZmFjdG9yX3NwZWVkX3ZlY3RvclsyXVxuIyBGYWN0b3IgdmFsdWUgZm9yIGZpZnRoIGRhdGEgYW5hbHlzdFxuZGE1IDwtIGZhY3Rvcl9zcGVlZF92ZWN0b3JbNV1cbiMgSXMgZGF0YSBhbmFseXN0IDIgZmFzdGVyIHRoYW4gZGF0YSBhbmFseXN0IDU/XG5kYTIgPiBkYTVcbmBgYCJ9 -->
+<pre class="r"><code># Create factor_speed_vector
+speed_vector &lt;- c(&quot;medium&quot;, &quot;slow&quot;, &quot;slow&quot;, &quot;medium&quot;, &quot;fast&quot;)
+factor_speed_vector &lt;- factor(speed_vector, ordered = TRUE, levels = c(&quot;slow&quot;, &quot;medium&quot;, &quot;fast&quot;))
+# Factor value for second data analyst
+da2 &lt;- factor_speed_vector[2]
+# Factor value for fifth data analyst
+da5 &lt;- factor_speed_vector[5]
+# Is data analyst 2 faster than data analyst 5?
+da2 &gt; da5</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFXG4ifQ== -->
+<pre><code>[1] FALSE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The script returns a FALSE. So the 2nd individual is actually slower.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRmFjdG9ycyBTZWN0aW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpBIGZhY3RvciBpcyBhIGRhdGEgdHlwZSB0aGF0IGNhbiBiZSB1c2VkIHRvIHN0b3JlIGNhdGVnb3JpY2FsIHZhcmlhYmxlcy4gIAoKIyBCYXNpY3Mgb24gRmFjdG9yczoKClN1cHBvc2Ugd2UgaGF2ZSBhIHZlY3RvciBmb3Igc2V4IGFuZCBzZWUgd2hhdCB0aGUgZmFjdG9yIG1ldGhvZCBkb2VzIHRvIHRoZSB2ZWN0b3I6CgpgYGB7cn0KIyBTZXggdmVjdG9yCnNleF92ZWN0b3IgPC0gYygiTWFsZSIsICJGZW1hbGUiLCAiRmVtYWxlIiwgIk1hbGUiLCAiTWFsZSIpCgojIENvbnZlcnQgc2V4X3ZlY3RvciB0byBhIGZhY3RvcgpmYWN0b3Jfc2V4X3ZlY3RvciA8LSBmYWN0b3Ioc2V4X3ZlY3RvcikKCiMgUHJpbnQgb3V0IGZhY3Rvcl9zZXhfdmVjdG9yCmZhY3Rvcl9zZXhfdmVjdG9yCmBgYAoKRnJvbSB0aGUgcHJpbnQgb3V0IGFib3ZlLCB3ZSBjYW4gc2VlIHRoYXQgYGZhY3Rvcl9zZXhfdmVjdG9yYCByZXR1cm5zIGFuIG9iamVjdCB3aXRoIHRoZSBsaXN0IChNLCBGLCBGLCBNLCBNKSBhbmQgdGhlIGxldmVscyBpbnZvbHZlZCAoRiwgTSkuCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRmFjdG9ycyBTZWN0aW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpBIGZhY3RvciBpcyBhIGRhdGEgdHlwZSB0aGF0IGNhbiBiZSB1c2VkIHRvIHN0b3JlIGNhdGVnb3JpY2FsIHZhcmlhYmxlcy4gIAoKIyMjIyBCYXNpY3Mgb24gRmFjdG9yczoKClN1cHBvc2Ugd2UgaGF2ZSBhIHZlY3RvciBmb3Igc2V4IGFuZCBzZWUgd2hhdCB0aGUgZmFjdG9yIG1ldGhvZCBkb2VzIHRvIHRoZSB2ZWN0b3I6CgpgYGB7cn0KIyBTZXggdmVjdG9yCnNleF92ZWN0b3IgPC0gYygiTWFsZSIsICJGZW1hbGUiLCAiRmVtYWxlIiwgIk1hbGUiLCAiTWFsZSIpCgojIENvbnZlcnQgc2V4X3ZlY3RvciB0byBhIGZhY3RvcgpmYWN0b3Jfc2V4X3ZlY3RvciA8LSBmYWN0b3Ioc2V4X3ZlY3RvcikKCiMgUHJpbnQgb3V0IGZhY3Rvcl9zZXhfdmVjdG9yCmZhY3Rvcl9zZXhfdmVjdG9yCmBgYAoKRnJvbSB0aGUgcHJpbnQgb3V0IGFib3ZlLCB3ZSBjYW4gc2VlIHRoYXQgYGZhY3Rvcl9zZXhfdmVjdG9yYCByZXR1cm5zIGFuIG9iamVjdCB3aXRoIHRoZSBsaXN0IChNLCBGLCBGLCBNLCBNKSBhbmQgdGhlIGxldmVscyBpbnZvbHZlZCAoRiwgTSkuCgojIyMjIENyZWF0aW5nIG9yZGluYWwgZmFjdG9ycwoKU3VwcG9zZSB3ZSB3YW50IHRvIGNyZWF0ZSBhIGxpc3Qgd2l0aCBvcmRpbmFsIHZhbHVlcyBmb3IgdGVtcGVyYXR1cmUgc3VjaCBhcyBMb3csIE1lZCwgSGlnaCB3aGVyZSB0aGVyZSBpcyBhIG1lYW5pbmcgdG8gdGhlIG9yZGVyLiAgCgpXZSBjYW4gZG8gdGhpcyBieSBwYXNzaW5nIHR3byBwYXJhbWV0ZXJzOgoKMS4gbGV2ZWxzLCB3aGljaCBwYXNzZXMgYSB2ZWN0b3Igb2YgY2F0ZWdvcmllcwoyLiBvcmRlciA9IFRSVUUsIHRvIGluZGljYXRlIHRoYXQgbGV2ZWxzIGlzIG9yZGluYWwgdG8gdGhlIG9yZGVyIGl0IHdhcyBzcGVjaWZpY2llZCBpbiBsZXZlbHMKCmBgYHtyfQojIFRlbXBlcmF0dXJlIHZlY3Rvcgp0ZW1wZXJhdHVyZV92ZWN0b3IgPC0gYygnbG93JywgJ2hpZ2gnLCAnbWlkJywgJ2xvdycsICdsb3cnLCAnaGlnaCcpCiMgRmFjdG9yIAp0ZW1wZXJhdHVyZV9mYWN0b3IgPC0gZmFjdG9yKHRlbXBlcmF0dXJlX3ZlY3Rvciwgb3JkZXI9VFJVRSwgbGV2ZWxzID0gYygnbG93JywgJ21pZCcsICdoaWdoJykpCiMgUHJpbnQgZmFjdG9yCnRlbXBlcmF0dXJlX2ZhY3RvcgpgYGAKCiMjIyMgUmVuYW1pbmcgbGV2ZWxzIHVzaW5nIGBsZXZlbHMoKWAKClN1cHBvc2UgaW4gdGhlIG9yaWdpbmFsIGZhY3RvciBvYmplY3QsIGdlbmRlciB3ZXJlIHNpbXBseSBGIGFuZCBNLiAgQW5kIG5vdyB3ZSB3YW50IGEgc3BlbGxlZCBvdXQgdmVyc2lvbiBhcyB0aGUgYWN0dWFsIGxldmVsLiAgV2UgY2FuIHVzZSBgbGV2ZWxzKClgIHRvIGFjY29tcGxpc2ggc3VjaCBmZWF0LgoKYGBge3J9CiMgQ29kZSB0byBidWlsZCBmYWN0b3Jfc3VydmV5X3ZlY3RvcgpzdXJ2ZXlfdmVjdG9yIDwtIGMoIk0iLCAiRiIsICJGIiwgIk0iLCAiTSIpCmZhY3Rvcl9zdXJ2ZXlfdmVjdG9yIDwtIGZhY3RvcihzdXJ2ZXlfdmVjdG9yKQpmYWN0b3Jfc3VydmV5X3ZlY3RvcgoKIyBTcGVjaWZ5IHRoZSBzcGVsbGVkIG91dCBsZXZlbHMgb2YgZmFjdG9yX3N1cnZleV92ZWN0b3IKIyBJbXBvcnRhbnQgTm90ZTogIHdlIHNwZWNpZmllZCBGZW1hbGUgYmVmb3JlIE1hbGUgYmVjYXVzZSBmYWN0b3JzIGlzIG9yZGVyZWQgYWxwaGFiZXRpY2FsbHkKbGV2ZWxzKGZhY3Rvcl9zdXJ2ZXlfdmVjdG9yKSA8LSBjKCJGZW1hbGUiLCAiTWFsZSIpCmZhY3Rvcl9zdXJ2ZXlfdmVjdG9yCmBgYAoKQWdhaW4sIHRoaXMgaXMgd29ydGggbWVudGlvbmluZyBhZ2FpbiBidXQgYygiRmVtYWxlIiwgIk1hbGUiKSB3ZSB1c2VkIGJlY2F1c2Ugb2YgdGhlIG9yZGVyIGluIHRoZSBvcmlnaW5hbCBmYWN0b3IgYmFzZWQgb24gYWxwaGFiZXRpY2FsIG9yZGVyIHdoZW4gdGhlIGZhY3RvcnMgd2VyZSBzaW1wbHkgTSBhbmQgRi4gIAoKIyMjIyBTdW1tYXJ5IHRocm91Z2ggYHN1bW1hcnkoKWAKClRoaXMgaXMgc2VsZi1leHBsYW5hdG9yeS4gIGBzdW1tYXJ5KClgIHN1bW1hcml6ZXMgb3VyIGZhY3RvciBvYmplY3QuIEl0IGNhbiBhbHNvIGJlIHVzZWQgdG8gc3VtbWFyaXplIHZlY3RvcnMuICBCb3RoIHdpbGwgYmUgc2hvd24gaW4gdGhlIGZvbGxvd2luZyBjb2RlOgoKYGBge3J9CiMgQnVpbGQgZmFjdG9yX3N1cnZleV92ZWN0b3Igd2l0aCBjbGVhbiBsZXZlbHMKc3VydmV5X3ZlY3RvciA8LSBjKCJNIiwgIkYiLCAiRiIsICJNIiwgIk0iKQpmYWN0b3Jfc3VydmV5X3ZlY3RvciA8LSBmYWN0b3Ioc3VydmV5X3ZlY3RvcikKbGV2ZWxzKGZhY3Rvcl9zdXJ2ZXlfdmVjdG9yKSA8LSBjKCJGZW1hbGUiLCAiTWFsZSIpCmZhY3Rvcl9zdXJ2ZXlfdmVjdG9yCgojIEdlbmVyYXRlIHN1bW1hcnkgZm9yIHN1cnZleV92ZWN0b3IKc3VtbWFyeShzdXJ2ZXlfdmVjdG9yKQoKIyBHZW5lcmF0ZSBzdW1tYXJ5IGZvciBmYWN0b3Jfc3VydmV5X3ZlY3RvcgpzdW1tYXJ5KGZhY3Rvcl9zdXJ2ZXlfdmVjdG9yKQpgYGAKCiMjIyMgQ29tcGFyaW5nIGxldmVscwoKV2UgY2FuIHVzZSBjb21wYXJpc29uIG9wZXJhdG9ycyB3aGVuIGBvcmRlciA9IFRSVUUnLiAgQXMgYW4gZXhhbXBsZSwgbGV0J3MgY29tcGFyZSB0aGUgc3BlZWQgb2YgdGhlIDJuZCBhbmQgNXRoIGluZGl2aWR1YWwgaW4gYSB2ZWN0b3I6CgpgYGB7cn0KIyBDcmVhdGUgZmFjdG9yX3NwZWVkX3ZlY3RvcgpzcGVlZF92ZWN0b3IgPC0gYygibWVkaXVtIiwgInNsb3ciLCAic2xvdyIsICJtZWRpdW0iLCAiZmFzdCIpCmZhY3Rvcl9zcGVlZF92ZWN0b3IgPC0gZmFjdG9yKHNwZWVkX3ZlY3Rvciwgb3JkZXJlZCA9IFRSVUUsIGxldmVscyA9IGMoInNsb3ciLCAibWVkaXVtIiwgImZhc3QiKSkKIyBGYWN0b3IgdmFsdWUgZm9yIHNlY29uZCBkYXRhIGFuYWx5c3QKZGEyIDwtIGZhY3Rvcl9zcGVlZF92ZWN0b3JbMl0KIyBGYWN0b3IgdmFsdWUgZm9yIGZpZnRoIGRhdGEgYW5hbHlzdApkYTUgPC0gZmFjdG9yX3NwZWVkX3ZlY3Rvcls1XQoKIyBJcyBkYXRhIGFuYWx5c3QgMiBmYXN0ZXIgdGhhbiBkYXRhIGFuYWx5c3QgNT8KZGEyID4gZGE1CmBgYAoKVGhlIHNjcmlwdCByZXR1cm5zIGEgRkFMU0UuICBTbyB0aGUgMm5kIGluZGl2aWR1YWwgaXMgYWN0dWFsbHkgc2xvd2VyLiAgCgoK</div>
 
 
 
