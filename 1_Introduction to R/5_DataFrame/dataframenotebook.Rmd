@@ -3,3 +3,12 @@ title: "Data Frame Section"
 output: html_notebook
 ---
 
+Data Frame, unless matrix, can handle multiple data types.  
+
+An example of data frame is `mtcars` that is built within R.  Calling `mtcars` invokes the following:
+
+
+```{r}
+mtcars
+```
+
