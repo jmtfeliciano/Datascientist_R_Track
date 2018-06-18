@@ -172,6 +172,8 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="data-frame-basics" class="section level4">
+<h4>Data Frame Basics</h4>
 <p>Data Frame, unless matrix, can handle multiple data types.</p>
 <p>An example of data frame is <code>mtcars</code> that is built within R. Calling <code>mtcars</code> invokes the following:</p>
 <!-- rnb-text-end -->
@@ -188,9 +190,81 @@ $(document).ready(function () {
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Random fact: The class of data frame objects per <code>class()</code> method is “data.frame” as shown by the script below:</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MobXRjYXJzKVxuYGBgIn0= -->
+<pre class="r"><code>class(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZGF0YS5mcmFtZVwiXG4ifQ== -->
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="viewing-the-head-and-tail-of-data-sets" class="section level4">
+<h4>Viewing the head and tail of data sets</h4>
+<p>If you are curious to see both the head and tail of data sets, <code>head()</code> and <code>tail()</code> are particularly useful methods for this purpose.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChtdGNhcnMpXG5gYGAifQ== -->
+<pre class="r"><code>head(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MTEsIm5yb3ciOjZ9LCJyZGYiOiJINHNJQUFBQUFBQUFBM1ZUTVhEVE1CUlZIZHRwN0d0YWpnNTA0VHl5Tk5jbUtiQndhTWdkTEF3dGR6Ukh1eWkybS9wd1pGV1dVK2pFMHJrekhCdk1YVmc2TThQTUNqTUxDNHdGeWRiMzFhTDhPK205LzZRbi9TOG5PNk54M3h0N0NDRUx0V3c1dHlTMUxUa3RJQnQxRkw1RXFIVlRFbCtPcmh3dTNrSmwxSGozczRvdmVPdWdETnovT0ZDQisydHZaTHl0ZmJmMGZzQVZJdythZWUyTHRBNjRwNUZWQmp4L1hXRWFOSDE3V2dmY3hjMDgvbGJoYzl6MExRK3ErZ0c3dXIvRjkxKzlCK3dEN21qZFhUMzUvdWg4dGZiWnZ6NmQ3ZC81amR1NlBrdG1Vc0tkaSswZnA3Y3ZzQzhueWJCL1hocHIzMFpSK1RhZGFyMy9UdG4yOFlDcEM0OXFmWGkvUEFkOHlJaUhQNXRvNnVBejk1bjdyNG1xemhYZGw0bUwxK1AvZk9hOStKODZHejlBaDVKWm5FdWk3TDRXV3pNMkJScStTalcxb3lSbm1sdUhyRlk1RWFBZUE3T1A4amdFZFo0REl6TlluOGFFQXc4Sm54aGxkWGgyM0x0YW1nc0xUOGhKUklLZDhWQUxTN1VRN0JLbzJoc1JrUmMwdUxlNW9aWHU0NHpUV0FURFlNU1RlYXpWRzFwOXlqSXV5Q1Fyb1A3Mk01SW1oQXJ6dGNLVTVGQVNpRjVFQk9rZGNGbXR6QzROU3p0aklzbW9ORm5xZis0WTVnVnVDTXNGVlgxSDYrRmhRVitzRDlVRjVYSTFsalM2VjdoZlhXbjkwVWM1K2lnM3B0T0VRcTlPU2lZeGZNdXVmTi95ZVh1TUp4UzY5cVNhOTBRbUNPenp3aXdGcGV3TlhmNEZqOUljOE5VRUFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now for the bottom tail of the data set:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFpbChtdGNhcnMpXG5gYGAifQ== -->
+<pre class="r"><code>tail(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MTEsIm5yb3ciOjZ9LCJyZGYiOiJINHNJQUFBQUFBQUFBNDFUTVd6VFFCUzlPSTVSbkRRRXRRTlQ4VmdHdTIzU0lvRlVja0p0V1lwVU9wUktSSlV1anB0WWRYenUyV2tCTWJBd1Y0eXdzck93ZEVRTXpHeXNkR0ZCU0YxQVRJV3o3MzhyTlJMd3BmUDcvLzE3Ly83OVM3WldkMXJtamtrSTBVaFpsOSt5ZEhWTmZrcEVKOVVVSHhGU25wWk9UYTZHWEFhOVJUS2p0L2N5by9NdlUzdEYyMi9icVZFSDhzc3FuK3Vhd0NOYWdGY0xNZVJ6M2U2MHF2dmdnenB2ZktiMjlaU0FpbzhLZCtsRjNmWTd4WGNWVDZObkNyM1BDaE9vODdDZ3UzSnkvK3Z6MlJQYW1Qdisvcmg3blRaUDc3NlplWEpLNjJrNDk0UFdzL1FXYlVhdlA1a3JCN211TkpzS3IzVitMbmVlZm5zeHBOVnVWb0FhVUtkK25CSFVXTW1FdVc0QjVyYndSZDNQaGpuTUE5cHRsVytwT2FNT20rNmNrYi9hUkQ3VFlmeS9tUGM1QS8zOEM1c0ZIUVE1UXY2UGQ4OWxGMzZBbFpDTnZGZzZxYXdHWkhrVURkQjFId2ZnNm4wL2pzRFhobEhPQ3BZZ2U0U2VmaEI3THJLSE1YcHNoUG1CeHdUNkxoTzlRbHRWd1krY3lkWU1TRXh0Y2hHN1E4KzZ1YmhrdDRDc2IvQmtIRnRyWThFakJseGpuWXUrdGNuQ3hCUE0yc0NkNjU0UVRQaldxaDl5TEhtUHhYSlA0bHQzdUVDNXVjMkRRMjR0THJYV2loTnpBeFpqVzBpYWZaWXdaMC9Jam1WMFhwQmM0bEhpODFDS3RQUy9YaW1JUzZKQVhCNkg2ZDM3dGpzY2gvdjJqZlNBTEszV0ZLQXg0ZGZVa2RvdktGV0JVb1lYRHZ6UXc5NEQxdlB3UFJ0eXh0bUluVWo0SWI2Y0tkbllTWGpDY0ovcDhnQ1o3RzdrL0RjK3VCeXUyUVFBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.140","7":"16.7","8":"0","9":"1","10":"5","11":"2","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.513","7":"16.9","8":"1","9":"1","10":"5","11":"2","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.170","7":"14.5","8":"0","9":"1","10":"5","11":"4","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.770","7":"15.5","8":"0","9":"1","10":"5","11":"6","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.570","7":"14.6","8":"0","9":"1","10":"5","11":"8","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.780","7":"18.6","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="utilizing-structure-method-str" class="section level4">
+<h4>Utilizing structure method str()</h4>
+<p>Suppose we want to see a summary of structures of data frames, <code>str()</code> is particularly useful here for insight. <code>summary()</code> is not particularly good for this one as it will produce a bunch of extra non-indeed about structures.</p>
+<p>Here’s what <code>str()</code> would show you:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKG10Y2FycylcbmBgYCJ9 -->
+<pre class="r"><code>str(mtcars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MzIgb2JzLiBvZiAgMTEgdmFyaWFibGVzOlxuICQgbXBnIDogbnVtICAyMSAyMSAyMi44IDIxLjQgMTguNyAxOC4xIDE0LjMgMjQuNCAyMi44IDE5LjIgLi4uXG4gJCBjeWwgOiBudW0gIDYgNiA0IDYgOCA2IDggNCA0IDYgLi4uXG4gJCBkaXNwOiBudW0gIDE2MCAxNjAgMTA4IDI1OCAzNjAgLi4uXG4gJCBocCAgOiBudW0gIDExMCAxMTAgOTMgMTEwIDE3NSAxMDUgMjQ1IDYyIDk1IDEyMyAuLi5cbiAkIGRyYXQ6IG51bSAgMy45IDMuOSAzLjg1IDMuMDggMy4xNSAyLjc2IDMuMjEgMy42OSAzLjkyIDMuOTIgLi4uXG4gJCB3dCAgOiBudW0gIDIuNjIgMi44OCAyLjMyIDMuMjEgMy40NCAuLi5cbiAkIHFzZWM6IG51bSAgMTYuNSAxNyAxOC42IDE5LjQgMTcgLi4uXG4gJCB2cyAgOiBudW0gIDAgMCAxIDEgMCAxIDAgMSAxIDEgLi4uXG4gJCBhbSAgOiBudW0gIDEgMSAxIDAgMCAwIDAgMCAwIDAgLi4uXG4gJCBnZWFyOiBudW0gIDQgNCA0IDMgMyAzIDMgNCA0IDQgLi4uXG4gJCBjYXJiOiBudW0gIDQgNCAxIDEgMiAxIDQgMiAyIDQgLi4uXG4ifQ== -->
+<pre><code>'data.frame':   32 obs. of  11 variables:
+ $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+ $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+ $ disp: num  160 160 108 258 360 ...
+ $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+ $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+ $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+ $ qsec: num  16.5 17 18.6 19.4 17 ...
+ $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+ $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+ $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+ $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The <code>str()</code> method demonstrates that there are 32 observations, 11 variables, and the corresponding data type for each variables–which happens to be numerical data type for all values here.</p>
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBGcmFtZSBTZWN0aW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpEYXRhIEZyYW1lLCB1bmxlc3MgbWF0cml4LCBjYW4gaGFuZGxlIG11bHRpcGxlIGRhdGEgdHlwZXMuICAKCkFuIGV4YW1wbGUgb2YgZGF0YSBmcmFtZSBpcyBgbXRjYXJzYCB0aGF0IGlzIGJ1aWx0IHdpdGhpbiBSLiAgQ2FsbGluZyBgbXRjYXJzYCBpbnZva2VzIHRoZSBmb2xsb3dpbmc6CgoKYGBge3J9Cm10Y2FycwpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBGcmFtZSBTZWN0aW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIERhdGEgRnJhbWUgQmFzaWNzCgpEYXRhIEZyYW1lLCB1bmxlc3MgbWF0cml4LCBjYW4gaGFuZGxlIG11bHRpcGxlIGRhdGEgdHlwZXMuICAKCkFuIGV4YW1wbGUgb2YgZGF0YSBmcmFtZSBpcyBgbXRjYXJzYCB0aGF0IGlzIGJ1aWx0IHdpdGhpbiBSLiAgQ2FsbGluZyBgbXRjYXJzYCBpbnZva2VzIHRoZSBmb2xsb3dpbmc6CgoKYGBge3J9Cm10Y2FycwpgYGAKClJhbmRvbSBmYWN0OiAgVGhlIGNsYXNzIG9mIGRhdGEgZnJhbWUgb2JqZWN0cyBwZXIgYGNsYXNzKClgIG1ldGhvZCBpcyAiZGF0YS5mcmFtZSIgYXMgc2hvd24gYnkgdGhlIHNjcmlwdCBiZWxvdzoKCmBgYHtyfQpjbGFzcyhtdGNhcnMpCmBgYAoKIyMjIyBWaWV3aW5nIHRoZSBoZWFkIGFuZCB0YWlsIG9mIGRhdGEgc2V0cwoKSWYgeW91IGFyZSBjdXJpb3VzIHRvIHNlZSBib3RoIHRoZSBoZWFkIGFuZCB0YWlsIG9mIGRhdGEgc2V0cywgYGhlYWQoKWAgYW5kIGB0YWlsKClgIGFyZSBwYXJ0aWN1bGFybHkgdXNlZnVsIG1ldGhvZHMgZm9yIHRoaXMgcHVycG9zZS4KCgpgYGB7cn0KaGVhZChtdGNhcnMpCmBgYAoKTm93IGZvciB0aGUgYm90dG9tIHRhaWwgb2YgdGhlIGRhdGEgc2V0OgoKYGBge3J9CnRhaWwobXRjYXJzKQpgYGAKCiMjIyMgVXRpbGl6aW5nIHN0cnVjdHVyZSBtZXRob2Qgc3RyKCkgCgpTdXBwb3NlIHdlIHdhbnQgdG8gc2VlIGEgc3VtbWFyeSBvZiBzdHJ1Y3R1cmVzIG9mIGRhdGEgZnJhbWVzLCBgc3RyKClgIGlzIHBhcnRpY3VsYXJseSB1c2VmdWwgaGVyZSBmb3IgaW5zaWdodC4gIGBzdW1tYXJ5KClgIGlzIG5vdCBwYXJ0aWN1bGFybHkgZ29vZCBmb3IgdGhpcyBvbmUgYXMgaXQgd2lsbCBwcm9kdWNlIGEgYnVuY2ggb2YgZXh0cmEgbm9uLWluZGVlZCBhYm91dCBzdHJ1Y3R1cmVzLgoKSGVyZSdzIHdoYXQgYHN0cigpYCB3b3VsZCBzaG93IHlvdToKCmBgYHtyfQpzdHIobXRjYXJzKQpgYGAKCgpUaGUgYHN0cigpYCBtZXRob2QgZGVtb25zdHJhdGVzIHRoYXQgdGhlcmUgYXJlIDMyIG9ic2VydmF0aW9ucywgMTEgdmFyaWFibGVzLCBhbmQgdGhlIGNvcnJlc3BvbmRpbmcgZGF0YSB0eXBlIGZvciBlYWNoIHZhcmlhYmxlcy0td2hpY2ggaGFwcGVucyB0byBiZSBudW1lcmljYWwgZGF0YSB0eXBlIGZvciBhbGwgdmFsdWVzIGhlcmUuICAKCg==</div>
 
 
 

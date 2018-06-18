@@ -3,6 +3,8 @@ title: "Data Frame Section"
 output: html_notebook
 ---
 
+#### Data Frame Basics
+
 Data Frame, unless matrix, can handle multiple data types.  
 
 An example of data frame is `mtcars` that is built within R.  Calling `mtcars` invokes the following:
@@ -11,4 +13,38 @@ An example of data frame is `mtcars` that is built within R.  Calling `mtcars` i
 ```{r}
 mtcars
 ```
+
+Random fact:  The class of data frame objects per `class()` method is "data.frame" as shown by the script below:
+
+```{r}
+class(mtcars)
+```
+
+#### Viewing the head and tail of data sets
+
+If you are curious to see both the head and tail of data sets, `head()` and `tail()` are particularly useful methods for this purpose.
+
+
+```{r}
+head(mtcars)
+```
+
+Now for the bottom tail of the data set:
+
+```{r}
+tail(mtcars)
+```
+
+#### Utilizing structure method str() 
+
+Suppose we want to see a summary of structures of data frames, `str()` is particularly useful here for insight.  `summary()` is not particularly good for this one as it will produce a bunch of extra non-indeed about structures.
+
+Here's what `str()` would show you:
+
+```{r}
+str(mtcars)
+```
+
+
+The `str()` method demonstrates that there are 32 observations, 11 variables, and the corresponding data type for each variables--which happens to be numerical data type for all values here.  
 
