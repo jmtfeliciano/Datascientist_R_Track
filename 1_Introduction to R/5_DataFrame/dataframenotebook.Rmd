@@ -48,3 +48,58 @@ str(mtcars)
 
 The `str()` method demonstrates that there are 32 observations, 11 variables, and the corresponding data type for each variables--which happens to be numerical data type for all values here.  
 
+#### Creating dataframes from scratch using data.frame()
+
+To create a data frame, we can simply pass the columns we want to include into `data.frame()`.  The following is a rigorous example for a simple planetary data collection:
+
+```{r}
+# Definition of vectors
+name <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+type <- c("Terrestrial planet", "Terrestrial planet", "Terrestrial planet", 
+          "Terrestrial planet", "Gas giant", "Gas giant", "Gas giant", "Gas giant")
+diameter <- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation <- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+# Create a data frame from the vectors
+planets_df <- data.frame(name, type, diameter, rotation, rings)
+
+# Now, let us invoke planets_df to see the constructed data frame
+planets_df
+```
+
+#### Data Selection:
+
+Like in matrices, we can easily select datasets or a range of them.  
+
+Working on the previously declared planets_df dataframe we created, we can select and run the following to target wanted data:
+
+```{r}
+# Print out data for Mars (entire fourth row)
+planets_df[4,]
+
+# Print out diameter of Mercury (row 1, column 3)
+planets_df[1,3]
+```
+
+#### Data Selection by using variable name df_name(,"var_name")
+
+Suppose we want to search values using a known variable name, we can use the name as a filter to select a column:
+
+```{r}
+# Select first 5 values of diameter column
+planets_df[1:5,"diameter"]
+```
+
+
+#### Data Selection by using variable name df_name(,c("var_name1", "var_name2"))
+
+Another better way is to include names of the planets to see which of these values correspond to. For that, we can pass a vector of variable names. 
+
+```{r}
+# Select first 5 values of diameter column with their corresponding planets
+planets_df[1:5,c("name","diameter")]
+```
+
+Voila, diameters were printed along with their associated planet names.
+
+
