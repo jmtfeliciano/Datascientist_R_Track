@@ -351,10 +351,113 @@ planets_df[1:5,c(&quot;name&quot;,&quot;diameter&quot;)]</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Voila, diameters were printed along with their associated planet names.</p>
+</div>
+<div id="shortcuts-on-selecting-column-data-using" class="section level4">
+<h4>Shortcuts on selecting column data using $</h4>
+<p>Instead of calling planets_df[,“diameter”], we could use the following and they’re equivalent:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxhbmV0c19kZiRkaWFtZXRlclxuYGBgIn0= -->
+<pre class="r"><code>planets_df$diameter</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAwLjM4MiAgMC45NDkgIDEuMDAwICAwLjUzMiAxMS4yMDkgIDkuNDQ5ICA0LjAwNyAgMy44ODNcbiJ9 -->
+<pre><code>[1]  0.382  0.949  1.000  0.532 11.209  9.449  4.007  3.883</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="passing-boolean-or-logical-as-arguments" class="section level4">
+<h4>Passing boolean or logical as arguments:</h4>
+<p>If we were to pass a vector of logical operators as an argument for rows, we can filter out data for which to display:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGFzX3JpbmdzIDwtIGMoRkFMU0UsIEZBTFNFLCBGQUxTRSwgRkFMU0UsIFRSVUUsICBUUlVFLCBUUlVFLFRSVUUpXG5wbGFuZXRzX2RmW2hhc19yaW5ncywgXCJuYW1lXCJdXG5gYGAifQ== -->
+<pre class="r"><code>has_rings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE,  TRUE, TRUE,TRUE)
+planets_df[has_rings, &quot;name&quot;]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEp1cGl0ZXIgU2F0dXJuICBVcmFudXMgIE5lcHR1bmVcbkxldmVsczogRWFydGggSnVwaXRlciBNYXJzIE1lcmN1cnkgTmVwdHVuZSBTYXR1cm4gVXJhbnVzIFZlbnVzXG4ifQ== -->
+<pre><code>[1] Jupiter Saturn  Uranus  Neptune
+Levels: Earth Jupiter Mars Mercury Neptune Saturn Uranus Venus</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="using-subset" class="section level4">
+<h4>Using subset()</h4>
+<p>Using subset can be used as a short cut to filter our values.</p>
+<p><code>subset()</code> at the minimum can accept the data as argument, and the condition to met as the second argument.</p>
+<p>As as sample, suppose we want to get data of planets with diamater less than 1.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vic2V0KHBsYW5ldHNfZGYsIGRpYW1ldGVyIDwgMSlcbmBgYCJ9 -->
+<pre class="r"><code>subset(planets_df, diameter &lt; 1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUEzMVNPMHNEUVJEZWU4WGtJQ0pxWlNFcGJCTkJzWlN6VUFKQ0JPT0RWT0o2MmNURGMrK2MyL1BkK2dPc2JRVEJVaXd0TGZ3UDJsaWtGc1Zma0xpWDI5R2NvQWQ3ODgxNzV0dXRMelptN0laTkNOR0pZY3EvSWFHcHk1OUdURkpJNURFaHhwZ0VscFJGS2ZzUjh1UlRuQW5PK2V5UStaRkVJLzJJMUdvdFVSQzdTaGxhamtOUE1GQ3FXYU1Rb2F2R3dJM2hCTlVWRm9xWU02eTlSa1VNSExVTm9EekdUR3VUSlVwMkdNdjFhWVN6ZkUvWW9xNElRS0x1d0Q3NnowbEs2RDJWcGF1c1FwVkdwYlpIdVZDRzBYVUd3Q0lCSHZWTG9VODVFMm1xMGZ1dklSbE9Ham92Y0Y5NnVycDFQcmJtblBQM1M2ZVRtM3FkbnJoRy8wSnQ5ZTFpOHFIK3lMZHZudTM1QStmenRGTzlHeitUUGxzTlBQQmxkK1owbitIT0ZuS2NHQkdMa3hCeHZ1bEp4ODlkNUNFUVZIZ0JjbXlCeDl1L1dTMUFjRlRCTHNpZnB2Z3oveURCYmxKQkt5MUk1dWdUa1NrNUZJUkpWMWxRVnc4dGs2ekJMOE5JekpNQm1tVjNOK1o3NWRrNVJZeW1UbEZKWXdCYmFVOFRKME51Y295M3ZlODNadmwwaC9sS0daYWI5aGV0aEpJSXZIbGJXcU9La0V4aG5PMEdQbHJTVys1K0FaeW54VHRYQXdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["type"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["diameter"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["rotation"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["rings"],"name":[5],"type":["lgl"],"align":["right"]}],"data":[{"1":"Mercury","2":"Terrestrial planet","3":"0.382","4":"58.64","5":"FALSE","_rn_":"1"},{"1":"Venus","2":"Terrestrial planet","3":"0.949","4":"-243.02","5":"FALSE","_rn_":"2"},{"1":"Mars","2":"Terrestrial planet","3":"0.532","4":"1.03","5":"FALSE","_rn_":"4"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note: Unlike in data structures, diameter has to be passed without quotes.</p>
+</div>
+<div id="subsetting-inconsistencies" class="section level4">
+<h4>Subsetting inconsistencies</h4>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBSZW1lbWJlciB0aGF0IGZpbHRlcmluZyBieSBtYXRyaXggc3ludGhheCBuZWVkcyB0byB1c2UgcXVvdGF0aW9uXG5wbGFuZXRzX2RmW2hhc19yaW5ncywgXCJuYW1lXCJdXG5gYGAifQ== -->
+<pre class="r"><code># Remember that filtering by matrix synthax needs to use quotation
+planets_df[has_rings, &quot;name&quot;]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEp1cGl0ZXIgU2F0dXJuICBVcmFudXMgIE5lcHR1bmVcbkxldmVsczogRWFydGggSnVwaXRlciBNYXJzIE1lcmN1cnkgTmVwdHVuZSBTYXR1cm4gVXJhbnVzIFZlbnVzXG4ifQ== -->
+<pre><code>[1] Jupiter Saturn  Uranus  Neptune
+Levels: Earth Jupiter Mars Mercury Neptune Saturn Uranus Venus</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCdXQgdXNpbmcgc3Vic2V0KCkgbWV0aG9kLCBmaWx0ZXIgdGVybSBkb2VzIG5vdCBuZWVkIHF1b3RhdGlvblxuc3Vic2V0KHBsYW5ldHNfZGYsIGhhc19yaW5ncyA9PSBUUlVFICYgcm90YXRpb24gPiAwKVxuYGBgIn0= -->
+<pre class="r"><code># But using subset() method, filter term does not need quotation
+subset(planets_df, has_rings == TRUE &amp; rotation &gt; 0)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUEzMVN2VTRDUVJCZTdnZU9peURSM2hBTE82NHd0Z1FLamRFRUUwVU5sY2x5TEhEaDNEdjM5bFFlZ0NleDh3bU1EMkZoWTlUU1VGbFoyWUc3eHc1L1VZdmQrV1ptNSsvYk9kbHRiTnNOR3lHa0lkMFF0eTZnb1lrcmhReVVsZklXSVgxZEFGUEluSkI2OGhpaDlNUzI4RGp0azJ2aVJ3SVZ4TEdVMWR6RGpIZVZram1NUTQ4VHBsU2pobGtFcmhwaGJzejZvQjZSa01lVVFPNDY1akdqb0oweFRHT0lOTStKVkJhYk1WMGZSOURMdE1NMmRubkFCQnJOelpPYUhabENHNnNvVFVWbDkzRlU3SGlZY21WWU95V01rWWd6RC92RjBNZVU4RW1vUHY2dklNckxndFd0bnJaeThIaFIzUngrMUwrZlhxdXJoV2J0K2VzZS9KVzNjbmozWXBjcjc0T05oK1BQUVdXWXFGZkNaLy9lOEd4bWlpOEp6R3dDeDlJSW1QZER3RmJMRTQ3WlgxZ3M0Smg3QVhCc01vOTJsbG5Oc3VER2dTckFuNm4yd2ZxREJMdUZPWGJhVFBhUkVMR1FNaE9Fc3FwSXFLbEZXd2hPc1NYRGFreGxBNjJTMjQxcHI3U2plQUZPY2tycWMxZ3RxZ0dOQVRWcFFqdmVkTVZNSHplSnI1UzhHRFNaMHdrRkQvRHh0ckJHRGhkRXdUdmJEWHl3VEQ1NTlBTlN5S1lqVmdNQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["type"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["diameter"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["rotation"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["rings"],"name":[5],"type":["lgl"],"align":["right"]}],"data":[{"1":"Jupiter","2":"Gas giant","3":"11.209","4":"0.41","5":"TRUE","_rn_":"5"},{"1":"Saturn","2":"Gas giant","3":"9.449","4":"0.43","5":"TRUE","_rn_":"6"},{"1":"Neptune","2":"Gas giant","3":"3.883","4":"0.67","5":"TRUE","_rn_":"8"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="ordering-dataframe-through-order" class="section level4">
+<h4>Ordering dataframe through order()</h4>
+<p>Do not think of sort–it is only for 1 dimensional objects! Think of order and <code>order()</code> method for data frames!</p>
+<p>Order returns an order vector bases on a variable you want to arrange. You can then use this vector to order the dataframe by inserting it to the dataframe.</p>
+<p>Example, order dataframe based on diameters:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2Ugb3JkZXIoKSB0byBjcmVhdGUgdmVjdG9yIHdpdGggb3JkZXIgb2YgZGlhbWV0ZXJcbnBvc2l0aW9uc192ZWN0b3IgPC0gb3JkZXIocGxhbmV0c19kZiRkaWFtZXRlcilcbiMgTm90ZTogIE9sZCBub3RhdGlvbiB3b3VsZCB3b3JrIHN1Y2ggYXMgcGxhZW50c19kZlssXCJkaWFtZXRlclwiXVxuIyBVc2UgcG9zaXRpb25zIHRvIHNvcnQgcGxhbmV0c19kZlxudGVzdF9kZiA8LSBwbGFuZXRzX2RmW3Bvc2l0aW9uc192ZWN0b3IsXVxudGVzdF9kZlxuYGBgIn0= -->
+<pre class="r"><code># Use order() to create vector with order of diameter
+positions_vector &lt;- order(planets_df$diameter)
+# Note:  Old notation would work such as plaents_df[,&quot;diameter&quot;]
+# Use positions to sort planets_df
+test_df &lt;- planets_df[positions_vector,]
+test_df</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6OH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEzMVR2V3NVUVJTZi9icVB4U1NIc2JLUVF5U041Q1JDeW1PMk1BU0ZDNWlvcEFxWjdFMHVTOWJaZFhaV3pVZWJQOERhUmhBc0xJS2wyR2hoYldIakZ4WkJnb1Vvc2JKTGZMTTNMN2s5b2dPejgzdHY1cjM1emUrOW5iKzJlTlZmOUFraE5uRmMrRG9BWFJzK0ZuRkpYYThQQ1hIR0FYaXdqc0JhMHlkZ09nWmIvVDFTaFZrcEVwVVRWR0orbjhjWm9FWVIwZmQ2TTB5cU5XTlViK1JwcExnMHB0dGhNc090RHBkaExqZlFuT09weWdYSDNBdE01VktnZFZzeWtXT2tkNGRybzB6R0MyT1dJWmRqaHFzc1ZJa0VkRGp3Um50b1d1V3AwOXBISnBOdE10Vm5XZGJzUlV3bzR6aDdpMHZKTXlVakZqZlRtQW11K3FITzBmOUlrRkZOZ242VUw1cHZIeitqZTVWTFg2K2NmMEovTFUzVDdaK1A2QUVwUmpEV1dPbTgvLzA4YUZRdjIyZXV2d291N245YitQUHVVekN4cnMwbHpCTjBidjdZdWZCeW5oNXM3czN1bnR0Nkk1YWZmdkRiOXpBUDNVOEwrL1YzdjYwUi9RS25JWVIrTHN3MkhQR05LTVBqRkZGT3RCYnNMa2V0UGF5dGRpSldHeW5pV2plQ2paTWVxTWxFTVJVbFdGdFBScUkzWE0yNlRCNjA4QmFzbTJYNjB4N29VZXhON3gvaSsxMm1XR3RWYW01RkFVclhWSk5VTTRGTGJQTWpsSUl0T2VRWXk0VW0xWjBNMTNLeFBqbGw5RU9kUnN4YUc4Q0dtSXZFVUs0S0Y3M291TjI5bUszdzJCaWo4UGppN2EwVXRNR0c4OEdidFJTSWgrZjhNSW5SMDIrdXc3OU1RWHJpOWdNQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["type"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["diameter"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["rotation"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["rings"],"name":[5],"type":["lgl"],"align":["right"]}],"data":[{"1":"Mercury","2":"Terrestrial planet","3":"0.382","4":"58.64","5":"FALSE","_rn_":"1"},{"1":"Mars","2":"Terrestrial planet","3":"0.532","4":"1.03","5":"FALSE","_rn_":"4"},{"1":"Venus","2":"Terrestrial planet","3":"0.949","4":"-243.02","5":"FALSE","_rn_":"2"},{"1":"Earth","2":"Terrestrial planet","3":"1.000","4":"1.00","5":"FALSE","_rn_":"3"},{"1":"Neptune","2":"Gas giant","3":"3.883","4":"0.67","5":"TRUE","_rn_":"8"},{"1":"Uranus","2":"Gas giant","3":"4.007","4":"-0.72","5":"TRUE","_rn_":"7"},{"1":"Saturn","2":"Gas giant","3":"9.449","4":"0.43","5":"TRUE","_rn_":"6"},{"1":"Jupiter","2":"Gas giant","3":"11.209","4":"0.41","5":"TRUE","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[8]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Voila! test_df, which includes the ordered planets_df data, was indeed ordered by increasing diameter.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBGcmFtZSBTZWN0aW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIERhdGEgRnJhbWUgQmFzaWNzCgpEYXRhIEZyYW1lLCB1bmxlc3MgbWF0cml4LCBjYW4gaGFuZGxlIG11bHRpcGxlIGRhdGEgdHlwZXMuICAKCkFuIGV4YW1wbGUgb2YgZGF0YSBmcmFtZSBpcyBgbXRjYXJzYCB0aGF0IGlzIGJ1aWx0IHdpdGhpbiBSLiAgQ2FsbGluZyBgbXRjYXJzYCBpbnZva2VzIHRoZSBmb2xsb3dpbmc6CgoKYGBge3J9Cm10Y2FycwpgYGAKClJhbmRvbSBmYWN0OiAgVGhlIGNsYXNzIG9mIGRhdGEgZnJhbWUgb2JqZWN0cyBwZXIgYGNsYXNzKClgIG1ldGhvZCBpcyAiZGF0YS5mcmFtZSIgYXMgc2hvd24gYnkgdGhlIHNjcmlwdCBiZWxvdzoKCmBgYHtyfQpjbGFzcyhtdGNhcnMpCmBgYAoKIyMjIyBWaWV3aW5nIHRoZSBoZWFkIGFuZCB0YWlsIG9mIGRhdGEgc2V0cwoKSWYgeW91IGFyZSBjdXJpb3VzIHRvIHNlZSBib3RoIHRoZSBoZWFkIGFuZCB0YWlsIG9mIGRhdGEgc2V0cywgYGhlYWQoKWAgYW5kIGB0YWlsKClgIGFyZSBwYXJ0aWN1bGFybHkgdXNlZnVsIG1ldGhvZHMgZm9yIHRoaXMgcHVycG9zZS4KCgpgYGB7cn0KaGVhZChtdGNhcnMpCmBgYAoKTm93IGZvciB0aGUgYm90dG9tIHRhaWwgb2YgdGhlIGRhdGEgc2V0OgoKYGBge3J9CnRhaWwobXRjYXJzKQpgYGAKCiMjIyMgVXRpbGl6aW5nIHN0cnVjdHVyZSBtZXRob2Qgc3RyKCkgCgpTdXBwb3NlIHdlIHdhbnQgdG8gc2VlIGEgc3VtbWFyeSBvZiBzdHJ1Y3R1cmVzIG9mIGRhdGEgZnJhbWVzLCBgc3RyKClgIGlzIHBhcnRpY3VsYXJseSB1c2VmdWwgaGVyZSBmb3IgaW5zaWdodC4gIGBzdW1tYXJ5KClgIGlzIG5vdCBwYXJ0aWN1bGFybHkgZ29vZCBmb3IgdGhpcyBvbmUgYXMgaXQgd2lsbCBwcm9kdWNlIGEgYnVuY2ggb2YgZXh0cmEgbm9uLWluZGVlZCBhYm91dCBzdHJ1Y3R1cmVzLgoKSGVyZSdzIHdoYXQgYHN0cigpYCB3b3VsZCBzaG93IHlvdToKCmBgYHtyfQpzdHIobXRjYXJzKQpgYGAKCgpUaGUgYHN0cigpYCBtZXRob2QgZGVtb25zdHJhdGVzIHRoYXQgdGhlcmUgYXJlIDMyIG9ic2VydmF0aW9ucywgMTEgdmFyaWFibGVzLCBhbmQgdGhlIGNvcnJlc3BvbmRpbmcgZGF0YSB0eXBlIGZvciBlYWNoIHZhcmlhYmxlcy0td2hpY2ggaGFwcGVucyB0byBiZSBudW1lcmljYWwgZGF0YSB0eXBlIGZvciBhbGwgdmFsdWVzIGhlcmUuICAKCiMjIyMgQ3JlYXRpbmcgZGF0YWZyYW1lcyBmcm9tIHNjcmF0Y2ggdXNpbmcgZGF0YS5mcmFtZSgpCgpUbyBjcmVhdGUgYSBkYXRhIGZyYW1lLCB3ZSBjYW4gc2ltcGx5IHBhc3MgdGhlIGNvbHVtbnMgd2Ugd2FudCB0byBpbmNsdWRlIGludG8gYGRhdGEuZnJhbWUoKWAuICBUaGUgZm9sbG93aW5nIGlzIGEgcmlnb3JvdXMgZXhhbXBsZSBmb3IgYSBzaW1wbGUgcGxhbmV0YXJ5IGRhdGEgY29sbGVjdGlvbjoKCmBgYHtyfQojIERlZmluaXRpb24gb2YgdmVjdG9ycwpuYW1lIDwtIGMoIk1lcmN1cnkiLCAiVmVudXMiLCAiRWFydGgiLCAiTWFycyIsICJKdXBpdGVyIiwgIlNhdHVybiIsICJVcmFudXMiLCAiTmVwdHVuZSIpCnR5cGUgPC0gYygiVGVycmVzdHJpYWwgcGxhbmV0IiwgIlRlcnJlc3RyaWFsIHBsYW5ldCIsICJUZXJyZXN0cmlhbCBwbGFuZXQiLCAKICAgICAgICAgICJUZXJyZXN0cmlhbCBwbGFuZXQiLCAiR2FzIGdpYW50IiwgIkdhcyBnaWFudCIsICJHYXMgZ2lhbnQiLCAiR2FzIGdpYW50IikKZGlhbWV0ZXIgPC0gYygwLjM4MiwgMC45NDksIDEsIDAuNTMyLCAxMS4yMDksIDkuNDQ5LCA0LjAwNywgMy44ODMpCnJvdGF0aW9uIDwtIGMoNTguNjQsIC0yNDMuMDIsIDEsIDEuMDMsIDAuNDEsIDAuNDMsIC0wLjcyLCAwLjY3KQpyaW5ncyA8LSBjKEZBTFNFLCBGQUxTRSwgRkFMU0UsIEZBTFNFLCBUUlVFLCBUUlVFLCBUUlVFLCBUUlVFKQojIENyZWF0ZSBhIGRhdGEgZnJhbWUgZnJvbSB0aGUgdmVjdG9ycwpwbGFuZXRzX2RmIDwtIGRhdGEuZnJhbWUobmFtZSwgdHlwZSwgZGlhbWV0ZXIsIHJvdGF0aW9uLCByaW5ncykKCiMgTm93LCBsZXQgdXMgaW52b2tlIHBsYW5ldHNfZGYgdG8gc2VlIHRoZSBjb25zdHJ1Y3RlZCBkYXRhIGZyYW1lCnBsYW5ldHNfZGYKYGBgCgojIyMjIERhdGEgU2VsZWN0aW9uOgoKTGlrZSBpbiBtYXRyaWNlcywgd2UgY2FuIGVhc2lseSBzZWxlY3QgZGF0YXNldHMgb3IgYSByYW5nZSBvZiB0aGVtLiAgCgpXb3JraW5nIG9uIHRoZSBwcmV2aW91c2x5IGRlY2xhcmVkIHBsYW5ldHNfZGYgZGF0YWZyYW1lIHdlIGNyZWF0ZWQsIHdlIGNhbiBzZWxlY3QgYW5kIHJ1biB0aGUgZm9sbG93aW5nIHRvIHRhcmdldCB3YW50ZWQgZGF0YToKCmBgYHtyfQojIFByaW50IG91dCBkYXRhIGZvciBNYXJzIChlbnRpcmUgZm91cnRoIHJvdykKcGxhbmV0c19kZls0LF0KCiMgUHJpbnQgb3V0IGRpYW1ldGVyIG9mIE1lcmN1cnkgKHJvdyAxLCBjb2x1bW4gMykKcGxhbmV0c19kZlsxLDNdCmBgYAoKIyMjIyBEYXRhIFNlbGVjdGlvbiBieSB1c2luZyB2YXJpYWJsZSBuYW1lIGRmX25hbWUoLCJ2YXJfbmFtZSIpCgpTdXBwb3NlIHdlIHdhbnQgdG8gc2VhcmNoIHZhbHVlcyB1c2luZyBhIGtub3duIHZhcmlhYmxlIG5hbWUsIHdlIGNhbiB1c2UgdGhlIG5hbWUgYXMgYSBmaWx0ZXIgdG8gc2VsZWN0IGEgY29sdW1uOgoKYGBge3J9CiMgU2VsZWN0IGZpcnN0IDUgdmFsdWVzIG9mIGRpYW1ldGVyIGNvbHVtbgpwbGFuZXRzX2RmWzE6NSwiZGlhbWV0ZXIiXQpgYGAKCgojIyMjIERhdGEgU2VsZWN0aW9uIGJ5IHVzaW5nIHZhcmlhYmxlIG5hbWUgZGZfbmFtZSgsYygidmFyX25hbWUxIiwgInZhcl9uYW1lMiIpKQoKQW5vdGhlciBiZXR0ZXIgd2F5IGlzIHRvIGluY2x1ZGUgbmFtZXMgb2YgdGhlIHBsYW5ldHMgdG8gc2VlIHdoaWNoIG9mIHRoZXNlIHZhbHVlcyBjb3JyZXNwb25kIHRvLiBGb3IgdGhhdCwgd2UgY2FuIHBhc3MgYSB2ZWN0b3Igb2YgdmFyaWFibGUgbmFtZXMuIAoKYGBge3J9CiMgU2VsZWN0IGZpcnN0IDUgdmFsdWVzIG9mIGRpYW1ldGVyIGNvbHVtbiB3aXRoIHRoZWlyIGNvcnJlc3BvbmRpbmcgcGxhbmV0cwpwbGFuZXRzX2RmWzE6NSxjKCJuYW1lIiwiZGlhbWV0ZXIiKV0KYGBgCgpWb2lsYSwgZGlhbWV0ZXJzIHdlcmUgcHJpbnRlZCBhbG9uZyB3aXRoIHRoZWlyIGFzc29jaWF0ZWQgcGxhbmV0IG5hbWVzLgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBGcmFtZSBTZWN0aW9uIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIERhdGEgRnJhbWUgQmFzaWNzCgpEYXRhIEZyYW1lLCB1bmxlc3MgbWF0cml4LCBjYW4gaGFuZGxlIG11bHRpcGxlIGRhdGEgdHlwZXMuICAKCkFuIGV4YW1wbGUgb2YgZGF0YSBmcmFtZSBpcyBgbXRjYXJzYCB0aGF0IGlzIGJ1aWx0IHdpdGhpbiBSLiAgQ2FsbGluZyBgbXRjYXJzYCBpbnZva2VzIHRoZSBmb2xsb3dpbmc6CgoKYGBge3J9Cm10Y2FycwpgYGAKClJhbmRvbSBmYWN0OiAgVGhlIGNsYXNzIG9mIGRhdGEgZnJhbWUgb2JqZWN0cyBwZXIgYGNsYXNzKClgIG1ldGhvZCBpcyAiZGF0YS5mcmFtZSIgYXMgc2hvd24gYnkgdGhlIHNjcmlwdCBiZWxvdzoKCmBgYHtyfQpjbGFzcyhtdGNhcnMpCmBgYAoKIyMjIyBWaWV3aW5nIHRoZSBoZWFkIGFuZCB0YWlsIG9mIGRhdGEgc2V0cwoKSWYgeW91IGFyZSBjdXJpb3VzIHRvIHNlZSBib3RoIHRoZSBoZWFkIGFuZCB0YWlsIG9mIGRhdGEgc2V0cywgYGhlYWQoKWAgYW5kIGB0YWlsKClgIGFyZSBwYXJ0aWN1bGFybHkgdXNlZnVsIG1ldGhvZHMgZm9yIHRoaXMgcHVycG9zZS4KCgpgYGB7cn0KaGVhZChtdGNhcnMpCmBgYAoKTm93IGZvciB0aGUgYm90dG9tIHRhaWwgb2YgdGhlIGRhdGEgc2V0OgoKYGBge3J9CnRhaWwobXRjYXJzKQpgYGAKCiMjIyMgVXRpbGl6aW5nIHN0cnVjdHVyZSBtZXRob2Qgc3RyKCkgCgpTdXBwb3NlIHdlIHdhbnQgdG8gc2VlIGEgc3VtbWFyeSBvZiBzdHJ1Y3R1cmVzIG9mIGRhdGEgZnJhbWVzLCBgc3RyKClgIGlzIHBhcnRpY3VsYXJseSB1c2VmdWwgaGVyZSBmb3IgaW5zaWdodC4gIGBzdW1tYXJ5KClgIGlzIG5vdCBwYXJ0aWN1bGFybHkgZ29vZCBmb3IgdGhpcyBvbmUgYXMgaXQgd2lsbCBwcm9kdWNlIGEgYnVuY2ggb2YgZXh0cmEgbm9uLWluZGVlZCBhYm91dCBzdHJ1Y3R1cmVzLgoKSGVyZSdzIHdoYXQgYHN0cigpYCB3b3VsZCBzaG93IHlvdToKCmBgYHtyfQpzdHIobXRjYXJzKQpgYGAKCgpUaGUgYHN0cigpYCBtZXRob2QgZGVtb25zdHJhdGVzIHRoYXQgdGhlcmUgYXJlIDMyIG9ic2VydmF0aW9ucywgMTEgdmFyaWFibGVzLCBhbmQgdGhlIGNvcnJlc3BvbmRpbmcgZGF0YSB0eXBlIGZvciBlYWNoIHZhcmlhYmxlcy0td2hpY2ggaGFwcGVucyB0byBiZSBudW1lcmljYWwgZGF0YSB0eXBlIGZvciBhbGwgdmFsdWVzIGhlcmUuICAKCiMjIyMgQ3JlYXRpbmcgZGF0YWZyYW1lcyBmcm9tIHNjcmF0Y2ggdXNpbmcgZGF0YS5mcmFtZSgpCgpUbyBjcmVhdGUgYSBkYXRhIGZyYW1lLCB3ZSBjYW4gc2ltcGx5IHBhc3MgdGhlIGNvbHVtbnMgd2Ugd2FudCB0byBpbmNsdWRlIGludG8gYGRhdGEuZnJhbWUoKWAuICBUaGUgZm9sbG93aW5nIGlzIGEgcmlnb3JvdXMgZXhhbXBsZSBmb3IgYSBzaW1wbGUgcGxhbmV0YXJ5IGRhdGEgY29sbGVjdGlvbjoKCmBgYHtyfQojIERlZmluaXRpb24gb2YgdmVjdG9ycwpuYW1lIDwtIGMoIk1lcmN1cnkiLCAiVmVudXMiLCAiRWFydGgiLCAiTWFycyIsICJKdXBpdGVyIiwgIlNhdHVybiIsICJVcmFudXMiLCAiTmVwdHVuZSIpCnR5cGUgPC0gYygiVGVycmVzdHJpYWwgcGxhbmV0IiwgIlRlcnJlc3RyaWFsIHBsYW5ldCIsICJUZXJyZXN0cmlhbCBwbGFuZXQiLCAKICAgICAgICAgICJUZXJyZXN0cmlhbCBwbGFuZXQiLCAiR2FzIGdpYW50IiwgIkdhcyBnaWFudCIsICJHYXMgZ2lhbnQiLCAiR2FzIGdpYW50IikKZGlhbWV0ZXIgPC0gYygwLjM4MiwgMC45NDksIDEsIDAuNTMyLCAxMS4yMDksIDkuNDQ5LCA0LjAwNywgMy44ODMpCnJvdGF0aW9uIDwtIGMoNTguNjQsIC0yNDMuMDIsIDEsIDEuMDMsIDAuNDEsIDAuNDMsIC0wLjcyLCAwLjY3KQpyaW5ncyA8LSBjKEZBTFNFLCBGQUxTRSwgRkFMU0UsIEZBTFNFLCBUUlVFLCBUUlVFLCBUUlVFLCBUUlVFKQojIENyZWF0ZSBhIGRhdGEgZnJhbWUgZnJvbSB0aGUgdmVjdG9ycwpwbGFuZXRzX2RmIDwtIGRhdGEuZnJhbWUobmFtZSwgdHlwZSwgZGlhbWV0ZXIsIHJvdGF0aW9uLCByaW5ncykKCiMgTm93LCBsZXQgdXMgaW52b2tlIHBsYW5ldHNfZGYgdG8gc2VlIHRoZSBjb25zdHJ1Y3RlZCBkYXRhIGZyYW1lCnBsYW5ldHNfZGYKYGBgCgojIyMjIERhdGEgU2VsZWN0aW9uOgoKTGlrZSBpbiBtYXRyaWNlcywgd2UgY2FuIGVhc2lseSBzZWxlY3QgZGF0YXNldHMgb3IgYSByYW5nZSBvZiB0aGVtLiAgCgpXb3JraW5nIG9uIHRoZSBwcmV2aW91c2x5IGRlY2xhcmVkIHBsYW5ldHNfZGYgZGF0YWZyYW1lIHdlIGNyZWF0ZWQsIHdlIGNhbiBzZWxlY3QgYW5kIHJ1biB0aGUgZm9sbG93aW5nIHRvIHRhcmdldCB3YW50ZWQgZGF0YToKCmBgYHtyfQojIFByaW50IG91dCBkYXRhIGZvciBNYXJzIChlbnRpcmUgZm91cnRoIHJvdykKcGxhbmV0c19kZls0LF0KCiMgUHJpbnQgb3V0IGRpYW1ldGVyIG9mIE1lcmN1cnkgKHJvdyAxLCBjb2x1bW4gMykKcGxhbmV0c19kZlsxLDNdCmBgYAoKIyMjIyBEYXRhIFNlbGVjdGlvbiBieSB1c2luZyB2YXJpYWJsZSBuYW1lIGRmX25hbWUoLCJ2YXJfbmFtZSIpCgpTdXBwb3NlIHdlIHdhbnQgdG8gc2VhcmNoIHZhbHVlcyB1c2luZyBhIGtub3duIHZhcmlhYmxlIG5hbWUsIHdlIGNhbiB1c2UgdGhlIG5hbWUgYXMgYSBmaWx0ZXIgdG8gc2VsZWN0IGEgY29sdW1uOgoKYGBge3J9CiMgU2VsZWN0IGZpcnN0IDUgdmFsdWVzIG9mIGRpYW1ldGVyIGNvbHVtbgpwbGFuZXRzX2RmWzE6NSwiZGlhbWV0ZXIiXQpgYGAKCgojIyMjIERhdGEgU2VsZWN0aW9uIGJ5IHVzaW5nIHZhcmlhYmxlIG5hbWUgZGZfbmFtZSgsYygidmFyX25hbWUxIiwgInZhcl9uYW1lMiIpKQoKQW5vdGhlciBiZXR0ZXIgd2F5IGlzIHRvIGluY2x1ZGUgbmFtZXMgb2YgdGhlIHBsYW5ldHMgdG8gc2VlIHdoaWNoIG9mIHRoZXNlIHZhbHVlcyBjb3JyZXNwb25kIHRvLiBGb3IgdGhhdCwgd2UgY2FuIHBhc3MgYSB2ZWN0b3Igb2YgdmFyaWFibGUgbmFtZXMuIAoKYGBge3J9CiMgU2VsZWN0IGZpcnN0IDUgdmFsdWVzIG9mIGRpYW1ldGVyIGNvbHVtbiB3aXRoIHRoZWlyIGNvcnJlc3BvbmRpbmcgcGxhbmV0cwpwbGFuZXRzX2RmWzE6NSxjKCJuYW1lIiwiZGlhbWV0ZXIiKV0KYGBgCgpWb2lsYSwgZGlhbWV0ZXJzIHdlcmUgcHJpbnRlZCBhbG9uZyB3aXRoIHRoZWlyIGFzc29jaWF0ZWQgcGxhbmV0IG5hbWVzLgoKIyMjIyBTaG9ydGN1dHMgb24gc2VsZWN0aW5nIGNvbHVtbiBkYXRhIHVzaW5nICQKCkluc3RlYWQgb2YgY2FsbGluZyBwbGFuZXRzX2RmWywiZGlhbWV0ZXIiXSwgd2UgY291bGQgdXNlIHRoZSBmb2xsb3dpbmcgYW5kIHRoZXkncmUgZXF1aXZhbGVudDoKCmBgYHtyfQpwbGFuZXRzX2RmJGRpYW1ldGVyCmBgYAoKCiMjIyMgUGFzc2luZyBib29sZWFuIG9yIGxvZ2ljYWwgYXMgYXJndW1lbnRzOgoKSWYgd2Ugd2VyZSB0byBwYXNzIGEgdmVjdG9yIG9mIGxvZ2ljYWwgb3BlcmF0b3JzIGFzIGFuIGFyZ3VtZW50IGZvciByb3dzLCB3ZSBjYW4gZmlsdGVyIG91dCBkYXRhIGZvciB3aGljaCB0byBkaXNwbGF5OgoKYGBge3J9Cmhhc19yaW5ncyA8LSBjKEZBTFNFLCBGQUxTRSwgRkFMU0UsIEZBTFNFLCBUUlVFLCAgVFJVRSwgVFJVRSxUUlVFKQpwbGFuZXRzX2RmW2hhc19yaW5ncywgIm5hbWUiXQpgYGAKCgoKIyMjIyBVc2luZyBzdWJzZXQoKQoKVXNpbmcgc3Vic2V0IGNhbiBiZSB1c2VkIGFzIGEgc2hvcnQgY3V0IHRvIGZpbHRlciBvdXIgdmFsdWVzLgoKYHN1YnNldCgpYCBhdCB0aGUgbWluaW11bSBjYW4gYWNjZXB0IHRoZSBkYXRhIGFzIGFyZ3VtZW50LCBhbmQgdGhlIGNvbmRpdGlvbiB0byBtZXQgYXMgdGhlIHNlY29uZCBhcmd1bWVudC4gIAoKQXMgYXMgc2FtcGxlLCBzdXBwb3NlIHdlIHdhbnQgdG8gZ2V0IGRhdGEgb2YgcGxhbmV0cyB3aXRoIGRpYW1hdGVyIGxlc3MgdGhhbiAxLiAgCgpgYGB7cn0Kc3Vic2V0KHBsYW5ldHNfZGYsIGRpYW1ldGVyIDwgMSkKYGBgCgpOb3RlOiAgVW5saWtlIGluIGRhdGEgc3RydWN0dXJlcywgZGlhbWV0ZXIgaGFzIHRvIGJlIHBhc3NlZCB3aXRob3V0IHF1b3Rlcy4gIAoKCgojIyMjIFN1YnNldHRpbmcgaW5jb25zaXN0ZW5jaWVzCgpgYGB7cn0KIyBSZW1lbWJlciB0aGF0IGZpbHRlcmluZyBieSBtYXRyaXggc3ludGhheCBuZWVkcyB0byB1c2UgcXVvdGF0aW9uCnBsYW5ldHNfZGZbaGFzX3JpbmdzLCAibmFtZSJdCgojIEJ1dCB1c2luZyBzdWJzZXQoKSBtZXRob2QsIGZpbHRlciB0ZXJtIGRvZXMgbm90IG5lZWQgcXVvdGF0aW9uCnN1YnNldChwbGFuZXRzX2RmLCBoYXNfcmluZ3MgPT0gVFJVRSAmIHJvdGF0aW9uID4gMCkKYGBgCgoKIyMjIyBPcmRlcmluZyBkYXRhZnJhbWUgdGhyb3VnaCBvcmRlcigpCgpEbyBub3QgdGhpbmsgb2Ygc29ydC0taXQgaXMgb25seSBmb3IgMSBkaW1lbnNpb25hbCBvYmplY3RzISAgVGhpbmsgb2Ygb3JkZXIgYW5kIGBvcmRlcigpYCBtZXRob2QgZm9yIGRhdGEgZnJhbWVzIQoKT3JkZXIgcmV0dXJucyBhbiBvcmRlciB2ZWN0b3IgYmFzZXMgb24gYSB2YXJpYWJsZSB5b3Ugd2FudCB0byBhcnJhbmdlLiAgWW91IGNhbiB0aGVuIHVzZSB0aGlzIHZlY3RvciB0byBvcmRlciB0aGUgZGF0YWZyYW1lIGJ5IGluc2VydGluZyBpdCB0byB0aGUgZGF0YWZyYW1lLgoKRXhhbXBsZSwgb3JkZXIgZGF0YWZyYW1lIGJhc2VkIG9uIGRpYW1ldGVyczoKCmBgYHtyfQojIFVzZSBvcmRlcigpIHRvIGNyZWF0ZSB2ZWN0b3Igd2l0aCBvcmRlciBvZiBkaWFtZXRlcgpwb3NpdGlvbnNfdmVjdG9yIDwtIG9yZGVyKHBsYW5ldHNfZGYkZGlhbWV0ZXIpCiMgTm90ZTogIE9sZCBub3RhdGlvbiB3b3VsZCB3b3JrIHN1Y2ggYXMgcGxhZW50c19kZlssImRpYW1ldGVyIl0KCiMgVXNlIHBvc2l0aW9ucyB0byBzb3J0IHBsYW5ldHNfZGYgYW5kIGFzc2lnbiBpdCB0byB0ZXN0X2RmIGFuZCBwcmludCBpdAp0ZXN0X2RmIDwtIHBsYW5ldHNfZGZbcG9zaXRpb25zX3ZlY3RvcixdCnRlc3RfZGYKYGBgCgpWb2lsYSEgdGVzdF9kZiwgd2hpY2ggaW5jbHVkZXMgdGhlIG9yZGVyZWQgcGxhbmV0c19kZiBkYXRhLCB3YXMgaW5kZWVkIG9yZGVyZWQgYnkgaW5jcmVhc2luZyBkaWFtZXRlci4KCgoKCgoKCgo=</div>
 
 
 

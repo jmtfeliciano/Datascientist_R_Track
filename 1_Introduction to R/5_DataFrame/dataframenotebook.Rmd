@@ -102,4 +102,77 @@ planets_df[1:5,c("name","diameter")]
 
 Voila, diameters were printed along with their associated planet names.
 
+#### Shortcuts on selecting column data using $
+
+Instead of calling planets_df[,"diameter"], we could use the following and they're equivalent:
+
+```{r}
+planets_df$diameter
+```
+
+
+#### Passing boolean or logical as arguments:
+
+If we were to pass a vector of logical operators as an argument for rows, we can filter out data for which to display:
+
+```{r}
+has_rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE,  TRUE, TRUE,TRUE)
+planets_df[has_rings, "name"]
+```
+
+
+
+#### Using subset()
+
+Using subset can be used as a short cut to filter our values.
+
+`subset()` at the minimum can accept the data as argument, and the condition to met as the second argument.  
+
+As as sample, suppose we want to get data of planets with diamater less than 1.  
+
+```{r}
+subset(planets_df, diameter < 1)
+```
+
+Note:  Unlike in data structures, diameter has to be passed without quotes.  
+
+
+
+#### Subsetting inconsistencies
+
+```{r}
+# Remember that filtering by matrix synthax needs to use quotation
+planets_df[has_rings, "name"]
+
+# But using subset() method, filter term does not need quotation
+subset(planets_df, has_rings == TRUE & rotation > 0)
+```
+
+
+#### Ordering dataframe through order()
+
+Do not think of sort--it is only for 1 dimensional objects!  Think of order and `order()` method for data frames!
+
+Order returns an order vector bases on a variable you want to arrange.  You can then use this vector to order the dataframe by inserting it to the dataframe.
+
+Example, order dataframe based on diameters:
+
+```{r}
+# Use order() to create vector with order of diameter
+positions_vector <- order(planets_df$diameter)
+# Note:  Old notation would work such as plaents_df[,"diameter"]
+
+# Use positions to sort planets_df and assign it to test_df and print it
+test_df <- planets_df[positions_vector,]
+test_df
+```
+
+Voila! test_df, which includes the ordered planets_df data, was indeed ordered by increasing diameter.
+
+
+
+
+
+
+
 
