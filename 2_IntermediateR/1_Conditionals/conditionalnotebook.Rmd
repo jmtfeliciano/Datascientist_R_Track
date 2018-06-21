@@ -2,3 +2,103 @@
 title: "Conditional/ControlFlow Notebook"
 output: html_notebook
 ---
+
+#### Basic Comparisons
+
+The comparisons are self explanatory:
+
+```{r}
+# Comparison of logicals
+TRUE == FALSE
+
+# Comparison of numerics
+-6 * 14 != 17 - 101
+
+# Comparison of character strings
+"useR" == "user"
+
+# Compare a logical with a numeric
+TRUE == 1
+```
+
+Note: Remember about TRUE == 1 and FALSE == 0 being TRUE because of falsey and truthy comparisons.  
+
+
+#### Now some weird examples:
+
+When comparing strings, comparison is determined by alphabetic order.
+
+As described in the previous subsection, TRUE corresponds to 1 and FALSE corresponds to 0 in R. 
+
+```{r}
+(1 + 2) > 4
+
+"dog" < "Cats"
+
+TRUE <= FALSE
+```
+
+#### Comparing two vectors
+
+Suppose we have two vectors for no. of views in two different social media platforms.  Let us perform some basic comparison as described in the in-line script below:
+
+```{r}
+# The linkedin and facebook vectors were declared
+linkedin <- c(16, 9, 13, 5, 2, 17, 14)
+facebook <- c(17, 7, 5, 16, 8, 13, 14)
+
+# On which days did the number of LinkedIn profile views exceed 15?
+linkedin > 15
+
+# When was your LinkedIn profile viewed only 5 times or fewer?
+linkedin <= 5
+
+# LinkedIn more popular than Facebook
+linkedin > facebook
+```
+
+#### Comparing all values inside a matrix 
+
+```{r}
+# The social data has been created for you
+linkedin <- c(16, 9, 13, 5, 2, 17, 14)
+facebook <- c(17, 7, 5, 16, 8, 13, 14)
+views <- matrix(c(linkedin, facebook), nrow = 2, byrow = TRUE)
+
+# When does views equal 13?  
+views  == 13
+
+# When is views less than or equal to 14?
+views <= 14
+```
+
+#### & and |
+
+Unlike in other languages I know, R utilizes a single & and | for basic comparison.  Here are some basic uses and examples for & and |.
+
+```{r}
+# The linkedin and last variable are already defined for you
+linkedin <- c(16, 9, 13, 5, 2, 17, 14)
+last <- tail(linkedin, 1)
+
+# Is last under 5 or above 10?
+last < 5 | last > 10
+
+# Is last between 15 (exclusive) and 20 (inclusive)?
+last > 15 & last <= 20
+```
+
+#### Using sum() in counting TRUEs in an vector
+
+Remember that TRUE is counted as 1 in R. As an example:
+
+```{r}
+# declaring a logical vector
+logical_vector <- c(TRUE, FALSE, TRUE)
+# count TRUES
+sum(logical_vector)
+```
+
+As expected, `sum()` was able to tally the number of TRUE as 2.  
+
+
