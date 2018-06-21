@@ -175,10 +175,169 @@ $(document).ready(function () {
 <div id="basics" class="section level4">
 <h4>Basics</h4>
 <p>A list in R allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. These objects can be matrices, vectors, data frames, even other lists, etc.</p>
+</div>
+<div id="declaring-list-object-through-list" class="section level4">
+<h4>Declaring list object through list()</h4>
+<p>Suppose we want to declare a list with three different objects. Let us use <code>list()</code> to complete this purpose.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBWZWN0b3Igd2l0aCBudW1lcmljcyBmcm9tIDEgdXAgdG8gMTBcbm15X3ZlY3RvciA8LSAxOjEwIFxuIyBNYXRyaXggd2l0aCBudW1lcmljcyBmcm9tIDEgdXAgdG8gOVxubXlfbWF0cml4IDwtIG1hdHJpeCgxOjksIG5jb2wgPSAzKVxuIyBGaXJzdCAxMCBlbGVtZW50cyBvZiB0aGUgYnVpbHQtaW4gZGF0YSBmcmFtZSBtdGNhcnNcbm15X2RmIDwtIG10Y2Fyc1sxOjEwLF1cbiMgQ29uc3RydWN0IGxpc3Qgd2l0aCB0aGVzZSBkaWZmZXJlbnQgZWxlbWVudHM6XG5teV9saXN0IDwtIGxpc3QobXlfdmVjdG9yLCBteV9tYXRyaXgsIG15X2RmKVxubXlfbGlzdFxuYGBgIn0= -->
+<pre class="r"><code># Vector with numerics from 1 up to 10
+my_vector &lt;- 1:10 
+# Matrix with numerics from 1 up to 9
+my_matrix &lt;- matrix(1:9, ncol = 3)
+# First 10 elements of the built-in data frame mtcars
+my_df &lt;- mtcars[1:10,]
+# Construct list with these different elements:
+my_list &lt;- list(my_vector, my_matrix, my_df)
+my_list</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gIDEgIDIgIDMgIDQgIDUgIDYgIDcgIDggIDkgMTBcblxuW1syXV1cbiAgICAgWywxXSBbLDJdIFssM11cblsxLF0gICAgMSAgICA0ICAgIDdcblsyLF0gICAgMiAgICA1ICAgIDhcblszLF0gICAgMyAgICA2ICAgIDlcblxuW1szXV1cbiJ9 -->
+<pre><code>[[1]]
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+[[2]]
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+
+[[3]]</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MTEsIm5yb3ciOjEwfSwicmRmIjoiSDRzSUFBQUFBQUFBQTUxVVBXelRRQlMrT0U2VE9PUUgwUUdXeW1NSEd0d2tEVmtRTjBTQ0FZUW9VaFBSQ3VsaXU2bFZ4M2I5azBJbmxzNmRpeGlRWU83QzByRmlocGtWRmhZV0pBUmo0ZXg3ZDhTR2dNU1Q3Tys5NzczNzd0M3p6M3AvMkZLR0NrSklRbm1aM3ZQVWxTVjZ5eUVabFdOOGpGRCtFblVxOUtyUlM4RnJLREdCM2JleHZjTnIyNG5oMXV0MmJMaDE1WmphTTN6MW1HRVA4cnkrelV6b1hnWTlqbzFNck02SkczK3VGN29HOEJ3M0FUMG1nS2RQR2RxWmVMVEIraVhRdi9FMTNlOG0xSEVjNEhSc2ZtRDRFSGpuQmNON3NQL2dqT0dqczNTL2RUWVhnVFdZVitubGUrV0c5d3FYZ1Y5WVBQaDQ2MlFSbDA4U0IxY1BsMDd2Zno3RTlhM2xiMitPdGpnS1hUbU9sci9qSXV3dkhTVUZ1Qnl2V2pyRkZWaGZBYjBMUEE4ODN4ZnFoSzRXTWQzVkFxdHJQV2Y3dDcyNDRUM0JkM3BzbjJ1ZzM0RSt1cC9ndmJtVG5KUHJvb3pkL0pMR0xEK3ZiaWFmNlA0bC83L0c1dEJnd1c5WStnZk9XVGRQTjlzM1JwbTRrZVlGQ3QzVUIxNXd5TVFNcUJPbkswRG1KOTZZdS9vVEcxelpzQUlQZkduSEU2eFBRczd1YzAvZUMweWRzOU9BZTJUQzgyT1QrTnpYaVQvS3RGWDIzZjNtYkdzS1Q5d2xCd1pSMTRjZElLcUNVQWVFZDYzMFNSaEVqbnA5VlFPbWR0djFIVE5VTzJyZnQ2WW1zQmVCZmVDNWZraEdic1Q3TDI0UTJ5Sk9LUFNpSURSOXRkM1ZSQittcjZ1dGp0WUhvc1NJdHBhT2UxcDI0THBOQW40cVRpb0dDVWx6MjZjSHB0RjVaa25SOVVMTGRlZ2lLZjRWRnpLTGMzNkdxRWRPUERwalJkK0puTjJWVmNRK3B4eGNWVUJseHErd0xhVWZJRlVBcVFYVEdWc09IMWZCSmlPVHZ3NDErb2lTSjlUMGZPdlhwQ2diTkVNM0pMeE8wVjJiTThuWjBQbFBzbHc4eTNnR0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTkFcbiJ9 -->
+<pre><code>NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note: do note that the vector is [[1]], matrix is [[2]] and the data frame is [[3]] in the list we constructed and called. The bad thing about this is that we can’t use the $ notation for List.</p>
+</div>
+<div id="manually-naming-data-inside-list" class="section level4">
+<h4>Manually naming data inside list</h4>
+<p>We need to use the same method, <code>list()</code>, however, we just need to add a new paramater. The example is below:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBSZW1lbWJlciB0aGUgdGhyZWUgdmFyaWFibGVzIGFyZSBhbHJlYWR5IGRlY2xhcmVkIGluIHRoZSBwcmV2aW91cyBleGFtcGxlIFxuIyB0aGVzZSB2YXJpYWJsZXMgYXJlIG15X3ZlY3RvciBteV9tYXRyaXggbXlfZGZcbiMgQ29uc3RydWN0IGxpc3Qgd2l0aCB0aGVzZSBkaWZmZXJlbnQgZWxlbWVudHM6XG5teV9saXN0MiA8LSBsaXN0KHZlYyA9IG15X3ZlY3RvciwgbWF0ID0gbXlfbWF0cml4LCBkZiA9IG15X2RmKVxubXlfbGlzdDJcbmBgYCJ9 -->
+<pre class="r"><code># Remember the three variables are already declared in the previous example 
+# these variables are my_vector my_matrix my_df
+# Construct list with these different elements:
+my_list2 &lt;- list(vec = my_vector, mat = my_matrix, df = my_df)
+my_list2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHZlY1xuIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMFxuXG4kbWF0XG4gICAgIFssMV0gWywyXSBbLDNdXG5bMSxdICAgIDEgICAgNCAgICA3XG5bMixdICAgIDIgICAgNSAgICA4XG5bMyxdICAgIDMgICAgNiAgICA5XG5cbiRkZlxuIn0= -->
+<pre><code>$vec
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$mat
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+
+$df</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MTEsIm5yb3ciOjEwfSwicmRmIjoiSDRzSUFBQUFBQUFBQTUxVVBXelRRQlMrT0U2VE9PUUgwUUdXeW1NSEdsd25EVmtRTjBTQ0FZUW9VaFBSQ3VuaXVLbFZ4M2I5azBJbmxzNmRpeGlRWU83QzByRmlocGtWRmhZV0pBUmo0ZXg3ZDhTR2dNU1Q3Tys5NzczNzd0M3p6M3B2b0NzREJTRWtvYnhNNzNucXloSzk1WkNNeWpFK1JpaC9pVG9WZXRYb3BlQTFsSmpBenR2WTN1RzE3Y1N3L3JvVkc5YXZIRk43aHE4ZU0reENudGUzbUFuZHk2REhzWkdKMVRseDQ4LzFRbmNFUE1kTlFJOEo0T2xUaG5ZbUhtNndmZ24wUC9xYTduY1Q2amoyY1RvMlB6QjhDTHp6Z3VFOTJMOS94dkRSV2JyZk9wdUx3QnJNcS9UeXZYTERlNFhMd0M4c0hueThkYktJeXllSmc2dUhTNmYzUHgvaSt0Ynl0emRIV3h5RnJoeEh5OTl4RWZhWGpwSUNYSTVYTFozaUNxeXZnTjRGbmdlZTd3dDFRbGVMbU81cWdkWHB6OW4rTFM5dWVFL3c3UzdiNXhyb3Q2R1B6aWQ0Yis0azUrUzZLR00zdjZReHk4K3JtOGtudW4vSi82K3hPVFJZOEJ1Vy9vRnoxczNUemZhTlVTWnVwSG1CUWpmMWdSY2NNakVENnNUcENwRDVpVGZtcnZIRUJsY2VXWUVIdnJUakNkWW5JV2YzdVNmdkJhYkIyV25BUFRMaCtiRkpmTzRieEI5bTJpcjc3bjV6dGpXRkorNlNneEZSMXdkdElLcUNVUHVFZDYzMFNCaEVqbnA5VlFPbWR0djFIVE5VMjJyUHQ2WW1zQmVCZmVDNWZraUdic1Q3TDI0UTJ5Sk9LUFNpSURSOXRkWFJSQittYjZoNlcrc0JVV0pFUzB2SFhTMDdjTU1tQVQ4Vko1VVJDVWx6MjZjSHB0RjVaa25SOVVMTGRlZ2lLZjRWRnpLTGMzNkdxRWRPUExyUmlyRVRPYnNyT21LZlV3NnVLcUF5NDFmWWx0SVBrQ3FBMUlMcGpDMkhqNnRnazZISlg0Y2FmVVRKRTJwNnZ2VnJVcFFObXFFYkVsNm5HSzdObWVSczZQd24xRHJlYm5nR0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTkFcbiJ9 -->
+<pre><code>NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="selecting-list-data" class="section level4">
+<h4>Selecting List data</h4>
+<p>This is just a basic task and the scripts associated with selection list data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJIHdpbGwgYmUgdXNpbmcgdGhlIHNhbWUgTGlzdCBkYXRhIGZyb20gdGhlIHByZXZpb3VzIGV4YW1wbGUgY2FsbGVkIG15X2xpc3QyXG4jIENhbGwgdGhlIGVudGlyZSBtYXQgdmFyaWFibGUgaW5zaWRlIG91ciBsaXN0XG5teV9saXN0MiRtYXRcbmBgYCJ9 -->
+<pre class="r"><code># I will be using the same List data from the previous example called my_list2
+# Call the entire mat variable inside our list
+my_list2$mat</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAgICAxICAgIDQgICAgN1xuWzIsXSAgICAyICAgIDUgICAgOFxuWzMsXSAgICAzICAgIDYgICAgOVxuIn0= -->
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2luZyB0aGUgJCBub3RhdGlvbiwgY2FsbCB0aGUgc2Vjb25kIGl0ZW0gaW4gdGhlIHZlYyB2YXJpYWJsZSBpbiB0aGUgbGlzdC4gIFxubXlfbGlzdDIkdmVjWzJdXG5gYGAifQ== -->
+<pre class="r"><code># Using the $ notation, call the second item in the vec variable in the list.  
+my_list2$vec[2]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
+<pre><code>[1] 2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBXL28gdGhlICQgbm90YXRpb24sIGNhbGwgdGhlIHRoaXJkIGl0ZW0gaW4gdGhlIHZlYyB2YXJpYWJsZSBpbiB0aGUgbGlzdC5cbm15X2xpc3QyW1tcInZlY1wiXV1bM11cbmBgYCJ9 -->
+<pre class="r"><code># W/o the $ notation, call the third item in the vec variable in the list.
+my_list2[[&quot;vec&quot;]][3]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDNcbiJ9 -->
+<pre><code>[1] 3</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="adding-vector-to-a-list-using-c" class="section level4">
+<h4>Adding vector to a list using c()</h4>
+<p>Weirdly enough <code>c()</code> can be used to combine list and another vector into another list.</p>
+<p>Suppose we want to add a ‘year’ variable to our list with a value of 2017 to our my_list2 and then save that new list to another list called my_list3:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb21iaW5pbmcgbGlzdCBhbmQgbnVtIHZhcmlhYmxlIHRvIGFub3RoZXIgbGlzdFxubXlfbGlzdDMgPC0gYyhteV9saXN0MiwgeWVhciA9IDIwMTcpXG4jIFByaW50aW5nIGxpc3QgdG8gdmVyaWZ5IHRoYXQgaW5mbyB3YXMgaW5kZWVkIGFkZGVkXG5teV9saXN0M1xuYGBgIn0= -->
+<pre class="r"><code># Combining list and num variable to another list
+my_list3 &lt;- c(my_list2, year = 2017)
+# Printing list to verify that info was indeed added
+my_list3</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJHZlY1xuIFsxXSAgMSAgMiAgMyAgNCAgNSAgNiAgNyAgOCAgOSAxMFxuXG4kbWF0XG4gICAgIFssMV0gWywyXSBbLDNdXG5bMSxdICAgIDEgICAgNCAgICA3XG5bMixdICAgIDIgICAgNSAgICA4XG5bMyxdICAgIDMgICAgNiAgICA5XG5cbiRkZlxuIn0= -->
+<pre><code>$vec
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$mat
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+
+$df</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MTEsIm5yb3ciOjEwfSwicmRmIjoiSDRzSUFBQUFBQUFBQTUxVVBXelRRQlMrT0U2VE9PUUgwUUdXeW1NSEdsd25EVmtRTjBTQ0FZUW9VaFBSQ3VuaXVLbFZ4M2I5azBJbmxzNmRpeGlRWU83QzByRmlocGtWRmhZV0pBUmo0ZXg3ZDhTR2dNU1Q3Tys5NzczNzd0M3p6M3B2b0NzREJTRWtvYnhNNzNucXloSzk1WkNNeWpFK1JpaC9pVG9WZXRYb3BlQTFsSmpBenR2WTN1RzE3Y1N3L3JvVkc5YXZIRk43aHE4ZU0reENudGUzbUFuZHk2REhzWkdKMVRseDQ4LzFRbmNFUE1kTlFJOEo0T2xUaG5ZbUhtNndmZ24wUC9xYTduY1Q2amoyY1RvMlB6QjhDTHp6Z3VFOTJMOS94dkRSV2JyZk9wdUx3QnJNcS9UeXZYTERlNFhMd0M4c0hueThkYktJeXllSmc2dUhTNmYzUHgvaSt0Ynl0emRIV3h5RnJoeEh5OTl4RWZhWGpwSUNYSTVYTFozaUNxeXZnTjRGbmdlZTd3dDFRbGVMbU81cWdkWHB6OW4rTFM5dWVFL3c3UzdiNXhyb3Q2R1B6aWQ0Yis0azUrUzZLR00zdjZReHk4K3JtOGtudW4vSi82K3hPVFJZOEJ1Vy9vRnoxczNUemZhTlVTWnVwSG1CUWpmMWdSY2NNakVENnNUcENwRDVpVGZtcnZIRUJsY2VXWUVIdnJUakNkWW5JV2YzdVNmdkJhYkIyV25BUFRMaCtiRkpmTzRieEI5bTJpcjc3bjV6dGpXRkorNlNneEZSMXdkdElLcUNVUHVFZDYzMFNCaEVqbnA5VlFPbWR0djFIVE5VMjJyUHQ2WW1zQmVCZmVDNWZraUdic1Q3TDI0UTJ5Sk9LUFNpSURSOXRkWFJSQittYjZoNlcrc0JVV0pFUzB2SFhTMDdjTU1tQVQ4Vko1VVJDVWx6MjZjSHB0RjVaa25SOVVMTGRlZ2lLZjRWRnpLTGMzNkdxRWRPUExyUmlyRVRPYnNyT21LZlV3NnVLcUF5NDFmWWx0SVBrQ3FBMUlMcGpDMkhqNnRnazZISlg0Y2FmVVRKRTJwNnZ2VnJVcFFObXFFYkVsNm5HSzdObWVSczZQd24xRHJlYm5nR0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG4keWVhclxuWzFdIDIwMTdcbiJ9 -->
+<pre><code>
+$year
+[1] 2017</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI1ZlcmlmeSB0aGF0IHllYXIgdmFyaWFibGUgZXhpc3QgYnkgdXNpbmcgJCBub3RhdGlvblxubXlfbGlzdDMkeWVhclxuYGBgIn0= -->
+<pre class="r"><code>#Verify that year variable exist by using $ notation
+my_list3$year</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIwMTdcbiJ9 -->
+<pre><code>[1] 2017</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>By examining the printed my_list3 data, year was indeed added which has an assigned value of 2017, which we expect.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTGlzdCBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMjIyBCYXNpY3MKCkEgbGlzdCBpbiBSIGFsbG93cyB5b3UgdG8gZ2F0aGVyIGEgdmFyaWV0eSBvZiBvYmplY3RzIHVuZGVyIG9uZSBuYW1lICh0aGF0IGlzLCB0aGUgbmFtZSBvZiB0aGUgbGlzdCkgaW4gYW4gb3JkZXJlZCB3YXkuIFRoZXNlIG9iamVjdHMgY2FuIGJlIG1hdHJpY2VzLCB2ZWN0b3JzLCBkYXRhIGZyYW1lcywgZXZlbiBvdGhlciBsaXN0cywgZXRjLiAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTGlzdCBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMjIyBCYXNpY3MKCkEgbGlzdCBpbiBSIGFsbG93cyB5b3UgdG8gZ2F0aGVyIGEgdmFyaWV0eSBvZiBvYmplY3RzIHVuZGVyIG9uZSBuYW1lICh0aGF0IGlzLCB0aGUgbmFtZSBvZiB0aGUgbGlzdCkgaW4gYW4gb3JkZXJlZCB3YXkuIFRoZXNlIG9iamVjdHMgY2FuIGJlIG1hdHJpY2VzLCB2ZWN0b3JzLCBkYXRhIGZyYW1lcywgZXZlbiBvdGhlciBsaXN0cywgZXRjLiAKCiMjIyMgRGVjbGFyaW5nIGxpc3Qgb2JqZWN0IHRocm91Z2ggbGlzdCgpCgpTdXBwb3NlIHdlIHdhbnQgdG8gZGVjbGFyZSBhIGxpc3Qgd2l0aCB0aHJlZSBkaWZmZXJlbnQgb2JqZWN0cy4gIExldCB1cyB1c2UgYGxpc3QoKWAgdG8gY29tcGxldGUgdGhpcyBwdXJwb3NlLiAgCgpgYGB7cn0KIyBWZWN0b3Igd2l0aCBudW1lcmljcyBmcm9tIDEgdXAgdG8gMTAKbXlfdmVjdG9yIDwtIDE6MTAgCiMgTWF0cml4IHdpdGggbnVtZXJpY3MgZnJvbSAxIHVwIHRvIDkKbXlfbWF0cml4IDwtIG1hdHJpeCgxOjksIG5jb2wgPSAzKQojIEZpcnN0IDEwIGVsZW1lbnRzIG9mIHRoZSBidWlsdC1pbiBkYXRhIGZyYW1lIG10Y2FycwpteV9kZiA8LSBtdGNhcnNbMToxMCxdCgojIENvbnN0cnVjdCBsaXN0IHdpdGggdGhlc2UgZGlmZmVyZW50IGVsZW1lbnRzOgpteV9saXN0IDwtIGxpc3QobXlfdmVjdG9yLCBteV9tYXRyaXgsIG15X2RmKQpteV9saXN0CmBgYAoKTm90ZTogIGRvIG5vdGUgdGhhdCB0aGUgdmVjdG9yIGlzIFtbMV1dLCBtYXRyaXggaXMgW1syXV0gYW5kIHRoZSBkYXRhIGZyYW1lIGlzIFtbM11dIGluIHRoZSBsaXN0IHdlIGNvbnN0cnVjdGVkIGFuZCBjYWxsZWQuICBUaGUgYmFkIHRoaW5nIGFib3V0IHRoaXMgaXMgdGhhdCB3ZSBjYW4ndCB1c2UgdGhlICQgbm90YXRpb24gZm9yIExpc3QuCgojIyMjIE1hbnVhbGx5IG5hbWluZyBkYXRhIGluc2lkZSBsaXN0CgpXZSBuZWVkIHRvIHVzZSB0aGUgc2FtZSBtZXRob2QsIGBsaXN0KClgLCBob3dldmVyLCB3ZSBqdXN0IG5lZWQgdG8gYWRkIGEgbmV3IHBhcmFtYXRlci4gIFRoZSBleGFtcGxlIGlzIGJlbG93OgoKYGBge3J9CiMgUmVtZW1iZXIgdGhlIHRocmVlIHZhcmlhYmxlcyBhcmUgYWxyZWFkeSBkZWNsYXJlZCBpbiB0aGUgcHJldmlvdXMgZXhhbXBsZSAKIyB0aGVzZSB2YXJpYWJsZXMgYXJlIG15X3ZlY3RvciBteV9tYXRyaXggbXlfZGYKCiMgQ29uc3RydWN0IGxpc3Qgd2l0aCB0aGVzZSBkaWZmZXJlbnQgZWxlbWVudHM6Cm15X2xpc3QyIDwtIGxpc3QodmVjID0gbXlfdmVjdG9yLCBtYXQgPSBteV9tYXRyaXgsIGRmID0gbXlfZGYpCm15X2xpc3QyCmBgYAoKIyMjIyBTZWxlY3RpbmcgTGlzdCBkYXRhCgpUaGlzIGlzIGp1c3QgYSBiYXNpYyB0YXNrIGFuZCB0aGUgc2NyaXB0cyBhc3NvY2lhdGVkIHdpdGggc2VsZWN0aW9uIGxpc3QgZGF0YToKCmBgYHtyfQojIEkgd2lsbCBiZSB1c2luZyB0aGUgc2FtZSBMaXN0IGRhdGEgZnJvbSB0aGUgcHJldmlvdXMgZXhhbXBsZSBjYWxsZWQgbXlfbGlzdDIKCiMgQ2FsbCB0aGUgZW50aXJlIG1hdCB2YXJpYWJsZSBpbnNpZGUgb3VyIGxpc3QKbXlfbGlzdDIkbWF0CgojIFVzaW5nIHRoZSAkIG5vdGF0aW9uLCBjYWxsIHRoZSBzZWNvbmQgaXRlbSBpbiB0aGUgdmVjIHZhcmlhYmxlIGluIHRoZSBsaXN0LiAgCm15X2xpc3QyJHZlY1syXQoKIyBXL28gdGhlICQgbm90YXRpb24sIGNhbGwgdGhlIHRoaXJkIGl0ZW0gaW4gdGhlIHZlYyB2YXJpYWJsZSBpbiB0aGUgbGlzdC4KbXlfbGlzdDJbWyJ2ZWMiXV1bM10KYGBgCgoKIyMjIyBBZGRpbmcgdmVjdG9yIHRvIGEgbGlzdCB1c2luZyBjKCkKCldlaXJkbHkgZW5vdWdoIGBjKClgIGNhbiBiZSB1c2VkIHRvIGNvbWJpbmUgbGlzdCBhbmQgYW5vdGhlciB2ZWN0b3IgaW50byBhbm90aGVyIGxpc3QuCgpTdXBwb3NlIHdlIHdhbnQgdG8gYWRkIGEgJ3llYXInIHZhcmlhYmxlIHRvIG91ciBsaXN0IHdpdGggYSB2YWx1ZSBvZiAyMDE3IHRvIG91ciBteV9saXN0MiBhbmQgdGhlbiBzYXZlIHRoYXQgbmV3IGxpc3QgdG8gYW5vdGhlciBsaXN0IGNhbGxlZCBteV9saXN0MzoKCmBgYHtyfQojIENvbWJpbmluZyBsaXN0IGFuZCBudW0gdmFyaWFibGUgdG8gYW5vdGhlciBsaXN0Cm15X2xpc3QzIDwtIGMobXlfbGlzdDIsIHllYXIgPSAyMDE3KQojIFByaW50aW5nIGxpc3QgdG8gdmVyaWZ5IHRoYXQgaW5mbyB3YXMgaW5kZWVkIGFkZGVkCm15X2xpc3QzCgojVmVyaWZ5IHRoYXQgeWVhciB2YXJpYWJsZSBleGlzdCBieSB1c2luZyAkIG5vdGF0aW9uCm15X2xpc3QzJHllYXIKYGBgCgpCeSBleGFtaW5pbmcgdGhlIHByaW50ZWQgbXlfbGlzdDMgZGF0YSwgeWVhciB3YXMgaW5kZWVkIGFkZGVkIHdoaWNoIGhhcyBhbiBhc3NpZ25lZCB2YWx1ZSBvZiAyMDE3LCB3aGljaCB3ZSBleHBlY3QuIAo=</div>
 
 
 

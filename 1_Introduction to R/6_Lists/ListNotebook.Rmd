@@ -7,3 +7,70 @@ output: html_notebook
 
 A list in R allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. These objects can be matrices, vectors, data frames, even other lists, etc. 
 
+#### Declaring list object through list()
+
+Suppose we want to declare a list with three different objects.  Let us use `list()` to complete this purpose.  
+
+```{r}
+# Vector with numerics from 1 up to 10
+my_vector <- 1:10 
+# Matrix with numerics from 1 up to 9
+my_matrix <- matrix(1:9, ncol = 3)
+# First 10 elements of the built-in data frame mtcars
+my_df <- mtcars[1:10,]
+
+# Construct list with these different elements:
+my_list <- list(my_vector, my_matrix, my_df)
+my_list
+```
+
+Note:  do note that the vector is [[1]], matrix is [[2]] and the data frame is [[3]] in the list we constructed and called.  The bad thing about this is that we can't use the $ notation for List.
+
+#### Manually naming data inside list
+
+We need to use the same method, `list()`, however, we just need to add a new paramater.  The example is below:
+
+```{r}
+# Remember the three variables are already declared in the previous example 
+# these variables are my_vector my_matrix my_df
+
+# Construct list with these different elements:
+my_list2 <- list(vec = my_vector, mat = my_matrix, df = my_df)
+my_list2
+```
+
+#### Selecting List data
+
+This is just a basic task and the scripts associated with selection list data:
+
+```{r}
+# I will be using the same List data from the previous example called my_list2
+
+# Call the entire mat variable inside our list
+my_list2$mat
+
+# Using the $ notation, call the second item in the vec variable in the list.  
+my_list2$vec[2]
+
+# W/o the $ notation, call the third item in the vec variable in the list.
+my_list2[["vec"]][3]
+```
+
+
+#### Adding vector to a list using c()
+
+Weirdly enough `c()` can be used to combine list and another vector into another list.
+
+Suppose we want to add a 'year' variable to our list with a value of 2017 to our my_list2 and then save that new list to another list called my_list3:
+
+```{r}
+# Combining list and num variable to another list
+my_list3 <- c(my_list2, year = 2017)
+# Printing list to verify that info was indeed added
+my_list3
+
+#Verify that year variable exist by using $ notation
+my_list3$year
+```
+
+By examining the printed my_list3 data, year was indeed added which has an assigned value of 2017, which we expect. 
