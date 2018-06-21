@@ -101,4 +101,51 @@ sum(logical_vector)
 
 As expected, `sum()` was able to tally the number of TRUE as 2.  
 
+#### if statement
+
+if statement is practically the same in other programming languages.  Example is below:  
+
+```{r}
+# Variables related to your last day of recordings
+medium <- "LinkedIn"
+num_views <- 14
+
+# Examine the if statement for medium
+if(medium == "LinkedIn"){
+  print("Showing LinkedIn information")
+}
+
+# Write the if statement for num_views
+if (num_views > 15) {
+  print("You're popular!")
+} else {
+  print("Not POPULAR")
+}
+```
+
+Another similar example with a bunch of else if statement is below:
+
+```{r}
+# Variables related to your last day of recordings
+medium <- "LinkedIn"
+num_views <- 14
+
+# Control structure for medium
+if (medium == "LinkedIn") {
+  print("Showing LinkedIn information")
+} else if (medium == "Facebook") {
+  print("Showing Facebook information")
+} else {
+  print("Unknown medium")
+}
+
+# Control structure for num_views
+if (num_views > 15) {
+  print("You're popular!")
+} else if (num_views <= 15 & num_views > 10) {
+  print("Your number of views is average")
+} else {
+  print("Try to be more visible!")
+}
+```
 
