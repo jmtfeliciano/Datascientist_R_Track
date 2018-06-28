@@ -154,4 +154,19 @@ sum
 
 Voila, both method yielded 41!  Both works perfectly as intended.
 
+#### Using ncol() and nrow() to traverse a matrix
+
+Suppose we want a nested loop to print each matrix item with the following statement: "On row i and column j the board contains x", where x is the value on that position. `paste()` has to be utilized here.
+
+```{r}
+# Declaring a tictactoe matrix:
+ttt <- matrix(c("O", NA, "X", NA, "O", NA, "X", "O", "X"), nrow = 3, byrow = TRUE)
+# define the double for loop
+for (i in 1:nrow(ttt)) {
+  for (j in 1:ncol(ttt)) {
+    print(paste("On row", i, "and column", j, "the board contains", ttt[i,j]))
+  }
+}
+```
+
 
