@@ -5,7 +5,7 @@ output: html_notebook
 
 __Notes:__ Practically similar to Javascript and most OOP languages.
 
-# & and | 
+#### & and | 
 
 Instead of double && and ||, we use the single version of them. Here's an example R script that utilizes these tools for relational operators.  
 
@@ -19,6 +19,19 @@ last < 5 | last > 10
 
 # Is last between 15 (exclusive) and 20 (inclusive)?
 last > 15 & last <= 20
+```
+
+
+#### Using truthy/falsey idea to count TRUE
+
+Remember, TRUE counts as 1 and FALSE counts as 0.  We can use this to our advantage.
+
+```{r}
+# An array of TRUE and FALSE
+logical_vector <- c(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE)
+
+# Use sum() to count TRUEs as a short, could write and if statement too as an alternative
+sum(logical_vector)
 ```
 
 
