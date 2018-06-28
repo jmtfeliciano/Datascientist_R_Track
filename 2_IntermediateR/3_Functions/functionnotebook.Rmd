@@ -1,0 +1,6 @@
+---
+title: "Functions in R"
+output: html_notebook
+---
+
+Basic template for new notebook for function
