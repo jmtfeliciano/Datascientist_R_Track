@@ -68,4 +68,90 @@ if (num_views > 15) {
 }
 ```
 
+#### while loop
+
+Explanatory while in other OOP language.  Here's a short script example of a while loop in R:
+
+```{r}
+# Initialize the speed variable
+speed <- 64
+# Code the while loop
+while (speed > 30) {
+  print("Slow down!")
+  speed <- speed - 7
+}
+# Print out the speed variable
+speed
+```
+
+#### String concatenation using paste()
+
+R lacks the basic ability to do string concatenation with the plus-sign like in most OOP languages.  So has to use the `paste()` method.  Here's a basic example of `paste()`:
+
+```{r}
+speed <- 64
+paste("Your speed is", speed)
+```
+
+
+#### break statement 
+
+Break statements allows us to abandon the control loop completely.  
+
+Here's an example:
+
+```{r}
+# Initialize the speed variable
+speed <- 88
+
+while (speed > 30) {
+  print(paste("Your speed is", speed))
+  # Break the while loop when speed exceeds 80
+  if (speed > 80) {
+    break
+  }
+  # NOTE: Because of break, this wont get checked and while() is abandoned
+  if (speed > 48) {
+    print("Slow down big time!")
+    speed <- speed - 11
+  } else {
+    print("Slow down!")
+    speed <- speed - 6
+  }
+}
+```
+
+#### for loop
+
+There's two ways to loop through a vector.
+
+For both, let's add the numbers inside the vector without using the `sum()` method.
+
+_Way 1:_  for (item in items) 
+
+```{r}
+nums_vector <- c(2, 3, 5, 7, 11, 13)
+sum <- 0
+# This adds each item to sum using
+for (number in nums_vector) {
+  sum <- sum + number
+}
+sum
+
+```
+
+_Way 2:_  for (i in 1:length(items))
+
+```{r}
+nums_vector <- c(2, 3, 5, 7, 11, 13)
+sum <- 0
+# Adding using for (i in 1:length(items))
+for (i in 1:length(nums_vector)) {
+  sum <- sum + nums_vector[i]
+}
+sum
+```
+
+Voila, both method yielded 41!  Both works perfectly as intended.
+
 
