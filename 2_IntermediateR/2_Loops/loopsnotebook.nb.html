@@ -173,8 +173,8 @@ $(document).ready(function () {
 
 <!-- rnb-text-begin -->
 <p>__<a href="Notes:__" class="uri">Notes:__</a> Practically similar to Javascript and most OOP languages.</p>
-<div id="and" class="section level1">
-<h1>&amp; and |</h1>
+<div id="and" class="section level4">
+<h4>&amp; and |</h4>
 <p>Instead of double &amp;&amp; and ||, we use the single version of them. Here’s an example R script that utilizes these tools for relational operators.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -198,9 +198,186 @@ last &gt; 15 &amp; last &lt;= 20</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="using-truthyfalsey-idea-to-count-true" class="section level4">
+<h4>Using truthy/falsey idea to count TRUE</h4>
+<p>Remember, TRUE counts as 1 and FALSE counts as 0. We can use this to our advantage.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBbiBhcnJheSBvZiBUUlVFIGFuZCBGQUxTRVxubG9naWNhbF92ZWN0b3IgPC0gYyhUUlVFLCBGQUxTRSwgVFJVRSwgRkFMU0UsIFRSVUUsIFRSVUUpXG4jIFVzZSBzdW0oKSB0byBjb3VudCBUUlVFcyBhcyBhIHNob3J0LCBjb3VsZCB3cml0ZSBhbmQgaWYgc3RhdGVtZW50IHRvbyBhcyBhbiBhbHRlcm5hdGl2ZVxuc3VtKGxvZ2ljYWxfdmVjdG9yKVxuYGBgIn0= -->
+<pre class="r"><code># An array of TRUE and FALSE
+logical_vector &lt;- c(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE)
+# Use sum() to count TRUEs as a short, could write and if statement too as an alternative
+sum(logical_vector)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDRcbiJ9 -->
+<pre><code>[1] 4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="if-statement" class="section level4">
+<h4>if statement</h4>
+<p>Explanatory to other OOP langauges. The following code is a basic script for an if statement with else if and else components:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBWYXJpYWJsZXMgcmVsYXRlZCB0byB5b3VyIGxhc3QgZGF5IG9mIHJlY29yZGluZ3Ncbm1lZGl1bSA8LSBcIkxpbmtlZEluXCJcbm51bV92aWV3cyA8LSAxNFxuIyBDb250cm9sIHN0cnVjdHVyZSB0byBjaGVjayBtZWRpdW0gYXNzdW1pbmcgd2UgZG9uJ3Qga25vdyBpdFxuaWYgKG1lZGl1bSA9PSBcIkxpbmtlZEluXCIpIHtcbiAgcHJpbnQoXCJTaG93aW5nIExpbmtlZEluIGluZm9ybWF0aW9uXCIpXG59IGVsc2UgaWYgKG1lZGl1bSA9PSBcIkZhY2Vib29rXCIpIHtcbiAgIyBBZGQgY29kZSB0byBwcmludCBjb3JyZWN0IHN0cmluZyB3aGVuIGNvbmRpdGlvbiBpcyBUUlVFXG4gIHByaW50KFwiU2hvd2luZyBGYWNlYm9vayBpbmZvcm1hdGlvblwiKVxufSBlbHNlIHtcbiAgcHJpbnQoXCJVbmtub3duIG1lZGl1bVwiKVxufVxuYGBgIn0= -->
+<pre class="r"><code># Variables related to your last day of recordings
+medium &lt;- &quot;LinkedIn&quot;
+num_views &lt;- 14
+# Control structure to check medium assuming we don't know it
+if (medium == &quot;LinkedIn&quot;) {
+  print(&quot;Showing LinkedIn information&quot;)
+} else if (medium == &quot;Facebook&quot;) {
+  # Add code to print correct string when condition is TRUE
+  print(&quot;Showing Facebook information&quot;)
+} else {
+  print(&quot;Unknown medium&quot;)
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU2hvd2luZyBMaW5rZWRJbiBpbmZvcm1hdGlvblwiXG4ifQ== -->
+<pre><code>[1] &quot;Showing LinkedIn information&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb250cm9sIHN0cnVjdHVyZSBmb3IgbnVtX3ZpZXdzIGFzc3VtaW5nIHdlIGRvbid0IGtub3cgaXRcbmlmIChudW1fdmlld3MgPiAxNSkge1xuICBwcmludChcIllvdSdyZSBwb3B1bGFyIVwiKVxufSBlbHNlIGlmIChudW1fdmlld3MgPD0gMTUgJiBudW1fdmlld3MgPiAxMCkge1xuICAjIEFkZCBjb2RlIHRvIHByaW50IGNvcnJlY3Qgc3RyaW5nIHdoZW4gY29uZGl0aW9uIGlzIFRSVUVcbiAgcHJpbnQoXCJZb3VyIG51bWJlciBvZiB2aWV3cyBpcyBhdmVyYWdlXCIpXG59IGVsc2Uge1xuICBwcmludChcIlRyeSB0byBiZSBtb3JlIHZpc2libGUhXCIpXG59XG5gYGAifQ== -->
+<pre class="r"><code># Control structure for num_views assuming we don't know it
+if (num_views &gt; 15) {
+  print(&quot;You're popular!&quot;)
+} else if (num_views &lt;= 15 &amp; num_views &gt; 10) {
+  # Add code to print correct string when condition is TRUE
+  print(&quot;Your number of views is average&quot;)
+} else {
+  print(&quot;Try to be more visible!&quot;)
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiWW91ciBudW1iZXIgb2Ygdmlld3MgaXMgYXZlcmFnZVwiXG4ifQ== -->
+<pre><code>[1] &quot;Your number of views is average&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="while-loop" class="section level4">
+<h4>while loop</h4>
+<p>Explanatory while in other OOP language. Here’s a short script example of a while loop in R:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbml0aWFsaXplIHRoZSBzcGVlZCB2YXJpYWJsZVxuc3BlZWQgPC0gNjRcbiMgQ29kZSB0aGUgd2hpbGUgbG9vcFxud2hpbGUgKHNwZWVkID4gMzApIHtcbiAgcHJpbnQoXCJTbG93IGRvd24hXCIpXG4gIHNwZWVkIDwtIHNwZWVkIC0gN1xufVxuYGBgIn0= -->
+<pre class="r"><code># Initialize the speed variable
+speed &lt;- 64
+# Code the while loop
+while (speed &gt; 30) {
+  print(&quot;Slow down!&quot;)
+  speed &lt;- speed - 7
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU2xvdyBkb3duIVwiXG5bMV0gXCJTbG93IGRvd24hXCJcblsxXSBcIlNsb3cgZG93biFcIlxuWzFdIFwiU2xvdyBkb3duIVwiXG5bMV0gXCJTbG93IGRvd24hXCJcbiJ9 -->
+<pre><code>[1] &quot;Slow down!&quot;
+[1] &quot;Slow down!&quot;
+[1] &quot;Slow down!&quot;
+[1] &quot;Slow down!&quot;
+[1] &quot;Slow down!&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmludCBvdXQgdGhlIHNwZWVkIHZhcmlhYmxlXG5zcGVlZFxuYGBgIn0= -->
+<pre class="r"><code># Print out the speed variable
+speed</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI5XG4ifQ== -->
+<pre><code>[1] 29</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="string-concatenation-using-paste" class="section level4">
+<h4>String concatenation using paste()</h4>
+<p>R lacks the basic ability to do string concatenation with the plus-sign like in most OOP languages. So has to use the <code>paste()</code> method. Here’s a basic example of <code>paste()</code>:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3BlZWQgPC0gNjRcbnBhc3RlKFwiWW91ciBzcGVlZCBpc1wiLCBzcGVlZClcbmBgYCJ9 -->
+<pre class="r"><code>speed &lt;- 64
+paste(&quot;Your speed is&quot;, speed)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiWW91ciBzcGVlZCBpcyA2NFwiXG4ifQ== -->
+<pre><code>[1] &quot;Your speed is 64&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="break-statement" class="section level4">
+<h4>break statement</h4>
+<p>Break statements allows us to abandon the control loop completely.</p>
+<p>Here’s an example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbml0aWFsaXplIHRoZSBzcGVlZCB2YXJpYWJsZVxuc3BlZWQgPC0gODhcbndoaWxlIChzcGVlZCA+IDMwKSB7XG4gIHByaW50KHBhc3RlKFwiWW91ciBzcGVlZCBpc1wiLCBzcGVlZCkpXG4gICMgQnJlYWsgdGhlIHdoaWxlIGxvb3Agd2hlbiBzcGVlZCBleGNlZWRzIDgwXG4gIGlmIChzcGVlZCA+IDgwKSB7XG4gICAgYnJlYWtcbiAgfVxuICAjIEJlY2F1c2Ugb2YgYnJlYWssIHRoaXMgd29udCBnZXQgY2hlY2tlZCBhbmQgd2hpbGUoKSBpcyBhYmFuZG9uZWRcbiAgaWYgKHNwZWVkID4gNDgpIHtcbiAgICBwcmludChcIlNsb3cgZG93biBiaWcgdGltZSFcIilcbiAgICBzcGVlZCA8LSBzcGVlZCAtIDExXG4gIH0gZWxzZSB7XG4gICAgcHJpbnQoXCJTbG93IGRvd24hXCIpXG4gICAgc3BlZWQgPC0gc3BlZWQgLSA2XG4gIH1cbn1cbmBgYCJ9 -->
+<pre class="r"><code># Initialize the speed variable
+speed &lt;- 88
+while (speed &gt; 30) {
+  print(paste(&quot;Your speed is&quot;, speed))
+  # Break the while loop when speed exceeds 80
+  if (speed &gt; 80) {
+    break
+  }
+  # Because of break, this wont get checked and while() is abandoned
+  if (speed &gt; 48) {
+    print(&quot;Slow down big time!&quot;)
+    speed &lt;- speed - 11
+  } else {
+    print(&quot;Slow down!&quot;)
+    speed &lt;- speed - 6
+  }
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiWW91ciBzcGVlZCBpcyA4OFwiXG4ifQ== -->
+<pre><code>[1] &quot;Your speed is 88&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="for-loop" class="section level4">
+<h4>for loop</h4>
+<p>There’s two ways to loop through a vector.</p>
+<p>For both, let’s add the numbers inside the vector without using the <code>sum()</code> method.</p>
+<p><em>Way 1:</em> for (item in items)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtc192ZWN0b3IgPC0gYygyLCAzLCA1LCA3LCAxMSwgMTMpXG5zdW0gPC0gMFxuIyBUaGlzIGFkZHMgZWFjaCBpdGVtIHRvIHN1bSB1c2luZ1xuZm9yIChudW1iZXIgaW4gbnVtc192ZWN0b3IpIHtcbiAgc3VtIDwtIHN1bSArIG51bWJlclxufVxuc3VtXG5gYGAifQ== -->
+<pre class="r"><code>nums_vector &lt;- c(2, 3, 5, 7, 11, 13)
+sum &lt;- 0
+# This adds each item to sum using
+for (number in nums_vector) {
+  sum &lt;- sum + number
+}
+sum</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQxXG4ifQ== -->
+<pre><code>[1] 41</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><em>Way 2:</em> for (i in 1:length(items))</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtc192ZWN0b3IgPC0gYygyLCAzLCA1LCA3LCAxMSwgMTMpXG5zdW0gPC0gMFxuIyBBZGRpbmcgdXNpbmcgZm9yIChpIGluIDE6bGVuZ3RoKGl0ZW1zKSlcbmZvciAoaSBpbiAxOmxlbmd0aChudW1zX3ZlY3RvcikpIHtcbiAgc3VtIDwtIHN1bSArIG51bXNfdmVjdG9yW2ldXG59XG5zdW1cbmBgYCJ9 -->
+<pre class="r"><code>nums_vector &lt;- c(2, 3, 5, 7, 11, 13)
+sum &lt;- 0
+# Adding using for (i in 1:length(items))
+for (i in 1:length(nums_vector)) {
+  sum &lt;- sum + nums_vector[i]
+}
+sum</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDQxXG4ifQ== -->
+<pre><code>[1] 41</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Voila, both method yielded 41! Both works perfectly as intended.</p>
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9vcHMgTm90ZWJvb2siCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCl9fTm90ZXM6X18gUHJhY3RpY2FsbHkgc2ltaWxhciB0byBKYXZhc2NyaXB0IGFuZCBtb3N0IE9PUCBsYW5ndWFnZXMuCgojICYgYW5kIHwgCgpJbnN0ZWFkIG9mIGRvdWJsZSAmJiBhbmQgfHwsIHdlIHVzZSB0aGUgc2luZ2xlIHZlcnNpb24gb2YgdGhlbS4gSGVyZSdzIGFuIGV4YW1wbGUgUiBzY3JpcHQgdGhhdCB1dGlsaXplcyB0aGVzZSB0b29scyBmb3IgcmVsYXRpb25hbCBvcGVyYXRvcnMuICAKCmBgYHtyfQojIFRoZSBsaW5rZWRpbiBhbmQgbGFzdCB2YXJpYWJsZSBhcmUgYWxyZWFkeSBkZWZpbmVkIGZvciB5b3UKbGlua2VkaW4gPC0gYygxNiwgOSwgMTMsIDUsIDIsIDE3LCAxNCkKbGFzdCA8LSB0YWlsKGxpbmtlZGluLCAxKQoKIyBJcyBsYXN0IHVuZGVyIDUgb3IgYWJvdmUgMTA/Cmxhc3QgPCA1IHwgbGFzdCA+IDEwCgojIElzIGxhc3QgYmV0d2VlbiAxNSAoZXhjbHVzaXZlKSBhbmQgMjAgKGluY2x1c2l2ZSk/Cmxhc3QgPiAxNSAmIGxhc3QgPD0gMjAKYGBgCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9vcHMgTm90ZWJvb2siCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCl9fTm90ZXM6X18gUHJhY3RpY2FsbHkgc2ltaWxhciB0byBKYXZhc2NyaXB0IGFuZCBtb3N0IE9PUCBsYW5ndWFnZXMuCgojIyMjICYgYW5kIHwgCgpJbnN0ZWFkIG9mIGRvdWJsZSAmJiBhbmQgfHwsIHdlIHVzZSB0aGUgc2luZ2xlIHZlcnNpb24gb2YgdGhlbS4gSGVyZSdzIGFuIGV4YW1wbGUgUiBzY3JpcHQgdGhhdCB1dGlsaXplcyB0aGVzZSB0b29scyBmb3IgcmVsYXRpb25hbCBvcGVyYXRvcnMuICAKCmBgYHtyfQojIFRoZSBsaW5rZWRpbiBhbmQgbGFzdCB2YXJpYWJsZSBhcmUgYWxyZWFkeSBkZWZpbmVkIGZvciB5b3UKbGlua2VkaW4gPC0gYygxNiwgOSwgMTMsIDUsIDIsIDE3LCAxNCkKbGFzdCA8LSB0YWlsKGxpbmtlZGluLCAxKQoKIyBJcyBsYXN0IHVuZGVyIDUgb3IgYWJvdmUgMTA/Cmxhc3QgPCA1IHwgbGFzdCA+IDEwCgojIElzIGxhc3QgYmV0d2VlbiAxNSAoZXhjbHVzaXZlKSBhbmQgMjAgKGluY2x1c2l2ZSk/Cmxhc3QgPiAxNSAmIGxhc3QgPD0gMjAKYGBgCgpgYGB7cn0KCmBgYAoKCiMjIyMgVXNpbmcgdHJ1dGh5L2ZhbHNleSBpZGVhIHRvIGNvdW50IFRSVUUKClJlbWVtYmVyLCBUUlVFIGNvdW50cyBhcyAxIGFuZCBGQUxTRSBjb3VudHMgYXMgMC4gIFdlIGNhbiB1c2UgdGhpcyB0byBvdXIgYWR2YW50YWdlLgoKYGBge3J9CiMgQW4gYXJyYXkgb2YgVFJVRSBhbmQgRkFMU0UKbG9naWNhbF92ZWN0b3IgPC0gYyhUUlVFLCBGQUxTRSwgVFJVRSwgRkFMU0UsIFRSVUUsIFRSVUUpCgojIFVzZSBzdW0oKSB0byBjb3VudCBUUlVFcyBhcyBhIHNob3J0LCBjb3VsZCB3cml0ZSBhbmQgaWYgc3RhdGVtZW50IHRvbyBhcyBhbiBhbHRlcm5hdGl2ZQpzdW0obG9naWNhbF92ZWN0b3IpCmBgYAoKIyMjIyBpZiBzdGF0ZW1lbnQKCkV4cGxhbmF0b3J5IHRvIG90aGVyIE9PUCBsYW5nYXVnZXMuICBUaGUgZm9sbG93aW5nIGNvZGUgaXMgYSBiYXNpYyBzY3JpcHQgZm9yIGFuIGlmIHN0YXRlbWVudCB3aXRoIGVsc2UgaWYgYW5kIGVsc2UgY29tcG9uZW50czoKCmBgYHtyfQojIFZhcmlhYmxlcyByZWxhdGVkIHRvIHlvdXIgbGFzdCBkYXkgb2YgcmVjb3JkaW5ncwptZWRpdW0gPC0gIkxpbmtlZEluIgpudW1fdmlld3MgPC0gMTQKCiMgQ29udHJvbCBzdHJ1Y3R1cmUgdG8gY2hlY2sgbWVkaXVtIGFzc3VtaW5nIHdlIGRvbid0IGtub3cgaXQKaWYgKG1lZGl1bSA9PSAiTGlua2VkSW4iKSB7CiAgcHJpbnQoIlNob3dpbmcgTGlua2VkSW4gaW5mb3JtYXRpb24iKQp9IGVsc2UgaWYgKG1lZGl1bSA9PSAiRmFjZWJvb2siKSB7CiAgIyBBZGQgY29kZSB0byBwcmludCBjb3JyZWN0IHN0cmluZyB3aGVuIGNvbmRpdGlvbiBpcyBUUlVFCiAgcHJpbnQoIlNob3dpbmcgRmFjZWJvb2sgaW5mb3JtYXRpb24iKQp9IGVsc2UgewogIHByaW50KCJVbmtub3duIG1lZGl1bSIpCn0KCiMgQ29udHJvbCBzdHJ1Y3R1cmUgZm9yIG51bV92aWV3cyBhc3N1bWluZyB3ZSBkb24ndCBrbm93IGl0CmlmIChudW1fdmlld3MgPiAxNSkgewogIHByaW50KCJZb3UncmUgcG9wdWxhciEiKQp9IGVsc2UgaWYgKG51bV92aWV3cyA8PSAxNSAmIG51bV92aWV3cyA+IDEwKSB7CiAgIyBBZGQgY29kZSB0byBwcmludCBjb3JyZWN0IHN0cmluZyB3aGVuIGNvbmRpdGlvbiBpcyBUUlVFCiAgcHJpbnQoIllvdXIgbnVtYmVyIG9mIHZpZXdzIGlzIGF2ZXJhZ2UiKQp9IGVsc2UgewogIHByaW50KCJUcnkgdG8gYmUgbW9yZSB2aXNpYmxlISIpCn0KYGBgCgojIyMjIHdoaWxlIGxvb3AKCkV4cGxhbmF0b3J5IHdoaWxlIGluIG90aGVyIE9PUCBsYW5ndWFnZS4gIEhlcmUncyBhIHNob3J0IHNjcmlwdCBleGFtcGxlIG9mIGEgd2hpbGUgbG9vcCBpbiBSOgoKYGBge3J9CiMgSW5pdGlhbGl6ZSB0aGUgc3BlZWQgdmFyaWFibGUKc3BlZWQgPC0gNjQKIyBDb2RlIHRoZSB3aGlsZSBsb29wCndoaWxlIChzcGVlZCA+IDMwKSB7CiAgcHJpbnQoIlNsb3cgZG93biEiKQogIHNwZWVkIDwtIHNwZWVkIC0gNwp9CiMgUHJpbnQgb3V0IHRoZSBzcGVlZCB2YXJpYWJsZQpzcGVlZApgYGAKCiMjIyMgU3RyaW5nIGNvbmNhdGVuYXRpb24gdXNpbmcgcGFzdGUoKQoKUiBsYWNrcyB0aGUgYmFzaWMgYWJpbGl0eSB0byBkbyBzdHJpbmcgY29uY2F0ZW5hdGlvbiB3aXRoIHRoZSBwbHVzLXNpZ24gbGlrZSBpbiBtb3N0IE9PUCBsYW5ndWFnZXMuICBTbyBoYXMgdG8gdXNlIHRoZSBgcGFzdGUoKWAgbWV0aG9kLiAgSGVyZSdzIGEgYmFzaWMgZXhhbXBsZSBvZiBgcGFzdGUoKWA6CgpgYGB7cn0Kc3BlZWQgPC0gNjQKcGFzdGUoIllvdXIgc3BlZWQgaXMiLCBzcGVlZCkKYGBgCgoKIyMjIyBicmVhayBzdGF0ZW1lbnQgCgpCcmVhayBzdGF0ZW1lbnRzIGFsbG93cyB1cyB0byBhYmFuZG9uIHRoZSBjb250cm9sIGxvb3AgY29tcGxldGVseS4gIAoKSGVyZSdzIGFuIGV4YW1wbGU6CgpgYGB7cn0KIyBJbml0aWFsaXplIHRoZSBzcGVlZCB2YXJpYWJsZQpzcGVlZCA8LSA4OAoKd2hpbGUgKHNwZWVkID4gMzApIHsKICBwcmludChwYXN0ZSgiWW91ciBzcGVlZCBpcyIsIHNwZWVkKSkKICAjIEJyZWFrIHRoZSB3aGlsZSBsb29wIHdoZW4gc3BlZWQgZXhjZWVkcyA4MAogIGlmIChzcGVlZCA+IDgwKSB7CiAgICBicmVhawogIH0KICAjIE5PVEU6IEJlY2F1c2Ugb2YgYnJlYWssIHRoaXMgd29udCBnZXQgY2hlY2tlZCBhbmQgd2hpbGUoKSBpcyBhYmFuZG9uZWQKICBpZiAoc3BlZWQgPiA0OCkgewogICAgcHJpbnQoIlNsb3cgZG93biBiaWcgdGltZSEiKQogICAgc3BlZWQgPC0gc3BlZWQgLSAxMQogIH0gZWxzZSB7CiAgICBwcmludCgiU2xvdyBkb3duISIpCiAgICBzcGVlZCA8LSBzcGVlZCAtIDYKICB9Cn0KYGBgCgojIyMjIGZvciBsb29wCgpUaGVyZSdzIHR3byB3YXlzIHRvIGxvb3AgdGhyb3VnaCBhIHZlY3Rvci4KCkZvciBib3RoLCBsZXQncyBhZGQgdGhlIG51bWJlcnMgaW5zaWRlIHRoZSB2ZWN0b3Igd2l0aG91dCB1c2luZyB0aGUgYHN1bSgpYCBtZXRob2QuCgpfV2F5IDE6XyAgZm9yIChpdGVtIGluIGl0ZW1zKSAKCmBgYHtyfQpudW1zX3ZlY3RvciA8LSBjKDIsIDMsIDUsIDcsIDExLCAxMykKc3VtIDwtIDAKIyBUaGlzIGFkZHMgZWFjaCBpdGVtIHRvIHN1bSB1c2luZwpmb3IgKG51bWJlciBpbiBudW1zX3ZlY3RvcikgewogIHN1bSA8LSBzdW0gKyBudW1iZXIKfQpzdW0KCmBgYAoKX1dheSAyOl8gIGZvciAoaSBpbiAxOmxlbmd0aChpdGVtcykpCgpgYGB7cn0KbnVtc192ZWN0b3IgPC0gYygyLCAzLCA1LCA3LCAxMSwgMTMpCnN1bSA8LSAwCiMgQWRkaW5nIHVzaW5nIGZvciAoaSBpbiAxOmxlbmd0aChpdGVtcykpCmZvciAoaSBpbiAxOmxlbmd0aChudW1zX3ZlY3RvcikpIHsKICBzdW0gPC0gc3VtICsgbnVtc192ZWN0b3JbaV0KfQpzdW0KYGBgCgpWb2lsYSwgYm90aCBtZXRob2QgeWllbGRlZCA0MSEgIEJvdGggd29ya3MgcGVyZmVjdGx5IGFzIGludGVuZGVkLgoKCg==</div>
 
 
 
