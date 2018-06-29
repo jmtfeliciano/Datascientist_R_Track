@@ -7,9 +7,11 @@ output: html_notebook
 
 Apply allows us to simplify tasks by applying all items in a list/vector/matrix to a function without having to write a complicated for loop statement to iterate over the data structure we want to analyze.
 
-#### A Basic Comparison
+#### Basics on apply
 
-There's a family of apply function but let us examine `lapply()` and using it to split four data by cutting the semi-colon and making all entries small letters:
+There's a family of apply function but let us examine `lapply()` and using it to split four data by cutting the semi-colon and making all entries small letters.
+
+Again, we need to use `strsplit()` to split our character data and eventually need to use `tolower()` to transform letters into small.
 
 ```{r}
 # vector with pioneers and their birth year
@@ -26,6 +28,44 @@ split_low
 
 By looking at the latest data, the letters were indeed transformed into small letters.
 
+Do notice that the data returned by `lapply()` is a list.  To transform a list into an array, we can utilize `unlist()` to our finalized list called `split_low`
+
+```{r}
+# split_low, which we solved for above. is a list.
+str(split_low)
+
+# now unlist our data
+unlist(split_low)
+```
+
+Now, all our data is in a nice sequential vector.  `unlist()` as stated is a great tool to simply data.
+
+#### Using anonymous and custom functions in apply
+
+Instead of using functions already in the workspace, we can pass an anonymous or our custom function to the family of apply functions.  Suppose we want to split the name and years of our data into two seperate vectors. Here is an example with using custom functions I made from scratch:
+
+```{r}
+# Code from previous exercise:
+pioneers <- c("GAUSS:1777", "BAYES:1702", "PASCAL:1623", "PEARSON:1857")
+split <- strsplit(pioneers, split = ":")
+split_low <- lapply(split, tolower)
+# Write function select_first()
+select_first <- function(x) {
+  x[1]
+}
+# Apply select_first() over split_low: names
+names <- lapply(split_low, select_first)
+# Write function select_second()
+select_second <- function(x) {
+  x[2]
+}
+# Apply select_second() over split_low: years
+years <- lapply(split_low, select_second)
+
+names
+
+years
+```
 
 
 
