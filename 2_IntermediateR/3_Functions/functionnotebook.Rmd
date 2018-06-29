@@ -69,7 +69,7 @@ Before I explain, let's examine this code without explanation:
 hello <- function () {
   print("Hi there!")
   TRUE 
-  # Note:  return() can be used to be more explicit but leaving TRUE works.  
+  # Note:  return() can be used to be more explicit but leaving TRUE works.  return with parenthesis unlike in JS
 }
 
 what_is_returned <- hello()
@@ -78,4 +78,83 @@ what_is_returned
 
 
 The code above prints the hi there message but it returns a TRUE function when it is invoked with hello().
+
+#### Writing optional argument with default
+
+Assignment statement in R utilizes the <- symbol.  But assigning a default argument utilizes the classic = symbol as assignment.  
+
+
+```{r}
+# print_info is TRUE by default
+pow_two <- function(x, print_info = TRUE) {
+  y <- x ^ 2
+  if (print_info == TRUE) {
+    print(paste(x, "to the power two equals", y))
+  }
+  #Again return has to wrap the argument with parenthesis
+  return(y) 
+}
+
+# invoking the function with one argument
+pow_two(2)
+
+# invoking the function with two arguments (overriding the default)
+pow_two(3, FALSE)
+```
+
+#### Packages
+
+Methods we've been using come from installed packages.  Base package for instance are installed.  But packages like ggivis are not pre-installed. So have to install manually.
+
+#### search() to see which package is installed
+
+Running `search()` in the console will reveal all the packages installed in our module.
+
+```{r}
+search()
+```
+
+#### Installing packages that are not installed
+
+Before we can utilize a new package, we need to install that package and then load it to our current session.  Suppose we want to install ggvis:
+
+```{r, message=FALSE, warning=FALSE}
+# Install R 
+install.packages("ggvis")
+```
+
+The ggvis package we installed is still not available in our R session--`search()` will not show ggvis in the list.  For that we need to load it using `library()`
+
+```{r}
+#loading ggvis into our R session (either with quote or no quote)
+library(ggvis)
+
+#Using search() to verify that ggvis is now available
+search()
+```
+
+Indeed, `search()` now shows package:ggvis being available to our current R session.
+
+#### library() vs require()
+
+`require()` and `library()` behave the same.  The only difference is that `require()` will return a FALSE logical statement if the loading fails.  
+
+#### Ways to install review
+
+```
+# Chunk 1: Valid, works without quotes
+library(data.table)
+require(rjson)
+
+# Chunk 2:  Valid, works with quotes
+library("data.table")
+require(rjson)
+
+# Chunk 3:  Not valid, might seem valid but passing another argument to require forces us to surround rjson with quotes
+library(data.table)
+require(rjson, character.only = TRUE)
+
+# Chunk 4:  Not valid once library() doc is examined for valid input
+library(c("data.table", "rjson"))
+```
 

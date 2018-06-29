@@ -172,10 +172,226 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>Basic template for new notebook for function</p>
+<div id="looking-up-documentation-for-built-in-functionsmethods" class="section level4">
+<h4>Looking up documentation for built-in functions/methods</h4>
+<p>? is useful. But an equivalent way to search is by using <code>help()</code></p>
+<p>In R, ?sd and help(sd) are the same to look up thorough documentation on SD.</p>
+</div>
+<div id="shortcut-using-args" class="section level4">
+<h4>Shortcut using args()</h4>
+<p>Suppose we want to see the arguments and default positions on a method is. We can use <code>args()</code> – we can technically use str() too!</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2luZyBhcmdzKCksIHRoaXMgbG9va3MgdXAgdGhlIHZhcmlhYmxlcyB3ZSBjYW4gcGFzcywgdGhlaXIgaW5oZXJlbnQgb3JkZXIsIGFuZCB0aGVpciBkZWZhdWx0IHZhbHVlcyBmb3IgZGF0YS5mcmFtZSgpIHdoaWNoIHdlIHVzZSB0byBjcmVhdGUgYSBkZiBvYmplY3QgXG5hcmdzKGRhdGEuZnJhbWUpXG5gYGAifQ== -->
+<pre class="r"><code># Using args(), this looks up the variables we can pass, their inherent order, and their default values for data.frame() which we use to create a df object 
+args(data.frame)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKC4uLiwgcm93Lm5hbWVzID0gTlVMTCwgY2hlY2sucm93cyA9IEZBTFNFLCBjaGVjay5uYW1lcyA9IFRSVUUsIFxuICAgIGZpeC5lbXB0eS5uYW1lcyA9IFRSVUUsIHN0cmluZ3NBc0ZhY3RvcnMgPSBkZWZhdWx0LnN0cmluZ3NBc0ZhY3RvcnMoKSkgXG5OVUxMXG4ifQ== -->
+<pre><code>function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, 
+    fix.empty.names = TRUE, stringsAsFactors = default.stringsAsFactors()) 
+NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2luZyBzdHIoKSwgdGhpcyBsb29rcyB1cCB0aGUgdmFyaWFibGVzIHdlIGNhbiBwYXNzLCB0aGVpciBpbmhlcmVudCBvcmRlciwgYW5kIHRoZWlyIGRlZmF1bHQgdmFsdWVzIGZvciBtYXRyaXgoKSB3aGljaCB3ZSB1c2UgdG8gY3JlYXRlIGEgbWF0cml4IG9iamVjdFxuc3RyKG1hdHJpeClcbmBgYCJ9 -->
+<pre class="r"><code># Using str(), this looks up the variables we can pass, their inherent order, and their default values for matrix() which we use to create a matrix object
+str(matrix)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKGRhdGEgPSBOQSwgbnJvdyA9IDEsIG5jb2wgPSAxLCBieXJvdyA9IEZBTFNFLCBkaW1uYW1lcyA9IE5VTEwpICBcbiJ9 -->
+<pre><code>function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="mean-and-removing-na-values" class="section level4">
+<h4>mean() and removing NA values</h4>
+<p>If you look at the documentation of mean, it gives this as a structure:</p>
+<p>mean(x, trim = 0, na.rm = FALSE, …)</p>
+<p>Suppose we want to calculate the mean for a vector that includes a NA value, <code>mean()</code> would then return a NA value which is not what we want. <code>na.rm = FALSE</code> is the default but passing <code>na.rm = TRUE</code> to the <code>mean()</code> method would ignore the NA value. Here’s the script showing this paragraph in code:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlua2VkaW4gPC0gYygxNiwgOSwgMTMsIDUsIE5BLCAxNywgMTQpXG4jIGRlZmF1bHQgZm9yIG1lYW4sIGRvZXMgbm90IHdvcmtcbm1lYW4obGlua2VkaW4pXG5gYGAifQ== -->
+<pre class="r"><code>linkedin &lt;- c(16, 9, 13, 5, NA, 17, 14)
+# default for mean, does not work
+mean(linkedin)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE5BXG4ifQ== -->
+<pre><code>[1] NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwYXNzaW5nIG5hLnJtID0gVFJVRSB0byBpZ25vcmUgTkEgdmFsdWVzLCBkb2VzIHdvcmtcbm1lYW4obGlua2VkaW4sIG5hLnJtID0gVFJVRSlcbmBgYCJ9 -->
+<pre class="r"><code># passing na.rm = TRUE to ignore NA values, does work
+mean(linkedin, na.rm = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEyLjMzMzMzXG4ifQ== -->
+<pre><code>[1] 12.33333</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="writing-own-function" class="section level4">
+<h4>Writing own function</h4>
+<p>R again has much in common with programs such as JS. Here is a basic function in R:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSBmdW5jdGlvbiBwb3dfdHdvKCkgdGhhdCBtdWx0aXBsaWVzIHRoYXQgYXJnIHRvIGl0c2VsZlxucG93X3R3byA8LSBmdW5jdGlvbiAoYXJnKSB7IFxuICBhcmcgKiBhcmdcbn1cbiMgVXNlIHRoZSBmdW5jdGlvblxucG93X3R3bygxMilcblxuIyBDcmVhdGUgYSBmdW5jdGlvbiBzdW1fYWJzKCkgdGhhdCBhZGRzIHRoZSBhYnMgdmFsIG9mIGVhY2ggYXJndW1lbnRcbnN1bV9hYnMgPC0gZnVuY3Rpb24gKGFyZzEsIGFyZzIpIHtcbiAgYWJzKGFyZzEpICsgYWJzKGFyZzIpXG59XG4jIFVzZSB0aGUgZnVuY3Rpb25cbnN1bV9hYnMoLTIsMylcbmBgYCJ9 -->
+<pre class="r"><code># Create a function pow_two() that multiplies that arg to itself
+pow_two &lt;- function (arg) { 
+  arg * arg
+}
+# Use the function
+pow_two(12)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRnVuY3Rpb25zIGluIFIiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCkJhc2ljIHRlbXBsYXRlIGZvciBuZXcgbm90ZWJvb2sgZm9yIGZ1bmN0aW9u</div>
+# Create a function sum_abs() that adds the abs val of each argument
+sum_abs &lt;- function (arg1, arg2) {
+  abs(arg1) + abs(arg2)
+}
+# Use the function
+sum_abs(-2,3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="difference-between-returning-and-printing" class="section level4">
+<h4>Difference between returning and printing:</h4>
+<p>Before I explain, let’s examine this code without explanation:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBEZWZpbmUgdGhlIGZ1bmN0aW9uIGhlbGxvKClcbmhlbGxvIDwtIGZ1bmN0aW9uICgpIHtcbiAgcHJpbnQoXCJIaSB0aGVyZSFcIilcbiAgVFJVRVxufVxud2hhdF9pc19yZXR1cm5lZCA8LSBoZWxsbygpXG5gYGAifQ== -->
+<pre class="r"><code># Define the function hello()
+hello &lt;- function () {
+  print(&quot;Hi there!&quot;)
+  TRUE
+}
+what_is_returned &lt;- hello()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSGkgdGhlcmUhXCJcbiJ9 -->
+<pre><code>[1] &quot;Hi there!&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2hhdF9pc19yZXR1cm5lZFxuYGBgIn0= -->
+<pre class="r"><code>what_is_returned</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
+<pre><code>[1] TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The code above prints the hi there message but it returns a TRUE function when it is invoked with hello().</p>
+</div>
+<div id="writing-optional-argument-with-default" class="section level4">
+<h4>Writing optional argument with default</h4>
+<p>Assignment statement in R utilizes the &lt;- symbol. But assigning a default argument utilizes the classic = symbol as assignment.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcmludF9pbmZvIGlzIFRSVUUgYnkgZGVmYXVsdFxucG93X3R3byA8LSBmdW5jdGlvbih4LCBwcmludF9pbmZvID0gVFJVRSkge1xuICB5IDwtIHggXiAyXG4gIGlmIChwcmludF9pbmZvID09IFRSVUUpIHtcbiAgICBwcmludChwYXN0ZSh4LCBcInRvIHRoZSBwb3dlciB0d28gZXF1YWxzXCIsIHkpKVxuICB9XG4gIHJldHVybih5KVxufVxuIyBpbnZva2luZyB0aGUgZnVuY3Rpb24gd2l0aCBvbmUgYXJndW1lbnRcbnBvd190d28oMilcbmBgYCJ9 -->
+<pre class="r"><code># print_info is TRUE by default
+pow_two &lt;- function(x, print_info = TRUE) {
+  y &lt;- x ^ 2
+  if (print_info == TRUE) {
+    print(paste(x, &quot;to the power two equals&quot;, y))
+  }
+  return(y)
+}
+# invoking the function with one argument
+pow_two(2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMiB0byB0aGUgcG93ZXIgdHdvIGVxdWFscyA0XCJcblsxXSA0XG4ifQ== -->
+<pre><code>[1] &quot;2 to the power two equals 4&quot;
+[1] 4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBpbnZva2luZyB0aGUgZnVuY3Rpb24gd2l0aCB0d28gYXJndW1lbnRzIChvdmVycmlkaW5nIHRoZSBkZWZhdWx0KVxucG93X3R3bygzLCBGQUxTRSlcbmBgYCJ9 -->
+<pre class="r"><code># invoking the function with two arguments (overriding the default)
+pow_two(3, FALSE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDlcbiJ9 -->
+<pre><code>[1] 9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="packages" class="section level4">
+<h4>Packages</h4>
+<p>Methods we’ve been using come from installed packages. Base package for instance are installed. But packages like ggivis are not pre-installed. So have to install manually.</p>
+</div>
+<div id="search-to-see-which-package-is-installed" class="section level4">
+<h4>search() to see which package is installed</h4>
+<p>Running <code>search()</code> in the console will reveal all the packages installed in our module.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VhcmNoKClcbmBgYCJ9 -->
+<pre class="r"><code>search()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIi5HbG9iYWxFbnZcIiAgICAgICAgXCJ0b29sczpyc3R1ZGlvXCIgICAgIFwicGFja2FnZTpzdGF0c1wiICAgIFxuIFs0XSBcInBhY2thZ2U6Z3JhcGhpY3NcIiAgXCJwYWNrYWdlOmdyRGV2aWNlc1wiIFwicGFja2FnZTp1dGlsc1wiICAgIFxuIFs3XSBcInBhY2thZ2U6ZGF0YXNldHNcIiAgXCJwYWNrYWdlOm1ldGhvZHNcIiAgIFwiQXV0b2xvYWRzXCIgICAgICAgIFxuWzEwXSBcInBhY2thZ2U6YmFzZVwiICAgICBcbiJ9 -->
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;tools:rstudio&quot;     &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+[10] &quot;package:base&quot;     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="installing-packages-that-are-not-installed" class="section level4">
+<h4>Installing packages that are not installed</h4>
+<p>Before we can utilize a new package, we need to install that package and then load it to our current session. Suppose we want to install ggvis:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbnN0YWxsIFIgXG5pbnN0YWxsLnBhY2thZ2VzKFwiZ2d2aXNcIilcbmBgYCJ9 -->
+<pre class="r"><code># Install R 
+install.packages(&quot;ggvis&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoidHJ5aW5nIFVSTCAnaHR0cHM6Ly9jcmFuLnJzdHVkaW8uY29tL2Jpbi9tYWNvc3gvZWwtY2FwaXRhbi9jb250cmliLzMuNC9nZ3Zpc18wLjQuMy50Z3onXG5Db250ZW50IHR5cGUgJ2FwcGxpY2F0aW9uL3gtZ3ppcCcgbGVuZ3RoIDk0NjQxOSBieXRlcyAoOTI0IEtCKVxuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbmRvd25sb2FkZWQgOTI0IEtCXG4ifQ== -->
+<pre><code>trying URL 'https://cran.rstudio.com/bin/macosx/el-capitan/contrib/3.4/ggvis_0.4.3.tgz'
+Content type 'application/x-gzip' length 946419 bytes (924 KB)
+==================================================
+downloaded 924 KB</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5UaGUgZG93bmxvYWRlZCBiaW5hcnkgcGFja2FnZXMgYXJlIGluXG5cdC92YXIvZm9sZGVycy96MC9tYzhjam44MTczZzJ0emw1bjJ5czhkaDQwMDAwZ24vVC8vUnRtcEViSTA5dS9kb3dubG9hZGVkX3BhY2thZ2VzXG4ifQ== -->
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/z0/mc8cjn8173g2tzl5n2ys8dh40000gn/T//RtmpEbI09u/downloaded_packages</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The ggvis package we installed is still not available in our R session–<code>search()</code> will not show ggvis in the list. For that we need to load it using <code>library()</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2xvYWRpbmcgZ2d2aXMgaW50byBvdXIgUiBzZXNzaW9uIChlaXRoZXIgd2l0aCBxdW90ZSBvciBubyBxdW90ZSlcbmxpYnJhcnkoZ2d2aXMpXG4jVXNpbmcgc2VhcmNoKCkgdG8gdmVyaWZ5IHRoYXQgZ2d2aXMgaXMgbm93IGF2YWlsYWJsZVxuc2VhcmNoKClcbmBgYCJ9 -->
+<pre class="r"><code>#loading ggvis into our R session (either with quote or no quote)
+library(ggvis)
+#Using search() to verify that ggvis is now available
+search()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIi5HbG9iYWxFbnZcIiAgICAgICAgXCJwYWNrYWdlOmdncGxvdDJcIiAgIFwicGFja2FnZTpnZ3Zpc1wiICAgIFxuIFs0XSBcInRvb2xzOnJzdHVkaW9cIiAgICAgXCJwYWNrYWdlOnN0YXRzXCIgICAgIFwicGFja2FnZTpncmFwaGljc1wiIFxuIFs3XSBcInBhY2thZ2U6Z3JEZXZpY2VzXCIgXCJwYWNrYWdlOnV0aWxzXCIgICAgIFwicGFja2FnZTpkYXRhc2V0c1wiIFxuWzEwXSBcInBhY2thZ2U6bWV0aG9kc1wiICAgXCJBdXRvbG9hZHNcIiAgICAgICAgIFwicGFja2FnZTpiYXNlXCIgICAgIFxuIn0= -->
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:ggplot2&quot;   &quot;package:ggvis&quot;    
+ [4] &quot;tools:rstudio&quot;     &quot;package:stats&quot;     &quot;package:graphics&quot; 
+ [7] &quot;package:grDevices&quot; &quot;package:utils&quot;     &quot;package:datasets&quot; 
+[10] &quot;package:methods&quot;   &quot;Autoloads&quot;         &quot;package:base&quot;     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Indeed, <code>search()</code> now shows package:ggvis being available to our current R session.</p>
+</div>
+<div id="library-vs-require" class="section level4">
+<h4>library() vs require()</h4>
+<p><code>require()</code> and <code>library()</code> behave the same. The only difference is that <code>require()</code> will return a FALSE logical statement if the loading fails.</p>
+</div>
+<div id="ways-to-install-review" class="section level4">
+<h4>Ways to install review</h4>
+<pre><code># Chunk 1: Valid, works without quotes
+library(data.table)
+require(rjson)
+
+# Chunk 2:  Valid, works with quotes
+library(&quot;data.table&quot;)
+require(rjson)
+
+# Chunk 3:  Not valid, might seem valid but passing another argument to require forces us to surround rjson with quotes
+library(data.table)
+require(rjson, character.only = TRUE)
+
+# Chunk 4:  Not valid once library() doc is examined for valid input
+library(c(&quot;data.table&quot;, &quot;rjson&quot;))</code></pre>
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRnVuY3Rpb25zIGluIFIiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjIyMgTG9va2luZyB1cCBkb2N1bWVudGF0aW9uIGZvciBidWlsdC1pbiBmdW5jdGlvbnMvbWV0aG9kcwoKPyBpcyB1c2VmdWwuICBCdXQgYW4gZXF1aXZhbGVudCB3YXkgdG8gc2VhcmNoIGlzIGJ5IHVzaW5nIGBoZWxwKClgCgpJbiBSLCA/c2QgYW5kIGhlbHAoc2QpIGFyZSB0aGUgc2FtZSB0byBsb29rIHVwIHRob3JvdWdoIGRvY3VtZW50YXRpb24gb24gU0QuICAKCiMjIyMgU2hvcnRjdXQgdXNpbmcgYXJncygpIAoKU3VwcG9zZSB3ZSB3YW50IHRvIHNlZSB0aGUgYXJndW1lbnRzIGFuZCBkZWZhdWx0IHBvc2l0aW9ucyBvbiBhIG1ldGhvZCBpcy4gIFdlIGNhbiB1c2UgYGFyZ3MoKWAgLS0gd2UgY2FuIHRlY2huaWNhbGx5IHVzZSBzdHIoKSB0b28hCgpgYGB7cn0KIyBVc2luZyBhcmdzKCksIHRoaXMgbG9va3MgdXAgdGhlIHZhcmlhYmxlcyB3ZSBjYW4gcGFzcywgdGhlaXIgaW5oZXJlbnQgb3JkZXIsIGFuZCB0aGVpciBkZWZhdWx0IHZhbHVlcyBmb3IgZGF0YS5mcmFtZSgpIHdoaWNoIHdlIHVzZSB0byBjcmVhdGUgYSBkZiBvYmplY3QgCmFyZ3MoZGF0YS5mcmFtZSkKCgojIFVzaW5nIHN0cigpLCB0aGlzIGxvb2tzIHVwIHRoZSB2YXJpYWJsZXMgd2UgY2FuIHBhc3MsIHRoZWlyIGluaGVyZW50IG9yZGVyLCBhbmQgdGhlaXIgZGVmYXVsdCB2YWx1ZXMgZm9yIG1hdHJpeCgpIHdoaWNoIHdlIHVzZSB0byBjcmVhdGUgYSBtYXRyaXggb2JqZWN0CnN0cihtYXRyaXgpCmBgYAoKIyMjIyBtZWFuKCkgYW5kIHJlbW92aW5nIE5BIHZhbHVlcwoKSWYgeW91IGxvb2sgYXQgdGhlIGRvY3VtZW50YXRpb24gb2YgbWVhbiwgaXQgZ2l2ZXMgdGhpcyBhcyBhIHN0cnVjdHVyZToKCm1lYW4oeCwgdHJpbSA9IDAsIG5hLnJtID0gRkFMU0UsIC4uLikKClN1cHBvc2Ugd2Ugd2FudCB0byBjYWxjdWxhdGUgdGhlIG1lYW4gZm9yIGEgdmVjdG9yIHRoYXQgaW5jbHVkZXMgYSBOQSB2YWx1ZSwgYG1lYW4oKWAgd291bGQgdGhlbiByZXR1cm4gYSBOQSB2YWx1ZSB3aGljaCBpcyBub3Qgd2hhdCB3ZSB3YW50LiAgYG5hLnJtID0gRkFMU0VgIGlzIHRoZSBkZWZhdWx0IGJ1dCBwYXNzaW5nIGBuYS5ybSA9IFRSVUVgIHRvIHRoZSBgbWVhbigpYCBtZXRob2Qgd291bGQgaWdub3JlIHRoZSBOQSB2YWx1ZS4gSGVyZSdzIHRoZSBzY3JpcHQgc2hvd2luZyB0aGlzIHBhcmFncmFwaCBpbiBjb2RlOgoKYGBge3J9CmxpbmtlZGluIDwtIGMoMTYsIDksIDEzLCA1LCBOQSwgMTcsIDE0KQoKIyBkZWZhdWx0IGZvciBtZWFuLCBkb2VzIG5vdCB3b3JrCm1lYW4obGlua2VkaW4pCgojIHBhc3NpbmcgbmEucm0gPSBUUlVFIHRvIGlnbm9yZSBOQSB2YWx1ZXMsIGRvZXMgd29yawptZWFuKGxpbmtlZGluLCBuYS5ybSA9IFRSVUUpCmBgYAoKIyMjIyBXcml0aW5nIG93biBmdW5jdGlvbgoKUiBhZ2FpbiBoYXMgbXVjaCBpbiBjb21tb24gd2l0aCBwcm9ncmFtcyBzdWNoIGFzIEpTLiAgSGVyZSBpcyBhIGJhc2ljIGZ1bmN0aW9uIGluIFI6ICAKCmBgYHtyfQojIENyZWF0ZSBhIGZ1bmN0aW9uIHBvd190d28oKSB0aGF0IG11bHRpcGxpZXMgdGhhdCBhcmcgdG8gaXRzZWxmCnBvd190d28gPC0gZnVuY3Rpb24gKGFyZykgeyAKICBhcmcgKiBhcmcKfQojIFVzZSB0aGUgZnVuY3Rpb24KcG93X3R3bygxMikKCiMgQ3JlYXRlIGEgZnVuY3Rpb24gc3VtX2FicygpIHRoYXQgYWRkcyB0aGUgYWJzIHZhbCBvZiBlYWNoIGFyZ3VtZW50CnN1bV9hYnMgPC0gZnVuY3Rpb24gKGFyZzEsIGFyZzIpIHsKICBhYnMoYXJnMSkgKyBhYnMoYXJnMikKfQojIFVzZSB0aGUgZnVuY3Rpb24Kc3VtX2FicygtMiwzKQpgYGAKCiMjIyMgRGlmZmVyZW5jZSBiZXR3ZWVuIHJldHVybmluZyBhbmQgcHJpbnRpbmc6CgpCZWZvcmUgSSBleHBsYWluLCBsZXQncyBleGFtaW5lIHRoaXMgY29kZSB3aXRob3V0IGV4cGxhbmF0aW9uOgoKYGBge3J9CiMgRGVmaW5lIHRoZSBmdW5jdGlvbiBoZWxsbygpCmhlbGxvIDwtIGZ1bmN0aW9uICgpIHsKICBwcmludCgiSGkgdGhlcmUhIikKICBUUlVFIAogICMgTm90ZTogIHJldHVybigpIGNhbiBiZSB1c2VkIHRvIGJlIG1vcmUgZXhwbGljaXQgYnV0IGxlYXZpbmcgVFJVRSB3b3Jrcy4gIHJldHVybiB3aXRoIHBhcmVudGhlc2lzIHVubGlrZSBpbiBKUwp9Cgp3aGF0X2lzX3JldHVybmVkIDwtIGhlbGxvKCkKd2hhdF9pc19yZXR1cm5lZApgYGAKCgpUaGUgY29kZSBhYm92ZSBwcmludHMgdGhlIGhpIHRoZXJlIG1lc3NhZ2UgYnV0IGl0IHJldHVybnMgYSBUUlVFIGZ1bmN0aW9uIHdoZW4gaXQgaXMgaW52b2tlZCB3aXRoIGhlbGxvKCkuCgojIyMjIFdyaXRpbmcgb3B0aW9uYWwgYXJndW1lbnQgd2l0aCBkZWZhdWx0CgpBc3NpZ25tZW50IHN0YXRlbWVudCBpbiBSIHV0aWxpemVzIHRoZSA8LSBzeW1ib2wuICBCdXQgYXNzaWduaW5nIGEgZGVmYXVsdCBhcmd1bWVudCB1dGlsaXplcyB0aGUgY2xhc3NpYyA9IHN5bWJvbCBhcyBhc3NpZ25tZW50LiAgCgoKYGBge3J9CiMgcHJpbnRfaW5mbyBpcyBUUlVFIGJ5IGRlZmF1bHQKcG93X3R3byA8LSBmdW5jdGlvbih4LCBwcmludF9pbmZvID0gVFJVRSkgewogIHkgPC0geCBeIDIKICBpZiAocHJpbnRfaW5mbyA9PSBUUlVFKSB7CiAgICBwcmludChwYXN0ZSh4LCAidG8gdGhlIHBvd2VyIHR3byBlcXVhbHMiLCB5KSkKICB9CiAgI0FnYWluIHJldHVybiBoYXMgdG8gd3JhcCB0aGUgYXJndW1lbnQgd2l0aCBwYXJlbnRoZXNpcwogIHJldHVybih5KSAKfQoKIyBpbnZva2luZyB0aGUgZnVuY3Rpb24gd2l0aCBvbmUgYXJndW1lbnQKcG93X3R3bygyKQoKIyBpbnZva2luZyB0aGUgZnVuY3Rpb24gd2l0aCB0d28gYXJndW1lbnRzIChvdmVycmlkaW5nIHRoZSBkZWZhdWx0KQpwb3dfdHdvKDMsIEZBTFNFKQpgYGAKCiMjIyMgUGFja2FnZXMKCk1ldGhvZHMgd2UndmUgYmVlbiB1c2luZyBjb21lIGZyb20gaW5zdGFsbGVkIHBhY2thZ2VzLiAgQmFzZSBwYWNrYWdlIGZvciBpbnN0YW5jZSBhcmUgaW5zdGFsbGVkLiAgQnV0IHBhY2thZ2VzIGxpa2UgZ2dpdmlzIGFyZSBub3QgcHJlLWluc3RhbGxlZC4gU28gaGF2ZSB0byBpbnN0YWxsIG1hbnVhbGx5LgoKIyMjIyBzZWFyY2goKSB0byBzZWUgd2hpY2ggcGFja2FnZSBpcyBpbnN0YWxsZWQKClJ1bm5pbmcgYHNlYXJjaCgpYCBpbiB0aGUgY29uc29sZSB3aWxsIHJldmVhbCBhbGwgdGhlIHBhY2thZ2VzIGluc3RhbGxlZCBpbiBvdXIgbW9kdWxlLgoKYGBge3J9CnNlYXJjaCgpCmBgYAoKIyMjIyBJbnN0YWxsaW5nIHBhY2thZ2VzIHRoYXQgYXJlIG5vdCBpbnN0YWxsZWQKCkJlZm9yZSB3ZSBjYW4gdXRpbGl6ZSBhIG5ldyBwYWNrYWdlLCB3ZSBuZWVkIHRvIGluc3RhbGwgdGhhdCBwYWNrYWdlIGFuZCB0aGVuIGxvYWQgaXQgdG8gb3VyIGN1cnJlbnQgc2Vzc2lvbi4gIFN1cHBvc2Ugd2Ugd2FudCB0byBpbnN0YWxsIGdndmlzOgoKYGBge3IsIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CiMgSW5zdGFsbCBSIAppbnN0YWxsLnBhY2thZ2VzKCJnZ3ZpcyIpCmBgYAoKVGhlIGdndmlzIHBhY2thZ2Ugd2UgaW5zdGFsbGVkIGlzIHN0aWxsIG5vdCBhdmFpbGFibGUgaW4gb3VyIFIgc2Vzc2lvbi0tYHNlYXJjaCgpYCB3aWxsIG5vdCBzaG93IGdndmlzIGluIHRoZSBsaXN0LiAgRm9yIHRoYXQgd2UgbmVlZCB0byBsb2FkIGl0IHVzaW5nIGBsaWJyYXJ5KClgCgpgYGB7cn0KI2xvYWRpbmcgZ2d2aXMgaW50byBvdXIgUiBzZXNzaW9uIChlaXRoZXIgd2l0aCBxdW90ZSBvciBubyBxdW90ZSkKbGlicmFyeShnZ3ZpcykKCiNVc2luZyBzZWFyY2goKSB0byB2ZXJpZnkgdGhhdCBnZ3ZpcyBpcyBub3cgYXZhaWxhYmxlCnNlYXJjaCgpCmBgYAoKSW5kZWVkLCBgc2VhcmNoKClgIG5vdyBzaG93cyBwYWNrYWdlOmdndmlzIGJlaW5nIGF2YWlsYWJsZSB0byBvdXIgY3VycmVudCBSIHNlc3Npb24uCgojIyMjIGxpYnJhcnkoKSB2cyByZXF1aXJlKCkKCmByZXF1aXJlKClgIGFuZCBgbGlicmFyeSgpYCBiZWhhdmUgdGhlIHNhbWUuICBUaGUgb25seSBkaWZmZXJlbmNlIGlzIHRoYXQgYHJlcXVpcmUoKWAgd2lsbCByZXR1cm4gYSBGQUxTRSBsb2dpY2FsIHN0YXRlbWVudCBpZiB0aGUgbG9hZGluZyBmYWlscy4gIAoKIyMjIyBXYXlzIHRvIGluc3RhbGwgcmV2aWV3CgpgYGAKIyBDaHVuayAxOiBWYWxpZCwgd29ya3Mgd2l0aG91dCBxdW90ZXMKbGlicmFyeShkYXRhLnRhYmxlKQpyZXF1aXJlKHJqc29uKQoKIyBDaHVuayAyOiAgVmFsaWQsIHdvcmtzIHdpdGggcXVvdGVzCmxpYnJhcnkoImRhdGEudGFibGUiKQpyZXF1aXJlKHJqc29uKQoKIyBDaHVuayAzOiAgTm90IHZhbGlkLCBtaWdodCBzZWVtIHZhbGlkIGJ1dCBwYXNzaW5nIGFub3RoZXIgYXJndW1lbnQgdG8gcmVxdWlyZSBmb3JjZXMgdXMgdG8gc3Vycm91bmQgcmpzb24gd2l0aCBxdW90ZXMKbGlicmFyeShkYXRhLnRhYmxlKQpyZXF1aXJlKHJqc29uLCBjaGFyYWN0ZXIub25seSA9IFRSVUUpCgojIENodW5rIDQ6ICBOb3QgdmFsaWQgb25jZSBsaWJyYXJ5KCkgZG9jIGlzIGV4YW1pbmVkIGZvciB2YWxpZCBpbnB1dApsaWJyYXJ5KGMoImRhdGEudGFibGUiLCAicmpzb24iKSkKYGBgCgo=</div>
 
 
 
