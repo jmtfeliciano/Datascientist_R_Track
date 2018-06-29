@@ -40,3 +40,42 @@ mean(linkedin)
 mean(linkedin, na.rm = TRUE)
 ```
 
+#### Writing own function
+
+R again has much in common with programs such as JS.  Here is a basic function in R:  
+
+```{r}
+# Create a function pow_two() that multiplies that arg to itself
+pow_two <- function (arg) { 
+  arg * arg
+}
+# Use the function
+pow_two(12)
+
+# Create a function sum_abs() that adds the abs val of each argument
+sum_abs <- function (arg1, arg2) {
+  abs(arg1) + abs(arg2)
+}
+# Use the function
+sum_abs(-2,3)
+```
+
+#### Difference between returning and printing:
+
+Before I explain, let's examine this code without explanation:
+
+```{r}
+# Define the function hello()
+hello <- function () {
+  print("Hi there!")
+  TRUE 
+  # Note:  return() can be used to be more explicit but leaving TRUE works.  
+}
+
+what_is_returned <- hello()
+what_is_returned
+```
+
+
+The code above prints the hi there message but it returns a TRUE function when it is invoked with hello().
+
