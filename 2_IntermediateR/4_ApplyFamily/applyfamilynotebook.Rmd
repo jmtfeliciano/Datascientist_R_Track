@@ -42,31 +42,74 @@ Now, all our data is in a nice sequential vector.  `unlist()` as stated is a gre
 
 #### Using anonymous and custom functions in apply
 
-Instead of using functions already in the workspace, we can pass an anonymous or our custom function to the family of apply functions.  Suppose we want to split the name and years of our data into two seperate vectors. Here is an example with using custom functions I made from scratch:
+Instead of using functions already in the workspace, we can pass an anonymous or our custom function to the family of apply functions.  Suppose we want to split the name and years of our data into two seperate datasets. Here is an example with using custom function I made from scratch and passing it as an anonymous an example:
 
 ```{r}
 # Code from previous exercise:
 pioneers <- c("GAUSS:1777", "BAYES:1702", "PASCAL:1623", "PEARSON:1857")
 split <- strsplit(pioneers, split = ":")
 split_low <- lapply(split, tolower)
+
 # Write function select_first()
 select_first <- function(x) {
   x[1]
 }
-# Apply select_first() over split_low: names
+# PASSING A CUSTOM FUNCTION:  Applies select_first function over split_low and names it 'names'
 names <- lapply(split_low, select_first)
-# Write function select_second()
-select_second <- function(x) {
-  x[2]
-}
-# Apply select_second() over split_low: years
-years <- lapply(split_low, select_second)
-
 names
 
+# PASSING AN ANONYMOUS FUNCTION: Feeds split_low and an anonymous example to lapply.. call the result 'years'
+years <- lapply(split_low, select_second)
 years
 ```
 
+#### sapply() method
+
+`lapply()` returns a list that we can transform into a vector by using `unlist()`
+
+But `sapply()` attempts to simplify our data into a vector or matrix.  It is supposed to be user-friendly.
+
+Now let's play around some data and `sapply()`.  Suppose we have a vector of city names and we want to count the number of characters using the built-in `nchar()` method in R.
+
+```{r}
+cities <- c("London", "Prague", "Los Angeles", "Berlin")
+
+# using lapply() to get a vector of character number
+unlist(lapply(cities, nchar))
+
+# using sapply() to get a vector of character number
+sapply(cities, nchar)
+```
+
+The beauty of sapply is that the vector returned corresponds to the original data so we know which data corresponds to which data.
+
+But if we do not want the names, we can pass USE.NAMES = FALSE as a paramater to `sapply()`.  Here is the example:
+
+```{r}
+sapply(cities, nchar, USE.NAMES = FALSE) 
+```
+
+#### Problem with sapply()
+
+The main issue with sapply() is that it forces to simply the results and the behavior can be unpredictable.  In the previous example, it simply returned a numerical value for each data.  But when you are processing multiple data output, the behavior can be predictable.  
+
+Suppose we want to use `sapply()` to break down individual cities into their characters by using strsplit()
+```{r}
+cities <- c("London", "Prague", "Los Angeles", "Berlin")
+# A function I created to split city names into individual characters
+splitted_cities <- sapply(cities, function (city) {
+  return(strsplit(city, ""))
+})
+
+# Returns the product of sapply()
+splitted_cities 
+
+# Prints the structure of this data
+str(splitted_cities)
+
+```
+
+As revealed by the `str()` script, splitted_cities returned a list.  As stated earlier, `sapply()` forces the results into a vector or matrix.  But the unpredictability can sometimes force the result into a list if it does not know what to do. 
 
 
 
