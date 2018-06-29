@@ -1,0 +1,32 @@
+---
+title: "Apply Family"
+output: html_notebook
+---
+
+#### Basics of Apply
+
+Apply allows us to simplify tasks by applying all items in a list/vector/matrix to a function without having to write a complicated for loop statement to iterate over the data structure we want to analyze.
+
+#### A Basic Comparison
+
+There's a family of apply function but let us examine `lapply()` and using it to split four data by cutting the semi-colon and making all entries small letters:
+
+```{r}
+# vector with pioneers and their birth year
+pioneers <- c("GAUSS:1777", "BAYES:1702", "PASCAL:1623", "PEARSON:1857")
+# split them using strsplit() and inspect how it looks like before proceeding
+split_data <- strsplit(pioneers, ":")
+split_data
+
+# now, turn all data into small letters by using lapply() and tolower():
+split_low <- lapply(split_data, tolower)
+# now reprint the data with small letters
+split_low
+```
+
+By looking at the latest data, the letters were indeed transformed into small letters.
+
+
+
+
+
