@@ -139,7 +139,7 @@ Indeed, `search()` now shows package:ggvis being available to our current R sess
 
 `require()` and `library()` behave the same.  The only difference is that `require()` will return a FALSE logical statement if the loading fails.  
 
-#### Ways to install review
+#### Ways to load libraries review
 
 ```
 # Chunk 1: Valid, works without quotes
