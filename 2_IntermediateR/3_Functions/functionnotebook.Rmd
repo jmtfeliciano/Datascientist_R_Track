@@ -3,4 +3,40 @@ title: "Functions in R"
 output: html_notebook
 ---
 
-Basic template for new notebook for function
+#### Looking up documentation for built-in functions/methods
+
+? is useful.  But an equivalent way to search is by using `help()`
+
+In R, ?sd and help(sd) are the same to look up thorough documentation on SD.  
+
+#### Shortcut using args() 
+
+Suppose we want to see the arguments and default positions on a method is.  We can use `args()` -- we can technically use str() too!
+
+```{r}
+# Using args(), this looks up the variables we can pass, their inherent order, and their default values for data.frame() which we use to create a df object 
+args(data.frame)
+
+
+# Using str(), this looks up the variables we can pass, their inherent order, and their default values for matrix() which we use to create a matrix object
+str(matrix)
+```
+
+#### mean() and removing NA values
+
+If you look at the documentation of mean, it gives this as a structure:
+
+mean(x, trim = 0, na.rm = FALSE, ...)
+
+Suppose we want to calculate the mean for a vector that includes a NA value, `mean()` would then return a NA value which is not what we want.  `na.rm = FALSE` is the default but passing `na.rm = TRUE` to the `mean()` method would ignore the NA value. Here's the script showing this paragraph in code:
+
+```{r}
+linkedin <- c(16, 9, 13, 5, NA, 17, 14)
+
+# default for mean, does not work
+mean(linkedin)
+
+# passing na.rm = TRUE to ignore NA values, does work
+mean(linkedin, na.rm = TRUE)
+```
+
