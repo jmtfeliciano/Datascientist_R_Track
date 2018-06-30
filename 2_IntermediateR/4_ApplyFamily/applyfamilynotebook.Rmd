@@ -89,7 +89,7 @@ But if we do not want the names, we can pass USE.NAMES = FALSE as a paramater to
 sapply(cities, nchar, USE.NAMES = FALSE) 
 ```
 
-#### Problem with sapply()
+#### Problem with sapply() when the function returns uneven vectors
 
 The main issue with sapply() is that it forces to simply the results and the behavior can be unpredictable.  In the previous example, it simply returned a numerical value for each data.  But when you are processing multiple data output, the behavior can be predictable.  
 
@@ -111,5 +111,104 @@ str(splitted_cities)
 
 As revealed by the `str()` script, splitted_cities returned a list.  As stated earlier, `sapply()` forces the results into a vector or matrix.  But the unpredictability can sometimes force the result into a list if it does not know what to do. 
 
+#### Detour: min() and max()
 
+As a detour, we can use `min()` and `max()` to determine the lowest and highest dataset of a vector and matrix. 
+
+
+#### Example:  sapply() when function returns vector of same length
+
+When the anonymous function returns for instance the same length of vector, `sapply()` returns a beautiful labeled data matrix.  
+
+Suppose we go back to the cities vector and want to determine the first and last letter of each city:  
+
+```{r}
+# Vector of city
+cities <- c("London", "Prague", "Los Angeles", "Berlin")
+
+# Applies an anonymous function via sapply() that determines the first and last letter of city.
+city_sorter <- sapply (cities, function (city) {
+  splitted_city <- strsplit(city, "")[[1]]
+  c(first_letter = splitted_city[1], 
+        last_letter = splitted_city[length(splitted_city)])
+})
+city_sorter
+```
+
+#### Detour:  cat()
+
+`cat()` allows to concatenate variables, values together without the use of paste:
+
+```{r}
+weekend_profits <- list(January = c(122,218,213,500), February = c(1029,19212, 122))
+message <- lapply(weekend_profits, function(month){
+  cat("The mean profit for the month is", mean(month), "\n")
+})
+message
+```
+
+
+
+Notice that `cat()` printed the message we want, but it also returned unwanted data such as `$January` and `$February` with NULL values.  Not what we want!  Here comes `vapply()` to sidestep this problem.  
+
+#### vapply()
+
+`sapply()` has a number of problems as it forces to simplify the resulting data into a vector.  
+
+On the other hand and to prevent this problem, `vapply()` requires to explictly specify the output we expect. Here is an example where numeric(1) is passed an argument to `vapply()` to specify the expected return value from the passed function.  
+
+```{r}
+# A vector of cities
+cities <- c("London", "Prague", "Los Angeles", "Berlin")
+
+# vapply() with specified numeric(1) input telling vapply that we expect a numeric value for each data
+vapply(cities, nchar, numeric(1))
+```
+
+Another example from earlier using sapply() is the return of the first and last letter.  Let us go over the same task with vapply():
+
+```{r}
+cities <- c("London", "Prague", "Los Angeles", "Berlin")
+
+# we modified the earlier sapply function with the added character(2) argument
+city_sorter <- vapply (cities, function (city) {
+  splitted_city <- strsplit(city, "")[[1]]
+  c(first_letter = splitted_city[1], 
+        last_letter = splitted_city[length(splitted_city)])
+}, character(2))
+
+city_sorter
+```
+
+Now, lets try to tell vapply that we're expecting only 1 character type as a return value even though the function returns two.
+
+```{r}
+# modified from above, now called city_sorter_2 with incorrect expected return value from callback function
+city_sorter_2 <- vapply (cities, function (city) {
+  splitted_city <- strsplit(city, "")[[1]]
+  c(first_letter = splitted_city[1], 
+        last_letter = splitted_city[length(splitted_city)])
+}, character(1))
+```
+
+`vapply()` is prevented from completing the task and throws an error because it received values that deviated from what was expected.  Very conservative in a good way.  
+
+#### apply family and passing another default value
+
+Instead of setting an internal default value in the callback function, we can set it via the apply family function.  Use `vapply()` since it is considered the best among the three discussed for predictability and specificity. 
+
+Here's an example where we increase the current price 
+
+```{r}
+# old price vector
+price_vector <- c(eggroll = 2.50, boba = 1.50, popcorn_chicken = 5)
+
+# new price vector with 10% price increase and tax inclusion
+new_price_with_tax <- vapply(price_vector, function (price, tax) {
+  round(price * 1.10 * (1 + tax), 2)
+}, tax = 0.0625, numeric(1))
+
+# prints the updated price with 10% increase and the tax rate as an argument to the vapply()
+new_price_with_tax
+```
 

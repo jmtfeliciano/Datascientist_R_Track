@@ -176,9 +176,10 @@ $(document).ready(function () {
 <h4>Basics of Apply</h4>
 <p>Apply allows us to simplify tasks by applying all items in a list/vector/matrix to a function without having to write a complicated for loop statement to iterate over the data structure we want to analyze.</p>
 </div>
-<div id="a-basic-comparison" class="section level4">
-<h4>A Basic Comparison</h4>
-<p>There’s a family of apply function but let us examine <code>lapply()</code> and using it to split four data by cutting the semi-colon and making all entries small letters:</p>
+<div id="basics-on-apply" class="section level4">
+<h4>Basics on apply</h4>
+<p>There’s a family of apply function but let us examine <code>lapply()</code> and using it to split four data by cutting the semi-colon and making all entries small letters.</p>
+<p>Again, we need to use <code>strsplit()</code> to split our character data and eventually need to use <code>tolower()</code> to transform letters into small.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB2ZWN0b3Igd2l0aCBwaW9uZWVycyBhbmQgdGhlaXIgYmlydGggeWVhclxucGlvbmVlcnMgPC0gYyhcIkdBVVNTOjE3NzdcIiwgXCJCQVlFUzoxNzAyXCIsIFwiUEFTQ0FMOjE2MjNcIiwgXCJQRUFSU09OOjE4NTdcIilcbiMgc3BsaXQgdGhlbSB1c2luZyBzdHJzcGxpdCgpIGFuZCBpbnNwZWN0IGhvdyBpdCBsb29rcyBsaWtlIGJlZm9yZSBwcm9jZWVkaW5nXG5zcGxpdF9kYXRhIDwtIHN0cnNwbGl0KHBpb25lZXJzLCBcIjpcIilcbnNwbGl0X2RhdGFcbmBgYCJ9 -->
@@ -223,10 +224,303 @@ split_low</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>By looking at the latest data, the letters were indeed transformed into small letters.</p>
+<p>Do notice that the data returned by <code>lapply()</code> is a list. To transform a list into an array, we can utilize <code>unlist()</code> to our finalized list called <code>split_low</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzcGxpdF9sb3csIHdoaWNoIHdlIHNvbHZlZCBmb3IgYWJvdmUuIGlzIGEgbGlzdC5cbnN0cihzcGxpdF9sb3cpXG5gYGAifQ== -->
+<pre class="r"><code># split_low, which we solved for above. is a list.
+str(split_low)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiA0XG4gJCA6IGNociBbMToyXSBcImdhdXNzXCIgXCIxNzc3XCJcbiAkIDogY2hyIFsxOjJdIFwiYmF5ZXNcIiBcIjE3MDJcIlxuICQgOiBjaHIgWzE6Ml0gXCJwYXNjYWxcIiBcIjE2MjNcIlxuICQgOiBjaHIgWzE6Ml0gXCJwZWFyc29uXCIgXCIxODU3XCJcbiJ9 -->
+<pre><code>List of 4
+ $ : chr [1:2] &quot;gauss&quot; &quot;1777&quot;
+ $ : chr [1:2] &quot;bayes&quot; &quot;1702&quot;
+ $ : chr [1:2] &quot;pascal&quot; &quot;1623&quot;
+ $ : chr [1:2] &quot;pearson&quot; &quot;1857&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBub3cgdW5saXN0IG91ciBkYXRhXG51bmxpc3Qoc3BsaXRfbG93KVxuYGBgIn0= -->
+<pre class="r"><code># now unlist our data
+unlist(split_low)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZ2F1c3NcIiAgIFwiMTc3N1wiICAgIFwiYmF5ZXNcIiAgIFwiMTcwMlwiICAgIFwicGFzY2FsXCIgXG5bNl0gXCIxNjIzXCIgICAgXCJwZWFyc29uXCIgXCIxODU3XCIgICBcbiJ9 -->
+<pre><code>[1] &quot;gauss&quot;   &quot;1777&quot;    &quot;bayes&quot;   &quot;1702&quot;    &quot;pascal&quot; 
+[6] &quot;1623&quot;    &quot;pearson&quot; &quot;1857&quot;   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now, all our data is in a nice sequential vector. <code>unlist()</code> as stated is a great tool to simply data.</p>
+</div>
+<div id="using-anonymous-and-custom-functions-in-apply" class="section level4">
+<h4>Using anonymous and custom functions in apply</h4>
+<p>Instead of using functions already in the workspace, we can pass an anonymous or our custom function to the family of apply functions. Suppose we want to split the name and years of our data into two seperate datasets. Here is an example with using custom function I made from scratch and passing it as an anonymous an example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb2RlIGZyb20gcHJldmlvdXMgZXhlcmNpc2U6XG5waW9uZWVycyA8LSBjKFwiR0FVU1M6MTc3N1wiLCBcIkJBWUVTOjE3MDJcIiwgXCJQQVNDQUw6MTYyM1wiLCBcIlBFQVJTT046MTg1N1wiKVxuc3BsaXQgPC0gc3Ryc3BsaXQocGlvbmVlcnMsIHNwbGl0ID0gXCI6XCIpXG5zcGxpdF9sb3cgPC0gbGFwcGx5KHNwbGl0LCB0b2xvd2VyKVxuIyBXcml0ZSBmdW5jdGlvbiBzZWxlY3RfZmlyc3QoKVxuc2VsZWN0X2ZpcnN0IDwtIGZ1bmN0aW9uKHgpIHtcbiAgeFsxXVxufVxuIyBQQVNTSU5HIEEgQ1VTVE9NIEZVTkNUSU9OOiAgQXBwbGllcyBzZWxlY3RfZmlyc3QgZnVuY3Rpb24gb3ZlciBzcGxpdF9sb3cgYW5kIG5hbWVzIGl0ICduYW1lcydcbm5hbWVzIDwtIGxhcHBseShzcGxpdF9sb3csIHNlbGVjdF9maXJzdClcbm5hbWVzXG5gYGAifQ== -->
+<pre class="r"><code># Code from previous exercise:
+pioneers &lt;- c(&quot;GAUSS:1777&quot;, &quot;BAYES:1702&quot;, &quot;PASCAL:1623&quot;, &quot;PEARSON:1857&quot;)
+split &lt;- strsplit(pioneers, split = &quot;:&quot;)
+split_low &lt;- lapply(split, tolower)
+# Write function select_first()
+select_first &lt;- function(x) {
+  x[1]
+}
+# PASSING A CUSTOM FUNCTION:  Applies select_first function over split_low and names it 'names'
+names &lt;- lapply(split_low, select_first)
+names</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcImdhdXNzXCJcblxuW1syXV1cblsxXSBcImJheWVzXCJcblxuW1szXV1cblsxXSBcInBhc2NhbFwiXG5cbltbNF1dXG5bMV0gXCJwZWFyc29uXCJcbiJ9 -->
+<pre><code>[[1]]
+[1] &quot;gauss&quot;
+
+[[2]]
+[1] &quot;bayes&quot;
+
+[[3]]
+[1] &quot;pascal&quot;
+
+[[4]]
+[1] &quot;pearson&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQQVNTSU5HIEFOIEFOT05ZTU9VUyBGVU5DVElPTjogRmVlZHMgc3BsaXRfbG93IGFuZCBhbiBhbm9ueW1vdXMgZXhhbXBsZSB0byBsYXBwbHkuLiBjYWxsIHRoZSByZXN1bHQgJ3llYXJzJ1xueWVhcnMgPC0gbGFwcGx5KHNwbGl0X2xvdywgc2VsZWN0X3NlY29uZClcbnllYXJzXG5gYGAifQ== -->
+<pre class="r"><code># PASSING AN ANONYMOUS FUNCTION: Feeds split_low and an anonymous example to lapply.. call the result 'years'
+years &lt;- lapply(split_low, select_second)
+years</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cblsxXSBcIjE3NzdcIlxuXG5bWzJdXVxuWzFdIFwiMTcwMlwiXG5cbltbM11dXG5bMV0gXCIxNjIzXCJcblxuW1s0XV1cblsxXSBcIjE4NTdcIlxuIn0= -->
+<pre><code>[[1]]
+[1] &quot;1777&quot;
+
+[[2]]
+[1] &quot;1702&quot;
+
+[[3]]
+[1] &quot;1623&quot;
+
+[[4]]
+[1] &quot;1857&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="sapply-method" class="section level4">
+<h4>sapply() method</h4>
+<p><code>lapply()</code> returns a list that we can transform into a vector by using <code>unlist()</code></p>
+<p>But <code>sapply()</code> attempts to simplify our data into a vector or matrix. It is supposed to be user-friendly.</p>
+<p>Now let’s play around some data and <code>sapply()</code>. Suppose we have a vector of city names and we want to count the number of characters using the built-in <code>nchar()</code> method in R.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2l0aWVzIDwtIGMoXCJMb25kb25cIiwgXCJQcmFndWVcIiwgXCJMb3MgQW5nZWxlc1wiLCBcIkJlcmxpblwiKVxuIyB1c2luZyBsYXBwbHkoKSB0byBnZXQgYSB2ZWN0b3Igb2YgY2hhcmFjdGVyIG51bWJlclxudW5saXN0KGxhcHBseShjaXRpZXMsIG5jaGFyKSlcbmBgYCJ9 -->
+<pre class="r"><code>cities &lt;- c(&quot;London&quot;, &quot;Prague&quot;, &quot;Los Angeles&quot;, &quot;Berlin&quot;)
+# using lapply() to get a vector of character number
+unlist(lapply(cities, nchar))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICA2ICA2IDExICA2XG4ifQ== -->
+<pre><code>[1]  6  6 11  6</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB1c2luZyBzYXBwbHkoKSB0byBnZXQgYSB2ZWN0b3Igb2YgY2hhcmFjdGVyIG51bWJlclxuc2FwcGx5KGNpdGllcywgbmNoYXIpXG5gYGAifQ== -->
+<pre class="r"><code># using sapply() to get a vector of character number
+sapply(cities, nchar)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBMb25kb24gICAgICBQcmFndWUgTG9zIEFuZ2VsZXMgICAgICBCZXJsaW4gXG4gICAgICAgICAgNiAgICAgICAgICAgNiAgICAgICAgICAxMSAgICAgICAgICAgNiBcbiJ9 -->
+<pre><code>     London      Prague Los Angeles      Berlin 
+          6           6          11           6 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The beauty of sapply is that the vector returned corresponds to the original data so we know which data corresponds to which data.</p>
+<p>But if we do not want the names, we can pass USE.NAMES = FALSE as a paramater to <code>sapply()</code>. Here is the example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FwcGx5KGNpdGllcywgbmNoYXIsIFVTRS5OQU1FUyA9IEZBTFNFKSBcbmBgYCJ9 -->
+<pre class="r"><code>sapply(cities, nchar, USE.NAMES = FALSE) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICA2ICA2IDExICA2XG4ifQ== -->
+<pre><code>[1]  6  6 11  6</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="problem-with-sapply-when-the-function-returns-uneven-vectors" class="section level4">
+<h4>Problem with sapply() when the function returns uneven vectors</h4>
+<p>The main issue with sapply() is that it forces to simply the results and the behavior can be unpredictable. In the previous example, it simply returned a numerical value for each data. But when you are processing multiple data output, the behavior can be predictable.</p>
+<p>Suppose we want to use <code>sapply()</code> to break down individual cities into their characters by using strsplit()</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2l0aWVzIDwtIGMoXCJMb25kb25cIiwgXCJQcmFndWVcIiwgXCJMb3MgQW5nZWxlc1wiLCBcIkJlcmxpblwiKVxuIyBBIGZ1bmN0aW9uIEkgY3JlYXRlZCB0byBzcGxpdCBjaXR5IG5hbWVzIGludG8gaW5kaXZpZHVhbCBjaGFyYWN0ZXJzXG5zcGxpdHRlZF9jaXRpZXMgPC0gc2FwcGx5KGNpdGllcywgZnVuY3Rpb24gKGNpdHkpIHtcbiAgcmV0dXJuKHN0cnNwbGl0KGNpdHksIFwiXCIpKVxufSlcbiMgUmV0dXJucyB0aGUgcHJvZHVjdCBvZiBzYXBwbHkoKVxuc3BsaXR0ZWRfY2l0aWVzIFxuYGBgIn0= -->
+<pre class="r"><code>cities &lt;- c(&quot;London&quot;, &quot;Prague&quot;, &quot;Los Angeles&quot;, &quot;Berlin&quot;)
+# A function I created to split city names into individual characters
+splitted_cities &lt;- sapply(cities, function (city) {
+  return(strsplit(city, &quot;&quot;))
+})
+# Returns the product of sapply()
+splitted_cities </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJExvbmRvblxuWzFdIFwiTFwiIFwib1wiIFwiblwiIFwiZFwiIFwib1wiIFwiblwiXG5cbiRQcmFndWVcblsxXSBcIlBcIiBcInJcIiBcImFcIiBcImdcIiBcInVcIiBcImVcIlxuXG4kYExvcyBBbmdlbGVzYFxuIFsxXSBcIkxcIiBcIm9cIiBcInNcIiBcIiBcIiBcIkFcIiBcIm5cIiBcImdcIiBcImVcIiBcImxcIiBcImVcIiBcInNcIlxuXG4kQmVybGluXG5bMV0gXCJCXCIgXCJlXCIgXCJyXCIgXCJsXCIgXCJpXCIgXCJuXCJcbiJ9 -->
+<pre><code>$London
+[1] &quot;L&quot; &quot;o&quot; &quot;n&quot; &quot;d&quot; &quot;o&quot; &quot;n&quot;
+
+$Prague
+[1] &quot;P&quot; &quot;r&quot; &quot;a&quot; &quot;g&quot; &quot;u&quot; &quot;e&quot;
+
+$`Los Angeles`
+ [1] &quot;L&quot; &quot;o&quot; &quot;s&quot; &quot; &quot; &quot;A&quot; &quot;n&quot; &quot;g&quot; &quot;e&quot; &quot;l&quot; &quot;e&quot; &quot;s&quot;
+
+$Berlin
+[1] &quot;B&quot; &quot;e&quot; &quot;r&quot; &quot;l&quot; &quot;i&quot; &quot;n&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmludHMgdGhlIHN0cnVjdHVyZSBvZiB0aGlzIGRhdGFcbnN0cihzcGxpdHRlZF9jaXRpZXMpXG5gYGAifQ== -->
+<pre class="r"><code># Prints the structure of this data
+str(splitted_cities)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiA0XG4gJCBMb25kb24gICAgIDogY2hyIFsxOjZdIFwiTFwiIFwib1wiIFwiblwiIFwiZFwiIC4uLlxuICQgUHJhZ3VlICAgICA6IGNociBbMTo2XSBcIlBcIiBcInJcIiBcImFcIiBcImdcIiAuLi5cbiAkIExvcyBBbmdlbGVzOiBjaHIgWzE6MTFdIFwiTFwiIFwib1wiIFwic1wiIFwiIFwiIC4uLlxuICQgQmVybGluICAgICA6IGNociBbMTo2XSBcIkJcIiBcImVcIiBcInJcIiBcImxcIiAuLi5cbiJ9 -->
+<pre><code>List of 4
+ $ London     : chr [1:6] &quot;L&quot; &quot;o&quot; &quot;n&quot; &quot;d&quot; ...
+ $ Prague     : chr [1:6] &quot;P&quot; &quot;r&quot; &quot;a&quot; &quot;g&quot; ...
+ $ Los Angeles: chr [1:11] &quot;L&quot; &quot;o&quot; &quot;s&quot; &quot; &quot; ...
+ $ Berlin     : chr [1:6] &quot;B&quot; &quot;e&quot; &quot;r&quot; &quot;l&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>As revealed by the <code>str()</code> script, splitted_cities returned a list. As stated earlier, <code>sapply()</code> forces the results into a vector or matrix. But the unpredictability can sometimes force the result into a list if it does not know what to do.</p>
+</div>
+<div id="detour-min-and-max" class="section level4">
+<h4>Detour: min() and max()</h4>
+<p>As a detour, we can use <code>min()</code> and <code>max()</code> to determine the lowest and highest dataset of a vector and matrix.</p>
+</div>
+<div id="example-sapply-when-function-returns-vector-of-same-length" class="section level4">
+<h4>Example: sapply() when function returns vector of same length</h4>
+<p>When the anonymous function returns for instance the same length of vector, <code>sapply()</code> returns a beautiful labeled data matrix.</p>
+<p>Suppose we go back to the cities vector and want to determine the first and last letter of each city:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBWZWN0b3Igb2YgY2l0eVxuY2l0aWVzIDwtIGMoXCJMb25kb25cIiwgXCJQcmFndWVcIiwgXCJMb3MgQW5nZWxlc1wiLCBcIkJlcmxpblwiKVxuIyBBcHBsaWVzIGFuIGFub255bW91cyBmdW5jdGlvbiB2aWEgc2FwcGx5KCkgdGhhdCBkZXRlcm1pbmVzIHRoZSBmaXJzdCBhbmQgbGFzdCBsZXR0ZXIgb2YgY2l0eS5cbmNpdHlfc29ydGVyIDwtIHNhcHBseSAoY2l0aWVzLCBmdW5jdGlvbiAoY2l0eSkge1xuICBzcGxpdHRlZF9jaXR5IDwtIHN0cnNwbGl0KGNpdHksIFwiXCIpW1sxXV1cbiAgYyhmaXJzdF9sZXR0ZXIgPSBzcGxpdHRlZF9jaXR5WzFdLCBcbiAgICAgICAgbGFzdF9sZXR0ZXIgPSBzcGxpdHRlZF9jaXR5W2xlbmd0aChzcGxpdHRlZF9jaXR5KV0pXG59KVxuY2l0eV9zb3J0ZXJcbmBgYCJ9 -->
+<pre class="r"><code># Vector of city
+cities &lt;- c(&quot;London&quot;, &quot;Prague&quot;, &quot;Los Angeles&quot;, &quot;Berlin&quot;)
+# Applies an anonymous function via sapply() that determines the first and last letter of city.
+city_sorter &lt;- sapply (cities, function (city) {
+  splitted_city &lt;- strsplit(city, &quot;&quot;)[[1]]
+  c(first_letter = splitted_city[1], 
+        last_letter = splitted_city[length(splitted_city)])
+})
+city_sorter</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgIExvbmRvbiBQcmFndWUgTG9zIEFuZ2VsZXMgQmVybGluXG5maXJzdF9sZXR0ZXIgXCJMXCIgICAgXCJQXCIgICAgXCJMXCIgICAgICAgICBcIkJcIiAgIFxubGFzdF9sZXR0ZXIgIFwiblwiICAgIFwiZVwiICAgIFwic1wiICAgICAgICAgXCJuXCIgICBcbiJ9 -->
+<pre><code>             London Prague Los Angeles Berlin
+first_letter &quot;L&quot;    &quot;P&quot;    &quot;L&quot;         &quot;B&quot;   
+last_letter  &quot;n&quot;    &quot;e&quot;    &quot;s&quot;         &quot;n&quot;   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="detour-cat" class="section level4">
+<h4>Detour: cat()</h4>
+<p><code>cat()</code> allows to concatenate variables, values together without the use of paste:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2Vla2VuZF9wcm9maXRzIDwtIGxpc3QoSmFudWFyeSA9IGMoMTIyLDIxOCwyMTMsNTAwKSwgRmVicnVhcnkgPSBjKDEwMjksMTkyMTIsIDEyMikpXG5tZXNzYWdlIDwtIGxhcHBseSh3ZWVrZW5kX3Byb2ZpdHMsIGZ1bmN0aW9uKG1vbnRoKXtcbiAgY2F0KFwiVGhlIG1lYW4gcHJvZml0IGZvciB0aGUgbW9udGggaXNcIiwgbWVhbihtb250aCksIFwiXFxuXCIpXG59KVxuYGBgIn0= -->
+<pre class="r"><code>weekend_profits &lt;- list(January = c(122,218,213,500), February = c(1029,19212, 122))
+message &lt;- lapply(weekend_profits, function(month){
+  cat(&quot;The mean profit for the month is&quot;, mean(month), &quot;\n&quot;)
+})</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGhlIG1lYW4gcHJvZml0IGZvciB0aGUgbW9udGggaXMgMjYzLjI1IFxuVGhlIG1lYW4gcHJvZml0IGZvciB0aGUgbW9udGggaXMgNjc4Ny42NjcgXG4ifQ== -->
+<pre><code>The mean profit for the month is 263.25 
+The mean profit for the month is 6787.667 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVzc2FnZVxuYGBgIn0= -->
+<pre class="r"><code>message</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJEphbnVhcnlcbk5VTExcblxuJEZlYnJ1YXJ5XG5OVUxMXG4ifQ== -->
+<pre><code>$January
+NULL
+
+$February
+NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Notice that <code>cat()</code> printed the message we want, but it also returned unwanted data such as <code>$January</code> and <code>$February</code> with NULL values. Not what we want! Here comes <code>vapply()</code> to sidestep this problem.</p>
+</div>
+<div id="vapply" class="section level4">
+<h4>vapply()</h4>
+<p><code>sapply()</code> has a number of problems as it forces to simplify the resulting data into a vector.</p>
+<p>On the other hand and to prevent this problem, <code>vapply()</code> requires to explictly specify the output we expect. Here is an example where numeric(1) is passed an argument to <code>vapply()</code> to specify the expected return value from the passed function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBIHZlY3RvciBvZiBjaXRpZXNcbmNpdGllcyA8LSBjKFwiTG9uZG9uXCIsIFwiUHJhZ3VlXCIsIFwiTG9zIEFuZ2VsZXNcIiwgXCJCZXJsaW5cIilcblxuIyB2YXBwbHkoKSB3aXRoIHNwZWNpZmllZCBudW1lcmljKDEpIGlucHV0IHRlbGxpbmcgdmFwcGx5IHRoYXQgd2UgZXhwZWN0IGEgbnVtZXJpYyB2YWx1ZSBmb3IgZWFjaCBkYXRhXG52YXBwbHkoY2l0aWVzLCBuY2hhciwgbnVtZXJpYygxKSlcbmBgYCJ9 -->
+<pre class="r"><code># A vector of cities
+cities &lt;- c(&quot;London&quot;, &quot;Prague&quot;, &quot;Los Angeles&quot;, &quot;Berlin&quot;)
+
+# vapply() with specified numeric(1) input telling vapply that we expect a numeric value for each data
+vapply(cities, nchar, numeric(1))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Another example from earlier using sapply() is the return of the first and last letter. Let us go over the same task with vapply():</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2l0aWVzIDwtIGMoXCJMb25kb25cIiwgXCJQcmFndWVcIiwgXCJMb3MgQW5nZWxlc1wiLCBcIkJlcmxpblwiKVxuIyB3ZSBtb2RpZmllZCB0aGUgZWFybGllciBzYXBwbHkgZnVuY3Rpb24gd2l0aCB0aGUgYWRkZWQgY2hhcmFjdGVyKDIpIGFyZ3VtZW50XG5jaXR5X3NvcnRlciA8LSB2YXBwbHkgKGNpdGllcywgZnVuY3Rpb24gKGNpdHkpIHtcbiAgc3BsaXR0ZWRfY2l0eSA8LSBzdHJzcGxpdChjaXR5LCBcIlwiKVtbMV1dXG4gIGMoZmlyc3RfbGV0dGVyID0gc3BsaXR0ZWRfY2l0eVsxXSwgXG4gICAgICAgIGxhc3RfbGV0dGVyID0gc3BsaXR0ZWRfY2l0eVtsZW5ndGgoc3BsaXR0ZWRfY2l0eSldKVxufSwgY2hhcmFjdGVyKDIpKVxuY2l0eV9zb3J0ZXJcbmBgYCJ9 -->
+<pre class="r"><code>cities &lt;- c(&quot;London&quot;, &quot;Prague&quot;, &quot;Los Angeles&quot;, &quot;Berlin&quot;)
+# we modified the earlier sapply function with the added character(2) argument
+city_sorter &lt;- vapply (cities, function (city) {
+  splitted_city &lt;- strsplit(city, &quot;&quot;)[[1]]
+  c(first_letter = splitted_city[1], 
+        last_letter = splitted_city[length(splitted_city)])
+}, character(2))
+city_sorter</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgIExvbmRvbiBQcmFndWUgTG9zIEFuZ2VsZXMgQmVybGluXG5maXJzdF9sZXR0ZXIgXCJMXCIgICAgXCJQXCIgICAgXCJMXCIgICAgICAgICBcIkJcIiAgIFxubGFzdF9sZXR0ZXIgIFwiblwiICAgIFwiZVwiICAgIFwic1wiICAgICAgICAgXCJuXCIgICBcbiJ9 -->
+<pre><code>             London Prague Los Angeles Berlin
+first_letter &quot;L&quot;    &quot;P&quot;    &quot;L&quot;         &quot;B&quot;   
+last_letter  &quot;n&quot;    &quot;e&quot;    &quot;s&quot;         &quot;n&quot;   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now, lets try to tell vapply that we’re expecting only 1 character type as a return value even though the function returns two.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBtb2RpZmllZCBmcm9tIGFib3ZlLCBub3cgY2FsbGVkIGNpdHlfc29ydGVyXzIgd2l0aCBpbmNvcnJlY3QgZXhwZWN0ZWQgcmV0dXJuIHZhbHVlIGZyb20gY2FsbGJhY2sgZnVuY3Rpb25cbmNpdHlfc29ydGVyXzIgPC0gdmFwcGx5IChjaXRpZXMsIGZ1bmN0aW9uIChjaXR5KSB7XG4gIHNwbGl0dGVkX2NpdHkgPC0gc3Ryc3BsaXQoY2l0eSwgXCJcIilbWzFdXVxuICBjKGZpcnN0X2xldHRlciA9IHNwbGl0dGVkX2NpdHlbMV0sIFxuICAgICAgICBsYXN0X2xldHRlciA9IHNwbGl0dGVkX2NpdHlbbGVuZ3RoKHNwbGl0dGVkX2NpdHkpXSlcbn0sIGNoYXJhY3RlcigxKSlcbmBgYCJ9 -->
+<pre class="r"><code># modified from above, now called city_sorter_2 with incorrect expected return value from callback function
+city_sorter_2 &lt;- vapply (cities, function (city) {
+  splitted_city &lt;- strsplit(city, &quot;&quot;)[[1]]
+  c(first_letter = splitted_city[1], 
+        last_letter = splitted_city[length(splitted_city)])
+}, character(1))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gdmFwcGx5KGNpdGllcywgZnVuY3Rpb24oY2l0eSkgeyA6IHZhbHVlcyBtdXN0IGJlIGxlbmd0aCAxLFxuIGJ1dCBGVU4oWFtbMV1dKSByZXN1bHQgaXMgbGVuZ3RoIDJcbiJ9 -->
+<pre><code>Error in vapply(cities, function(city) { : values must be length 1,
+ but FUN(X[[1]]) result is length 2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><code>vapply()</code> is prevented from completing the task and throws an error because it received values that deviated from what was expected. Very conservative in a good way.</p>
+</div>
+<div id="apply-family-and-passing-another-default-value" class="section level4">
+<h4>apply family and passing another default value</h4>
+<p>Instead of setting an internal default value in the callback function, we can set it via the apply family function. Use <code>vapply()</code> since it is considered the best among the three discussed for predictability and specificity.</p>
+<p>Here’s an example where we increase the current price</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBvbGQgcHJpY2UgdmVjdG9yXG5wcmljZV92ZWN0b3IgPC0gYyhlZ2dyb2xsID0gMi41MCwgYm9iYSA9IDEuNTAsIHBvcGNvcm5fY2hpY2tlbiA9IDUpXG4jIG5ldyBwcmljZSB2ZWN0b3Igd2l0aCAxMCUgcHJpY2UgaW5jcmVhc2UgYW5kIHRheCBpbmNsdXNpb25cbm5ld19wcmljZV93aXRoX3RheCA8LSB2YXBwbHkocHJpY2VfdmVjdG9yLCBmdW5jdGlvbiAocHJpY2UsIHRheCkge1xuICByb3VuZChwcmljZSAqIDEuMTAgKiAoMSArIHRheCksIDIpXG59LCB0YXggPSAwLjA2MjUsIG51bWVyaWMoMSkpXG4jIHByaW50cyB0aGUgdXBkYXRlZCBwcmljZSB3aXRoIDEwJSBpbmNyZWFzZSBhbmQgdGhlIHRheCByYXRlIGFzIGFuIGFyZ3VtZW50IHRvIHRoZSB2YXBwbHkoKVxubmV3X3ByaWNlX3dpdGhfdGF4XG5gYGAifQ== -->
+<pre class="r"><code># old price vector
+price_vector &lt;- c(eggroll = 2.50, boba = 1.50, popcorn_chicken = 5)
+# new price vector with 10% price increase and tax inclusion
+new_price_with_tax &lt;- vapply(price_vector, function (price, tax) {
+  round(price * 1.10 * (1 + tax), 2)
+}, tax = 0.0625, numeric(1))
+# prints the updated price with 10% increase and the tax rate as an argument to the vapply()
+new_price_with_tax</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICBlZ2dyb2xsICAgICAgICAgICAgYm9iYSBwb3Bjb3JuX2NoaWNrZW4gXG4gICAgICAgICAgIDIuOTIgICAgICAgICAgICAxLjc1ICAgICAgICAgICAgNS44NCBcbiJ9 -->
+<pre><code>        eggroll            boba popcorn_chicken 
+           2.92            1.75            5.84 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXBwbHkgRmFtaWx5IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIEJhc2ljcyBvZiBBcHBseQoKQXBwbHkgYWxsb3dzIHVzIHRvIHNpbXBsaWZ5IHRhc2tzIGJ5IGFwcGx5aW5nIGFsbCBpdGVtcyBpbiBhIGxpc3QvdmVjdG9yL21hdHJpeCB0byBhIGZ1bmN0aW9uIHdpdGhvdXQgaGF2aW5nIHRvIHdyaXRlIGEgY29tcGxpY2F0ZWQgZm9yIGxvb3Agc3RhdGVtZW50IHRvIGl0ZXJhdGUgb3ZlciB0aGUgZGF0YSBzdHJ1Y3R1cmUgd2Ugd2FudCB0byBhbmFseXplLgoKIyMjIyBBIEJhc2ljIENvbXBhcmlzb24KClRoZXJlJ3MgYSBmYW1pbHkgb2YgYXBwbHkgZnVuY3Rpb24gYnV0IGxldCB1cyBleGFtaW5lIGBsYXBwbHkoKWAgYW5kIHVzaW5nIGl0IHRvIHNwbGl0IGZvdXIgZGF0YSBieSBjdXR0aW5nIHRoZSBzZW1pLWNvbG9uIGFuZCBtYWtpbmcgYWxsIGVudHJpZXMgc21hbGwgbGV0dGVyczoKCmBgYHtyfQojIHZlY3RvciB3aXRoIHBpb25lZXJzIGFuZCB0aGVpciBiaXJ0aCB5ZWFyCnBpb25lZXJzIDwtIGMoIkdBVVNTOjE3NzciLCAiQkFZRVM6MTcwMiIsICJQQVNDQUw6MTYyMyIsICJQRUFSU09OOjE4NTciKQojIHNwbGl0IHRoZW0gdXNpbmcgc3Ryc3BsaXQoKSBhbmQgaW5zcGVjdCBob3cgaXQgbG9va3MgbGlrZSBiZWZvcmUgcHJvY2VlZGluZwpzcGxpdF9kYXRhIDwtIHN0cnNwbGl0KHBpb25lZXJzLCAiOiIpCnNwbGl0X2RhdGEKCiMgbm93LCB0dXJuIGFsbCBkYXRhIGludG8gc21hbGwgbGV0dGVycyBieSB1c2luZyBsYXBwbHkoKSBhbmQgdG9sb3dlcigpOgpzcGxpdF9sb3cgPC0gbGFwcGx5KHNwbGl0X2RhdGEsIHRvbG93ZXIpCiMgbm93IHJlcHJpbnQgdGhlIGRhdGEgd2l0aCBzbWFsbCBsZXR0ZXJzCnNwbGl0X2xvdwpgYGAKCkJ5IGxvb2tpbmcgYXQgdGhlIGxhdGVzdCBkYXRhLCB0aGUgbGV0dGVycyB3ZXJlIGluZGVlZCB0cmFuc2Zvcm1lZCBpbnRvIHNtYWxsIGxldHRlcnMuCgoKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXBwbHkgRmFtaWx5IgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMjIEJhc2ljcyBvZiBBcHBseQoKQXBwbHkgYWxsb3dzIHVzIHRvIHNpbXBsaWZ5IHRhc2tzIGJ5IGFwcGx5aW5nIGFsbCBpdGVtcyBpbiBhIGxpc3QvdmVjdG9yL21hdHJpeCB0byBhIGZ1bmN0aW9uIHdpdGhvdXQgaGF2aW5nIHRvIHdyaXRlIGEgY29tcGxpY2F0ZWQgZm9yIGxvb3Agc3RhdGVtZW50IHRvIGl0ZXJhdGUgb3ZlciB0aGUgZGF0YSBzdHJ1Y3R1cmUgd2Ugd2FudCB0byBhbmFseXplLgoKIyMjIyBCYXNpY3Mgb24gYXBwbHkKClRoZXJlJ3MgYSBmYW1pbHkgb2YgYXBwbHkgZnVuY3Rpb24gYnV0IGxldCB1cyBleGFtaW5lIGBsYXBwbHkoKWAgYW5kIHVzaW5nIGl0IHRvIHNwbGl0IGZvdXIgZGF0YSBieSBjdXR0aW5nIHRoZSBzZW1pLWNvbG9uIGFuZCBtYWtpbmcgYWxsIGVudHJpZXMgc21hbGwgbGV0dGVycy4KCkFnYWluLCB3ZSBuZWVkIHRvIHVzZSBgc3Ryc3BsaXQoKWAgdG8gc3BsaXQgb3VyIGNoYXJhY3RlciBkYXRhIGFuZCBldmVudHVhbGx5IG5lZWQgdG8gdXNlIGB0b2xvd2VyKClgIHRvIHRyYW5zZm9ybSBsZXR0ZXJzIGludG8gc21hbGwuCgpgYGB7cn0KIyB2ZWN0b3Igd2l0aCBwaW9uZWVycyBhbmQgdGhlaXIgYmlydGggeWVhcgpwaW9uZWVycyA8LSBjKCJHQVVTUzoxNzc3IiwgIkJBWUVTOjE3MDIiLCAiUEFTQ0FMOjE2MjMiLCAiUEVBUlNPTjoxODU3IikKIyBzcGxpdCB0aGVtIHVzaW5nIHN0cnNwbGl0KCkgYW5kIGluc3BlY3QgaG93IGl0IGxvb2tzIGxpa2UgYmVmb3JlIHByb2NlZWRpbmcKc3BsaXRfZGF0YSA8LSBzdHJzcGxpdChwaW9uZWVycywgIjoiKQpzcGxpdF9kYXRhCgojIG5vdywgdHVybiBhbGwgZGF0YSBpbnRvIHNtYWxsIGxldHRlcnMgYnkgdXNpbmcgbGFwcGx5KCkgYW5kIHRvbG93ZXIoKToKc3BsaXRfbG93IDwtIGxhcHBseShzcGxpdF9kYXRhLCB0b2xvd2VyKQojIG5vdyByZXByaW50IHRoZSBkYXRhIHdpdGggc21hbGwgbGV0dGVycwpzcGxpdF9sb3cKYGBgCgpCeSBsb29raW5nIGF0IHRoZSBsYXRlc3QgZGF0YSwgdGhlIGxldHRlcnMgd2VyZSBpbmRlZWQgdHJhbnNmb3JtZWQgaW50byBzbWFsbCBsZXR0ZXJzLgoKRG8gbm90aWNlIHRoYXQgdGhlIGRhdGEgcmV0dXJuZWQgYnkgYGxhcHBseSgpYCBpcyBhIGxpc3QuICBUbyB0cmFuc2Zvcm0gYSBsaXN0IGludG8gYW4gYXJyYXksIHdlIGNhbiB1dGlsaXplIGB1bmxpc3QoKWAgdG8gb3VyIGZpbmFsaXplZCBsaXN0IGNhbGxlZCBgc3BsaXRfbG93YAoKYGBge3J9CiMgc3BsaXRfbG93LCB3aGljaCB3ZSBzb2x2ZWQgZm9yIGFib3ZlLiBpcyBhIGxpc3QuCnN0cihzcGxpdF9sb3cpCgojIG5vdyB1bmxpc3Qgb3VyIGRhdGEKdW5saXN0KHNwbGl0X2xvdykKYGBgCgpOb3csIGFsbCBvdXIgZGF0YSBpcyBpbiBhIG5pY2Ugc2VxdWVudGlhbCB2ZWN0b3IuICBgdW5saXN0KClgIGFzIHN0YXRlZCBpcyBhIGdyZWF0IHRvb2wgdG8gc2ltcGx5IGRhdGEuCgojIyMjIFVzaW5nIGFub255bW91cyBhbmQgY3VzdG9tIGZ1bmN0aW9ucyBpbiBhcHBseQoKSW5zdGVhZCBvZiB1c2luZyBmdW5jdGlvbnMgYWxyZWFkeSBpbiB0aGUgd29ya3NwYWNlLCB3ZSBjYW4gcGFzcyBhbiBhbm9ueW1vdXMgb3Igb3VyIGN1c3RvbSBmdW5jdGlvbiB0byB0aGUgZmFtaWx5IG9mIGFwcGx5IGZ1bmN0aW9ucy4gIFN1cHBvc2Ugd2Ugd2FudCB0byBzcGxpdCB0aGUgbmFtZSBhbmQgeWVhcnMgb2Ygb3VyIGRhdGEgaW50byB0d28gc2VwZXJhdGUgZGF0YXNldHMuIEhlcmUgaXMgYW4gZXhhbXBsZSB3aXRoIHVzaW5nIGN1c3RvbSBmdW5jdGlvbiBJIG1hZGUgZnJvbSBzY3JhdGNoIGFuZCBwYXNzaW5nIGl0IGFzIGFuIGFub255bW91cyBhbiBleGFtcGxlOgoKYGBge3J9CiMgQ29kZSBmcm9tIHByZXZpb3VzIGV4ZXJjaXNlOgpwaW9uZWVycyA8LSBjKCJHQVVTUzoxNzc3IiwgIkJBWUVTOjE3MDIiLCAiUEFTQ0FMOjE2MjMiLCAiUEVBUlNPTjoxODU3IikKc3BsaXQgPC0gc3Ryc3BsaXQocGlvbmVlcnMsIHNwbGl0ID0gIjoiKQpzcGxpdF9sb3cgPC0gbGFwcGx5KHNwbGl0LCB0b2xvd2VyKQoKIyBXcml0ZSBmdW5jdGlvbiBzZWxlY3RfZmlyc3QoKQpzZWxlY3RfZmlyc3QgPC0gZnVuY3Rpb24oeCkgewogIHhbMV0KfQojIFBBU1NJTkcgQSBDVVNUT00gRlVOQ1RJT046ICBBcHBsaWVzIHNlbGVjdF9maXJzdCBmdW5jdGlvbiBvdmVyIHNwbGl0X2xvdyBhbmQgbmFtZXMgaXQgJ25hbWVzJwpuYW1lcyA8LSBsYXBwbHkoc3BsaXRfbG93LCBzZWxlY3RfZmlyc3QpCm5hbWVzCgojIFBBU1NJTkcgQU4gQU5PTllNT1VTIEZVTkNUSU9OOiBGZWVkcyBzcGxpdF9sb3cgYW5kIGFuIGFub255bW91cyBleGFtcGxlIHRvIGxhcHBseS4uIGNhbGwgdGhlIHJlc3VsdCAneWVhcnMnCnllYXJzIDwtIGxhcHBseShzcGxpdF9sb3csIHNlbGVjdF9zZWNvbmQpCnllYXJzCmBgYAoKIyMjIyBzYXBwbHkoKSBtZXRob2QKCmBsYXBwbHkoKWAgcmV0dXJucyBhIGxpc3QgdGhhdCB3ZSBjYW4gdHJhbnNmb3JtIGludG8gYSB2ZWN0b3IgYnkgdXNpbmcgYHVubGlzdCgpYAoKQnV0IGBzYXBwbHkoKWAgYXR0ZW1wdHMgdG8gc2ltcGxpZnkgb3VyIGRhdGEgaW50byBhIHZlY3RvciBvciBtYXRyaXguICBJdCBpcyBzdXBwb3NlZCB0byBiZSB1c2VyLWZyaWVuZGx5LgoKTm93IGxldCdzIHBsYXkgYXJvdW5kIHNvbWUgZGF0YSBhbmQgYHNhcHBseSgpYC4gIFN1cHBvc2Ugd2UgaGF2ZSBhIHZlY3RvciBvZiBjaXR5IG5hbWVzIGFuZCB3ZSB3YW50IHRvIGNvdW50IHRoZSBudW1iZXIgb2YgY2hhcmFjdGVycyB1c2luZyB0aGUgYnVpbHQtaW4gYG5jaGFyKClgIG1ldGhvZCBpbiBSLgoKYGBge3J9CmNpdGllcyA8LSBjKCJMb25kb24iLCAiUHJhZ3VlIiwgIkxvcyBBbmdlbGVzIiwgIkJlcmxpbiIpCgojIHVzaW5nIGxhcHBseSgpIHRvIGdldCBhIHZlY3RvciBvZiBjaGFyYWN0ZXIgbnVtYmVyCnVubGlzdChsYXBwbHkoY2l0aWVzLCBuY2hhcikpCgojIHVzaW5nIHNhcHBseSgpIHRvIGdldCBhIHZlY3RvciBvZiBjaGFyYWN0ZXIgbnVtYmVyCnNhcHBseShjaXRpZXMsIG5jaGFyKQpgYGAKClRoZSBiZWF1dHkgb2Ygc2FwcGx5IGlzIHRoYXQgdGhlIHZlY3RvciByZXR1cm5lZCBjb3JyZXNwb25kcyB0byB0aGUgb3JpZ2luYWwgZGF0YSBzbyB3ZSBrbm93IHdoaWNoIGRhdGEgY29ycmVzcG9uZHMgdG8gd2hpY2ggZGF0YS4KCkJ1dCBpZiB3ZSBkbyBub3Qgd2FudCB0aGUgbmFtZXMsIHdlIGNhbiBwYXNzIFVTRS5OQU1FUyA9IEZBTFNFIGFzIGEgcGFyYW1hdGVyIHRvIGBzYXBwbHkoKWAuICBIZXJlIGlzIHRoZSBleGFtcGxlOgoKYGBge3J9CnNhcHBseShjaXRpZXMsIG5jaGFyLCBVU0UuTkFNRVMgPSBGQUxTRSkgCmBgYAoKIyMjIyBQcm9ibGVtIHdpdGggc2FwcGx5KCkgd2hlbiB0aGUgZnVuY3Rpb24gcmV0dXJucyB1bmV2ZW4gdmVjdG9ycwoKVGhlIG1haW4gaXNzdWUgd2l0aCBzYXBwbHkoKSBpcyB0aGF0IGl0IGZvcmNlcyB0byBzaW1wbHkgdGhlIHJlc3VsdHMgYW5kIHRoZSBiZWhhdmlvciBjYW4gYmUgdW5wcmVkaWN0YWJsZS4gIEluIHRoZSBwcmV2aW91cyBleGFtcGxlLCBpdCBzaW1wbHkgcmV0dXJuZWQgYSBudW1lcmljYWwgdmFsdWUgZm9yIGVhY2ggZGF0YS4gIEJ1dCB3aGVuIHlvdSBhcmUgcHJvY2Vzc2luZyBtdWx0aXBsZSBkYXRhIG91dHB1dCwgdGhlIGJlaGF2aW9yIGNhbiBiZSBwcmVkaWN0YWJsZS4gIAoKU3VwcG9zZSB3ZSB3YW50IHRvIHVzZSBgc2FwcGx5KClgIHRvIGJyZWFrIGRvd24gaW5kaXZpZHVhbCBjaXRpZXMgaW50byB0aGVpciBjaGFyYWN0ZXJzIGJ5IHVzaW5nIHN0cnNwbGl0KCkKYGBge3J9CmNpdGllcyA8LSBjKCJMb25kb24iLCAiUHJhZ3VlIiwgIkxvcyBBbmdlbGVzIiwgIkJlcmxpbiIpCiMgQSBmdW5jdGlvbiBJIGNyZWF0ZWQgdG8gc3BsaXQgY2l0eSBuYW1lcyBpbnRvIGluZGl2aWR1YWwgY2hhcmFjdGVycwpzcGxpdHRlZF9jaXRpZXMgPC0gc2FwcGx5KGNpdGllcywgZnVuY3Rpb24gKGNpdHkpIHsKICByZXR1cm4oc3Ryc3BsaXQoY2l0eSwgIiIpKQp9KQoKIyBSZXR1cm5zIHRoZSBwcm9kdWN0IG9mIHNhcHBseSgpCnNwbGl0dGVkX2NpdGllcyAKCiMgUHJpbnRzIHRoZSBzdHJ1Y3R1cmUgb2YgdGhpcyBkYXRhCnN0cihzcGxpdHRlZF9jaXRpZXMpCgpgYGAKCkFzIHJldmVhbGVkIGJ5IHRoZSBgc3RyKClgIHNjcmlwdCwgc3BsaXR0ZWRfY2l0aWVzIHJldHVybmVkIGEgbGlzdC4gIEFzIHN0YXRlZCBlYXJsaWVyLCBgc2FwcGx5KClgIGZvcmNlcyB0aGUgcmVzdWx0cyBpbnRvIGEgdmVjdG9yIG9yIG1hdHJpeC4gIEJ1dCB0aGUgdW5wcmVkaWN0YWJpbGl0eSBjYW4gc29tZXRpbWVzIGZvcmNlIHRoZSByZXN1bHQgaW50byBhIGxpc3QgaWYgaXQgZG9lcyBub3Qga25vdyB3aGF0IHRvIGRvLiAKCiMjIyMgRGV0b3VyOiBtaW4oKSBhbmQgbWF4KCkKCkFzIGEgZGV0b3VyLCB3ZSBjYW4gdXNlIGBtaW4oKWAgYW5kIGBtYXgoKWAgdG8gZGV0ZXJtaW5lIHRoZSBsb3dlc3QgYW5kIGhpZ2hlc3QgZGF0YXNldCBvZiBhIHZlY3RvciBhbmQgbWF0cml4LiAKCgojIyMjIEV4YW1wbGU6ICBzYXBwbHkoKSB3aGVuIGZ1bmN0aW9uIHJldHVybnMgdmVjdG9yIG9mIHNhbWUgbGVuZ3RoCgpXaGVuIHRoZSBhbm9ueW1vdXMgZnVuY3Rpb24gcmV0dXJucyBmb3IgaW5zdGFuY2UgdGhlIHNhbWUgbGVuZ3RoIG9mIHZlY3RvciwgYHNhcHBseSgpYCByZXR1cm5zIGEgYmVhdXRpZnVsIGxhYmVsZWQgZGF0YSBtYXRyaXguICAKClN1cHBvc2Ugd2UgZ28gYmFjayB0byB0aGUgY2l0aWVzIHZlY3RvciBhbmQgd2FudCB0byBkZXRlcm1pbmUgdGhlIGZpcnN0IGFuZCBsYXN0IGxldHRlciBvZiBlYWNoIGNpdHk6ICAKCmBgYHtyfQojIFZlY3RvciBvZiBjaXR5CmNpdGllcyA8LSBjKCJMb25kb24iLCAiUHJhZ3VlIiwgIkxvcyBBbmdlbGVzIiwgIkJlcmxpbiIpCgojIEFwcGxpZXMgYW4gYW5vbnltb3VzIGZ1bmN0aW9uIHZpYSBzYXBwbHkoKSB0aGF0IGRldGVybWluZXMgdGhlIGZpcnN0IGFuZCBsYXN0IGxldHRlciBvZiBjaXR5LgpjaXR5X3NvcnRlciA8LSBzYXBwbHkgKGNpdGllcywgZnVuY3Rpb24gKGNpdHkpIHsKICBzcGxpdHRlZF9jaXR5IDwtIHN0cnNwbGl0KGNpdHksICIiKVtbMV1dCiAgYyhmaXJzdF9sZXR0ZXIgPSBzcGxpdHRlZF9jaXR5WzFdLCAKICAgICAgICBsYXN0X2xldHRlciA9IHNwbGl0dGVkX2NpdHlbbGVuZ3RoKHNwbGl0dGVkX2NpdHkpXSkKfSkKY2l0eV9zb3J0ZXIKYGBgCgojIyMjIERldG91cjogIGNhdCgpCgpgY2F0KClgIGFsbG93cyB0byBjb25jYXRlbmF0ZSB2YXJpYWJsZXMsIHZhbHVlcyB0b2dldGhlciB3aXRob3V0IHRoZSB1c2Ugb2YgcGFzdGU6CgpgYGB7cn0Kd2Vla2VuZF9wcm9maXRzIDwtIGxpc3QoSmFudWFyeSA9IGMoMTIyLDIxOCwyMTMsNTAwKSwgRmVicnVhcnkgPSBjKDEwMjksMTkyMTIsIDEyMikpCm1lc3NhZ2UgPC0gbGFwcGx5KHdlZWtlbmRfcHJvZml0cywgZnVuY3Rpb24obW9udGgpewogIGNhdCgiVGhlIG1lYW4gcHJvZml0IGZvciB0aGUgbW9udGggaXMiLCBtZWFuKG1vbnRoKSwgIlxuIikKfSkKbWVzc2FnZQpgYGAKCgoKTm90aWNlIHRoYXQgYGNhdCgpYCBwcmludGVkIHRoZSBtZXNzYWdlIHdlIHdhbnQsIGJ1dCBpdCBhbHNvIHJldHVybmVkIHVud2FudGVkIGRhdGEgc3VjaCBhcyBgJEphbnVhcnlgIGFuZCBgJEZlYnJ1YXJ5YCB3aXRoIE5VTEwgdmFsdWVzLiAgTm90IHdoYXQgd2Ugd2FudCEgIEhlcmUgY29tZXMgYHZhcHBseSgpYCB0byBzaWRlc3RlcCB0aGlzIHByb2JsZW0uICAKCiMjIyMgdmFwcGx5KCkKCmBzYXBwbHkoKWAgaGFzIGEgbnVtYmVyIG9mIHByb2JsZW1zIGFzIGl0IGZvcmNlcyB0byBzaW1wbGlmeSB0aGUgcmVzdWx0aW5nIGRhdGEgaW50byBhIHZlY3Rvci4gIAoKT24gdGhlIG90aGVyIGhhbmQgYW5kIHRvIHByZXZlbnQgdGhpcyBwcm9ibGVtLCBgdmFwcGx5KClgIHJlcXVpcmVzIHRvIGV4cGxpY3RseSBzcGVjaWZ5IHRoZSBvdXRwdXQgd2UgZXhwZWN0LiBIZXJlIGlzIGFuIGV4YW1wbGUgd2hlcmUgbnVtZXJpYygxKSBpcyBwYXNzZWQgYW4gYXJndW1lbnQgdG8gYHZhcHBseSgpYCB0byBzcGVjaWZ5IHRoZSBleHBlY3RlZCByZXR1cm4gdmFsdWUgZnJvbSB0aGUgcGFzc2VkIGZ1bmN0aW9uLiAgCgpgYGB7cn0KIyBBIHZlY3RvciBvZiBjaXRpZXMKY2l0aWVzIDwtIGMoIkxvbmRvbiIsICJQcmFndWUiLCAiTG9zIEFuZ2VsZXMiLCAiQmVybGluIikKCiMgdmFwcGx5KCkgd2l0aCBzcGVjaWZpZWQgbnVtZXJpYygxKSBpbnB1dCB0ZWxsaW5nIHZhcHBseSB0aGF0IHdlIGV4cGVjdCBhIG51bWVyaWMgdmFsdWUgZm9yIGVhY2ggZGF0YQp2YXBwbHkoY2l0aWVzLCBuY2hhciwgbnVtZXJpYygxKSkKYGBgCgpBbm90aGVyIGV4YW1wbGUgZnJvbSBlYXJsaWVyIHVzaW5nIHNhcHBseSgpIGlzIHRoZSByZXR1cm4gb2YgdGhlIGZpcnN0IGFuZCBsYXN0IGxldHRlci4gIExldCB1cyBnbyBvdmVyIHRoZSBzYW1lIHRhc2sgd2l0aCB2YXBwbHkoKToKCmBgYHtyfQpjaXRpZXMgPC0gYygiTG9uZG9uIiwgIlByYWd1ZSIsICJMb3MgQW5nZWxlcyIsICJCZXJsaW4iKQoKIyB3ZSBtb2RpZmllZCB0aGUgZWFybGllciBzYXBwbHkgZnVuY3Rpb24gd2l0aCB0aGUgYWRkZWQgY2hhcmFjdGVyKDIpIGFyZ3VtZW50CmNpdHlfc29ydGVyIDwtIHZhcHBseSAoY2l0aWVzLCBmdW5jdGlvbiAoY2l0eSkgewogIHNwbGl0dGVkX2NpdHkgPC0gc3Ryc3BsaXQoY2l0eSwgIiIpW1sxXV0KICBjKGZpcnN0X2xldHRlciA9IHNwbGl0dGVkX2NpdHlbMV0sIAogICAgICAgIGxhc3RfbGV0dGVyID0gc3BsaXR0ZWRfY2l0eVtsZW5ndGgoc3BsaXR0ZWRfY2l0eSldKQp9LCBjaGFyYWN0ZXIoMikpCgpjaXR5X3NvcnRlcgpgYGAKCk5vdywgbGV0cyB0cnkgdG8gdGVsbCB2YXBwbHkgdGhhdCB3ZSdyZSBleHBlY3Rpbmcgb25seSAxIGNoYXJhY3RlciB0eXBlIGFzIGEgcmV0dXJuIHZhbHVlIGV2ZW4gdGhvdWdoIHRoZSBmdW5jdGlvbiByZXR1cm5zIHR3by4KCmBgYHtyfQojIG1vZGlmaWVkIGZyb20gYWJvdmUsIG5vdyBjYWxsZWQgY2l0eV9zb3J0ZXJfMiB3aXRoIGluY29ycmVjdCBleHBlY3RlZCByZXR1cm4gdmFsdWUgZnJvbSBjYWxsYmFjayBmdW5jdGlvbgpjaXR5X3NvcnRlcl8yIDwtIHZhcHBseSAoY2l0aWVzLCBmdW5jdGlvbiAoY2l0eSkgewogIHNwbGl0dGVkX2NpdHkgPC0gc3Ryc3BsaXQoY2l0eSwgIiIpW1sxXV0KICBjKGZpcnN0X2xldHRlciA9IHNwbGl0dGVkX2NpdHlbMV0sIAogICAgICAgIGxhc3RfbGV0dGVyID0gc3BsaXR0ZWRfY2l0eVtsZW5ndGgoc3BsaXR0ZWRfY2l0eSldKQp9LCBjaGFyYWN0ZXIoMSkpCmBgYAoKYHZhcHBseSgpYCBpcyBwcmV2ZW50ZWQgZnJvbSBjb21wbGV0aW5nIHRoZSB0YXNrIGFuZCB0aHJvd3MgYW4gZXJyb3IgYmVjYXVzZSBpdCByZWNlaXZlZCB2YWx1ZXMgdGhhdCBkZXZpYXRlZCBmcm9tIHdoYXQgd2FzIGV4cGVjdGVkLiAgVmVyeSBjb25zZXJ2YXRpdmUgaW4gYSBnb29kIHdheS4gIAoKIyMjIyBhcHBseSBmYW1pbHkgYW5kIHBhc3NpbmcgYW5vdGhlciBkZWZhdWx0IHZhbHVlCgpJbnN0ZWFkIG9mIHNldHRpbmcgYW4gaW50ZXJuYWwgZGVmYXVsdCB2YWx1ZSBpbiB0aGUgY2FsbGJhY2sgZnVuY3Rpb24sIHdlIGNhbiBzZXQgaXQgdmlhIHRoZSBhcHBseSBmYW1pbHkgZnVuY3Rpb24uICBVc2UgYHZhcHBseSgpYCBzaW5jZSBpdCBpcyBjb25zaWRlcmVkIHRoZSBiZXN0IGFtb25nIHRoZSB0aHJlZSBkaXNjdXNzZWQgZm9yIHByZWRpY3RhYmlsaXR5IGFuZCBzcGVjaWZpY2l0eS4gCgpIZXJlJ3MgYW4gZXhhbXBsZSB3aGVyZSB3ZSBpbmNyZWFzZSB0aGUgY3VycmVudCBwcmljZSAKCmBgYHtyfQojIG9sZCBwcmljZSB2ZWN0b3IKcHJpY2VfdmVjdG9yIDwtIGMoZWdncm9sbCA9IDIuNTAsIGJvYmEgPSAxLjUwLCBwb3Bjb3JuX2NoaWNrZW4gPSA1KQoKIyBuZXcgcHJpY2UgdmVjdG9yIHdpdGggMTAlIHByaWNlIGluY3JlYXNlIGFuZCB0YXggaW5jbHVzaW9uCm5ld19wcmljZV93aXRoX3RheCA8LSB2YXBwbHkocHJpY2VfdmVjdG9yLCBmdW5jdGlvbiAocHJpY2UsIHRheCkgewogIHJvdW5kKHByaWNlICogMS4xMCAqICgxICsgdGF4KSwgMikKfSwgdGF4ID0gMC4wNjI1LCBudW1lcmljKDEpKQoKIyBwcmludHMgdGhlIHVwZGF0ZWQgcHJpY2Ugd2l0aCAxMCUgaW5jcmVhc2UgYW5kIHRoZSB0YXggcmF0ZSBhcyBhbiBhcmd1bWVudCB0byB0aGUgdmFwcGx5KCkKbmV3X3ByaWNlX3dpdGhfdGF4CmBgYAoK</div>
 
 
 
