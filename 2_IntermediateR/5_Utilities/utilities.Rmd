@@ -37,3 +37,16 @@ Here are some useful data utilities in R:
 - as.*(): Convert an R object from one class to another.
 - `unlist()`: Flatten (possibly embedded) lists to produce a vector.
 
+```{r}
+# Print a sequence: from 1 up to 20 by increments of 2
+# ?seq gives:  seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)) ...)
+seq(from = 0, to = 20, by = 2) 
+
+# Repeat a list twice (a,b,a,b) with each appending at the end
+# ?rep shows:  rep(x, times = 1, length.out = NA, each = 1)
+rep(c(1,2,3), times = 3)
+
+# Repeat a list twice but copy is next to original
+rep(c("a", "b"), each = 2)
+```
+
