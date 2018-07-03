@@ -3,4 +3,37 @@ title: "R Utilities"
 output: html_notebook
 ---
 
-Empty notebook for utilities
+The main purpose of this particular notebook is go over some basic utilities that I will use extensively in R.  
+
+#### Mathematical Utilies
+
+Some of the useful utilies are:
+
+- `abs()`: Calculate the absolute value.
+- `sum()`: Calculate the sum of all the values in a data structure.
+- `mean()`: Calculate the arithmetic mean.
+- `round()`: Round the values to 0 decimal places by default. 
+
+#### Reversing a list
+
+- `rev()` might be useful for this purpose of reversing a list.  Here is an example:
+
+```{r}
+number_vector <- c(1,9,5,0)
+# reverses the order of any given vector
+rev(number_vector)
+```
+
+#### Data Utilities 
+
+Here are some useful data utilities in R:
+
+- `seq()`: Generate sequences, by specifying the from, to, and by arguments.
+- `rep()`: Repeat elements of vectors and lists.
+- `sort()`: Sort a vector in ascending order. Works on numerics, but also on character strings and logicals.
+- `str()`: Display the structure of any R object.
+- `append()`: Merge vectors or lists. It's similar to splice.
+- is.*(): Check for the class of an R object.
+- as.*(): Convert an R object from one class to another.
+- `unlist()`: Flatten (possibly embedded) lists to produce a vector.
+
