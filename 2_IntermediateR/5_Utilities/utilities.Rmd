@@ -108,7 +108,7 @@ emails[hits]
 # But subsetting also works with a vector of logical values
 ```
 
-# Regex - filter previous results
+#### Regex - better filter for previous results
 
 Suppose we want to filter the data more accurately:
 
@@ -117,10 +117,31 @@ We want to filter data via:  "\@name.edu":
 ```{r}
 # vector named emails was already declared in the preceding R script
 # Use grepl() to match for the more specific filter
-grepl("@.*\\.edu", emails)
+grepl("@.*\\.edu$", emails)
 ```
 
 Explanation of the filter is as follows:
 - `@` is self explanatory
 - `.*` has two parts: `.` is the character class which looks for any non-next line character, and `*` is the quantifier which implies to search for any length.  so `.*` is valid for searching any domain name between the `@` and `.` sign
-- `\\.` is the equavelent of a simple dot in R's regex
+- `\\.` is the equivalent of a simple dot in R's regex
+- `$` signifies the end of the string.  so the result has to end with this.
+
+
+#### Substitution through sub() and gsub()
+
+`sub()` and `gsub()` are powerful tools.  `sub()` only replaces the first match in an index, whereas `gsub()` will replace every single item. Note that the replacement string does not require to be in regex format.
+
+Here is an example where we replace the ending of any `@__.edu` to `@test.edu`:
+
+```{r}
+# The emails vector 
+emails <- c("john.doe@ivyleague.edu", "education@world.gov", "global@peace.org",
+            "invalid.edu", "quant@bigdatacollege.edu", "cookie.monster@sesame.tv")
+# Using sub ... again, replacement argument should not be in regex format
+sub("@.*\\.edu$", "@test.edu", emails)
+```
+
+
+
+
+
