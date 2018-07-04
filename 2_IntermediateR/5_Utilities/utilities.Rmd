@@ -202,7 +202,7 @@ NOTE: The main advantage of putting it in unix timestamp (POSIXct) is that we do
 
 #### Forcing stored date through as.Date()
 
-Remember, date is stored in the "%Y-%m-%d" (e.g. "2018-07-04").  If string happens to be in this format, no need to specify format.  Otherwise, a specific format using the appropriate '%' is required to be passed to `as.Date()`
+Remember, date is stored in the "%Y-%m-%d" (e.g. "2018-07-04").  If string happens to be in this format, no need to specify format.  Otherwise, a specific format using the appropriate '%' is required to be passed to `as.Date()`.  Moreover, once a data object, we can simply use `format()` to print it a certain way.  
 
 ```{r}
 # 3 different date formats we have as string and converting them to unix timestamp
@@ -213,7 +213,10 @@ date_char2 <- "Jan-13-82"
 as.Date(date_char2, format = "%b-%d-%y")
 
 date_char3 <- "13 January, 1982"
-as.Date(date_char3, format = "%d %B, %Y")
+to_format <- as.Date(date_char3, format = "%d %B, %Y")
+
+# Suppose we want to print to_format, which is now Date object as "MM YY" format
+format(to_format, "%m %y")
 ```
 
 
