@@ -142,6 +142,79 @@ sub("@.*\\.edu$", "@test.edu", emails)
 ```
 
 
+#### sub using parenthesis format
+
+Suppose we want to replace values that includes AA .. Az with the second letter only.  The appropriate regex format is:  "A([A-z])", which requires the parenthesis. Parenthesis is remembered which can be invoked as "\\1" in the replacement part.  
+
+```{r}
+# Replace parts with AA .. Az with the second letter only (A...z)
+gsub("A([A-z])", "\\1", "12AB99Az")
+```
+
+Another example would be to extract the number of nominations from a vector called awards.  Each index contains the ending "... nominations".  Here is a sample code:
+
+```{r}
+# a vector called awards with dummy data on number of nominations
+awards <- c("Won 1 Oscar. Another 9 wins & 24 nominations.",
+  "1 win and 2 nominations.",
+  "2 wins & 3 nominations.",
+  "Nominated for 2 Golden Globes. 1 more win & 2 nominations.",
+  "4 wins & 1 nomination.")
+
+nominations <- sub(".*\\s([0-9]+)\\snomination.*$", "\\1", awards)
+# Should print the number of nominations each index has.  
+nominations
+```
+
+
+#### Sys.___  to get time date
+
+Sys.Date() can be used to get current data, Sys.time() for the time
+
+Sys.Date() is an instance of Date object.  Sys.time() is an instance of POSIXct object.
+
+```{r}
+# Get the current date: today
+today <- Sys.Date()
+today
+
+# Get the current time: now
+now <-  Sys.time()
+now
+```
+
+
+#### Data formatting in R:
+
+The character string has to obey a format that can be defined using a set of symbols (the examples correspond to 13 January, 1982):
+
+
+- %Y: 4-digit year (1982)
+- %y: 2-digit year (82)
+- %m: 2-digit month (01)
+- %d: 2-digit day of the month (13)
+- %A: weekday (Wednesday)
+- %a: abbreviated weekday (Wed)
+- %B: month (January)
+- %b: abbreviated month (Jan)
+
+NOTE: The main advantage of putting it in unix timestamp (POSIXct) is that we do basic mathematical operation with them (adding date, determining differences)
+
+#### Forcing stored date through as.Date()
+
+Remember, date is stored in the "%Y-%m-%d" (e.g. "2018-07-04").  If string happens to be in this format, no need to specify format.  Otherwise, a specific format using the appropriate '%' is required to be passed to `as.Date()`
+
+```{r}
+# 3 different date formats we have as string and converting them to unix timestamp
+date_char1 <- "1982-01-13"
+as.Date(date_char1)
+
+date_char2 <- "Jan-13-82"
+as.Date(date_char2, format = "%b-%d-%y")
+
+date_char3 <- "13 January, 1982"
+as.Date(date_char3, format = "%d %B, %Y")
+```
 
 
 

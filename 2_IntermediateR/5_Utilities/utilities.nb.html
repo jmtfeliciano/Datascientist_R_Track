@@ -172,10 +172,308 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>Empty notebook for utilities</p>
+<p>The main purpose of this particular notebook is go over some basic utilities that I will use extensively in R.</p>
+<div id="mathematical-utilies" class="section level4">
+<h4>Mathematical Utilies</h4>
+<p>Some of the useful utilies are:</p>
+<ul>
+<li><code>abs()</code>: Calculate the absolute value.</li>
+<li><code>sum()</code>: Calculate the sum of all the values in a data structure.</li>
+<li><code>mean()</code>: Calculate the arithmetic mean.</li>
+<li><code>round()</code>: Round the values to 0 decimal places by default.</li>
+</ul>
+</div>
+<div id="reversing-a-list" class="section level4">
+<h4>Reversing a list</h4>
+<ul>
+<li><code>rev()</code> might be useful for this purpose of reversing a list. Here is an example:</li>
+</ul>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtYmVyX3ZlY3RvciA8LSBjKDEsOSw1LDApXG4jIHJldmVyc2VzIHRoZSBvcmRlciBvZiBhbnkgZ2l2ZW4gdmVjdG9yXG5yZXYobnVtYmVyX3ZlY3RvcilcbmBgYCJ9 -->
+<pre class="r"><code>number_vector &lt;- c(1,9,5,0)
+# reverses the order of any given vector
+rev(number_vector)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAgNSA5IDFcbiJ9 -->
+<pre><code>[1] 0 5 9 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="data-utilities" class="section level4">
+<h4>Data Utilities</h4>
+<p>Here are some useful data utilities in R:</p>
+<ul>
+<li><code>seq()</code>: Generate sequences, by specifying the from, to, and by arguments.</li>
+<li><code>rep()</code>: Repeat elements of vectors and lists.</li>
+<li><code>sort()</code>: Sort a vector in ascending order. Works on numerics, but also on character strings and logicals.</li>
+<li><code>str()</code>: Display the structure of any R object.</li>
+<li><code>append()</code>: Merge vectors or lists. It’s similar to splice.</li>
+<li>is.*(): Check for the class of an R object.</li>
+<li>as.*(): Convert an R object from one class to another.</li>
+<li><code>unlist()</code>: Flatten (possibly embedded) lists to produce a vector.</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmludCBhIHNlcXVlbmNlOiBmcm9tIDEgdXAgdG8gMjAgYnkgaW5jcmVtZW50cyBvZiAyXG4jID9zZXEgZ2l2ZXM6ICBzZXEoZnJvbSA9IDEsIHRvID0gMSwgYnkgPSAoKHRvIC0gZnJvbSkvKGxlbmd0aC5vdXQgLSAxKSkgLi4uKVxuc2VxKGZyb20gPSAwLCB0byA9IDIwLCBieSA9IDIpIFxuYGBgIn0= -->
+<pre class="r"><code># Print a sequence: from 1 up to 20 by increments of 2
+# ?seq gives:  seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)) ...)
+seq(from = 0, to = 20, by = 2) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMCAgMiAgNCAgNiAgOCAxMCAxMiAxNCAxNiAxOCAyMFxuIn0= -->
+<pre><code> [1]  0  2  4  6  8 10 12 14 16 18 20</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmludCBhIHNlcXVlbmNlIGZyb20gMTAgdG8gNSBieSBpbmNyZW1lbnRzIG9mIC0wLjVcbnNlcSgxMCwgNSwgLTAuNSlcbmBgYCJ9 -->
+<pre class="r"><code># Print a sequence from 10 to 5 by increments of -0.5
+seq(10, 5, -0.5)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxMC4wICA5LjUgIDkuMCAgOC41ICA4LjAgIDcuNSAgNy4wICA2LjUgIDYuMCAgNS41ICA1LjBcbiJ9 -->
+<pre><code> [1] 10.0  9.5  9.0  8.5  8.0  7.5  7.0  6.5  6.0  5.5  5.0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBSZXBlYXQgYSBsaXN0IHR3aWNlIChhLGIsYSxiKSB3aXRoIGVhY2ggYXBwZW5kaW5nIGF0IHRoZSBlbmRcbiMgP3JlcCBzaG93czogIHJlcCh4LCB0aW1lcyA9IDEsIGxlbmd0aC5vdXQgPSBOQSwgZWFjaCA9IDEpXG5yZXAoYygxLDIsMyksIHRpbWVzID0gMylcbmBgYCJ9 -->
+<pre class="r"><code># Repeat a list twice (a,b,a,b) with each appending at the end
+# ?rep shows:  rep(x, times = 1, length.out = NA, each = 1)
+rep(c(1,2,3), times = 3)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEgMiAzIDEgMiAzIDEgMiAzXG4ifQ== -->
+<pre><code>[1] 1 2 3 1 2 3 1 2 3</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBSZXBlYXQgYSBsaXN0IHR3aWNlIGJ1dCBjb3B5IGlzIG5leHQgdG8gb3JpZ2luYWxcbnJlcChjKFwiYVwiLCBcImJcIiksIGVhY2ggPSAyKVxuYGBgIn0= -->
+<pre class="r"><code># Repeat a list twice but copy is next to original
+rep(c(&quot;a&quot;, &quot;b&quot;), each = 2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYVwiIFwiYVwiIFwiYlwiIFwiYlwiXG4ifQ== -->
+<pre><code>[1] &quot;a&quot; &quot;a&quot; &quot;b&quot; &quot;b&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb21iaW5lIDIgbGlzdCBpbiBpbmRleCAzIG9mIHRoZSBmaXJzdCBsaXN0XG4jIHN0cihhcHBlbmQpIGdpdmVzOiBmdW5jdGlvbiAoeCwgdmFsdWVzLCBhZnRlciA9IGxlbmd0aCh4KSkgXG5hcHBlbmQoYygxLDIsMyw0LDUpLCBjKFwiYVwiLCBcImJcIiksIGFmdGVyID0gMilcbmBgYCJ9 -->
+<pre class="r"><code># Combine 2 list in index 3 of the first list
+# str(append) gives: function (x, values, after = length(x)) 
+append(c(1,2,3,4,5), c(&quot;a&quot;, &quot;b&quot;), after = 2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMVwiIFwiMlwiIFwiYVwiIFwiYlwiIFwiM1wiIFwiNFwiIFwiNVwiXG4ifQ== -->
+<pre><code>[1] &quot;1&quot; &quot;2&quot; &quot;a&quot; &quot;b&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="note-using-sum-and-the-plus-sign" class="section level4">
+<h4>Note using sum() and the plus sign (+)</h4>
+<p>Suppose we have two vectors (1,1,1,1,1) and (1,2) and want to get the sum of all the vector entries. the order of sum and + matters.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUd28gdmVjdG9ycyBvZiBpbnRlcmVzdC4gIFRoZSBzdW0gb2YgYWxsIGl0ZW1zIGlzIDggYnkgaW5zcGVjdGlvblxudmVjMSA8LSBjKDEsMSwxLDEsMSlcbnZlYzIgPC0gYygxLDIpXG4jIFRoZSBpbmNvcnJlY3Qgd2F5IGFuZCBSIHdpbGwgZ2l2ZSBhbiBhbnN3ZXIgd2l0aCBhbiBlcnJvci4gIGRpbSB2ZWMgMSA9Lz0gZGltIHZlYzIgXG5zdW0odmVjMSArIHZlYzIpIFxuYGBgIn0= -->
+<pre class="r"><code># Two vectors of interest.  The sum of all items is 8 by inspection
+vec1 &lt;- c(1,1,1,1,1)
+vec2 &lt;- c(1,2)
+# The incorrect way and R will give an answer with an error.  dim vec 1 =/= dim vec2 
+sum(vec1 + vec2) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoibG9uZ2VyIG9iamVjdCBsZW5ndGggaXMgbm90IGEgbXVsdGlwbGUgb2Ygc2hvcnRlciBvYmplY3QgbGVuZ3RoXG4ifQ== -->
+<pre><code>longer object length is not a multiple of shorter object length</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEyXG4ifQ== -->
+<pre><code>[1] 12</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUd28gY29ycmVjdCB3YXlzOlxuc3VtKGModmVjMSwgdmVjMikpXG5gYGAifQ== -->
+<pre class="r"><code># Two correct ways:
+sum(c(vec1, vec2))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDhcbiJ9 -->
+<pre><code>[1] 8</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtKHZlYzEpICsgc3VtKHZlYzIpXG5gYGAifQ== -->
+<pre class="r"><code>sum(vec1) + sum(vec2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDhcbiJ9 -->
+<pre><code>[1] 8</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="regex-using-grepl-and-grep" class="section level4">
+<h4>Regex using grepl() and grep()</h4>
+<p><code>grepl()</code> returns a logical–makes sense given the l whereas <code>grep()</code> gives a vector of indices where the pattern is found in a vector which is useful for subsetting. If the variable given to grep() is of length 1, it will just return 1.</p>
+<p>Before I do tasks with <code>grepl()</code>, I will examine the str of grepl to see the parameters involved:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGdyZXBsKVxuZnVuY3Rpb24gKHBhdHRlcm4sIHgsIGlnbm9yZS5jYXNlID0gRkFMU0UsIHBlcmwgPSBGQUxTRSwgZml4ZWQgPSBGQUxTRSwgXG4gICAgdXNlQnl0ZXMgPSBGQUxTRSlcbmBgYCJ9 -->
+<pre class="r"><code>str(grepl)
+function (pattern, x, ignore.case = FALSE, perl = FALSE, fixed = FALSE, 
+    useBytes = FALSE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Knowing the basic structure, let’s go over this basic code and what each do:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUaGUgZW1haWxzIHZlY3RvciBoYXMgYWxyZWFkeSBiZWVuIGRlZmluZWQgZm9yIHlvdVxuZW1haWxzIDwtIGMoXCJqb2huLmRvZUBpdnlsZWFndWUuZWR1XCIsIFwiZWR1Y2F0aW9uQHdvcmxkLmdvdlwiLCBcImRhbGFpLmxhbWFAcGVhY2Uub3JnXCIsXG4gICAgICAgICAgICBcImludmFsaWQuZWR1XCIsIFwicXVhbnRAYmlnZGF0YWNvbGxlZ2UuZWR1XCIsIFwiY29va2llLm1vbnN0ZXJAc2VzYW1lLnR2XCIpXG4jIFVzZSBncmVwbCgpIHRvIG1hdGNoIGZvciBcImVkdVwiXG5ncmVwbChcImVkdVwiLCBlbWFpbHMpXG5gYGAifQ== -->
+<pre class="r"><code># The emails vector has already been defined for you
+emails &lt;- c(&quot;john.doe@ivyleague.edu&quot;, &quot;education@world.gov&quot;, &quot;dalai.lama@peace.org&quot;,
+            &quot;invalid.edu&quot;, &quot;quant@bigdatacollege.edu&quot;, &quot;cookie.monster@sesame.tv&quot;)
+# Use grepl() to match for &quot;edu&quot;
+grepl(&quot;edu&quot;, emails)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICBUUlVFICBUUlVFIEZBTFNFICBUUlVFICBUUlVFIEZBTFNFXG4ifQ== -->
+<pre><code>[1]  TRUE  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2UgZ3JlcCgpIHRvIG1hdGNoIGZvciBcImVkdVwiLCBzYXZlIHJlc3VsdCB0byBoaXRzXG5oaXRzIDwtIGdyZXAoXCJlZHVcIiwgZW1haWxzKVxuIyBTdWJzZXQgZW1haWxzIHVzaW5nIGhpdHNcbmVtYWlsc1toaXRzXVxuYGBgIn0= -->
+<pre class="r"><code># Use grep() to match for &quot;edu&quot;, save result to hits
+hits &lt;- grep(&quot;edu&quot;, emails)
+# Subset emails using hits
+emails[hits]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiam9obi5kb2VAaXZ5bGVhZ3VlLmVkdVwiICAgXCJlZHVjYXRpb25Ad29ybGQuZ292XCIgICAgICBcImludmFsaWQuZWR1XCIgICAgICAgICAgICAgXG5bNF0gXCJxdWFudEBiaWdkYXRhY29sbGVnZS5lZHVcIlxuIn0= -->
+<pre><code>[1] &quot;john.doe@ivyleague.edu&quot;   &quot;education@world.gov&quot;      &quot;invalid.edu&quot;             
+[4] &quot;quant@bigdatacollege.edu&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="regex---better-filter-for-previous-results" class="section level4">
+<h4>Regex - better filter for previous results</h4>
+<p>Suppose we want to filter the data more accurately:</p>
+<p>We want to filter data via: “@name.edu”:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB2ZWN0b3IgbmFtZWQgZW1haWxzIHdhcyBhbHJlYWR5IGRlY2xhcmVkIGluIHRoZSBwcmVjZWRpbmcgUiBzY3JpcHRcbiMgVXNlIGdyZXBsKCkgdG8gbWF0Y2ggZm9yIHRoZSBtb3JlIHNwZWNpZmljIGZpbHRlclxuZ3JlcGwoXCJALipcXC5lZHVcIiwgZW1haWxzKVxuYGBgIn0= -->
+<pre class="r"><code># vector named emails was already declared in the preceding R script
+# Use grepl() to match for the more specific filter
+grepl(&quot;@.*\.edu&quot;, emails)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6ICdcXC4nIGlzIGFuIHVucmVjb2duaXplZCBlc2NhcGUgaW4gY2hhcmFjdGVyIHN0cmluZyBzdGFydGluZyBcIlwiQC4qXFwuXCJcbiJ9 -->
+<pre><code>Error: '\.' is an unrecognized escape in character string starting &quot;&quot;@.*\.&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Explanation of the filter is as follows: - <code>@</code> is self explanatory - <code>.*</code> has two parts: <code>.</code> is the character class which looks for any non-next line character, and <code>*</code> is the quantifier which implies to search for any length. so <code>.*</code> is valid for searching any domain name between the <code>@</code> and <code>.</code> sign - <code>\\.</code> is the equivalent of a simple dot in R’s regex - <code>$</code> signifies the end of the string. so the result has to end with this.</p>
+</div>
+<div id="substitution-through-sub-and-gsub" class="section level4">
+<h4>Substitution through sub() and gsub()</h4>
+<p><code>sub()</code> and <code>gsub()</code> are powerful tools. <code>sub()</code> only replaces the first match in an index, whereas <code>gsub()</code> will replace every single item. Note that the replacement string does not require to be in regex format.</p>
+<p>Here is an example where we replace the ending of any <code>@__.edu</code> to <code>@test.edu</code>:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUaGUgZW1haWxzIHZlY3RvciBcbmVtYWlscyA8LSBjKFwiam9obi5kb2VAaXZ5bGVhZ3VlLmVkdVwiLCBcImVkdWNhdGlvbkB3b3JsZC5nb3ZcIiwgXCJnbG9iYWxAcGVhY2Uub3JnXCIsXG4gICAgICAgICAgICBcImludmFsaWQuZWR1XCIsIFwicXVhbnRAYmlnZGF0YWNvbGxlZ2UuZWR1XCIsIFwiY29va2llLm1vbnN0ZXJAc2VzYW1lLnR2XCIpXG4jIFVzaW5nIHN1YjpcbnN1YihcIkAuKlxcXFwuZWR1XCIsIFwiQHRlc3RcXFxcLmVkdVwiLCBlbWFpbHMpXG5gYGAifQ== -->
+<pre class="r"><code># The emails vector 
+emails &lt;- c(&quot;john.doe@ivyleague.edu&quot;, &quot;education@world.gov&quot;, &quot;global@peace.org&quot;,
+            &quot;invalid.edu&quot;, &quot;quant@bigdatacollege.edu&quot;, &quot;cookie.monster@sesame.tv&quot;)
+# Using sub:
+sub(&quot;@.*\\.edu&quot;, &quot;@test\\.edu&quot;, emails)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiam9obi5kb2VAdGVzdC5lZHVcIiAgICAgICAgXCJlZHVjYXRpb25Ad29ybGQuZ292XCIgICAgICBcImdsb2JhbEBwZWFjZS5vcmdcIiAgICAgICAgXG5bNF0gXCJpbnZhbGlkLmVkdVwiICAgICAgICAgICAgICBcInF1YW50QHRlc3QuZWR1XCIgICAgICAgICAgIFwiY29va2llLm1vbnN0ZXJAc2VzYW1lLnR2XCJcbiJ9 -->
+<pre><code>[1] &quot;john.doe@test.edu&quot;        &quot;education@world.gov&quot;      &quot;global@peace.org&quot;        
+[4] &quot;invalid.edu&quot;              &quot;quant@test.edu&quot;           &quot;cookie.monster@sesame.tv&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="sub-using-parenthesis-format" class="section level4">
+<h4>sub using parenthesis format</h4>
+<p>Suppose we want to replace values that includes AA .. Az with the second letter only. The appropriate regex format is: “A([A-z])”, which requires the parenthesis. Parenthesis is remembered which can be invoked as “\1” in the replacement part.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBSZXBsYWNlIHBhcnRzIHdpdGggQUEgLi4gQXogd2l0aCB0aGUgc2Vjb25kIGxldHRlciBvbmx5IChBLi4ueilcbmdzdWIoXCJBKFtBLXpdKVwiLCBcIlxcXFwxXCIsIFwiMTJBQjk5QXpcIilcbmBgYCJ9 -->
+<pre class="r"><code># Replace parts with AA .. Az with the second letter only (A...z)
+gsub(&quot;A([A-z])&quot;, &quot;\\1&quot;, &quot;12AB99Az&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTJCOTl6XCJcbiJ9 -->
+<pre><code>[1] &quot;12B99z&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Another example would be to extract the number of nominations from a vector called awards. Each index contains the ending “… nominations”. Here is a sample code:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBhIHZlY3RvciBjYWxsZWQgYXdhcmRzIHdpdGggZHVtbXkgZGF0YSBvbiBudW1iZXIgb2Ygbm9taW5hdGlvbnNcbmF3YXJkcyA8LSBjKFwiV29uIDEgT3NjYXIuIEFub3RoZXIgOSB3aW5zICYgMjQgbm9taW5hdGlvbnMuXCIsXG4gIFwiMSB3aW4gYW5kIDIgbm9taW5hdGlvbnMuXCIsXG4gIFwiMiB3aW5zICYgMyBub21pbmF0aW9ucy5cIixcbiAgXCJOb21pbmF0ZWQgZm9yIDIgR29sZGVuIEdsb2Jlcy4gMSBtb3JlIHdpbiAmIDIgbm9taW5hdGlvbnMuXCIsXG4gIFwiNCB3aW5zICYgMSBub21pbmF0aW9uLlwiKVxubm9taW5hdGlvbnMgPC0gc3ViKFwiLipcXFxccyhbMC05XSspXFxcXHNub21pbmF0aW9uLiokXCIsIFwiXFxcXDFcIiwgYXdhcmRzKVxubm9taW5hdGlvbnNcbmBgYCJ9 -->
+<pre class="r"><code># a vector called awards with dummy data on number of nominations
+awards &lt;- c(&quot;Won 1 Oscar. Another 9 wins &amp; 24 nominations.&quot;,
+  &quot;1 win and 2 nominations.&quot;,
+  &quot;2 wins &amp; 3 nominations.&quot;,
+  &quot;Nominated for 2 Golden Globes. 1 more win &amp; 2 nominations.&quot;,
+  &quot;4 wins &amp; 1 nomination.&quot;)
+nominations &lt;- sub(&quot;.*\\s([0-9]+)\\snomination.*$&quot;, &quot;\\1&quot;, awards)
+nominations</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjRcIiBcIjJcIiAgXCIzXCIgIFwiMlwiICBcIjFcIiBcbiJ9 -->
+<pre><code>[1] &quot;24&quot; &quot;2&quot;  &quot;3&quot;  &quot;2&quot;  &quot;1&quot; </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="sys.___-to-get-time-date" class="section level4">
+<h4>Sys.___ to get time date</h4>
+<p>Sys.Date() can be used to get current data, Sys.time() for the time</p>
+<p>Sys.Date() is an instance of Date object. Sys.time() is an instance of POSIXct object.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZXQgdGhlIGN1cnJlbnQgZGF0ZTogdG9kYXlcbnRvZGF5IDwtIFN5cy5EYXRlKClcbnRvZGF5XG5gYGAifQ== -->
+<pre class="r"><code># Get the current date: today
+today &lt;- Sys.Date()
+today</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAxOC0wNy0wNFwiXG4ifQ== -->
+<pre><code>[1] &quot;2018-07-04&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZXQgdGhlIGN1cnJlbnQgdGltZTogbm93XG5ub3cgPC0gU3lzLnRpbWUoKVxubm93XG5gYGAifQ== -->
+<pre class="r"><code># Get the current time: now
+now &lt;- Sys.time()
+now</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMjAxOC0wNy0wNCAwMzozMjoxOSBHTVRcIlxuIn0= -->
+<pre><code>[1] &quot;2018-07-04 03:32:19 GMT&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="data-formatting-in-r" class="section level4">
+<h4>Data formatting in R:</h4>
+<p>The character string has to obey a format that can be defined using a set of symbols (the examples correspond to 13 January, 1982):</p>
+<ul>
+<li>%Y: 4-digit year (1982)</li>
+<li>%y: 2-digit year (82)</li>
+<li>%m: 2-digit month (01)</li>
+<li>%d: 2-digit day of the month (13)</li>
+<li>%A: weekday (Wednesday)</li>
+<li>%a: abbreviated weekday (Wed)</li>
+<li>%B: month (January)</li>
+<li>%b: abbreviated month (Jan)</li>
+</ul>
+<p>NOTE: The main advantage of putting it in unix timestamp (POSIXct) is that we do basic mathematical operation with them (adding date, determining differences)</p>
+</div>
+<div id="forcing-stored-date-through-as.date" class="section level4">
+<h4>Forcing stored date through as.Date()</h4>
+<p>Remember, date is stored in the “%Y-%m-%d” (e.g. “2018-07-04”). If string happens to be in this format, no need to specify format. Otherwise, a specific format using the appropriate ‘%’ is required to be passed to <code>as.Date()</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyAzIGRpZmZlcmVudCBkYXRlIGZvcm1hdHMgd2UgaGF2ZSBhcyBzdHJpbmcgYW5kIGNvbnZlcnRpbmcgdGhlbSB0byB1bml4IHRpbWVzdGFtcFxuZGF0ZV9jaGFyMSA8LSBcIjE5ODItMDEtMTNcIlxuYXMuRGF0ZShkYXRlX2NoYXIxKVxuYGBgIn0= -->
+<pre class="r"><code># 3 different date formats we have as string and converting them to unix timestamp
+date_char1 &lt;- &quot;1982-01-13&quot;
+as.Date(date_char1)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTk4Mi0wMS0xM1wiXG4ifQ== -->
+<pre><code>[1] &quot;1982-01-13&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0ZV9jaGFyMiA8LSBcIkphbi0xMy04MlwiXG5hcy5EYXRlKGRhdGVfY2hhcjIsIGZvcm1hdCA9IFwiJWItJWQtJXlcIilcbmBgYCJ9 -->
+<pre class="r"><code>date_char2 &lt;- &quot;Jan-13-82&quot;
+as.Date(date_char2, format = &quot;%b-%d-%y&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTk4Mi0wMS0xM1wiXG4ifQ== -->
+<pre><code>[1] &quot;1982-01-13&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0ZV9jaGFyMyA8LSBcIjEzIEphbnVhcnksIDE5ODJcIlxuYXMuRGF0ZShkYXRlX2NoYXIzLCBmb3JtYXQgPSBcIiVkICVCLCAlWVwiKVxuYGBgIn0= -->
+<pre class="r"><code>date_char3 &lt;- &quot;13 January, 1982&quot;
+as.Date(date_char3, format = &quot;%d %B, %Y&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTk4Mi0wMS0xM1wiXG4ifQ== -->
+<pre><code>[1] &quot;1982-01-13&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBVdGlsaXRpZXMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCkVtcHR5IG5vdGVib29rIGZvciB1dGlsaXRpZXM=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBVdGlsaXRpZXMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoZSBtYWluIHB1cnBvc2Ugb2YgdGhpcyBwYXJ0aWN1bGFyIG5vdGVib29rIGlzIGdvIG92ZXIgc29tZSBiYXNpYyB1dGlsaXRpZXMgdGhhdCBJIHdpbGwgdXNlIGV4dGVuc2l2ZWx5IGluIFIuICAKCiMjIyMgTWF0aGVtYXRpY2FsIFV0aWxpZXMKClNvbWUgb2YgdGhlIHVzZWZ1bCB1dGlsaWVzIGFyZToKCi0gYGFicygpYDogQ2FsY3VsYXRlIHRoZSBhYnNvbHV0ZSB2YWx1ZS4KLSBgc3VtKClgOiBDYWxjdWxhdGUgdGhlIHN1bSBvZiBhbGwgdGhlIHZhbHVlcyBpbiBhIGRhdGEgc3RydWN0dXJlLgotIGBtZWFuKClgOiBDYWxjdWxhdGUgdGhlIGFyaXRobWV0aWMgbWVhbi4KLSBgcm91bmQoKWA6IFJvdW5kIHRoZSB2YWx1ZXMgdG8gMCBkZWNpbWFsIHBsYWNlcyBieSBkZWZhdWx0LiAKCiMjIyMgUmV2ZXJzaW5nIGEgbGlzdAoKLSBgcmV2KClgIG1pZ2h0IGJlIHVzZWZ1bCBmb3IgdGhpcyBwdXJwb3NlIG9mIHJldmVyc2luZyBhIGxpc3QuICBIZXJlIGlzIGFuIGV4YW1wbGU6CgpgYGB7cn0KbnVtYmVyX3ZlY3RvciA8LSBjKDEsOSw1LDApCiMgcmV2ZXJzZXMgdGhlIG9yZGVyIG9mIGFueSBnaXZlbiB2ZWN0b3IKcmV2KG51bWJlcl92ZWN0b3IpCmBgYAoKIyMjIyBEYXRhIFV0aWxpdGllcyAKCkhlcmUgYXJlIHNvbWUgdXNlZnVsIGRhdGEgdXRpbGl0aWVzIGluIFI6CgotIGBzZXEoKWA6IEdlbmVyYXRlIHNlcXVlbmNlcywgYnkgc3BlY2lmeWluZyB0aGUgZnJvbSwgdG8sIGFuZCBieSBhcmd1bWVudHMuCi0gYHJlcCgpYDogUmVwZWF0IGVsZW1lbnRzIG9mIHZlY3RvcnMgYW5kIGxpc3RzLgotIGBzb3J0KClgOiBTb3J0IGEgdmVjdG9yIGluIGFzY2VuZGluZyBvcmRlci4gV29ya3Mgb24gbnVtZXJpY3MsIGJ1dCBhbHNvIG9uIGNoYXJhY3RlciBzdHJpbmdzIGFuZCBsb2dpY2Fscy4KLSBgc3RyKClgOiBEaXNwbGF5IHRoZSBzdHJ1Y3R1cmUgb2YgYW55IFIgb2JqZWN0LgotIGBhcHBlbmQoKWA6IE1lcmdlIHZlY3RvcnMgb3IgbGlzdHMuIEl0J3Mgc2ltaWxhciB0byBzcGxpY2UuCi0gaXMuKigpOiBDaGVjayBmb3IgdGhlIGNsYXNzIG9mIGFuIFIgb2JqZWN0LgotIGFzLiooKTogQ29udmVydCBhbiBSIG9iamVjdCBmcm9tIG9uZSBjbGFzcyB0byBhbm90aGVyLgotIGB1bmxpc3QoKWA6IEZsYXR0ZW4gKHBvc3NpYmx5IGVtYmVkZGVkKSBsaXN0cyB0byBwcm9kdWNlIGEgdmVjdG9yLgoKYGBge3J9CiMgUHJpbnQgYSBzZXF1ZW5jZTogZnJvbSAxIHVwIHRvIDIwIGJ5IGluY3JlbWVudHMgb2YgMgojID9zZXEgZ2l2ZXM6ICBzZXEoZnJvbSA9IDEsIHRvID0gMSwgYnkgPSAoKHRvIC0gZnJvbSkvKGxlbmd0aC5vdXQgLSAxKSkgLi4uKQpzZXEoZnJvbSA9IDAsIHRvID0gMjAsIGJ5ID0gMikgCgojIFByaW50IGEgc2VxdWVuY2UgZnJvbSAxMCB0byA1IGJ5IGluY3JlbWVudHMgb2YgLTAuNQpzZXEoMTAsIDUsIC0wLjUpCgojIFJlcGVhdCBhIGxpc3QgdHdpY2UgKGEsYixhLGIpIHdpdGggZWFjaCBhcHBlbmRpbmcgYXQgdGhlIGVuZAojID9yZXAgc2hvd3M6ICByZXAoeCwgdGltZXMgPSAxLCBsZW5ndGgub3V0ID0gTkEsIGVhY2ggPSAxKQpyZXAoYygxLDIsMyksIHRpbWVzID0gMykKCiMgUmVwZWF0IGEgbGlzdCB0d2ljZSBidXQgY29weSBpcyBuZXh0IHRvIG9yaWdpbmFsCnJlcChjKCJhIiwgImIiKSwgZWFjaCA9IDIpCgojIENvbWJpbmUgMiBsaXN0IGluIGluZGV4IDMgb2YgdGhlIGZpcnN0IGxpc3QKIyBzdHIoYXBwZW5kKSBnaXZlczogZnVuY3Rpb24gKHgsIHZhbHVlcywgYWZ0ZXIgPSBsZW5ndGgoeCkpIAphcHBlbmQoYygxLDIsMyw0LDUpLCBjKCJhIiwgImIiKSwgYWZ0ZXIgPSAyKQpgYGAKCgojIyMjIE5vdGUgdXNpbmcgc3VtKCkgYW5kIHRoZSBwbHVzIHNpZ24gKCspCgpTdXBwb3NlIHdlIGhhdmUgdHdvIHZlY3RvcnMgKDEsMSwxLDEsMSkgYW5kICgxLDIpIGFuZCB3YW50IHRvIGdldCB0aGUgc3VtIG9mIGFsbCB0aGUgdmVjdG9yIGVudHJpZXMuIHRoZSBvcmRlciBvZiBzdW0gYW5kICsgbWF0dGVycy4gIAoKYGBge3J9CiMgVHdvIHZlY3RvcnMgb2YgaW50ZXJlc3QuICBUaGUgc3VtIG9mIGFsbCBpdGVtcyBpcyA4IGJ5IGluc3BlY3Rpb24KdmVjMSA8LSBjKDEsMSwxLDEsMSkKdmVjMiA8LSBjKDEsMikKCiMgVGhlIGluY29ycmVjdCB3YXkgYW5kIFIgd2lsbCBnaXZlIGFuIGFuc3dlciB3aXRoIGFuIGVycm9yLiAgZGltIHZlYyAxID0vPSBkaW0gdmVjMiAKc3VtKHZlYzEgKyB2ZWMyKSAKCiMgVHdvIGNvcnJlY3Qgd2F5cyB3aGljaCB3aWxsIGJvdGggeWllbGQgOApzdW0oYyh2ZWMxLCB2ZWMyKSkKc3VtKHZlYzEpICsgc3VtKHZlYzIpCmBgYAoKIyMjIyBSZWdleCB1c2luZyBncmVwbCgpIGFuZCBncmVwKCkKCmBncmVwbCgpYCByZXR1cm5zIGEgbG9naWNhbC0tbWFrZXMgc2Vuc2UgZ2l2ZW4gdGhlIGwKd2hlcmVhcyBgZ3JlcCgpYCBnaXZlcyBhIHZlY3RvciBvZiBpbmRpY2VzIHdoZXJlIHRoZSBwYXR0ZXJuIGlzIGZvdW5kIGluIGEgdmVjdG9yIHdoaWNoIGlzIHVzZWZ1bCBmb3Igc3Vic2V0dGluZy4gIElmIHRoZSB2YXJpYWJsZSBnaXZlbiB0byBncmVwKCkgaXMgb2YgbGVuZ3RoIDEsIGl0IHdpbGwganVzdCByZXR1cm4gMS4gIAoKQmVmb3JlIEkgZG8gdGFza3Mgd2l0aCBgZ3JlcGwoKWAsIEkgd2lsbCBleGFtaW5lIHRoZSBzdHIgb2YgZ3JlcGwgdG8gc2VlIHRoZSBwYXJhbWV0ZXJzIGludm9sdmVkOgoKYGBge3J9CnN0cihncmVwbCkKZnVuY3Rpb24gKHBhdHRlcm4sIHgsIGlnbm9yZS5jYXNlID0gRkFMU0UsIHBlcmwgPSBGQUxTRSwgZml4ZWQgPSBGQUxTRSwgCiAgICB1c2VCeXRlcyA9IEZBTFNFKQpgYGAKCktub3dpbmcgdGhlIGJhc2ljIHN0cnVjdHVyZSwgbGV0J3MgZ28gb3ZlciB0aGlzIGJhc2ljIGNvZGUgYW5kIHdoYXQgZWFjaCBkbzoKCmBgYHtyfQojIEFuIGVtYWlscyB2ZWN0b3IKZW1haWxzIDwtIGMoImpvaG4uZG9lQGl2eWxlYWd1ZS5lZHUiLCAiZWR1Y2F0aW9uQHdvcmxkLmdvdiIsICJkYWxhaS5sYW1hQHBlYWNlLm9yZyIsCiAgICAgICAgICAgICJpbnZhbGlkLmVkdSIsICJxdWFudEBiaWdkYXRhY29sbGVnZS5lZHUiLCAiY29va2llLm1vbnN0ZXJAc2VzYW1lLnR2IikKCiMgVXNlIGdyZXBsKCkgdG8gbWF0Y2ggZm9yICJlZHUiLCBpdCByZXR1cm5zIGEgbG9naWNhbCB2ZWN0b3IKZ3JlcGwoImVkdSIsIGVtYWlscykKCiMgVXNlIGdyZXAoKSB0byBtYXRjaCBmb3IgImVkdSIsIHNhdmVzIHJlc3VsdCBpbiB2ZWN0b3Igd2l0aCBtYXRjaGVkIGluZGVjZXMKaGl0cyA8LSBncmVwKCJlZHUiLCBlbWFpbHMpCgojIFN1YnNldCBlbWFpbHMgdXNpbmcgaGl0cwplbWFpbHNbaGl0c10KCiMgTm90ZTogIFN1YnNldHRpbmcgY2FuIGJlIGZlZCB3aXRoIGEgdmVjdG9yIG9mIGluZGVjZXMgbGlrZSBhYm92ZSAKIyBCdXQgc3Vic2V0dGluZyBhbHNvIHdvcmtzIHdpdGggYSB2ZWN0b3Igb2YgbG9naWNhbCB2YWx1ZXMKYGBgCgojIyMjIFJlZ2V4IC0gYmV0dGVyIGZpbHRlciBmb3IgcHJldmlvdXMgcmVzdWx0cwoKU3VwcG9zZSB3ZSB3YW50IHRvIGZpbHRlciB0aGUgZGF0YSBtb3JlIGFjY3VyYXRlbHk6CgpXZSB3YW50IHRvIGZpbHRlciBkYXRhIHZpYTogICJcQG5hbWUuZWR1IjoKCmBgYHtyfQojIHZlY3RvciBuYW1lZCBlbWFpbHMgd2FzIGFscmVhZHkgZGVjbGFyZWQgaW4gdGhlIHByZWNlZGluZyBSIHNjcmlwdAojIFVzZSBncmVwbCgpIHRvIG1hdGNoIGZvciB0aGUgbW9yZSBzcGVjaWZpYyBmaWx0ZXIKZ3JlcGwoIkAuKlxcLmVkdSQiLCBlbWFpbHMpCmBgYAoKRXhwbGFuYXRpb24gb2YgdGhlIGZpbHRlciBpcyBhcyBmb2xsb3dzOgotIGBAYCBpcyBzZWxmIGV4cGxhbmF0b3J5Ci0gYC4qYCBoYXMgdHdvIHBhcnRzOiBgLmAgaXMgdGhlIGNoYXJhY3RlciBjbGFzcyB3aGljaCBsb29rcyBmb3IgYW55IG5vbi1uZXh0IGxpbmUgY2hhcmFjdGVyLCBhbmQgYCpgIGlzIHRoZSBxdWFudGlmaWVyIHdoaWNoIGltcGxpZXMgdG8gc2VhcmNoIGZvciBhbnkgbGVuZ3RoLiAgc28gYC4qYCBpcyB2YWxpZCBmb3Igc2VhcmNoaW5nIGFueSBkb21haW4gbmFtZSBiZXR3ZWVuIHRoZSBgQGAgYW5kIGAuYCBzaWduCi0gYFxcLmAgaXMgdGhlIGVxdWl2YWxlbnQgb2YgYSBzaW1wbGUgZG90IGluIFIncyByZWdleAotIGAkYCBzaWduaWZpZXMgdGhlIGVuZCBvZiB0aGUgc3RyaW5nLiAgc28gdGhlIHJlc3VsdCBoYXMgdG8gZW5kIHdpdGggdGhpcy4KCgojIyMjIFN1YnN0aXR1dGlvbiB0aHJvdWdoIHN1YigpIGFuZCBnc3ViKCkKCmBzdWIoKWAgYW5kIGBnc3ViKClgIGFyZSBwb3dlcmZ1bCB0b29scy4gIGBzdWIoKWAgb25seSByZXBsYWNlcyB0aGUgZmlyc3QgbWF0Y2ggaW4gYW4gaW5kZXgsIHdoZXJlYXMgYGdzdWIoKWAgd2lsbCByZXBsYWNlIGV2ZXJ5IHNpbmdsZSBpdGVtLiBOb3RlIHRoYXQgdGhlIHJlcGxhY2VtZW50IHN0cmluZyBkb2VzIG5vdCByZXF1aXJlIHRvIGJlIGluIHJlZ2V4IGZvcm1hdC4KCkhlcmUgaXMgYW4gZXhhbXBsZSB3aGVyZSB3ZSByZXBsYWNlIHRoZSBlbmRpbmcgb2YgYW55IGBAX18uZWR1YCB0byBgQHRlc3QuZWR1YDoKCmBgYHtyfQojIFRoZSBlbWFpbHMgdmVjdG9yIAplbWFpbHMgPC0gYygiam9obi5kb2VAaXZ5bGVhZ3VlLmVkdSIsICJlZHVjYXRpb25Ad29ybGQuZ292IiwgImdsb2JhbEBwZWFjZS5vcmciLAogICAgICAgICAgICAiaW52YWxpZC5lZHUiLCAicXVhbnRAYmlnZGF0YWNvbGxlZ2UuZWR1IiwgImNvb2tpZS5tb25zdGVyQHNlc2FtZS50diIpCiMgVXNpbmcgc3ViIC4uLiBhZ2FpbiwgcmVwbGFjZW1lbnQgYXJndW1lbnQgc2hvdWxkIG5vdCBiZSBpbiByZWdleCBmb3JtYXQKc3ViKCJALipcXC5lZHUkIiwgIkB0ZXN0LmVkdSIsIGVtYWlscykKYGBgCgoKIyMjIyBzdWIgdXNpbmcgcGFyZW50aGVzaXMgZm9ybWF0CgpTdXBwb3NlIHdlIHdhbnQgdG8gcmVwbGFjZSB2YWx1ZXMgdGhhdCBpbmNsdWRlcyBBQSAuLiBBeiB3aXRoIHRoZSBzZWNvbmQgbGV0dGVyIG9ubHkuICBUaGUgYXBwcm9wcmlhdGUgcmVnZXggZm9ybWF0IGlzOiAgIkEoW0Etel0pIiwgd2hpY2ggcmVxdWlyZXMgdGhlIHBhcmVudGhlc2lzLiBQYXJlbnRoZXNpcyBpcyByZW1lbWJlcmVkIHdoaWNoIGNhbiBiZSBpbnZva2VkIGFzICJcXDEiIGluIHRoZSByZXBsYWNlbWVudCBwYXJ0LiAgCgpgYGB7cn0KIyBSZXBsYWNlIHBhcnRzIHdpdGggQUEgLi4gQXogd2l0aCB0aGUgc2Vjb25kIGxldHRlciBvbmx5IChBLi4ueikKZ3N1YigiQShbQS16XSkiLCAiXFwxIiwgIjEyQUI5OUF6IikKYGBgCgpBbm90aGVyIGV4YW1wbGUgd291bGQgYmUgdG8gZXh0cmFjdCB0aGUgbnVtYmVyIG9mIG5vbWluYXRpb25zIGZyb20gYSB2ZWN0b3IgY2FsbGVkIGF3YXJkcy4gIEVhY2ggaW5kZXggY29udGFpbnMgdGhlIGVuZGluZyAiLi4uIG5vbWluYXRpb25zIi4gIEhlcmUgaXMgYSBzYW1wbGUgY29kZToKCmBgYHtyfQojIGEgdmVjdG9yIGNhbGxlZCBhd2FyZHMgd2l0aCBkdW1teSBkYXRhIG9uIG51bWJlciBvZiBub21pbmF0aW9ucwphd2FyZHMgPC0gYygiV29uIDEgT3NjYXIuIEFub3RoZXIgOSB3aW5zICYgMjQgbm9taW5hdGlvbnMuIiwKICAiMSB3aW4gYW5kIDIgbm9taW5hdGlvbnMuIiwKICAiMiB3aW5zICYgMyBub21pbmF0aW9ucy4iLAogICJOb21pbmF0ZWQgZm9yIDIgR29sZGVuIEdsb2Jlcy4gMSBtb3JlIHdpbiAmIDIgbm9taW5hdGlvbnMuIiwKICAiNCB3aW5zICYgMSBub21pbmF0aW9uLiIpCgpub21pbmF0aW9ucyA8LSBzdWIoIi4qXFxzKFswLTldKylcXHNub21pbmF0aW9uLiokIiwgIlxcMSIsIGF3YXJkcykKIyBTaG91bGQgcHJpbnQgdGhlIG51bWJlciBvZiBub21pbmF0aW9ucyBlYWNoIGluZGV4IGhhcy4gIApub21pbmF0aW9ucwpgYGAKCgojIyMjIFN5cy5fX18gIHRvIGdldCB0aW1lIGRhdGUKClN5cy5EYXRlKCkgY2FuIGJlIHVzZWQgdG8gZ2V0IGN1cnJlbnQgZGF0YSwgU3lzLnRpbWUoKSBmb3IgdGhlIHRpbWUKClN5cy5EYXRlKCkgaXMgYW4gaW5zdGFuY2Ugb2YgRGF0ZSBvYmplY3QuICBTeXMudGltZSgpIGlzIGFuIGluc3RhbmNlIG9mIFBPU0lYY3Qgb2JqZWN0LgoKYGBge3J9CiMgR2V0IHRoZSBjdXJyZW50IGRhdGU6IHRvZGF5CnRvZGF5IDwtIFN5cy5EYXRlKCkKdG9kYXkKCiMgR2V0IHRoZSBjdXJyZW50IHRpbWU6IG5vdwpub3cgPC0gIFN5cy50aW1lKCkKbm93CmBgYAoKCiMjIyMgRGF0YSBmb3JtYXR0aW5nIGluIFI6CgpUaGUgY2hhcmFjdGVyIHN0cmluZyBoYXMgdG8gb2JleSBhIGZvcm1hdCB0aGF0IGNhbiBiZSBkZWZpbmVkIHVzaW5nIGEgc2V0IG9mIHN5bWJvbHMgKHRoZSBleGFtcGxlcyBjb3JyZXNwb25kIHRvIDEzIEphbnVhcnksIDE5ODIpOgoKCi0gJVk6IDQtZGlnaXQgeWVhciAoMTk4MikKLSAleTogMi1kaWdpdCB5ZWFyICg4MikKLSAlbTogMi1kaWdpdCBtb250aCAoMDEpCi0gJWQ6IDItZGlnaXQgZGF5IG9mIHRoZSBtb250aCAoMTMpCi0gJUE6IHdlZWtkYXkgKFdlZG5lc2RheSkKLSAlYTogYWJicmV2aWF0ZWQgd2Vla2RheSAoV2VkKQotICVCOiBtb250aCAoSmFudWFyeSkKLSAlYjogYWJicmV2aWF0ZWQgbW9udGggKEphbikKCk5PVEU6IFRoZSBtYWluIGFkdmFudGFnZSBvZiBwdXR0aW5nIGl0IGluIHVuaXggdGltZXN0YW1wIChQT1NJWGN0KSBpcyB0aGF0IHdlIGRvIGJhc2ljIG1hdGhlbWF0aWNhbCBvcGVyYXRpb24gd2l0aCB0aGVtIChhZGRpbmcgZGF0ZSwgZGV0ZXJtaW5pbmcgZGlmZmVyZW5jZXMpCgojIyMjIEZvcmNpbmcgc3RvcmVkIGRhdGUgdGhyb3VnaCBhcy5EYXRlKCkKClJlbWVtYmVyLCBkYXRlIGlzIHN0b3JlZCBpbiB0aGUgIiVZLSVtLSVkIiAoZS5nLiAiMjAxOC0wNy0wNCIpLiAgSWYgc3RyaW5nIGhhcHBlbnMgdG8gYmUgaW4gdGhpcyBmb3JtYXQsIG5vIG5lZWQgdG8gc3BlY2lmeSBmb3JtYXQuICBPdGhlcndpc2UsIGEgc3BlY2lmaWMgZm9ybWF0IHVzaW5nIHRoZSBhcHByb3ByaWF0ZSAnJScgaXMgcmVxdWlyZWQgdG8gYmUgcGFzc2VkIHRvIGBhcy5EYXRlKClgCgpgYGB7cn0KIyAzIGRpZmZlcmVudCBkYXRlIGZvcm1hdHMgd2UgaGF2ZSBhcyBzdHJpbmcgYW5kIGNvbnZlcnRpbmcgdGhlbSB0byB1bml4IHRpbWVzdGFtcApkYXRlX2NoYXIxIDwtICIxOTgyLTAxLTEzIgphcy5EYXRlKGRhdGVfY2hhcjEpCgpkYXRlX2NoYXIyIDwtICJKYW4tMTMtODIiCmFzLkRhdGUoZGF0ZV9jaGFyMiwgZm9ybWF0ID0gIiViLSVkLSV5IikKCmRhdGVfY2hhcjMgPC0gIjEzIEphbnVhcnksIDE5ODIiCmFzLkRhdGUoZGF0ZV9jaGFyMywgZm9ybWF0ID0gIiVkICVCLCAlWSIpCmBgYAoKCgo=</div>
 
 
 
