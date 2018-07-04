@@ -42,11 +42,85 @@ Here are some useful data utilities in R:
 # ?seq gives:  seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)) ...)
 seq(from = 0, to = 20, by = 2) 
 
+# Print a sequence from 10 to 5 by increments of -0.5
+seq(10, 5, -0.5)
+
 # Repeat a list twice (a,b,a,b) with each appending at the end
 # ?rep shows:  rep(x, times = 1, length.out = NA, each = 1)
 rep(c(1,2,3), times = 3)
 
 # Repeat a list twice but copy is next to original
 rep(c("a", "b"), each = 2)
+
+# Combine 2 list in index 3 of the first list
+# str(append) gives: function (x, values, after = length(x)) 
+append(c(1,2,3,4,5), c("a", "b"), after = 2)
 ```
 
+
+#### Note using sum() and the plus sign (+)
+
+Suppose we have two vectors (1,1,1,1,1) and (1,2) and want to get the sum of all the vector entries. the order of sum and + matters.  
+
+```{r}
+# Two vectors of interest.  The sum of all items is 8 by inspection
+vec1 <- c(1,1,1,1,1)
+vec2 <- c(1,2)
+
+# The incorrect way and R will give an answer with an error.  dim vec 1 =/= dim vec2 
+sum(vec1 + vec2) 
+
+# Two correct ways which will both yield 8
+sum(c(vec1, vec2))
+sum(vec1) + sum(vec2)
+```
+
+#### Regex using grepl() and grep()
+
+`grepl()` returns a logical--makes sense given the l
+whereas `grep()` gives a vector of indices where the pattern is found in a vector which is useful for subsetting.  If the variable given to grep() is of length 1, it will just return 1.  
+
+Before I do tasks with `grepl()`, I will examine the str of grepl to see the parameters involved:
+
+```{r}
+str(grepl)
+function (pattern, x, ignore.case = FALSE, perl = FALSE, fixed = FALSE, 
+    useBytes = FALSE)
+```
+
+Knowing the basic structure, let's go over this basic code and what each do:
+
+```{r}
+# An emails vector
+emails <- c("john.doe@ivyleague.edu", "education@world.gov", "dalai.lama@peace.org",
+            "invalid.edu", "quant@bigdatacollege.edu", "cookie.monster@sesame.tv")
+
+# Use grepl() to match for "edu", it returns a logical vector
+grepl("edu", emails)
+
+# Use grep() to match for "edu", saves result in vector with matched indeces
+hits <- grep("edu", emails)
+
+# Subset emails using hits
+emails[hits]
+
+# Note:  Subsetting can be fed with a vector of indeces like above 
+# But subsetting also works with a vector of logical values
+```
+
+# Regex - filter previous results
+
+Suppose we want to filter the data more accurately:
+
+We want to filter data via:  "\@name.edu":
+
+```{r}
+# vector named emails was already declared in the preceding R script
+# Use grepl() to match for the more specific filter
+grepl("@.*\\.edu", emails)
+```
+
+Explanation of the filter is as follows:
+- `@` is self explanatory
+- `.*` has two parts: `.` is the character class which looks for any non-next line character, and `*` is the quantifier which implies to search for any length.  so `.*` is valid for searching any domain name between the `@` and `.` sign
+- `\\.` is the equavelent of a simple dot in R's regex
