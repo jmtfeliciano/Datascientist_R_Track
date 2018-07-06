@@ -219,5 +219,8 @@ to_format <- as.Date(date_char3, format = "%d %B, %Y")
 format(to_format, "%m %y")
 ```
 
+#### as.POSIXct() and strptime()
+
+The synthax for `POSIXct()` objects is very similar to date objects.  So simply refer to examples of `as.Date()`.  
 
 
