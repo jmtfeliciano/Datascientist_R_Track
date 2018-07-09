@@ -1,6 +1,37 @@
 ---
-title: "Data Wrangling"
+title: "Tidyverse-Data Wrangling"
 output: html_notebook
 ---
 
-Empty Notebook 
+#### Loading what we will need:
+
+Our data is gapminder here.  And to use the piping notation (`%>%`) properly, we will need to use the dplyr library.
+
+```{r, message=FALSE, warning=FALSE}
+# load gapminder package which is built within the R program
+library(gapminder)
+# load dplyr which is a key part of the tidyverse system
+library(dplyr)
+
+# call gapminder to see what kind of dataset it includes
+gapminder
+```
+
+#### Filter verb 
+
+Filter allows us to limit the results based on the parameters wanted which are passed on the `filter()` line of the code.  
+
+__The task right now:__  Add a filter() line after the pipe (%>%) to extract only the observations from the year 1957. 
+
+```{r}
+library(gapminder)
+library(dplyr)
+
+# Filter the gapminder dataset for the year 1957
+gapminder %>%
+  filter(year == 1957)
+
+# Filter for China in 2002
+gapminder %>%
+  filter(country == "China", year == 2002)
+```
