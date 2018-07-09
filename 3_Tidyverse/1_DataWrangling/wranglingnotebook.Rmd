@@ -1,11 +1,13 @@
 ---
 title: "Tidyverse-Data Wrangling"
-output: html_notebook
+output:
+  html_notebook: default
+  html_document: default
 ---
 
 #### Loading what we will need:
 
-Our data is gapminder here.  And to use the piping notation (`%>%`) properly, we will need to use the dplyr library.
+Our data is gapminder here.  And to use the piping notation (`%>%`) properly, we will need to use the dplyr library.  The piping notation should be read as THEN.  
 
 ```{r, message=FALSE, warning=FALSE}
 # load gapminder package which is built within the R program
@@ -50,4 +52,53 @@ gapminder %>%
 gapminder %>% 
   arrange(desc(lifeExp))
 ```
+
+#### Combining multiple verbs
+
+Goal:  Use filter() to extract observations from just the year 1957, then use arrange() to sort in descending order of population (pop):
+
+```{r}
+gapminder %>%
+  filter(year == 1957) %>%
+  arrange(desc(pop))
+```
+
+#### Mutate verb
+
+The mutate verb can be used to create a new column or mutate current columns.
+
+__First task:__  Use `mutate()` to change the existing lifeExp column, by multiplying it by 12: 12 * lifeExp.
+
+```{r}
+gapminder %>%
+  mutate(lifeExp = lifeExp * 12)
+```
+
+__Second task:__ Use `mutate()` to add a new column, called lifeExpMonths, calculated as 12 * lifeExp
+
+
+```{r}
+gapminder %>%
+  mutate(lifeExpMonths = 12 * lifeExp)
+```
+
+#### Practice with combining all 3 verbs here:
+
+In one sequence of pipes on the gapminder dataset:
+
+- filter() for observations from the year 2007,
+- mutate() to create a column lifeExpMonths, calculated as 12 * lifeExp, and
+- arrange() in descending order of that new column
+
+Here's the solution:
+
+
+```{r}
+# Filter, mutate, and arrange the gapminder dataset
+gapminder %>%
+  filter(year == 2007) %>%
+  mutate(lifeExpMonths = 12 * lifeExp) %>%
+  arrange(desc(lifeExpMonths))
+```
+
 
