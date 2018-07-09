@@ -24,6 +24,7 @@ Filter allows us to limit the results based on the parameters wanted which are p
 __The task right now:__  Add a filter() line after the pipe (%>%) to extract only the observations from the year 1957. 
 
 ```{r}
+# unnecessary since it was declared already but just put it for future use
 library(gapminder)
 library(dplyr)
 
@@ -35,3 +36,18 @@ gapminder %>%
 gapminder %>%
   filter(country == "China", year == 2002)
 ```
+
+#### Arrange verb
+
+It is used to sort data by its order:  either alphabetically or numerically.  We need to pass `arrange()` with what variable to sort by. The default of order is increasing.  If you need to override the default, passed variable must be wrapped by `desc()`.  Here's an example:
+
+```{r}
+# Sort in ascending order of lifeExp
+gapminder %>% 
+  arrange(lifeExp)
+
+# Sort in descending order of lifeExp
+gapminder %>% 
+  arrange(desc(lifeExp))
+```
+
