@@ -2,3 +2,55 @@
 title: "Data Visualization"
 output: html_notebook
 ---
+
+#### Visualization using ggplot2 library
+
+Before we can plot, we need to load the ggplot2 library first:
+
+```{r}
+library(ggplot2)
+
+# we will need to manipulate data so load dplyr.
+library(dplyr)
+# load gapminder data we previously used
+library(gapminder)
+```
+
+
+#### Practice: scatter plot via ggplot() + geom_point():
+
+Suppose we filter the data from gapminder for data in year 1952.  Using this filtered data, we want to create a plot with pop against gdpPercap:
+
+```{r}
+# Filtering data and assigning the results to a variable
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+
+# Change to put pop on the x-axis and gdpPercap on the y-axis.  
+# Note:  geom_point() is what plots it like: ggplot() + geom_point()
+ggplot(gapminder_1952, aes(x = pop, y = gdpPercap)) +
+  geom_point()
+```
+
+#### Change axis to log by adding:  scale_x_log10()
+
+Using the previously declared and filtered data, we want to create a log-10 x scale for scatter plot with x as population (pop) and y as life expectancy (lifeExp):
+
+```{r}
+# we previously filtered and declared gapminder_1952
+# reminder: regular plotting requires ggplot() + geom_point()
+
+# plotting data with log10 as the primary scale for x-axis:
+ggplot(gapminder_1952, aes(pop , lifeExp)) + geom_point() + scale_x_log10()
+```
+
+#### Color aesthetic
+
+A simple way to add color to our previous graphs is by passing `color = continent` inside aes() as an argument.  Let's see what happens to our graph:
+
+```{r}
+ggplot(gapminder_1952, aes(pop , lifeExp, color = continent)) + geom_point() + scale_x_log10()
+```
+
+
+
