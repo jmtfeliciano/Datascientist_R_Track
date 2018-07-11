@@ -2,3 +2,58 @@
 title: "Grouping and Summarizing Notebook"
 output: html_notebook
 ---
+
+#### Housekeeping:
+
+Like in the previous sections for tideverse, we will use gapminder and dplyr:  
+```{r}
+library(gapminder)
+library(dplyr)
+```
+
+#### Summarize verb
+
+`summarize()` from tidyverse allows to print variable(s) at the end of piping operations.  Suppose we don't want to print all other data except the median of a variable in that dataset.  
+
+Suppose we want to summarize the median of life expectancy which we will call medianLifeExp:
+
+```{r}
+gapminder %>%
+  summarize(medianLifeExp = median(lifeExp))
+```
+
+#### Another practice by using other tidyverse verbs:
+
+Task:  Find both the median life expectancy (lifeExp) and the maximum GDP per capita (gdpPercap) in the year 1957, calling them medianLifeExp and maxGdpPercap respectively. You can use the `max()` function to find the maximum.
+
+```{r}
+gapminder %>%
+  filter(year == 1957) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+```
+
+#### Grouping via group_by()
+
+Suppose we want to know the median life expectancy and max GDP for each year, then we can use `group_by()` before we invoke `summarize()`.  Here's an example:
+
+```{r}
+gapminder %>%
+  group_by(year) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+```
+
+As shown above, `group_by()` allowed us to partition the summarize verb results for each year that exists in our dataset.
+
+#### Using more than one filter for group_by()
+
+We can use more than one filter for our group verb and it will find each unique combination of both.  
+
+Suppose we want to ind the median life expectancy (lifeExp) and maximum GDP per capita (gdpPercap) within each combination of continent and year, saving them into medianLifeExp and maxGdpPercap, respectively:
+
+```{r}
+gapminder %>%
+  group_by(continent, year) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+```
+
+
