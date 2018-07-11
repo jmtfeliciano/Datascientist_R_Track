@@ -46,11 +46,22 @@ ggplot(gapminder_1952, aes(pop , lifeExp)) + geom_point() + scale_x_log10()
 
 #### Color aesthetic
 
-A simple way to add color to our previous graphs is by passing `color = continent` inside aes() as an argument.  Let's see what happens to our graph:
+Adding color is another way to add a 3rd variable in our otherwise x-y scatter point.  A simple way to add color to our previous graphs is by passing `color = continent` inside aes() as an argument. While we are plotting population against life expectancy, we can further specify the data with their corresponding continent. 
+
+Let's see what happens to our graph:
 
 ```{r}
-ggplot(gapminder_1952, aes(pop , lifeExp, color = continent)) + geom_point() + scale_x_log10()
+ggplot(gapminder_1952, aes(pop , lifeExp, color = continent)) + geom_point() + scale_x_log10() + expand_limits(y = 0)
 ```
 
+#### Size aesthetic
+
+Suppose we want the dots to have varying sizes based on a 3rd variable from the data set.  We can simply pass the keyword size to the aes() function equal to the 3rd variable name we want to convey:
+
+```{r}
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent, size = gdpPercap)) +
+  geom_point() +
+  scale_x_log10()
+```
 
 
