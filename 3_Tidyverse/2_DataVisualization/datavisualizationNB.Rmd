@@ -65,3 +65,17 @@ ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent, size = gdpPe
 ```
 
 
+#### Faceting.  Splitting by adding facet_wrap(~var)
+
+In the last two codes, data points from various continents were combined in a single scatter plot.  Instead of doing it, we can split them into multiple smaller plots by using another variable as filter.  Suppose we want to faceting the plots into multiple plots by continent:
+
+```{r}
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~continent)
+
+# Note: facet_wrap() requires ~ next to the variable name
+```
+
+
