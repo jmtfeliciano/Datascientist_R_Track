@@ -9,6 +9,7 @@ Like in the previous sections for tideverse, we will use gapminder and dplyr:
 ```{r}
 library(gapminder)
 library(dplyr)
+library(ggplot2)
 ```
 
 #### Summarize verb
@@ -56,4 +57,43 @@ gapminder %>%
   summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
 ```
 
+#### Plotting summarized and grouped data:
+
+We can easily do this by assigning the filtered data into a variable.  Then using that variable, we can plot it by passing it to `ggplot()`.  Here is an example where we grouped_by the gapminder data by year and summarized both the median expectancy and maximum GDP per capita.  Using the data, we plot a scatter plot where x corresponds to year and y corresponds to median life expectancy:
+
+```{r}
+by_year <- gapminder %>%
+  group_by(year) %>%
+  summarize(medianLifeExp = median(lifeExp),
+            maxGdpPercap = max(gdpPercap))
+
+# Create a scatter plot showing the change in medianLifeExp over time
+ggplot(by_year, aes(x = year, y = medianLifeExp)) + geom_point() 
+```
+
+__Note:__  Do note that the year is y-scale is off and starts at y=45.
+
+#### Fixing y-scale by adding expand_limits()
+
+In the scatter plot above, the plot started at y=45.  We can simply fix it by adding expand_limits(y=0) to the methods we invoked for ggplot.  Here is an example:
+
+```{r}
+ggplot(by_year, aes(x = year, y = medianLifeExp)) + geom_point() + expand_limits(y=0)
+```
+
+#### Combining multiple groups and colored plotting:
+
+Tasks: 
+
+- Summarize the gapminder dataset by continent and year, finding the median GDP per capita (gdpPercap) within each and putting it into a column called medianGdpPercap. Use the assignment operator <- to save this summarized data as by_year_continent.
+
+- Create a scatter plot showing the change in medianGdpPercap by continent over time. Use color to distinguish between continents, and be sure to add expand_limits(y = 0) so that the y-axis starts at zero.
+
+```{r}
+by_year_continent <- gapminder %>%
+  group_by(year, continent) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+ggplot(by_year_continent, aes(year, medianGdpPercap, color = continent)) + geom_point() + expand_limits(y=0) 
+```
 
