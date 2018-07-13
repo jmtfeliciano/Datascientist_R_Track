@@ -2,3 +2,35 @@
 title: "Visualization Types"
 output: html_notebook
 ---
+
+#### Create Line Plot via geom_line()
+
+The syntax is pretty similar to the `geom_plot()` we've used earlier.  But instead, we use `geom_line()`
+
+Task's subtask #1:  Use group_by() and summarize() to find the median GDP per capita within each year, calling the output column medianGdpPercap. Use the assignment operator <- to save it to a dataset called by_year.
+
+Task's subtask #2: Use the by_year dataset to create a line plot showing the change in median GDP per capita over time. Be sure to use expand_limits(y = 0) to include 0 on the y-axis.
+
+```{r}
+# Summarize the median gdpPercap by year and continent , then save it as by_year
+by_year <- gapminder %>%
+  group_by(year, continent) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+# Create a line plot showing the change in medianGdpPercap over time, and add color per continent
+ggplot(by_year, aes(year, medianGdpPercap, color = continent)) + geom_line() + expand_limits(y=0)
+```
+
+#### Create Bar Plot via geom_col()
+
+__Task 1:__ Use group_by() and summarize() to find the median GDP per capita within each continent in the year 1952, calling the output column medianGdpPercap. Use the assignment operator <- to save it to a dataset called by_continent.
+
+__Task 2:__ Use the by_continent dataset to create a bar plot showing the median GDP per capita in each continent.
+
+```{r}
+by_continent <- gapminder %>%
+  filter(year ==1952) %>%
+  group_by(continent) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+ggplot(by_continent, aes(continent, medianGdpPercap)) + geom_col() 
+```
