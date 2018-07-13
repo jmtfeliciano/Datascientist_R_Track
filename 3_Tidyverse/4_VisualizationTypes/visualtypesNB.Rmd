@@ -3,6 +3,15 @@ title: "Visualization Types"
 output: html_notebook
 ---
 
+__House keeping:__  simply downloading all the utilities we need for the notebook.
+
+```{r}
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+```
+
+
 #### Create Line Plot via geom_line()
 
 The syntax is pretty similar to the `geom_plot()` we've used earlier.  But instead, we use `geom_line()`
@@ -22,6 +31,8 @@ ggplot(by_year, aes(year, medianGdpPercap, color = continent)) + geom_line() + e
 
 #### Create Bar Plot via geom_col()
 
+Bar graph involves a nominal variable as the x-value, and a numerical variable as the y-value.
+
 __Task 1:__ Use group_by() and summarize() to find the median GDP per capita within each continent in the year 1952, calling the output column medianGdpPercap. Use the assignment operator <- to save it to a dataset called by_continent.
 
 __Task 2:__ Use the by_continent dataset to create a bar plot showing the median GDP per capita in each continent.
@@ -34,3 +45,52 @@ by_continent <- gapminder %>%
 
 ggplot(by_continent, aes(continent, medianGdpPercap)) + geom_col() 
 ```
+
+
+
+#### Create Histogram via geom_histogram()
+
+Histogram involves ONLY one variable as the argument. The y-axis is simply count corresponding to the x bin.  To specify a specific binwidth, we can pass it as an argument to `geom_histogram()`. Suppose we want to have bins of length 5, then `geom_histogram(binwidth = 5)` would be the right call.  
+
+Task:
+
+Use the gapminder_1952 dataset (code is provided) to create a histogram of country population (pop) in the year 1952, putting the x-axis on a log scale with scale_x_log10():
+
+
+```{r}
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+
+# Create a histogram of population (pop), with x on a log scale
+ggplot(gapminder_1952, aes(pop)) + geom_histogram() + scale_x_log10()
+```
+
+#### Create box plots using geom_boxplot()
+
+__Task:__ Use the gapminder_1952 dataset (code is provided) to create a boxplot comparing GDP per capita (gdpPercap) among continents. Put the y-axis on a log scale with scale_y_log10().
+
+```{r}
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+
+# Create a boxplot comparing gdpPercap among continents
+ggplot(gapminder_1952, aes(continent, gdpPercap)) + geom_boxplot() + scale_y_log10()
+```
+
+#### Adding title via ggtitle(str)
+
+`ggtitle()` is a good way to add title.  We simple have to pass the character/string we desire inside the `ggtitle()` method.  
+
+Here's an example:
+
+```{r}
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+
+# Add a title to this graph: "Comparing GDP per capita across continents"
+ggplot(gapminder_1952, aes(x = continent, y = gdpPercap)) +
+  geom_boxplot() +
+  scale_y_log10() + ggtitle("Comparing GDP per capita across continents.")
+```
+
+
