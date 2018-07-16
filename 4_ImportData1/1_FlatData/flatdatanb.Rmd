@@ -1,0 +1,8 @@
+---
+title: "Import Data--Flat Files"
+output: html_notebook
+---
+
+#### What is a flat file?
+
+Flat file like .csv is a file with data separated by a `,`.  
