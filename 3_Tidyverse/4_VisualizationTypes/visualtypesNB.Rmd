@@ -5,7 +5,7 @@ output: html_notebook
 
 __House keeping:__  simply downloading all the utilities we need for the notebook.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(gapminder)
 library(dplyr)
 library(ggplot2)

@@ -5,4 +5,28 @@ output: html_notebook
 
 #### What is a flat file?
 
-Flat file like .csv is a file with data separated by a `,`.  
+Flat file like .csv is a file with data separated by a `,`. 
+
+Can use `utils::read.csv()` to read file
+
+#### read.csv()
+
+- Sample way to read csv file is:
+  `pools <- read.csv("swimming_pools.csv")`
+- To see the basic structure of imported data, use `str(pools)` to see levels, variables, etc
+
+#### read.csv(), forcing it to NOT convert variables into categorical or levels
+
+Note:  All importing functions in utils package, such as `read.csv()`, imported strings are converted to factors.  
+
+The correct way would be to run the following code:
+`pools<- read.csv("swimming_pools.csv", stringsAsFactors = FALSE)`
+
+#### read.delim and read.table
+
+- `read.delim()` is used for tab-delimited
+- `read.table()` is used for any flat file
+
+
+
+
