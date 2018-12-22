@@ -1,0 +1,32 @@
+---
+title: "Data Cleaning--Exploring Raw Data"
+output: html_notebook
+---
+
+#### Important Functions for Exploring Raw Data 
+
+- `class()` - class of data object
+- `dim()` - returns dimension of dataset
+- `names()` - column names
+- `str()` - preview of data with structure
+- `glimpse()` - better version of `str()` from dplyr
+- `summary()` - summary of data
+
+#### Basic visual of data via hist() and plot()
+
+- Basic visual data can give us a basic distribution and knowledge of our data
+ 
+ For example, use `hist()` to visualize sepal length.
+
+```{r}
+data("iris")
+hist(iris$Sepal.Length)
+```
+
+- Another example below is plotting basic relationship between sepal length and petal length from the iris dataset
+
+```{r}
+plot(iris$Sepal.Length, iris$Petal.Length)
+```
+
+
