@@ -1,0 +1,56 @@
+---
+title: "Import Data 2--Database"
+output: html_notebook
+---
+
+#### Database in R
+
+There are different R packages:
+- mysql - RMySQL package
+- postgresql - RPostgresSQL package
+- oracle database - ROracle package
+
+#### Connecting to Database
+
+Sample connection call to database. 
+
+```{r}
+library(DBI)
+con <- dbConnect(RMySQL::MySQL(), 
+                 dbname = "tweater", 
+                 host = "courses.csrrinzqubik.us-east-1.rds.amazonaws.com", 
+                 port = 0000,
+                 user = "student",
+                 password = "datacamp")
+
+
+# Build a vector of table names: tables
+tables <- dbListTables(con)
+
+# Display structure of tables
+str(tables)
+class(tables)
+
+# Import the users table from tweater: users
+users <- dbReadTable(con, "users")
+
+# Print users
+users
+
+
+# Get table names
+table_names <- dbListTables(con)
+
+# Import all tables
+tables <- lapply(table_names, dbReadTable, conn = con)
+
+# Print out tables
+tables
+```
+
+
+The above code connects to the MySQL database called tweater.
+
+
+
+#### 
