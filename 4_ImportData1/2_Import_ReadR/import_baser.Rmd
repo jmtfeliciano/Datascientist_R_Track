@@ -3,4 +3,12 @@ title: "Import Data--Base R"
 output: html_notebook
 ---
 
-# Test
+#### read_csv() from readr package
+
+Just installs and loads the readr package which I will use
+
+```{r}
+library("readr")
+```
+
+
