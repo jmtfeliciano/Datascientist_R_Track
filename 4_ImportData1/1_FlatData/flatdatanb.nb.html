@@ -253,10 +253,85 @@ str(proper_pools)</code></pre>
 <li><code>read.delim()</code> is used for tab-delimited</li>
 <li><code>read.table()</code> is used for any flat file</li>
 </ul>
+<p>Tasks: - Import the data in “hotdogs.txt” with read.delim(). Call the resulting data frame hotdogs. The variable names are not on the first line, so make sure to set the header argument appropriately. - Call summary() on hotdogs. This will print out some summary statistics about all variables in the data frame.</p>
+<p><strong>Note</strong>: header = FALSE ensures that the first line is not treated as variable names.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaG90ZG9ncyA8LSByZWFkLmRlbGltKFwiaG90ZG9ncy50eHRcIiwgaGVhZGVyID0gRkFMU0UpXG5zdW1tYXJ5KGhvdGRvZ3MpXG5gYGAifQ== -->
+<pre class="r"><code>hotdogs &lt;- read.delim(&quot;hotdogs.txt&quot;, header = FALSE)
+summary(hotdogs)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIFYxICAgICAgICAgICBWMiAgICAgICAgICAgICAgVjMgICAgICAgXG4gQmVlZiAgIDoyMCAgIE1pbi4gICA6IDg2LjAgICBNaW4uICAgOjE0NC4wICBcbiBNZWF0ICAgOjE3ICAgMXN0IFF1LjoxMzIuMCAgIDFzdCBRdS46MzYyLjUgIFxuIFBvdWx0cnk6MTcgICBNZWRpYW4gOjE0NS4wICAgTWVkaWFuIDo0MDUuMCAgXG4gICAgICAgICAgICAgIE1lYW4gICA6MTQ1LjQgICBNZWFuICAgOjQyNC44ICBcbiAgICAgICAgICAgICAgM3JkIFF1LjoxNzIuOCAgIDNyZCBRdS46NTAzLjUgIFxuICAgICAgICAgICAgICBNYXguICAgOjE5NS4wICAgTWF4LiAgIDo2NDUuMCAgXG4ifQ== -->
+<pre><code>       V1           V2              V3       
+ Beef   :20   Min.   : 86.0   Min.   :144.0  
+ Meat   :17   1st Qu.:132.0   1st Qu.:362.5  
+ Poultry:17   Median :145.0   Median :405.0  
+              Mean   :145.4   Mean   :424.8  
+              3rd Qu.:172.8   3rd Qu.:503.5  
+              Max.   :195.0   Max.   :645.0  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="using-read.table" class="section level4">
+<h4>Using read.table()</h4>
+<p>An example of using <code>read.table()</code> with tab-seperated data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQYXRoIHRvIHRoZSBob3Rkb2dzLnR4dCBmaWxlOiBwYXRoXG5wYXRoIDwtIGZpbGUucGF0aChcImRhdGFcIiwgXCJob3Rkb2dzLnR4dFwiKVxuXG4jIEltcG9ydCB0aGUgaG90ZG9ncy50eHQgZmlsZTogaG90ZG9nc1xuaG90ZG9ncyA8LSByZWFkLnRhYmxlKHBhdGgsICBcbiAgICAgICAgICAgICAgICAgICAgICBzZXAgPVwiXFx0XCIsXG4gICAgICAgICAgICAgICAgICAgICAgY29sLm5hbWVzID0gYyhcInR5cGVcIiwgXCJjYWxvcmllc1wiLCBcInNvZGl1bVwiKSlcblxuIyBDYWxsIGhlYWQoKSBvbiBob3Rkb2dzXG5oZWFkKGhvdGRvZ3MpXG5gYGAifQ== -->
+<pre class="r"><code># Path to the hotdogs.txt file: path
+path &lt;- file.path(&quot;data&quot;, &quot;hotdogs.txt&quot;)
+
+# Import the hotdogs.txt file: hotdogs
+hotdogs &lt;- read.table(path,  
+                      sep =&quot;\t&quot;,
+                      col.names = c(&quot;type&quot;, &quot;calories&quot;, &quot;sodium&quot;))
+
+# Call head() on hotdogs
+head(hotdogs)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="exercise-arguments-on-calories-vs-sodium" class="section level4">
+<h4>Exercise: arguments on calories vs sodium</h4>
+<p><strong>Tasks:</strong> Finish the read.delim() call to import the data in “hotdogs.txt”. It’s a tab-delimited file without names in the first row. The code that selects the observation with the lowest calorie count and stores it in the variable lily is already available. It uses the function which.min(), that returns the index the smallest value in a vector. Do a similar thing for Tom: select the observation with the most sodium and store it in tom. Use which.max() this time. Finally, print both the observations lily and tom.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaW5pc2ggdGhlIHJlYWQuZGVsaW0oKSBjYWxsXG5ob3Rkb2dzIDwtIHJlYWQuZGVsaW0oXCJob3Rkb2dzLnR4dFwiLCBoZWFkZXIgPSBGQUxTRSwgY29sLm5hbWVzID0gYyhcInR5cGVcIiwgXCJjYWxvcmllc1wiLCBcInNvZGl1bVwiKSlcbiMgU2VsZWN0IHRoZSBob3QgZG9nIHdpdGggdGhlIGxlYXN0IGNhbG9yaWVzOiBsaWx5XG5saWx5IDwtIGhvdGRvZ3Nbd2hpY2gubWluKGhvdGRvZ3MkY2Fsb3JpZXMpLCBdXG4jIFNlbGVjdCB0aGUgb2JzZXJ2YXRpb24gd2l0aCB0aGUgbW9zdCBzb2RpdW06IHRvbVxudG9tIDwtIGhvdGRvZ3Nbd2hpY2gubWF4KGhvdGRvZ3Mkc29kaXVtKSwgXVxuIyBQcmludCBsaWx5IGFuZCB0b21cbmxpbHlcbmBgYCJ9 -->
+<pre class="r"><code># Finish the read.delim() call
+hotdogs &lt;- read.delim(&quot;hotdogs.txt&quot;, header = FALSE, col.names = c(&quot;type&quot;, &quot;calories&quot;, &quot;sodium&quot;))
+# Select the hot dog with the least calories: lily
+lily &lt;- hotdogs[which.min(hotdogs$calories), ]
+# Select the observation with the most sodium: tom
+tom &lt;- hotdogs[which.max(hotdogs$sodium), ]
+# Print lily and tom
+lily</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyVlJ5MDdETUJCMFlvZFNTendrdnFPUjJrOUFYSkVRQjlUcjRqaGcxYlVqeHdINjg0Vk40b1hXSE9KTWRzY3pzOW5uaCsxR2JpVmpyR1JjNE1rUmloS1BnZ20ySE45ZmpQRTdCTmpoVjFOandtZWtDNnMvdE8wUjNVN2R1U3J1dFc0SlAycUlDUytlL0dCak9HUWlsYkxRazhhdmNnc3Erb0RvaUEvNXYvemhvczFsSE96MXZ5angwT21FTHhWWUh3eHlra1h2R3pQc001bGw4SjgxU1pIdlppYng3eXlsYkNCQzNRYWt6MG5QcEJhK2k4WTdGQ3JISDFsbGw0dVFGVzRHTnhvM0svVSt1TjFxUFJxa0FNVkptRk9jRmlJb1dFV3phZmRtSEUxZVdYalZObjFjNDREVGZIVVhqS1BkU0t6MmRmUVJpQ2VWdDFTWnQzRDhBWXl5T0pvMkFnQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["calories"],"name":[2],"type":["int"],"align":["right"]},{"label":["sodium"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Poultry","2":"86","3":"358","_rn_":"50"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9tXG5gYGAifQ== -->
+<pre class="r"><code>tom</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVJVVTRESVJDZExxeHRTV3BOUEVjM3NVY3cvcG9Zdi9xTExLdEVDaHVXVlhzQXIrWFJxclBMamszUmo0SEh6T085R1hpODIyM0ZUZ0JBQVl6anloRHlBcGNaY0ZnTyt3Y0F1MGFBRmJZYUMyT2NrUzZzZnRPMlEzUTFNbE9XMzJyZEVMN1hNazU0L3VCN0c4TWhFeW1WbFIxcC9DbzNVa1VmRUIweHlQL3JoSXZQWE1iSnZmN1RTankwZXNJTEphMFBCam1UUmVkcjArOHptV1h3N3hWSmtlODZrZGgzMXFXb1paUlZFNUNlT2oyVG12czJHdTlRcUJnZXNzd3V6MEtXV1BkdU1LNDM2cVYzcjV1YndlRDA4TEQ2QjdOa3lhbXhrbWJUN3RrNG1yeTA4a25iNlhDSkE0N3pWVzB3anY1R1lMYXJvbytTZUVKNVM1bjBDOGNmKzhuSnB6WUNBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["calories"],"name":[2],"type":["int"],"align":["right"]},{"label":["sodium"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Beef","2":"190","3":"645","_rn_":"15"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Results:</strong> Based on the result above, Lily would get the 50th entry with Poulty. Whereas Tom would get the 15th hotdog with Beef.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW1wb3J0IERhdGEtLUZsYXQgRmlsZXMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjIyMgV2hhdCBpcyBhIGZsYXQgZmlsZT8KCkZsYXQgZmlsZSBsaWtlIC5jc3YgaXMgYSBmaWxlIHdpdGggZGF0YSBzZXBhcmF0ZWQgYnkgYSBgLGAuIAoKQ2FuIHVzZSBgdXRpbHM6OnJlYWQuY3N2KClgIHRvIHJlYWQgZmlsZQoKIyMjIyByZWFkLmNzdigpCgotIFNhbXBsZSB3YXkgdG8gcmVhZCBjc3YgZmlsZSBpczoKICBgcG9vbHMgPC0gcmVhZC5jc3YoInN3aW1taW5nX3Bvb2xzLmNzdiIpYAotIFRvIHNlZSB0aGUgYmFzaWMgc3RydWN0dXJlIG9mIGltcG9ydGVkIGRhdGEsIHVzZSBgc3RyKHBvb2xzKWAgdG8gc2VlIGxldmVscywgdmFyaWFibGVzLCBldGMKCmBgYHtyfQpwb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2IikKYGBgCgojIyMjIHJlYWQuY3N2KCksIGZvcmNpbmcgaXQgdG8gTk9UIGNvbnZlcnQgdmFyaWFibGVzIGludG8gY2F0ZWdvcmljYWwgb3IgZmFjdG9ycwoKTm90ZTogIEFsbCBpbXBvcnRpbmcgZnVuY3Rpb25zIGluIHV0aWxzIHBhY2thZ2UsIHN1Y2ggYXMgYHJlYWQuY3N2KClgLCBpbXBvcnRlZCBzdHJpbmdzIGFyZSBjb252ZXJ0ZWQgdG8gZmFjdG9ycy4gIAoKVGhlIGNvcnJlY3Qgd2F5IHdvdWxkIGJlIHRvIHJ1biB0aGUgZm9sbG93aW5nIGNvZGU6CmBwb29sczwtIHJlYWQuY3N2KCJzd2ltbWluZ19wb29scy5jc3YiLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpYAoKYGBge3J9CnByb3Blcl9wb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2Iiwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKQppbXByb3Blcl9wb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2IikKYGBgCgpUbyBzZWUgdGhlIGRpZmZlcmVuY2UsIGNvbXBhcmUgdGhlIHN0cigpIHByaW50b3V0IGZyb20gdHdvIGltcG9ydGVkIGRhdGE6CgpUaGUgY29kZSBiZWxvdyBzaG93cyB0aGF0IHRoZSBpbXByb3BlciB3YXkgb2YgaW1wb3J0aW5nIGRhdGEgd2l0aG91dCB0aGUgYHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRWAgYXJndW1lbnQgeWllbGRzIHRvIG5hbWUgYW5kIGFkZHJlc3MgYmVpbmcgY29udmVydGVkIHRvIGZhY3RvcnMuICAKCmBgYHtyfQpzdHIoaW1wcm9wZXJfcG9vbHMpCmBgYAoKVGhlIGNvZGUgYmVsb3cgc2hvd3MgdGhhdCBuYW1lIGFuZCBhZGRyZXNzIHZhcmlhYmxlcyBhcmUga2VwdCBhcyBjaGFyYWN0ZXJzIHdoaWNoIGlzIHRoZSBkZXNpcmVkIGFuZCBwcm9wZXIgd2F5IG9mIHJldHJpZXZpbmcgYW5kIHNhdmluZyBkYXRhLiAKCmBgYHtyfQpzdHIocHJvcGVyX3Bvb2xzKQpgYGAKCgojIyMjIHJlYWQuZGVsaW0gYW5kIHJlYWQudGFibGUKCi0gYHJlYWQuZGVsaW0oKWAgaXMgdXNlZCBmb3IgdGFiLWRlbGltaXRlZAotIGByZWFkLnRhYmxlKClgIGlzIHVzZWQgZm9yIGFueSBmbGF0IGZpbGUKCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW1wb3J0IERhdGEtLUZsYXQgRmlsZXMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjIyMgV2hhdCBpcyBhIGZsYXQgZmlsZT8KCkZsYXQgZmlsZSBsaWtlIC5jc3YgaXMgYSBmaWxlIHdpdGggZGF0YSBzZXBhcmF0ZWQgYnkgYSBgLGAuIAoKQ2FuIHVzZSBgdXRpbHM6OnJlYWQuY3N2KClgIHRvIHJlYWQgZmlsZQoKIyMjIyByZWFkLmNzdigpCgotIFNhbXBsZSB3YXkgdG8gcmVhZCBjc3YgZmlsZSBpczoKICBgcG9vbHMgPC0gcmVhZC5jc3YoInN3aW1taW5nX3Bvb2xzLmNzdiIpYAotIFRvIHNlZSB0aGUgYmFzaWMgc3RydWN0dXJlIG9mIGltcG9ydGVkIGRhdGEsIHVzZSBgc3RyKHBvb2xzKWAgdG8gc2VlIGxldmVscywgdmFyaWFibGVzLCBldGMKCmBgYHtyfQpwb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2IikKYGBgCgojIyMjIHJlYWQuY3N2KCksIGZvcmNpbmcgaXQgdG8gTk9UIGNvbnZlcnQgdmFyaWFibGVzIGludG8gY2F0ZWdvcmljYWwgb3IgZmFjdG9ycwoKTm90ZTogIEFsbCBpbXBvcnRpbmcgZnVuY3Rpb25zIGluIHV0aWxzIHBhY2thZ2UsIHN1Y2ggYXMgYHJlYWQuY3N2KClgLCBpbXBvcnRlZCBzdHJpbmdzIGFyZSBjb252ZXJ0ZWQgdG8gZmFjdG9ycy4gIAoKVGhlIGNvcnJlY3Qgd2F5IHdvdWxkIGJlIHRvIHJ1biB0aGUgZm9sbG93aW5nIGNvZGU6CmBwb29sczwtIHJlYWQuY3N2KCJzd2ltbWluZ19wb29scy5jc3YiLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpYAoKYGBge3J9CnByb3Blcl9wb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2Iiwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKQppbXByb3Blcl9wb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2IikKYGBgCgpUbyBzZWUgdGhlIGRpZmZlcmVuY2UsIGNvbXBhcmUgdGhlIHN0cigpIHByaW50b3V0IGZyb20gdHdvIGltcG9ydGVkIGRhdGE6CgpUaGUgY29kZSBiZWxvdyBzaG93cyB0aGF0IHRoZSBpbXByb3BlciB3YXkgb2YgaW1wb3J0aW5nIGRhdGEgd2l0aG91dCB0aGUgYHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRWAgYXJndW1lbnQgeWllbGRzIHRvIG5hbWUgYW5kIGFkZHJlc3MgYmVpbmcgY29udmVydGVkIHRvIGZhY3RvcnMuICAKCmBgYHtyfQpzdHIoaW1wcm9wZXJfcG9vbHMpCmBgYAoKVGhlIGNvZGUgYmVsb3cgc2hvd3MgdGhhdCBuYW1lIGFuZCBhZGRyZXNzIHZhcmlhYmxlcyBhcmUga2VwdCBhcyBjaGFyYWN0ZXJzIHdoaWNoIGlzIHRoZSBkZXNpcmVkIGFuZCBwcm9wZXIgd2F5IG9mIHJldHJpZXZpbmcgYW5kIHNhdmluZyBkYXRhLiAKCmBgYHtyfQpzdHIocHJvcGVyX3Bvb2xzKQpgYGAKCgojIyMjIHJlYWQuZGVsaW0gYW5kIHJlYWQudGFibGUKCi0gYHJlYWQuZGVsaW0oKWAgaXMgdXNlZCBmb3IgdGFiLWRlbGltaXRlZAotIGByZWFkLnRhYmxlKClgIGlzIHVzZWQgZm9yIGFueSBmbGF0IGZpbGUKClRhc2tzOiAKLSBJbXBvcnQgdGhlIGRhdGEgaW4gImhvdGRvZ3MudHh0IiB3aXRoIHJlYWQuZGVsaW0oKS4gQ2FsbCB0aGUgcmVzdWx0aW5nIGRhdGEgZnJhbWUgaG90ZG9ncy4gVGhlIHZhcmlhYmxlIG5hbWVzIGFyZSBub3Qgb24gdGhlIGZpcnN0IGxpbmUsIHNvIG1ha2Ugc3VyZSB0byBzZXQgdGhlIGhlYWRlciBhcmd1bWVudCBhcHByb3ByaWF0ZWx5LgotIENhbGwgc3VtbWFyeSgpIG9uIGhvdGRvZ3MuIFRoaXMgd2lsbCBwcmludCBvdXQgc29tZSBzdW1tYXJ5IHN0YXRpc3RpY3MgYWJvdXQgYWxsIHZhcmlhYmxlcyBpbiB0aGUgZGF0YSBmcmFtZS4KCl9fTm90ZV9fOiAgaGVhZGVyID0gRkFMU0UgZW5zdXJlcyB0aGF0IHRoZSBmaXJzdCBsaW5lIGlzIG5vdCB0cmVhdGVkIGFzIHZhcmlhYmxlIG5hbWVzLgoKYGBge3J9CmhvdGRvZ3MgPC0gcmVhZC5kZWxpbSgiaG90ZG9ncy50eHQiLCBoZWFkZXIgPSBGQUxTRSkKc3VtbWFyeShob3Rkb2dzKQpgYGAKCiMjIyMgVXNpbmcgcmVhZC50YWJsZSgpCgpBbiBleGFtcGxlIG9mIHVzaW5nIGByZWFkLnRhYmxlKClgIHdpdGggdGFiLXNlcGVyYXRlZCBkYXRhOgoKYGBge3J9CiMgUGF0aCB0byB0aGUgaG90ZG9ncy50eHQgZmlsZTogcGF0aApwYXRoIDwtIGZpbGUucGF0aCgiZGF0YSIsICJob3Rkb2dzLnR4dCIpCgojIEltcG9ydCB0aGUgaG90ZG9ncy50eHQgZmlsZTogaG90ZG9ncwpob3Rkb2dzIDwtIHJlYWQudGFibGUocGF0aCwgIAogICAgICAgICAgICAgICAgICAgICAgc2VwID0iXHQiLAogICAgICAgICAgICAgICAgICAgICAgY29sLm5hbWVzID0gYygidHlwZSIsICJjYWxvcmllcyIsICJzb2RpdW0iKSkKCiMgQ2FsbCBoZWFkKCkgb24gaG90ZG9ncwpoZWFkKGhvdGRvZ3MpCmBgYAoKCiMjIyMgRXhlcmNpc2U6ICBhcmd1bWVudHMgb24gY2Fsb3JpZXMgdnMgc29kaXVtCgpfX1Rhc2tzOl9fIEZpbmlzaCB0aGUgcmVhZC5kZWxpbSgpIGNhbGwgdG8gaW1wb3J0IHRoZSBkYXRhIGluICJob3Rkb2dzLnR4dCIuIEl0J3MgYSB0YWItZGVsaW1pdGVkIGZpbGUgd2l0aG91dCBuYW1lcyBpbiB0aGUgZmlyc3Qgcm93LiBUaGUgY29kZSB0aGF0IHNlbGVjdHMgdGhlIG9ic2VydmF0aW9uIHdpdGggdGhlIGxvd2VzdCBjYWxvcmllIGNvdW50IGFuZCBzdG9yZXMgaXQgaW4gdGhlIHZhcmlhYmxlIGxpbHkgaXMgYWxyZWFkeSBhdmFpbGFibGUuIEl0IHVzZXMgdGhlIGZ1bmN0aW9uIHdoaWNoLm1pbigpLCB0aGF0IHJldHVybnMgdGhlIGluZGV4IHRoZSBzbWFsbGVzdCB2YWx1ZSBpbiBhIHZlY3Rvci4KRG8gYSBzaW1pbGFyIHRoaW5nIGZvciBUb206IHNlbGVjdCB0aGUgb2JzZXJ2YXRpb24gd2l0aCB0aGUgbW9zdCBzb2RpdW0gYW5kIHN0b3JlIGl0IGluIHRvbS4gVXNlIHdoaWNoLm1heCgpIHRoaXMgdGltZS4gRmluYWxseSwgcHJpbnQgYm90aCB0aGUgb2JzZXJ2YXRpb25zIGxpbHkgYW5kIHRvbS4KCmBgYHtyfQojIEZpbmlzaCB0aGUgcmVhZC5kZWxpbSgpIGNhbGwKaG90ZG9ncyA8LSByZWFkLmRlbGltKCJob3Rkb2dzLnR4dCIsIGhlYWRlciA9IEZBTFNFLCBjb2wubmFtZXMgPSBjKCJ0eXBlIiwgImNhbG9yaWVzIiwgInNvZGl1bSIpKQoKIyBTZWxlY3QgdGhlIGhvdCBkb2cgd2l0aCB0aGUgbGVhc3QgY2Fsb3JpZXM6IGxpbHkKbGlseSA8LSBob3Rkb2dzW3doaWNoLm1pbihob3Rkb2dzJGNhbG9yaWVzKSwgXQoKIyBTZWxlY3QgdGhlIG9ic2VydmF0aW9uIHdpdGggdGhlIG1vc3Qgc29kaXVtOiB0b20KdG9tIDwtIGhvdGRvZ3Nbd2hpY2gubWF4KGhvdGRvZ3Mkc29kaXVtKSwgXQoKIyBQcmludCBsaWx5IGFuZCB0b20KbGlseQp0b20KYGBgCgpfX1Jlc3VsdHM6X18gQmFzZWQgb24gdGhlIHJlc3VsdCBhYm92ZSwgTGlseSB3b3VsZCBnZXQgdGhlIDUwdGggZW50cnkgd2l0aCBQb3VsdHkuICBXaGVyZWFzIFRvbSB3b3VsZCBnZXQgdGhlIDE1dGggaG90ZG9nIHdpdGggQmVlZi4KCgo=</div>
 
 
 
