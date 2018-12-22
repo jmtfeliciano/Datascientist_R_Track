@@ -187,11 +187,65 @@ $(document).ready(function () {
 <li>Sample way to read csv file is: <code>pools &lt;- read.csv(&quot;swimming_pools.csv&quot;)</code></li>
 <li>To see the basic structure of imported data, use <code>str(pools)</code> to see levels, variables, etc</li>
 </ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucG9vbHMgPC0gcmVhZC5jc3YoXCJzd2ltbWluZ19wb29scy5jc3ZcIilcbmBgYCJ9 -->
+<pre class="r"><code>pools &lt;- read.csv(&quot;swimming_pools.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<div id="read.csv-forcing-it-to-not-convert-variables-into-categorical-or-levels" class="section level4">
-<h4>read.csv(), forcing it to NOT convert variables into categorical or levels</h4>
+<div id="read.csv-forcing-it-to-not-convert-variables-into-categorical-or-factors" class="section level4">
+<h4>read.csv(), forcing it to NOT convert variables into categorical or factors</h4>
 <p>Note: All importing functions in utils package, such as <code>read.csv()</code>, imported strings are converted to factors.</p>
 <p>The correct way would be to run the following code: <code>pools&lt;- read.csv(&quot;swimming_pools.csv&quot;, stringsAsFactors = FALSE)</code></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvcGVyX3Bvb2xzIDwtIHJlYWQuY3N2KFwic3dpbW1pbmdfcG9vbHMuY3N2XCIsIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSlcbmltcHJvcGVyX3Bvb2xzIDwtIHJlYWQuY3N2KFwic3dpbW1pbmdfcG9vbHMuY3N2XCIpXG5zdHIocHJvcGVyX3Bvb2xzKVxuYGBgIn0= -->
+<pre class="r"><code>proper_pools &lt;- read.csv(&quot;swimming_pools.csv&quot;, stringsAsFactors = FALSE)
+improper_pools &lt;- read.csv(&quot;swimming_pools.csv&quot;)
+str(proper_pools)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MjAgb2JzLiBvZiAgNCB2YXJpYWJsZXM6XG4gJCBOYW1lICAgICA6IGNociAgXCJBY2FjaWEgUmlkZ2UgTGVpc3VyZSBDZW50cmVcIiBcIkJlbGxib3dyaWUgUG9vbFwiIFwiQ2Fyb2xlIFBhcmtcIiBcIkNlbnRlbmFyeSBQb29sIChpbm5lciBDaXR5KVwiIC4uLlxuICQgQWRkcmVzcyAgOiBjaHIgIFwiMTM5MSBCZWF1ZGVzZXJ0IFJvYWQsIEFjYWNpYSBSaWRnZVwiIFwiU3VnYXJ3b29kIFN0cmVldCwgQmVsbGJvd3JpZVwiIFwiQ25yIEJvdW5kYXJ5IFJvYWQgYW5kIFdhdGVyZm9yZCBSb2FkIFdhY29sXCIgXCI0MDAgR3JlZ29yeSBUZXJyYWNlLCBTcHJpbmcgSGlsbFwiIC4uLlxuICQgTGF0aXR1ZGUgOiBudW0gIC0yNy42IC0yNy42IC0yNy42IC0yNy41IC0yNy40IC4uLlxuICQgTG9uZ2l0dWRlOiBudW0gIDE1MyAxNTMgMTUzIDE1MyAxNTMgLi4uXG4ifQ== -->
+<pre><code>'data.frame':   20 obs. of  4 variables:
+ $ Name     : chr  &quot;Acacia Ridge Leisure Centre&quot; &quot;Bellbowrie Pool&quot; &quot;Carole Park&quot; &quot;Centenary Pool (inner City)&quot; ...
+ $ Address  : chr  &quot;1391 Beaudesert Road, Acacia Ridge&quot; &quot;Sugarwood Street, Bellbowrie&quot; &quot;Cnr Boundary Road and Waterford Road Wacol&quot; &quot;400 Gregory Terrace, Spring Hill&quot; ...
+ $ Latitude : num  -27.6 -27.6 -27.6 -27.5 -27.4 ...
+ $ Longitude: num  153 153 153 153 153 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To see the difference, compare the str() printout from two imported data:</p>
+<p>The code below shows that the improper way of importing data without the <code>stringsAsFactors = FALSE</code> argument yields to name and address being converted to factors.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGltcHJvcGVyX3Bvb2xzKVxuYGBgIn0= -->
+<pre class="r"><code>str(improper_pools)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MjAgb2JzLiBvZiAgNCB2YXJpYWJsZXM6XG4gJCBOYW1lICAgICA6IEZhY3RvciB3LyAyMCBsZXZlbHMgXCJBY2FjaWEgUmlkZ2UgTGVpc3VyZSBDZW50cmVcIiwuLjogMSAyIDMgNCA1IDYgMTkgNyA4IDkgLi4uXG4gJCBBZGRyZXNzICA6IEZhY3RvciB3LyAyMCBsZXZlbHMgXCIxIEZhaXJsZWFkIENyZXNjZW50LCBNYW5seVwiLC4uOiA1IDIwIDE4IDEwIDkgMTEgNiAxNSAxMiAxNyAuLi5cbiAkIExhdGl0dWRlIDogbnVtICAtMjcuNiAtMjcuNiAtMjcuNiAtMjcuNSAtMjcuNCAuLi5cbiAkIExvbmdpdHVkZTogbnVtICAxNTMgMTUzIDE1MyAxNTMgMTUzIC4uLlxuIn0= -->
+<pre><code>'data.frame':   20 obs. of  4 variables:
+ $ Name     : Factor w/ 20 levels &quot;Acacia Ridge Leisure Centre&quot;,..: 1 2 3 4 5 6 19 7 8 9 ...
+ $ Address  : Factor w/ 20 levels &quot;1 Fairlead Crescent, Manly&quot;,..: 5 20 18 10 9 11 6 15 12 17 ...
+ $ Latitude : num  -27.6 -27.6 -27.6 -27.5 -27.4 ...
+ $ Longitude: num  153 153 153 153 153 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The code below shows that name and address variables are kept as characters which is the desired and proper way of retrieving and saving data.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKHByb3Blcl9wb29scylcbmBgYCJ9 -->
+<pre class="r"><code>str(proper_pools)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MjAgb2JzLiBvZiAgNCB2YXJpYWJsZXM6XG4gJCBOYW1lICAgICA6IGNociAgXCJBY2FjaWEgUmlkZ2UgTGVpc3VyZSBDZW50cmVcIiBcIkJlbGxib3dyaWUgUG9vbFwiIFwiQ2Fyb2xlIFBhcmtcIiBcIkNlbnRlbmFyeSBQb29sIChpbm5lciBDaXR5KVwiIC4uLlxuICQgQWRkcmVzcyAgOiBjaHIgIFwiMTM5MSBCZWF1ZGVzZXJ0IFJvYWQsIEFjYWNpYSBSaWRnZVwiIFwiU3VnYXJ3b29kIFN0cmVldCwgQmVsbGJvd3JpZVwiIFwiQ25yIEJvdW5kYXJ5IFJvYWQgYW5kIFdhdGVyZm9yZCBSb2FkIFdhY29sXCIgXCI0MDAgR3JlZ29yeSBUZXJyYWNlLCBTcHJpbmcgSGlsbFwiIC4uLlxuICQgTGF0aXR1ZGUgOiBudW0gIC0yNy42IC0yNy42IC0yNy42IC0yNy41IC0yNy40IC4uLlxuICQgTG9uZ2l0dWRlOiBudW0gIDE1MyAxNTMgMTUzIDE1MyAxNTMgLi4uXG4ifQ== -->
+<pre><code>'data.frame':   20 obs. of  4 variables:
+ $ Name     : chr  &quot;Acacia Ridge Leisure Centre&quot; &quot;Bellbowrie Pool&quot; &quot;Carole Park&quot; &quot;Centenary Pool (inner City)&quot; ...
+ $ Address  : chr  &quot;1391 Beaudesert Road, Acacia Ridge&quot; &quot;Sugarwood Street, Bellbowrie&quot; &quot;Cnr Boundary Road and Waterford Road Wacol&quot; &quot;400 Gregory Terrace, Spring Hill&quot; ...
+ $ Latitude : num  -27.6 -27.6 -27.6 -27.5 -27.4 ...
+ $ Longitude: num  153 153 153 153 153 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="read.delim-and-read.table" class="section level4">
 <h4>read.delim and read.table</h4>
@@ -202,7 +256,7 @@ $(document).ready(function () {
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW1wb3J0IERhdGEtLUZsYXQgRmlsZXMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjIyMgV2hhdCBpcyBhIGZsYXQgZmlsZT8KCkZsYXQgZmlsZSBsaWtlIC5jc3YgaXMgYSBmaWxlIHdpdGggZGF0YSBzZXBhcmF0ZWQgYnkgYSBgLGAuIAoKQ2FuIHVzZSBgdXRpbHM6OnJlYWQuY3N2KClgIHRvIHJlYWQgZmlsZQoKIyMjIyByZWFkLmNzdigpCgotIFNhbXBsZSB3YXkgdG8gcmVhZCBjc3YgZmlsZSBpczoKICBgcG9vbHMgPC0gcmVhZC5jc3YoInN3aW1taW5nX3Bvb2xzLmNzdiIpYAotIFRvIHNlZSB0aGUgYmFzaWMgc3RydWN0dXJlIG9mIGltcG9ydGVkIGRhdGEsIHVzZSBgc3RyKHBvb2xzKWAgdG8gc2VlIGxldmVscywgdmFyaWFibGVzLCBldGMKCiMjIyMgcmVhZC5jc3YoKSwgZm9yY2luZyBpdCB0byBOT1QgY29udmVydCB2YXJpYWJsZXMgaW50byBjYXRlZ29yaWNhbCBvciBsZXZlbHMKCk5vdGU6ICBBbGwgaW1wb3J0aW5nIGZ1bmN0aW9ucyBpbiB1dGlscyBwYWNrYWdlLCBzdWNoIGFzIGByZWFkLmNzdigpYCwgaW1wb3J0ZWQgc3RyaW5ncyBhcmUgY29udmVydGVkIHRvIGZhY3RvcnMuICAKClRoZSBjb3JyZWN0IHdheSB3b3VsZCBiZSB0byBydW4gdGhlIGZvbGxvd2luZyBjb2RlOgpgcG9vbHM8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2Iiwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKWAKCiMjIyMgcmVhZC5kZWxpbSBhbmQgcmVhZC50YWJsZQoKLSBgcmVhZC5kZWxpbSgpYCBpcyB1c2VkIGZvciB0YWItZGVsaW1pdGVkCi0gYHJlYWQudGFibGUoKWAgaXMgdXNlZCBmb3IgYW55IGZsYXQgZmlsZQoKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW1wb3J0IERhdGEtLUZsYXQgRmlsZXMiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjIyMgV2hhdCBpcyBhIGZsYXQgZmlsZT8KCkZsYXQgZmlsZSBsaWtlIC5jc3YgaXMgYSBmaWxlIHdpdGggZGF0YSBzZXBhcmF0ZWQgYnkgYSBgLGAuIAoKQ2FuIHVzZSBgdXRpbHM6OnJlYWQuY3N2KClgIHRvIHJlYWQgZmlsZQoKIyMjIyByZWFkLmNzdigpCgotIFNhbXBsZSB3YXkgdG8gcmVhZCBjc3YgZmlsZSBpczoKICBgcG9vbHMgPC0gcmVhZC5jc3YoInN3aW1taW5nX3Bvb2xzLmNzdiIpYAotIFRvIHNlZSB0aGUgYmFzaWMgc3RydWN0dXJlIG9mIGltcG9ydGVkIGRhdGEsIHVzZSBgc3RyKHBvb2xzKWAgdG8gc2VlIGxldmVscywgdmFyaWFibGVzLCBldGMKCmBgYHtyfQpwb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2IikKYGBgCgojIyMjIHJlYWQuY3N2KCksIGZvcmNpbmcgaXQgdG8gTk9UIGNvbnZlcnQgdmFyaWFibGVzIGludG8gY2F0ZWdvcmljYWwgb3IgZmFjdG9ycwoKTm90ZTogIEFsbCBpbXBvcnRpbmcgZnVuY3Rpb25zIGluIHV0aWxzIHBhY2thZ2UsIHN1Y2ggYXMgYHJlYWQuY3N2KClgLCBpbXBvcnRlZCBzdHJpbmdzIGFyZSBjb252ZXJ0ZWQgdG8gZmFjdG9ycy4gIAoKVGhlIGNvcnJlY3Qgd2F5IHdvdWxkIGJlIHRvIHJ1biB0aGUgZm9sbG93aW5nIGNvZGU6CmBwb29sczwtIHJlYWQuY3N2KCJzd2ltbWluZ19wb29scy5jc3YiLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpYAoKYGBge3J9CnByb3Blcl9wb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2Iiwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKQppbXByb3Blcl9wb29scyA8LSByZWFkLmNzdigic3dpbW1pbmdfcG9vbHMuY3N2IikKYGBgCgpUbyBzZWUgdGhlIGRpZmZlcmVuY2UsIGNvbXBhcmUgdGhlIHN0cigpIHByaW50b3V0IGZyb20gdHdvIGltcG9ydGVkIGRhdGE6CgpUaGUgY29kZSBiZWxvdyBzaG93cyB0aGF0IHRoZSBpbXByb3BlciB3YXkgb2YgaW1wb3J0aW5nIGRhdGEgd2l0aG91dCB0aGUgYHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRWAgYXJndW1lbnQgeWllbGRzIHRvIG5hbWUgYW5kIGFkZHJlc3MgYmVpbmcgY29udmVydGVkIHRvIGZhY3RvcnMuICAKCmBgYHtyfQpzdHIoaW1wcm9wZXJfcG9vbHMpCmBgYAoKVGhlIGNvZGUgYmVsb3cgc2hvd3MgdGhhdCBuYW1lIGFuZCBhZGRyZXNzIHZhcmlhYmxlcyBhcmUga2VwdCBhcyBjaGFyYWN0ZXJzIHdoaWNoIGlzIHRoZSBkZXNpcmVkIGFuZCBwcm9wZXIgd2F5IG9mIHJldHJpZXZpbmcgYW5kIHNhdmluZyBkYXRhLiAKCmBgYHtyfQpzdHIocHJvcGVyX3Bvb2xzKQpgYGAKCgojIyMjIHJlYWQuZGVsaW0gYW5kIHJlYWQudGFibGUKCi0gYHJlYWQuZGVsaW0oKWAgaXMgdXNlZCBmb3IgdGFiLWRlbGltaXRlZAotIGByZWFkLnRhYmxlKClgIGlzIHVzZWQgZm9yIGFueSBmbGF0IGZpbGUKCgoKCg==</div>
 
 
 
