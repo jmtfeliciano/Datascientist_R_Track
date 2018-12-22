@@ -1,0 +1,40 @@
+---
+title: "Data Cleaning--Tidying"
+output: html_notebook
+---
+
+
+
+#### Need to make data from wide to long
+
+`gather(wide_df, my_key, my_val, -col)` is a useful function here.
+
+
+#### Need to make data from long to wide
+
+`spread(long_df, my_key, my_val)` is a useful function here.
+
+#### Seperate info via tidyr's seperate()
+
+```{r}
+data <- data.frame(a=c(1,2,3,4),dates=c("Dec/1989","Jan/2029","July/2019","April/2018"))
+data
+```
+
+The sample data shows 4 entries under dates
+
+Let's use `seperate()` from tidyr to split this:
+
+```{r}
+data_sep <- separate(data, dates, c("month","year"), "/")
+data_sep
+```
+
+#### tidyr's unite()
+
+Recombine month and year into variable called combined_month_dash_year:
+
+```{r}
+unite(data_sep, combined_month_dash_year, month, year, sep =  "-" )
+```
+
