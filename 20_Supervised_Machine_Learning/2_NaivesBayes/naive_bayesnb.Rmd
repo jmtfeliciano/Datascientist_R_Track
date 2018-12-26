@@ -1,0 +1,96 @@
+---
+title: "Naive Bayes"
+output: html_notebook
+---
+
+## __NOTE__:  data sets are not present here since they're proprietary data but includes my basic codes for tasks I accomplished
+
+#### Basics and how to retrieve basic probabilities
+
+```{r}
+# Compute P(A) 
+p_A <- nrow(subset(where9am, location == "office"))/nrow(where9am)
+
+# Compute P(B)
+p_B <- nrow(subset(where9am, daytype == "weekday"))/nrow(where9am)
+
+# Compute the observed P(A and B)
+p_AB <- nrow(subset(where9am, location == "office", daytype == "weekday"))/nrow(where9am)
+
+# Compute P(A | B) and print its value
+p_A_given_B <- p_AB/p_B
+```
+
+
+#### Working with Naive Bayes package
+
+```{r}
+# Load the naivebayes package
+library(naivebayes)
+
+# Build the location prediction model to predict location by using daytype independent var
+locmodel <- naive_bayes(location ~ daytype, data = where9am)
+
+# Predict Thursday's 9am location
+predict(locmodel , thursday9am)
+## will print: office
+
+# Predict Saturdays's 9am location
+predict(locmodel , saturday9am)
+## will print: home
+```
+
+#### Type = "prob" for naive_bayes
+
+
+
+```{r}
+# Suppose the Naive Bayes 'locmodel' has been built
+
+# Examine the location prediction model
+locmodel
+## Prints the following:
+## daytype   appointment    campus      home    office
+##   weekday   1.0000000 1.0000000 0.3658537 1.0000000
+##   weekend   0.0000000 0.0000000 0.6341463 0.0000000
+
+# Obtain the predicted probabilities for Thursday at 9am
+predict(locmodel, thursday9am , type = "prob")
+## Prints the following:
+## appointment    campus      home office
+##[1,]  0.01538462 0.1538462 0.2307692    0.6
+```
+
+__Conclusion:__ without the `type = "prob"` option, we will just get the most probable as output, not the probability distribution.
+
+#### Why called 'naive'
+
+A-B-C intersection = A-B intersection  * B-C intersection
+
+But a descent approximation.  Assume independence so we can simply multiply and no worry about minusing intersection probabilities.
+
+The 'infrequent' problem is when for instance we have no data on B-C so P(B-C) is 0 in this case.  So we can do a Laplace correction by adding 1 to each P(intersection)
+
+#### Multiple independent variable
+
+The dataset locations is already loaded in your workspace. Use the R formula interface to build a model where location depends on both daytype and hourtype. Recall that the function naive_bayes() takes 2 arguments: formula and data. Predict Brett's location on a weekday afternoon using the dataframe weekday_afternoon and the predict() function.
+
+```{r}
+# Build a NB model of location
+locmodel <- naive_bayes(location ~ daytype + hourtype, data=locations)
+
+# Predict Brett's location on a weekday afternoon
+predict(locmodel, weekday_afternoon)
+# side node:  weekday_afternoon is predefined as:
+#   daytype  hourtype
+#  weekday afternoon
+## output: office
+
+```
+
+
+
+
+
+
+
