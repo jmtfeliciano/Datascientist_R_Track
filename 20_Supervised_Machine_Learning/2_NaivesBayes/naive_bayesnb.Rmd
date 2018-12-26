@@ -88,6 +88,13 @@ predict(locmodel, weekday_afternoon)
 
 ```
 
+#### Laplace Correction
+
+```{r}
+# Build a new model using the Laplace correction
+locmodel2 <- naive_bayes(location ~ daytype + hourtype, data= location, laplace=1)
+```
+
 
 
 
