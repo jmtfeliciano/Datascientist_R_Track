@@ -239,9 +239,87 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="note-datasets-are-not-here-so-code-i-wrote-here-are-for-reference-only" class="section level2">
+<h2>Note: datasets are not here, so code I wrote here are for reference only</h2>
+<div id="task-1" class="section level4">
+<h4>Task 1:</h4>
+<p>After several trips with a human behind the wheel, it is time for the self-driving car to attempt the test course alone.</p>
+<p>As it begins to drive away, its camera captures a stop sign. Can you apply a kNN classifier to help the car recognize this sign?</p>
+<p><strong>Instruction:</strong></p>
+<p>The dataset signs is loaded in your workspace along with the dataframe next_sign, which holds the observation you want to classify.</p>
+<p>Load the class package. Create a vector of sign labels to use with kNN by extracting the column sign_type from signs. Identify the next_sign using the knn() function. Set the train argument equal to the signs data frame without the first column. Set the test argument equal to the data frame next_sign. Use the vector of labels you created as the cl argument.</p>
+<p>Solution:</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBMb2FkIHRoZSAnY2xhc3MnIHBhY2thZ2VcbmxpYnJhcnkoY2xhc3MpXG5cbiMgQ3JlYXRlIGEgdmVjdG9yIG9mIGxhYmVsc1xuc2lnbl90eXBlcyA8LSBzaWducyRzaWduX3R5cGVcblxuIyBDbGFzc2lmeSB0aGUgbmV4dCBzaWduIG9ic2VydmVkXG5rbm4odHJhaW4gPSBzaWduc1stMV0sIHRlc3QgPSBuZXh0X3NpZ24sIGNsID0gc2lnbl90eXBlcylcbmBgYCJ9 -->
+<pre class="r"><code># Load the 'class' package
+library(class)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiS05OIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgo=</div>
+# Create a vector of labels
+sign_types &lt;- signs$sign_type
+
+# Classify the next sign observed
+knn(train = signs[-1], test = next_sign, cl = sign_types)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="task-2" class="section level4">
+<h4>Task 2:</h4>
+<p>To better understand how the knn() function was able to classify the stop sign, it may help to examine the training dataset it used.</p>
+<p>Each previously observed street sign was divided into a 4x4 grid, and the red, green, and blue level for each of the 16 center pixels.</p>
+<p>The result is a dataset that records the sign_type as well as 16 x 3 = 48 color properties of each sign.</p>
+<p><em>Instruction:</em> Use the str() function to examine the signs dataset. Use table() to count the number of observations of each sign type by passing it the column containing the labels. Run the provided aggregate() command to see whether the average red level might vary by sign type.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBFeGFtaW5lIHRoZSBzdHJ1Y3R1cmUgb2YgdGhlIHNpZ25zIGRhdGFzZXRcbnN0cihzaWducylcblxuIyBDb3VudCB0aGUgbnVtYmVyIG9mIHNpZ25zIG9mIGVhY2ggdHlwZVxudGFibGUoc2lnbnMkc2lnbl90eXBlKVxuIyMgUkVUVVJORUQgIyMgIFxuIyMgcGVkZXN0cmlhbiAgICAgIHNwZWVkICAgICAgIHN0b3AgXG4jIyAgICAgICAgNDYgICAgICAgICA0OSAgICAgICAgIDUxXG5cbiMgQ2hlY2sgcjEwJ3MgYXZlcmFnZSByZWQgbGV2ZWwgYnkgc2lnbiB0eXBlXG5hZ2dyZWdhdGUocjEwIH4gc2lnbl90eXBlLCBkYXRhID0gc2lnbnMsIG1lYW4pXG4jIyAgc2lnbl90eXBlICAgICAgIHIxMFxuIyMgUkVUVVJORUQgIyNcbiMxIHBlZGVzdHJpYW4gMTEzLjcxNzM5XG4jMiAgICAgIHNwZWVkICA4MC42MzI2NVxuIzMgICAgICAgc3RvcCAxMzIuMzkyMTZcbmBgYCJ9 -->
+<pre class="r"><code># Examine the structure of the signs dataset
+str(signs)
+
+# Count the number of signs of each type
+table(signs$sign_type)
+## RETURNED ##  
+## pedestrian      speed       stop 
+##        46         49         51
+
+# Check r10's average red level by sign type
+aggregate(r10 ~ sign_type, data = signs, mean)
+##  sign_type       r10
+## RETURNED ##
+#1 pedestrian 113.71739
+#2      speed  80.63265
+#3       stop 132.39216</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Result above makes sense:</strong> stop sign should have a higher percentage of red.</p>
+</div>
+<div id="a-more-advanced-example" class="section level4">
+<h4>A more advanced example:</h4>
+<p>Classifying a collection of road signs Now that the autonomous vehicle has successfully stopped on its own, your team feels confident allowing the car to continue the test course.</p>
+<p>The test course includes 59 additional road signs divided into three types. At the conclusion of the trial, you are asked to measure the car’s overall performance at recognizing these signs.</p>
+<p><strong>Instructions:</strong> The class package and the dataset signs are already loaded in your workspace. So is the dataframe test_signs, which holds a set of observations you’ll test your model on. Classify the test_signs data using knn(). Set train equal to the observations in signs without labels. Use test_signs for the test argument, again without labels. For the cl argument, use the vector of labels provided for you. Use table() to explore the classifier’s performance at identifying the three sign types. Create the vector signs_actual by extracting the labels from test_signs. Pass the vector of predictions and the vector of actual signs to table() to cross tabulate them. Compute the overall accuracy of the kNN learner using the mean() function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2Uga05OIHRvIGlkZW50aWZ5IHRoZSB0ZXN0IHJvYWQgc2lnbnNcbnNpZ25fdHlwZXMgPC0gc2lnbnMkc2lnbl90eXBlXG5zaWduc19wcmVkIDwtIGtubih0cmFpbiA9IHNpZ25zWy0xXSwgdGVzdCA9IHRlc3Rfc2lnbnNbLTFdLCBjbCA9IHNpZ25fdHlwZXMpXG5cbiMgQ3JlYXRlIGEgY29uZnVzaW9uIG1hdHJpeCBvZiB0aGUgYWN0dWFsIHZlcnN1cyBwcmVkaWN0ZWQgdmFsdWVzXG5zaWduc19hY3R1YWwgPC0gdGVzdF9zaWducyRzaWduX3R5cGVcbnRhYmxlKHNpZ25zX3ByZWQsIHNpZ25zX2FjdHVhbClcblxuIyBDb21wdXRlIHRoZSBhY2N1cmFjeVxubWVhbihzaWduc19hY3R1YWwgPT0gc2lnbnNfcHJlZClcbmBgYCJ9 -->
+<pre class="r"><code># Use kNN to identify the test road signs
+sign_types &lt;- signs$sign_type
+signs_pred &lt;- knn(train = signs[-1], test = test_signs[-1], cl = sign_types)
+
+# Create a confusion matrix of the actual versus predicted values
+signs_actual &lt;- test_signs$sign_type
+table(signs_pred, signs_actual)
+
+# Compute the accuracy
+mean(signs_actual == signs_pred)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiS05OIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyBOb3RlOiAgZGF0YXNldHMgYXJlIG5vdCBoZXJlLCBzbyBjb2RlIEkgd3JvdGUgaGVyZSBhcmUgZm9yIHJlZmVyZW5jZSBvbmx5CgojIyMjIFRhc2sgMToKCkFmdGVyIHNldmVyYWwgdHJpcHMgd2l0aCBhIGh1bWFuIGJlaGluZCB0aGUgd2hlZWwsIGl0IGlzIHRpbWUgZm9yIHRoZSBzZWxmLWRyaXZpbmcgY2FyIHRvIGF0dGVtcHQgdGhlIHRlc3QgY291cnNlIGFsb25lLgoKQXMgaXQgYmVnaW5zIHRvIGRyaXZlIGF3YXksIGl0cyBjYW1lcmEgY2FwdHVyZXMgYSBzdG9wIHNpZ24uIENhbiB5b3UgYXBwbHkgYSBrTk4gY2xhc3NpZmllciB0byBoZWxwIHRoZSBjYXIgcmVjb2duaXplIHRoaXMgc2lnbj8KCl9fSW5zdHJ1Y3Rpb246X18gIAoKVGhlIGRhdGFzZXQgc2lnbnMgaXMgbG9hZGVkIGluIHlvdXIgd29ya3NwYWNlIGFsb25nIHdpdGggdGhlIGRhdGFmcmFtZSBuZXh0X3NpZ24sIHdoaWNoIGhvbGRzIHRoZSBvYnNlcnZhdGlvbiB5b3Ugd2FudCB0byBjbGFzc2lmeS4KCkxvYWQgdGhlIGNsYXNzIHBhY2thZ2UuCkNyZWF0ZSBhIHZlY3RvciBvZiBzaWduIGxhYmVscyB0byB1c2Ugd2l0aCBrTk4gYnkgZXh0cmFjdGluZyB0aGUgY29sdW1uIHNpZ25fdHlwZSBmcm9tIHNpZ25zLgpJZGVudGlmeSB0aGUgbmV4dF9zaWduIHVzaW5nIHRoZSBrbm4oKSBmdW5jdGlvbi4KU2V0IHRoZSB0cmFpbiBhcmd1bWVudCBlcXVhbCB0byB0aGUgc2lnbnMgZGF0YSBmcmFtZSB3aXRob3V0IHRoZSBmaXJzdCBjb2x1bW4uClNldCB0aGUgdGVzdCBhcmd1bWVudCBlcXVhbCB0byB0aGUgZGF0YSBmcmFtZSBuZXh0X3NpZ24uClVzZSB0aGUgdmVjdG9yIG9mIGxhYmVscyB5b3UgY3JlYXRlZCBhcyB0aGUgY2wgYXJndW1lbnQuCgpTb2x1dGlvbjoKYGBge3J9CiMgTG9hZCB0aGUgJ2NsYXNzJyBwYWNrYWdlCmxpYnJhcnkoY2xhc3MpCgojIENyZWF0ZSBhIHZlY3RvciBvZiBsYWJlbHMKc2lnbl90eXBlcyA8LSBzaWducyRzaWduX3R5cGUKCiMgQ2xhc3NpZnkgdGhlIG5leHQgc2lnbiBvYnNlcnZlZAprbm4odHJhaW4gPSBzaWduc1stMV0sIHRlc3QgPSBuZXh0X3NpZ24sIGNsID0gc2lnbl90eXBlcykKYGBgCgoKIyMjIyBUYXNrIDI6CgpUbyBiZXR0ZXIgdW5kZXJzdGFuZCBob3cgdGhlIGtubigpIGZ1bmN0aW9uIHdhcyBhYmxlIHRvIGNsYXNzaWZ5IHRoZSBzdG9wIHNpZ24sIGl0IG1heSBoZWxwIHRvIGV4YW1pbmUgdGhlIHRyYWluaW5nIGRhdGFzZXQgaXQgdXNlZC4KCkVhY2ggcHJldmlvdXNseSBvYnNlcnZlZCBzdHJlZXQgc2lnbiB3YXMgZGl2aWRlZCBpbnRvIGEgNHg0IGdyaWQsIGFuZCB0aGUgcmVkLCBncmVlbiwgYW5kIGJsdWUgbGV2ZWwgZm9yIGVhY2ggb2YgdGhlIDE2IGNlbnRlciBwaXhlbHMuICAKClRoZSByZXN1bHQgaXMgYSBkYXRhc2V0IHRoYXQgcmVjb3JkcyB0aGUgc2lnbl90eXBlIGFzIHdlbGwgYXMgMTYgeCAzID0gNDggY29sb3IgcHJvcGVydGllcyBvZiBlYWNoIHNpZ24uCgpfSW5zdHJ1Y3Rpb246XyBVc2UgdGhlIHN0cigpIGZ1bmN0aW9uIHRvIGV4YW1pbmUgdGhlIHNpZ25zIGRhdGFzZXQuIFVzZSB0YWJsZSgpIHRvIGNvdW50IHRoZSBudW1iZXIgb2Ygb2JzZXJ2YXRpb25zIG9mIGVhY2ggc2lnbiB0eXBlIGJ5IHBhc3NpbmcgaXQgdGhlIGNvbHVtbiBjb250YWluaW5nIHRoZSBsYWJlbHMuIFJ1biB0aGUgcHJvdmlkZWQgYWdncmVnYXRlKCkgY29tbWFuZCB0byBzZWUgd2hldGhlciB0aGUgYXZlcmFnZSByZWQgbGV2ZWwgbWlnaHQgdmFyeSBieSBzaWduIHR5cGUuCgpgYGB7cn0KIyBFeGFtaW5lIHRoZSBzdHJ1Y3R1cmUgb2YgdGhlIHNpZ25zIGRhdGFzZXQKc3RyKHNpZ25zKQoKIyBDb3VudCB0aGUgbnVtYmVyIG9mIHNpZ25zIG9mIGVhY2ggdHlwZQp0YWJsZShzaWducyRzaWduX3R5cGUpCiMjIFJFVFVSTkVEICMjICAKIyMgcGVkZXN0cmlhbiAgICAgIHNwZWVkICAgICAgIHN0b3AgCiMjICAgICAgICA0NiAgICAgICAgIDQ5ICAgICAgICAgNTEKCiMgQ2hlY2sgcjEwJ3MgYXZlcmFnZSByZWQgbGV2ZWwgYnkgc2lnbiB0eXBlCmFnZ3JlZ2F0ZShyMTAgfiBzaWduX3R5cGUsIGRhdGEgPSBzaWducywgbWVhbikKIyMgIHNpZ25fdHlwZSAgICAgICByMTAKIyMgUkVUVVJORUQgIyMKIzEgcGVkZXN0cmlhbiAxMTMuNzE3MzkKIzIgICAgICBzcGVlZCAgODAuNjMyNjUKIzMgICAgICAgc3RvcCAxMzIuMzkyMTYKYGBgCgpfX1Jlc3VsdCBhYm92ZSBtYWtlcyBzZW5zZTpfXyAgc3RvcCBzaWduIHNob3VsZCBoYXZlIGEgaGlnaGVyIHBlcmNlbnRhZ2Ugb2YgcmVkLgoKCiMjIyMgQSBtb3JlIGFkdmFuY2VkIGV4YW1wbGU6CgpDbGFzc2lmeWluZyBhIGNvbGxlY3Rpb24gb2Ygcm9hZCBzaWducwpOb3cgdGhhdCB0aGUgYXV0b25vbW91cyB2ZWhpY2xlIGhhcyBzdWNjZXNzZnVsbHkgc3RvcHBlZCBvbiBpdHMgb3duLCB5b3VyIHRlYW0gZmVlbHMgY29uZmlkZW50IGFsbG93aW5nIHRoZSBjYXIgdG8gY29udGludWUgdGhlIHRlc3QgY291cnNlLgoKVGhlIHRlc3QgY291cnNlIGluY2x1ZGVzIDU5IGFkZGl0aW9uYWwgcm9hZCBzaWducyBkaXZpZGVkIGludG8gdGhyZWUgdHlwZXMuIEF0IHRoZSBjb25jbHVzaW9uIG9mIHRoZSB0cmlhbCwgeW91IGFyZSBhc2tlZCB0byBtZWFzdXJlIHRoZSBjYXIncyBvdmVyYWxsIHBlcmZvcm1hbmNlIGF0IHJlY29nbml6aW5nIHRoZXNlIHNpZ25zLgoKX19JbnN0cnVjdGlvbnM6X18gIFRoZSBjbGFzcyBwYWNrYWdlIGFuZCB0aGUgZGF0YXNldCBzaWducyBhcmUgYWxyZWFkeSBsb2FkZWQgaW4geW91ciB3b3Jrc3BhY2UuIFNvIGlzIHRoZSBkYXRhZnJhbWUgdGVzdF9zaWducywgd2hpY2ggaG9sZHMgYSBzZXQgb2Ygb2JzZXJ2YXRpb25zIHlvdSdsbCB0ZXN0IHlvdXIgbW9kZWwgb24uIENsYXNzaWZ5IHRoZSB0ZXN0X3NpZ25zIGRhdGEgdXNpbmcga25uKCkuIFNldCB0cmFpbiBlcXVhbCB0byB0aGUgb2JzZXJ2YXRpb25zIGluIHNpZ25zIHdpdGhvdXQgbGFiZWxzLiBVc2UgdGVzdF9zaWducyBmb3IgdGhlIHRlc3QgYXJndW1lbnQsIGFnYWluIHdpdGhvdXQgbGFiZWxzLiBGb3IgdGhlIGNsIGFyZ3VtZW50LCB1c2UgdGhlIHZlY3RvciBvZiBsYWJlbHMgcHJvdmlkZWQgZm9yIHlvdS4gVXNlIHRhYmxlKCkgdG8gZXhwbG9yZSB0aGUgY2xhc3NpZmllcidzIHBlcmZvcm1hbmNlIGF0IGlkZW50aWZ5aW5nIHRoZSB0aHJlZSBzaWduIHR5cGVzLiBDcmVhdGUgdGhlIHZlY3RvciBzaWduc19hY3R1YWwgYnkgZXh0cmFjdGluZyB0aGUgbGFiZWxzIGZyb20gdGVzdF9zaWducy4gUGFzcyB0aGUgdmVjdG9yIG9mIHByZWRpY3Rpb25zIGFuZCB0aGUgdmVjdG9yIG9mIGFjdHVhbCBzaWducyB0byB0YWJsZSgpIHRvIGNyb3NzIHRhYnVsYXRlIHRoZW0uIENvbXB1dGUgdGhlIG92ZXJhbGwgYWNjdXJhY3kgb2YgdGhlIGtOTiBsZWFybmVyIHVzaW5nIHRoZSBtZWFuKCkgZnVuY3Rpb24uCgoKYGBge3J9CiMgVXNlIGtOTiB0byBpZGVudGlmeSB0aGUgdGVzdCByb2FkIHNpZ25zCnNpZ25fdHlwZXMgPC0gc2lnbnMkc2lnbl90eXBlCnNpZ25zX3ByZWQgPC0ga25uKHRyYWluID0gc2lnbnNbLTFdLCB0ZXN0ID0gdGVzdF9zaWduc1stMV0sIGNsID0gc2lnbl90eXBlcykKCiMgQ3JlYXRlIGEgY29uZnVzaW9uIG1hdHJpeCBvZiB0aGUgYWN0dWFsIHZlcnN1cyBwcmVkaWN0ZWQgdmFsdWVzCnNpZ25zX2FjdHVhbCA8LSB0ZXN0X3NpZ25zJHNpZ25fdHlwZQp0YWJsZShzaWduc19wcmVkLCBzaWduc19hY3R1YWwpCgojIENvbXB1dGUgdGhlIGFjY3VyYWN5Cm1lYW4oc2lnbnNfYWN0dWFsID09IHNpZ25zX3ByZWQpCmBgYAoKCgoKCgoKCgoKCgo=</div>
 
 
 
