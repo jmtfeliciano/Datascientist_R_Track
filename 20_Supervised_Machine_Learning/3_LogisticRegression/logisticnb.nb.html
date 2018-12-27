@@ -239,9 +239,178 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
+<div id="note-dataset-is-proprietary-so-dont-have-the-dataset-here-just-the-scripts-i-ran-to-solve-the-problems-in-another-platform" class="section level4">
+<h4>Note: Dataset is proprietary so don’t have the dataset here, just the scripts I ran to solve the problems in another platform</h4>
+</div>
+<div id="logistic-example" class="section level4">
+<h4>Logistic Example</h4>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBFeGFtaW5lIHRoZSBkYXRhc2V0IHRvIGlkZW50aWZ5IHBvdGVudGlhbCBpbmRlcGVuZGVudCB2YXJpYWJsZXNcbnN0cihkb25vcnMpXG5cbiMgRXhwbG9yZSB0aGUgZGVwZW5kZW50IHZhcmlhYmxlXG50YWJsZShkb25vcnMkZG9uYXRlZClcbiMjIHJldHVybnM6ICAgXG4jIyAwICAgICAxIFxuIyMgODg3NTEgIDQ3MTFcblxuIyBCdWlsZCB0aGUgZG9uYXRpb24gbW9kZWxcbmRvbmF0aW9uX21vZGVsIDwtIGdsbShkb25hdGVkIH4gYmFkX2FkZHJlc3MgKyBpbnRlcmVzdF9yZWxpZ2lvbiArIGludGVyZXN0X3ZldGVyYW5zLCBcbiAgICAgICAgICAgICAgICAgICAgICBkYXRhID0gZG9ub3JzLCBmYW1pbHkgPSBcImJpbm9taWFsXCIpXG5cbiMgU3VtbWFyaXplIHRoZSBtb2RlbCByZXN1bHRzXG5zdW1tYXJ5KGRvbmF0aW9uX21vZGVsKVxuXG4jIyBzb21lIG9mIHRoZSBvdXRwdXQ6XG4jI0RldmlhbmNlIFJlc2lkdWFsczogXG4jIyAgICBNaW4gICAgICAgMVEgICBNZWRpYW4gICAgICAgM1EgICAgICBNYXggIFxuIyMgLTAuMzQ4MCAgLTAuMzE5MiAgLTAuMzE5MiAgLTAuMzE5MiAgIDIuNTY3OCAgXG4jI1xuIyMgQ29lZmZpY2llbnRzOlxuIyMgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciAgeiB2YWx1ZSBQcig+fHp8KSAgICBcbiMjIChJbnRlcmNlcHQpICAgICAgIC0yLjk1MTM5ICAgIDAuMDE2NTIgLTE3OC42NjQgICA8MmUtMTYgKioqXG4jIyBiYWRfYWRkcmVzcyAgICAgICAtMC4zMDc4MCAgICAwLjE0MzQ4ICAgLTIuMTQ1ICAgMC4wMzE5ICogIFxuIyMgaW50ZXJlc3RfcmVsaWdpb24gIDAuMDY3MjQgICAgMC4wNTA2OSAgICAxLjMyNyAgIDAuMTg0NyAgICBcbiMjIGludGVyZXN0X3ZldGVyYW5zICAwLjExMDA5ICAgIDAuMDQ2NzYgICAgMi4zNTQgICAwLjAxODYgKiAgXG4jI1xuIyMgU2lnbmlmLiBjb2RlczogIDAgJyoqKicgMC4wMDEgJyoqJyAwLjAxICcqJyAwLjA1ICcuJyAwLjEgJyAnIDFcblxuIyBFc3RpbWF0ZSB0aGUgZG9uYXRpb24gcHJvYmFiaWxpdHlcbmRvbm9ycyRkb25hdGlvbl9wcm9iIDwtIHByZWRpY3QoZG9uYXRpb25fbW9kZWwsIHR5cGUgPSBcInJlc3BvbnNlXCIpXG5cbiMgRmluZCB0aGUgZG9uYXRpb24gcHJvYmFiaWxpdHkgb2YgdGhlIGF2ZXJhZ2UgcHJvc3BlY3Rcbm1lYW4oZG9ub3JzJGRvbmF0ZWQpXG4jcHJpbnRzOiAwLjA1MDQwNTUxXG5cbiMgUHJlZGljdCBhIGRvbmF0aW9uIGlmIHByb2JhYmlsaXR5IG9mIGRvbmF0aW9uIGlzIGdyZWF0ZXIgdGhhbiBhdmVyYWdlICgwLjA1MDQpXG5kb25vcnMkZG9uYXRpb25fcHJlZCA8LSBpZmVsc2UoZG9ub3JzJGRvbmF0aW9uX3Byb2IgPiAwLjA1MDQsIDEsIDApXG5cbiMgQ2FsY3VsYXRlIHRoZSBtb2RlbCdzIGFjY3VyYWN5XG5tZWFuKGRvbm9ycyRkb25hdGVkID09IGRvbm9ycyRkb25hdGlvbl9wcmVkKVxuI3ByaW50czogIDAuNzk0ODE1XG5gYGAifQ== -->
+<pre class="r"><code># Examine the dataset to identify potential independent variables
+str(donors)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9naXN0aWMgUmVncmVzc2lvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQo=</div>
+# Explore the dependent variable
+table(donors$donated)
+## returns:   
+## 0     1 
+## 88751  4711
+
+# Build the donation model
+donation_model &lt;- glm(donated ~ bad_address + interest_religion + interest_veterans, 
+                      data = donors, family = &quot;binomial&quot;)
+
+# Summarize the model results
+summary(donation_model)
+
+## some of the output:
+##Deviance Residuals: 
+##    Min       1Q   Median       3Q      Max  
+## -0.3480  -0.3192  -0.3192  -0.3192   2.5678  
+##
+## Coefficients:
+##                   Estimate Std. Error  z value Pr(&gt;|z|)    
+## (Intercept)       -2.95139    0.01652 -178.664   &lt;2e-16 ***
+## bad_address       -0.30780    0.14348   -2.145   0.0319 *  
+## interest_religion  0.06724    0.05069    1.327   0.1847    
+## interest_veterans  0.11009    0.04676    2.354   0.0186 *  
+##
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+# Estimate the donation probability
+donors$donation_prob &lt;- predict(donation_model, type = &quot;response&quot;)
+
+# Find the donation probability of the average prospect
+mean(donors$donated)
+#prints: 0.05040551
+
+# Predict a donation if probability of donation is greater than average (0.0504)
+donors$donation_pred &lt;- ifelse(donors$donation_prob &gt; 0.0504, 1, 0)
+
+# Calculate the model's accuracy
+mean(donors$donated == donors$donation_pred)
+#prints:  0.794815</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="calculating-roc-curves-and-auc" class="section level4">
+<h4>Calculating ROC Curves and AUC</h4>
+<p><strong>Prompt:</strong> The dataset donors with the column of predicted probabilities, donation_prob ,is already loaded in your workspace.</p>
+<p>Load the pROC package. Create a ROC curve with roc() and the columns of actual and predicted donations. Store the result as ROC. Use plot() to draw the ROC object. Specify col = “blue” to color the curve blue. Compute the area under the curve with auc().</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBMb2FkIHRoZSBwUk9DIHBhY2thZ2VcbmxpYnJhcnlcblxuIyBDcmVhdGUgYSBST0MgY3VydmVcblJPQyA8LSByb2MoZG9ub3JzJGRvbmF0ZWQsIGRvbm9ycyRkb25hdGlvbl9wcm9iKSBcbiMjIG5vdGU6IFswLDEsMCwxLDAsMF0gdnMgWzAuMDQsMC4wNSwwLjAxLDAuMDRdXG5cbiMgUGxvdCB0aGUgUk9DIGN1cnZlXG5wbG90KFJPQywgY29sID0gXCJibHVlXCIpXG5cbiMgQ2FsY3VsYXRlIHRoZSBhcmVhIHVuZGVyIHRoZSBjdXJ2ZSAoQVVDKVxuYXVjKFJPQylcbmBgYCJ9 -->
+<pre class="r"><code># Load the pROC package
+library
+
+# Create a ROC curve
+ROC &lt;- roc(donors$donated, donors$donation_prob) 
+## note: [0,1,0,1,0,0] vs [0.04,0.05,0.01,0.04]
+
+# Plot the ROC curve
+plot(ROC, col = &quot;blue&quot;)
+
+# Calculate the area under the curve (AUC)
+auc(ROC)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="coding-categorical-features" class="section level4">
+<h4>Coding categorical features</h4>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb252ZXJ0IHRoZSB3ZWFsdGggcmF0aW5nIHRvIGEgZmFjdG9yIChmcm9tIG51bWJlcnMgdG8gc3RyaW5ncylcbmRvbm9ycyR3ZWFsdGhfcmF0aW5nIDwtIGZhY3Rvcihkb25vcnMkd2VhbHRoX3JhdGluZywgbGV2ZWxzID0gYygwLDEsMiwzKSwgbGFiZWxzID0gYyhcIlVua25vd25cIiwgXCJMb3dcIixcIk1lZGl1bVwiLCBcIkhpZ2hcIikpXG5cbiMgVXNlIHJlbGV2ZWwoKSB0byBjaGFuZ2UgcmVmZXJlbmNlIGNhdGVnb3J5XG5kb25vcnMkd2VhbHRoX3JhdGluZyA8LSByZWxldmVsKGRvbm9ycyR3ZWFsdGhfcmF0aW5nICwgcmVmID0gXCJNZWRpdW1cIilcblxuIyBTZWUgaG93IG91ciBmYWN0b3IgY29kaW5nIGltcGFjdHMgdGhlIG1vZGVsXG5zdW1tYXJ5KGdsbShkb25hdGVkIH4gd2VhbHRoX3JhdGluZywgZGF0YSA9IGRvbm9ycywgZmFtaWx5ID0gXCJiaW5vbWlhbFwiKSlcbmBgYCJ9 -->
+<pre class="r"><code># Convert the wealth rating to a factor (from numbers to strings)
+donors$wealth_rating &lt;- factor(donors$wealth_rating, levels = c(0,1,2,3), labels = c(&quot;Unknown&quot;, &quot;Low&quot;,&quot;Medium&quot;, &quot;High&quot;))
+
+# Use relevel() to change reference category
+donors$wealth_rating &lt;- relevel(donors$wealth_rating , ref = &quot;Medium&quot;)
+
+# See how our factor coding impacts the model
+summary(glm(donated ~ wealth_rating, data = donors, family = &quot;binomial&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="handling-missing-data-by-impute-imputing" class="section level4">
+<h4>Handling missing data by impute / imputing</h4>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaW5kIHRoZSBhdmVyYWdlIGFnZSBhbW9uZyBub24tbWlzc2luZyB2YWx1ZXNcbnN1bW1hcnkoZG9ub3JzJGFnZSlcblxuIyBJbXB1dGUgbWlzc2luZyBhZ2UgdmFsdWVzIHdpdGggbWVhbihhZ2UpXG5kb25vcnMkaW1wdXRlZF9hZ2UgPC0gaWZlbHNlKGlzLm5hKGRvbm9ycyRhZ2UpLHJvdW5kKG1lYW4oZG9ub3JzJGFnZSwgbmEucm0gPSBUUlVFKSwyKSxkb25vcnMkYWdlKVxuXG4jIENyZWF0ZSBtaXNzaW5nIHZhbHVlIGluZGljYXRvciBmb3IgYWdlXG5kb25vcnMkbWlzc2luZ19hZ2UgPC0gaWZlbHNlKGlzLm5hKGRvbm9ycyRhZ2UpLDEsMClcbmBgYCJ9 -->
+<pre class="r"><code># Find the average age among non-missing values
+summary(donors$age)
+
+# Impute missing age values with mean(age)
+donors$imputed_age &lt;- ifelse(is.na(donors$age),round(mean(donors$age, na.rm = TRUE),2),donors$age)
+
+# Create missing value indicator for age
+donors$missing_age &lt;- ifelse(is.na(donors$age),1,0)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="building-a-more-sophisticated-model" class="section level4">
+<h4>Building a more sophisticated model</h4>
+<p>Background: One of the best predictors of future giving is a history of recent, frequent, and large gifts. In marketing terms, this is known as R/F/M:Recency, Frequency, and Money.</p>
+<p>Donors that haven’t given both recently and frequently may be especially likely to give again; in other words, the combined impact of recency and frequency may be greater than the sum of the separate effects. Because these predictors together have a greater impact on the dependent variable, their joint effect must be modeled as an interaction.</p>
+<p>Instructions:</p>
+<p>The donors dataset has been loaded for you.</p>
+<p>Create a logistic regression model of donated as a function of money plus the interaction of recency and frequency. Use * to add the interaction term. Examine the model’s summary() to confirm the interaction effect was added. Save the model’s predicted probabilities as rfm_prob. Use the predict() function, and remember to set the type argument. Plot a ROC curve by using the function roc(). Remember, this function takes the column of outcomes and the vector of predictions. Compute the AUC for the new model with the function auc() and compare performance to the simpler model.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCdWlsZCBhIHJlY2VuY3ksIGZyZXF1ZW5jeSwgYW5kIG1vbmV5IChSRk0pIG1vZGVsXG5yZm1fbW9kZWwgPC0gZ2xtKGRvbmF0ZWQgfiBtb25leSArIHJlY2VuY3kgKiBmcmVxdWVuY3ksIGRhdGEgPSBkb25vcnMsIGZhbWlseSA9IFwiYmlub21pYWxcIilcblxuIyBTdW1tYXJpemUgdGhlIFJGTSBtb2RlbCB0byBzZWUgaG93IHRoZSBwYXJhbWV0ZXJzIHdlcmUgY29kZWRcbnN1bW1hcnkocmZtX21vZGVsKVxuXG4jIENvbXB1dGUgcHJlZGljdGVkIHByb2JhYmlsaXRpZXMgZm9yIHRoZSBSRk0gbW9kZWxcbnJmbV9wcm9iIDwtIHByZWRpY3QocmZtX21vZGVsLCB0eXBlID0gXCJyZXNwb25zZVwiKVxuXG4jIFBsb3QgdGhlIFJPQyBjdXJ2ZSBhbmQgZmluZCBBVUMgZm9yIHRoZSBuZXcgbW9kZWxcbmxpYnJhcnkocFJPQylcblJPQyA8LSByb2MoZG9ub3JzJGRvbmF0ZWQsIHJmbV9wcm9iKVxucGxvdChST0MsIGNvbCA9IFwicmVkXCIpXG5hdWMoUk9DKVxuYGBgIn0= -->
+<pre class="r"><code># Build a recency, frequency, and money (RFM) model
+rfm_model &lt;- glm(donated ~ money + recency * frequency, data = donors, family = &quot;binomial&quot;)
+
+# Summarize the RFM model to see how the parameters were coded
+summary(rfm_model)
+
+# Compute predicted probabilities for the RFM model
+rfm_prob &lt;- predict(rfm_model, type = &quot;response&quot;)
+
+# Plot the ROC curve and find AUC for the new model
+library(pROC)
+ROC &lt;- roc(donors$donated, rfm_prob)
+plot(ROC, col = &quot;red&quot;)
+auc(ROC)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="automatic-feature-selection" class="section level4">
+<h4>Automatic feature selection</h4>
+<p>In the absence of subject-matter expertise, stepwise regression can assist with the search for the most important predictors of the outcome of interest.</p>
+<p>In this exercise, you will use a forward stepwise approach to add predictors to the model one-by-one until no additional benefit is seen.</p>
+<p><strong>Instructions:</strong> The donors dataset has been loaded for you. Use the R formula interface with glm() to specify the base model with no predictors. Set the explanatory variable equal to 1. Use the R formula interface again with glm() to specify the model with all predictors. Apply step() to these models to perform forward stepwise regression. Set the first argument to null_model and set direction = “forward”. This might take a while (up to 10 or 15 seconds) as your computer has to fit quite a few different models to perform stepwise selection. Create a vector of predicted probabilities using the predict() function. Plot the ROC curve with roc() and plot() and compute the AUC of the stepwise model with auc()</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTcGVjaWZ5IGEgbnVsbCBtb2RlbCB3aXRoIG5vIHByZWRpY3RvcnNcbm51bGxfbW9kZWwgPC0gZ2xtKGRvbmF0ZWQgfiAxLCBkYXRhID0gZG9ub3JzLCBmYW1pbHkgPSBcImJpbm9taWFsXCIpXG5cbiMgU3BlY2lmeSB0aGUgZnVsbCBtb2RlbCB1c2luZyBhbGwgb2YgdGhlIHBvdGVudGlhbCBwcmVkaWN0b3JzXG5mdWxsX21vZGVsIDwtIGdsbShkb25hdGVkIH4gLiwgZGF0YSA9IGRvbm9ycywgZmFtaWx5ID0gXCJiaW5vbWlhbFwiKVxuXG4jIFVzZSBhIGZvcndhcmQgc3RlcHdpc2UgYWxnb3JpdGhtIHRvIGJ1aWxkIGEgcGFyc2ltb25pb3VzIG1vZGVsXG5zdGVwX21vZGVsIDwtIHN0ZXAobnVsbF9tb2RlbCwgc2NvcGUgPSBsaXN0KGxvd2VyID0gbnVsbF9tb2RlbCwgdXBwZXIgPSBmdWxsX21vZGVsKSwgZGlyZWN0aW9uID0gXCJmb3J3YXJkXCIpXG5cbiMgRXN0aW1hdGUgdGhlIHN0ZXB3aXNlIGRvbmF0aW9uIHByb2JhYmlsaXR5XG5zdGVwX3Byb2IgPC0gcHJlZGljdChzdGVwX21vZGVsLCB0eXBlID0gXCJyZXNwb25zZVwiKVxuXG4jIFBsb3QgdGhlIFJPQyBvZiB0aGUgc3RlcHdpc2UgbW9kZWxcbmxpYnJhcnkocFJPQylcblJPQyA8LSByb2MoZG9ub3JzJGRvbmF0ZWQsIHN0ZXBfcHJvYilcbnBsb3QoUk9DLCBjb2wgPSBcInJlZFwiKVxuYXVjKFJPQylcbmBgYCJ9 -->
+<pre class="r"><code># Specify a null model with no predictors
+null_model &lt;- glm(donated ~ 1, data = donors, family = &quot;binomial&quot;)
+
+# Specify the full model using all of the potential predictors
+full_model &lt;- glm(donated ~ ., data = donors, family = &quot;binomial&quot;)
+
+# Use a forward stepwise algorithm to build a parsimonious model
+step_model &lt;- step(null_model, scope = list(lower = null_model, upper = full_model), direction = &quot;forward&quot;)
+
+# Estimate the stepwise donation probability
+step_prob &lt;- predict(step_model, type = &quot;response&quot;)
+
+# Plot the ROC of the stepwise model
+library(pROC)
+ROC &lt;- roc(donors$donated, step_prob)
+plot(ROC, col = &quot;red&quot;)
+auc(ROC)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9naXN0aWMgUmVncmVzc2lvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMjIyBOb3RlOiAgRGF0YXNldCBpcyBwcm9wcmlldGFyeSBzbyBkb24ndCBoYXZlIHRoZSBkYXRhc2V0IGhlcmUsIGp1c3QgdGhlIHNjcmlwdHMgSSByYW4gdG8gc29sdmUgdGhlIHByb2JsZW1zIGluIGFub3RoZXIgcGxhdGZvcm0KCiMjIyMgTG9naXN0aWMgRXhhbXBsZQoKYGBge3J9CiMgRXhhbWluZSB0aGUgZGF0YXNldCB0byBpZGVudGlmeSBwb3RlbnRpYWwgaW5kZXBlbmRlbnQgdmFyaWFibGVzCnN0cihkb25vcnMpCgojIEV4cGxvcmUgdGhlIGRlcGVuZGVudCB2YXJpYWJsZQp0YWJsZShkb25vcnMkZG9uYXRlZCkKIyMgcmV0dXJuczogICAKIyMgMCAgICAgMSAKIyMgODg3NTEgIDQ3MTEKCiMgQnVpbGQgdGhlIGRvbmF0aW9uIG1vZGVsCmRvbmF0aW9uX21vZGVsIDwtIGdsbShkb25hdGVkIH4gYmFkX2FkZHJlc3MgKyBpbnRlcmVzdF9yZWxpZ2lvbiArIGludGVyZXN0X3ZldGVyYW5zLCAKICAgICAgICAgICAgICAgICAgICAgIGRhdGEgPSBkb25vcnMsIGZhbWlseSA9ICJiaW5vbWlhbCIpCgojIFN1bW1hcml6ZSB0aGUgbW9kZWwgcmVzdWx0cwpzdW1tYXJ5KGRvbmF0aW9uX21vZGVsKQoKIyMgc29tZSBvZiB0aGUgb3V0cHV0OgojI0RldmlhbmNlIFJlc2lkdWFsczogCiMjICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCAgCiMjIC0wLjM0ODAgIC0wLjMxOTIgIC0wLjMxOTIgIC0wLjMxOTIgICAyLjU2NzggIAojIwojIyBDb2VmZmljaWVudHM6CiMjICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgIHogdmFsdWUgUHIoPnx6fCkgICAgCiMjIChJbnRlcmNlcHQpICAgICAgIC0yLjk1MTM5ICAgIDAuMDE2NTIgLTE3OC42NjQgICA8MmUtMTYgKioqCiMjIGJhZF9hZGRyZXNzICAgICAgIC0wLjMwNzgwICAgIDAuMTQzNDggICAtMi4xNDUgICAwLjAzMTkgKiAgCiMjIGludGVyZXN0X3JlbGlnaW9uICAwLjA2NzI0ICAgIDAuMDUwNjkgICAgMS4zMjcgICAwLjE4NDcgICAgCiMjIGludGVyZXN0X3ZldGVyYW5zICAwLjExMDA5ICAgIDAuMDQ2NzYgICAgMi4zNTQgICAwLjAxODYgKiAgCiMjCiMjIFNpZ25pZi4gY29kZXM6ICAwICcqKionIDAuMDAxICcqKicgMC4wMSAnKicgMC4wNSAnLicgMC4xICcgJyAxCgojIEVzdGltYXRlIHRoZSBkb25hdGlvbiBwcm9iYWJpbGl0eQpkb25vcnMkZG9uYXRpb25fcHJvYiA8LSBwcmVkaWN0KGRvbmF0aW9uX21vZGVsLCB0eXBlID0gInJlc3BvbnNlIikKCiMgRmluZCB0aGUgZG9uYXRpb24gcHJvYmFiaWxpdHkgb2YgdGhlIGF2ZXJhZ2UgcHJvc3BlY3QKbWVhbihkb25vcnMkZG9uYXRlZCkKI3ByaW50czogMC4wNTA0MDU1MQoKIyBQcmVkaWN0IGEgZG9uYXRpb24gaWYgcHJvYmFiaWxpdHkgb2YgZG9uYXRpb24gaXMgZ3JlYXRlciB0aGFuIGF2ZXJhZ2UgKDAuMDUwNCkKZG9ub3JzJGRvbmF0aW9uX3ByZWQgPC0gaWZlbHNlKGRvbm9ycyRkb25hdGlvbl9wcm9iID4gMC4wNTA0LCAxLCAwKQoKIyBDYWxjdWxhdGUgdGhlIG1vZGVsJ3MgYWNjdXJhY3kKbWVhbihkb25vcnMkZG9uYXRlZCA9PSBkb25vcnMkZG9uYXRpb25fcHJlZCkKI3ByaW50czogIDAuNzk0ODE1CmBgYAoKIyMjIyBDYWxjdWxhdGluZyBST0MgQ3VydmVzIGFuZCBBVUMKCl9fUHJvbXB0Ol9fICBUaGUgZGF0YXNldCBkb25vcnMgd2l0aCB0aGUgY29sdW1uIG9mIHByZWRpY3RlZCBwcm9iYWJpbGl0aWVzLCBkb25hdGlvbl9wcm9iICxpcyBhbHJlYWR5IGxvYWRlZCBpbiB5b3VyIHdvcmtzcGFjZS4KCkxvYWQgdGhlIHBST0MgcGFja2FnZS4KQ3JlYXRlIGEgUk9DIGN1cnZlIHdpdGggcm9jKCkgYW5kIHRoZSBjb2x1bW5zIG9mIGFjdHVhbCBhbmQgcHJlZGljdGVkIGRvbmF0aW9ucy4gU3RvcmUgdGhlIHJlc3VsdCBhcyBST0MuClVzZSBwbG90KCkgdG8gZHJhdyB0aGUgUk9DIG9iamVjdC4gU3BlY2lmeSBjb2wgPSAiYmx1ZSIgdG8gY29sb3IgdGhlIGN1cnZlIGJsdWUuCkNvbXB1dGUgdGhlIGFyZWEgdW5kZXIgdGhlIGN1cnZlIHdpdGggYXVjKCkuCgpgYGB7cn0KIyBMb2FkIHRoZSBwUk9DIHBhY2thZ2UKbGlicmFyeQoKIyBDcmVhdGUgYSBST0MgY3VydmUKUk9DIDwtIHJvYyhkb25vcnMkZG9uYXRlZCwgZG9ub3JzJGRvbmF0aW9uX3Byb2IpIAojIyBub3RlOiBbMCwxLDAsMSwwLDBdIHZzIFswLjA0LDAuMDUsMC4wMSwwLjA0XQoKIyBQbG90IHRoZSBST0MgY3VydmUKcGxvdChST0MsIGNvbCA9ICJibHVlIikKCiMgQ2FsY3VsYXRlIHRoZSBhcmVhIHVuZGVyIHRoZSBjdXJ2ZSAoQVVDKQphdWMoUk9DKQpgYGAKCiMjIyMgQ29kaW5nIGNhdGVnb3JpY2FsIGZlYXR1cmVzCgpgYGB7cn0KIyBDb252ZXJ0IHRoZSB3ZWFsdGggcmF0aW5nIHRvIGEgZmFjdG9yIChmcm9tIG51bWJlcnMgdG8gc3RyaW5ncykKZG9ub3JzJHdlYWx0aF9yYXRpbmcgPC0gZmFjdG9yKGRvbm9ycyR3ZWFsdGhfcmF0aW5nLCBsZXZlbHMgPSBjKDAsMSwyLDMpLCBsYWJlbHMgPSBjKCJVbmtub3duIiwgIkxvdyIsIk1lZGl1bSIsICJIaWdoIikpCgojIFVzZSByZWxldmVsKCkgdG8gY2hhbmdlIHJlZmVyZW5jZSBjYXRlZ29yeQpkb25vcnMkd2VhbHRoX3JhdGluZyA8LSByZWxldmVsKGRvbm9ycyR3ZWFsdGhfcmF0aW5nICwgcmVmID0gIk1lZGl1bSIpCgojIFNlZSBob3cgb3VyIGZhY3RvciBjb2RpbmcgaW1wYWN0cyB0aGUgbW9kZWwKc3VtbWFyeShnbG0oZG9uYXRlZCB+IHdlYWx0aF9yYXRpbmcsIGRhdGEgPSBkb25vcnMsIGZhbWlseSA9ICJiaW5vbWlhbCIpKQpgYGAKCiMjIyMgSGFuZGxpbmcgbWlzc2luZyBkYXRhIGJ5IGltcHV0ZSAvIGltcHV0aW5nCgpgYGB7cn0KIyBGaW5kIHRoZSBhdmVyYWdlIGFnZSBhbW9uZyBub24tbWlzc2luZyB2YWx1ZXMKc3VtbWFyeShkb25vcnMkYWdlKQoKIyBJbXB1dGUgbWlzc2luZyBhZ2UgdmFsdWVzIHdpdGggbWVhbihhZ2UpCmRvbm9ycyRpbXB1dGVkX2FnZSA8LSBpZmVsc2UoaXMubmEoZG9ub3JzJGFnZSkscm91bmQobWVhbihkb25vcnMkYWdlLCBuYS5ybSA9IFRSVUUpLDIpLGRvbm9ycyRhZ2UpCgojIENyZWF0ZSBtaXNzaW5nIHZhbHVlIGluZGljYXRvciBmb3IgYWdlCmRvbm9ycyRtaXNzaW5nX2FnZSA8LSBpZmVsc2UoaXMubmEoZG9ub3JzJGFnZSksMSwwKQpgYGAKCiMjIyMgQnVpbGRpbmcgYSBtb3JlIHNvcGhpc3RpY2F0ZWQgbW9kZWwKIApCYWNrZ3JvdW5kOiAgT25lIG9mIHRoZSBiZXN0IHByZWRpY3RvcnMgb2YgZnV0dXJlIGdpdmluZyBpcyBhIGhpc3Rvcnkgb2YgcmVjZW50LCBmcmVxdWVudCwgYW5kIGxhcmdlIGdpZnRzLiBJbiBtYXJrZXRpbmcgdGVybXMsIHRoaXMgaXMga25vd24gYXMgUi9GL006UmVjZW5jeSwgRnJlcXVlbmN5LCBhbmQgTW9uZXkuIAoKRG9ub3JzIHRoYXQgaGF2ZW4ndCBnaXZlbiBib3RoIHJlY2VudGx5IGFuZCBmcmVxdWVudGx5IG1heSBiZSBlc3BlY2lhbGx5IGxpa2VseSB0byBnaXZlIGFnYWluOyBpbiBvdGhlciB3b3JkcywgdGhlIGNvbWJpbmVkIGltcGFjdCBvZiByZWNlbmN5IGFuZCBmcmVxdWVuY3kgbWF5IGJlIGdyZWF0ZXIgdGhhbiB0aGUgc3VtIG9mIHRoZSBzZXBhcmF0ZSBlZmZlY3RzLiBCZWNhdXNlIHRoZXNlIHByZWRpY3RvcnMgdG9nZXRoZXIgaGF2ZSBhIGdyZWF0ZXIgaW1wYWN0IG9uIHRoZSBkZXBlbmRlbnQgdmFyaWFibGUsIHRoZWlyIGpvaW50IGVmZmVjdCBtdXN0IGJlIG1vZGVsZWQgYXMgYW4gaW50ZXJhY3Rpb24uCgpJbnN0cnVjdGlvbnM6CgpUaGUgZG9ub3JzIGRhdGFzZXQgaGFzIGJlZW4gbG9hZGVkIGZvciB5b3UuCgpDcmVhdGUgYSBsb2dpc3RpYyByZWdyZXNzaW9uIG1vZGVsIG9mIGRvbmF0ZWQgYXMgYSBmdW5jdGlvbiBvZiBtb25leSBwbHVzIHRoZSBpbnRlcmFjdGlvbiBvZiByZWNlbmN5IGFuZCBmcmVxdWVuY3kuIFVzZSAqIHRvIGFkZCB0aGUgaW50ZXJhY3Rpb24gdGVybS4KRXhhbWluZSB0aGUgbW9kZWwncyBzdW1tYXJ5KCkgdG8gY29uZmlybSB0aGUgaW50ZXJhY3Rpb24gZWZmZWN0IHdhcyBhZGRlZC4KU2F2ZSB0aGUgbW9kZWwncyBwcmVkaWN0ZWQgcHJvYmFiaWxpdGllcyBhcyByZm1fcHJvYi4gVXNlIHRoZSBwcmVkaWN0KCkgZnVuY3Rpb24sIGFuZCByZW1lbWJlciB0byBzZXQgdGhlIHR5cGUgYXJndW1lbnQuClBsb3QgYSBST0MgY3VydmUgYnkgdXNpbmcgdGhlIGZ1bmN0aW9uIHJvYygpLiBSZW1lbWJlciwgdGhpcyBmdW5jdGlvbiB0YWtlcyB0aGUgY29sdW1uIG9mIG91dGNvbWVzIGFuZCB0aGUgdmVjdG9yIG9mIHByZWRpY3Rpb25zLgpDb21wdXRlIHRoZSBBVUMgZm9yIHRoZSBuZXcgbW9kZWwgd2l0aCB0aGUgZnVuY3Rpb24gYXVjKCkgYW5kIGNvbXBhcmUgcGVyZm9ybWFuY2UgdG8gdGhlIHNpbXBsZXIgbW9kZWwuCgpgYGB7cn0KIyBCdWlsZCBhIHJlY2VuY3ksIGZyZXF1ZW5jeSwgYW5kIG1vbmV5IChSRk0pIG1vZGVsCnJmbV9tb2RlbCA8LSBnbG0oZG9uYXRlZCB+IG1vbmV5ICsgcmVjZW5jeSAqIGZyZXF1ZW5jeSwgZGF0YSA9IGRvbm9ycywgZmFtaWx5ID0gImJpbm9taWFsIikKCiMgU3VtbWFyaXplIHRoZSBSRk0gbW9kZWwgdG8gc2VlIGhvdyB0aGUgcGFyYW1ldGVycyB3ZXJlIGNvZGVkCnN1bW1hcnkocmZtX21vZGVsKQoKIyBDb21wdXRlIHByZWRpY3RlZCBwcm9iYWJpbGl0aWVzIGZvciB0aGUgUkZNIG1vZGVsCnJmbV9wcm9iIDwtIHByZWRpY3QocmZtX21vZGVsLCB0eXBlID0gInJlc3BvbnNlIikKCiMgUGxvdCB0aGUgUk9DIGN1cnZlIGFuZCBmaW5kIEFVQyBmb3IgdGhlIG5ldyBtb2RlbApsaWJyYXJ5KHBST0MpClJPQyA8LSByb2MoZG9ub3JzJGRvbmF0ZWQsIHJmbV9wcm9iKQpwbG90KFJPQywgY29sID0gInJlZCIpCmF1YyhST0MpCmBgYAoKIyMjIyBBdXRvbWF0aWMgZmVhdHVyZSBzZWxlY3Rpb24KCkluIHRoZSBhYnNlbmNlIG9mIHN1YmplY3QtbWF0dGVyIGV4cGVydGlzZSwgc3RlcHdpc2UgcmVncmVzc2lvbiBjYW4gYXNzaXN0IHdpdGggdGhlIHNlYXJjaCBmb3IgdGhlIG1vc3QgaW1wb3J0YW50IHByZWRpY3RvcnMgb2YgdGhlIG91dGNvbWUgb2YgaW50ZXJlc3QuCgpJbiB0aGlzIGV4ZXJjaXNlLCB5b3Ugd2lsbCB1c2UgYSBmb3J3YXJkIHN0ZXB3aXNlIGFwcHJvYWNoIHRvIGFkZCBwcmVkaWN0b3JzIHRvIHRoZSBtb2RlbCBvbmUtYnktb25lIHVudGlsIG5vIGFkZGl0aW9uYWwgYmVuZWZpdCBpcyBzZWVuLgoKX19JbnN0cnVjdGlvbnM6X18gVGhlIGRvbm9ycyBkYXRhc2V0IGhhcyBiZWVuIGxvYWRlZCBmb3IgeW91LiBVc2UgdGhlIFIgZm9ybXVsYSBpbnRlcmZhY2Ugd2l0aCBnbG0oKSB0byBzcGVjaWZ5IHRoZSBiYXNlIG1vZGVsIHdpdGggbm8gcHJlZGljdG9ycy4gU2V0IHRoZSBleHBsYW5hdG9yeSB2YXJpYWJsZSBlcXVhbCB0byAxLiBVc2UgdGhlIFIgZm9ybXVsYSBpbnRlcmZhY2UgYWdhaW4gd2l0aCBnbG0oKSB0byBzcGVjaWZ5IHRoZSBtb2RlbCB3aXRoIGFsbCBwcmVkaWN0b3JzLiBBcHBseSBzdGVwKCkgdG8gdGhlc2UgbW9kZWxzIHRvIHBlcmZvcm0gZm9yd2FyZCBzdGVwd2lzZSByZWdyZXNzaW9uLiBTZXQgdGhlIGZpcnN0IGFyZ3VtZW50IHRvIG51bGxfbW9kZWwgYW5kIHNldCBkaXJlY3Rpb24gPSAiZm9yd2FyZCIuIFRoaXMgbWlnaHQgdGFrZSBhIHdoaWxlICh1cCB0byAxMCBvciAxNSBzZWNvbmRzKSBhcyB5b3VyIGNvbXB1dGVyIGhhcyB0byBmaXQgcXVpdGUgYSBmZXcgZGlmZmVyZW50IG1vZGVscyB0byBwZXJmb3JtIHN0ZXB3aXNlIHNlbGVjdGlvbi4gQ3JlYXRlIGEgdmVjdG9yIG9mIHByZWRpY3RlZCBwcm9iYWJpbGl0aWVzIHVzaW5nIHRoZSBwcmVkaWN0KCkgZnVuY3Rpb24uIFBsb3QgdGhlIFJPQyBjdXJ2ZSB3aXRoIHJvYygpIGFuZCBwbG90KCkgYW5kIGNvbXB1dGUgdGhlIEFVQyBvZiB0aGUgc3RlcHdpc2UgbW9kZWwgd2l0aCBhdWMoKQoKYGBge3J9CiMgU3BlY2lmeSBhIG51bGwgbW9kZWwgd2l0aCBubyBwcmVkaWN0b3JzCm51bGxfbW9kZWwgPC0gZ2xtKGRvbmF0ZWQgfiAxLCBkYXRhID0gZG9ub3JzLCBmYW1pbHkgPSAiYmlub21pYWwiKQoKIyBTcGVjaWZ5IHRoZSBmdWxsIG1vZGVsIHVzaW5nIGFsbCBvZiB0aGUgcG90ZW50aWFsIHByZWRpY3RvcnMKZnVsbF9tb2RlbCA8LSBnbG0oZG9uYXRlZCB+IC4sIGRhdGEgPSBkb25vcnMsIGZhbWlseSA9ICJiaW5vbWlhbCIpCgojIFVzZSBhIGZvcndhcmQgc3RlcHdpc2UgYWxnb3JpdGhtIHRvIGJ1aWxkIGEgcGFyc2ltb25pb3VzIG1vZGVsCnN0ZXBfbW9kZWwgPC0gc3RlcChudWxsX21vZGVsLCBzY29wZSA9IGxpc3QobG93ZXIgPSBudWxsX21vZGVsLCB1cHBlciA9IGZ1bGxfbW9kZWwpLCBkaXJlY3Rpb24gPSAiZm9yd2FyZCIpCgojIEVzdGltYXRlIHRoZSBzdGVwd2lzZSBkb25hdGlvbiBwcm9iYWJpbGl0eQpzdGVwX3Byb2IgPC0gcHJlZGljdChzdGVwX21vZGVsLCB0eXBlID0gInJlc3BvbnNlIikKCiMgUGxvdCB0aGUgUk9DIG9mIHRoZSBzdGVwd2lzZSBtb2RlbApsaWJyYXJ5KHBST0MpClJPQyA8LSByb2MoZG9ub3JzJGRvbmF0ZWQsIHN0ZXBfcHJvYikKcGxvdChST0MsIGNvbCA9ICJyZWQiKQphdWMoUk9DKQpgYGAKCgoKCg==</div>
 
 
 

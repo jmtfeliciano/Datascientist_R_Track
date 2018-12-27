@@ -2,3 +2,168 @@
 title: "Logistic Regression"
 output: html_notebook
 ---
+
+#### Note:  Dataset is proprietary so don't have the dataset here, just the scripts I ran to solve the problems in another platform
+
+#### Logistic Example
+
+```{r}
+# Examine the dataset to identify potential independent variables
+str(donors)
+
+# Explore the dependent variable
+table(donors$donated)
+## returns:   
+## 0     1 
+## 88751  4711
+
+# Build the donation model
+donation_model <- glm(donated ~ bad_address + interest_religion + interest_veterans, 
+                      data = donors, family = "binomial")
+
+# Summarize the model results
+summary(donation_model)
+
+## some of the output:
+##Deviance Residuals: 
+##    Min       1Q   Median       3Q      Max  
+## -0.3480  -0.3192  -0.3192  -0.3192   2.5678  
+##
+## Coefficients:
+##                   Estimate Std. Error  z value Pr(>|z|)    
+## (Intercept)       -2.95139    0.01652 -178.664   <2e-16 ***
+## bad_address       -0.30780    0.14348   -2.145   0.0319 *  
+## interest_religion  0.06724    0.05069    1.327   0.1847    
+## interest_veterans  0.11009    0.04676    2.354   0.0186 *  
+##
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+# Estimate the donation probability
+donors$donation_prob <- predict(donation_model, type = "response")
+
+# Find the donation probability of the average prospect
+mean(donors$donated)
+#prints: 0.05040551
+
+# Predict a donation if probability of donation is greater than average (0.0504)
+donors$donation_pred <- ifelse(donors$donation_prob > 0.0504, 1, 0)
+
+# Calculate the model's accuracy
+mean(donors$donated == donors$donation_pred)
+#prints:  0.794815
+```
+
+#### Calculating ROC Curves and AUC
+
+__Prompt:__  The dataset donors with the column of predicted probabilities, donation_prob ,is already loaded in your workspace.
+
+Load the pROC package.
+Create a ROC curve with roc() and the columns of actual and predicted donations. Store the result as ROC.
+Use plot() to draw the ROC object. Specify col = "blue" to color the curve blue.
+Compute the area under the curve with auc().
+
+```{r}
+# Load the pROC package
+library
+
+# Create a ROC curve
+ROC <- roc(donors$donated, donors$donation_prob) 
+## note: [0,1,0,1,0,0] vs [0.04,0.05,0.01,0.04]
+
+# Plot the ROC curve
+plot(ROC, col = "blue")
+
+# Calculate the area under the curve (AUC)
+auc(ROC)
+```
+
+#### Coding categorical features
+
+```{r}
+# Convert the wealth rating to a factor (from numbers to strings)
+donors$wealth_rating <- factor(donors$wealth_rating, levels = c(0,1,2,3), labels = c("Unknown", "Low","Medium", "High"))
+
+# Use relevel() to change reference category
+donors$wealth_rating <- relevel(donors$wealth_rating , ref = "Medium")
+
+# See how our factor coding impacts the model
+summary(glm(donated ~ wealth_rating, data = donors, family = "binomial"))
+```
+
+#### Handling missing data by impute / imputing
+
+```{r}
+# Find the average age among non-missing values
+summary(donors$age)
+
+# Impute missing age values with mean(age)
+donors$imputed_age <- ifelse(is.na(donors$age),round(mean(donors$age, na.rm = TRUE),2),donors$age)
+
+# Create missing value indicator for age
+donors$missing_age <- ifelse(is.na(donors$age),1,0)
+```
+
+#### Building a more sophisticated model
+ 
+Background:  One of the best predictors of future giving is a history of recent, frequent, and large gifts. In marketing terms, this is known as R/F/M:Recency, Frequency, and Money. 
+
+Donors that haven't given both recently and frequently may be especially likely to give again; in other words, the combined impact of recency and frequency may be greater than the sum of the separate effects. Because these predictors together have a greater impact on the dependent variable, their joint effect must be modeled as an interaction.
+
+Instructions:
+
+The donors dataset has been loaded for you.
+
+Create a logistic regression model of donated as a function of money plus the interaction of recency and frequency. Use * to add the interaction term.
+Examine the model's summary() to confirm the interaction effect was added.
+Save the model's predicted probabilities as rfm_prob. Use the predict() function, and remember to set the type argument.
+Plot a ROC curve by using the function roc(). Remember, this function takes the column of outcomes and the vector of predictions.
+Compute the AUC for the new model with the function auc() and compare performance to the simpler model.
+
+```{r}
+# Build a recency, frequency, and money (RFM) model
+rfm_model <- glm(donated ~ money + recency * frequency, data = donors, family = "binomial")
+
+# Summarize the RFM model to see how the parameters were coded
+summary(rfm_model)
+
+# Compute predicted probabilities for the RFM model
+rfm_prob <- predict(rfm_model, type = "response")
+
+# Plot the ROC curve and find AUC for the new model
+library(pROC)
+ROC <- roc(donors$donated, rfm_prob)
+plot(ROC, col = "red")
+auc(ROC)
+```
+
+#### Automatic feature selection
+
+In the absence of subject-matter expertise, stepwise regression can assist with the search for the most important predictors of the outcome of interest.
+
+In this exercise, you will use a forward stepwise approach to add predictors to the model one-by-one until no additional benefit is seen.
+
+__Instructions:__ The donors dataset has been loaded for you. Use the R formula interface with glm() to specify the base model with no predictors. Set the explanatory variable equal to 1. Use the R formula interface again with glm() to specify the model with all predictors. Apply step() to these models to perform forward stepwise regression. Set the first argument to null_model and set direction = "forward". This might take a while (up to 10 or 15 seconds) as your computer has to fit quite a few different models to perform stepwise selection. Create a vector of predicted probabilities using the predict() function. Plot the ROC curve with roc() and plot() and compute the AUC of the stepwise model with auc()
+
+```{r}
+# Specify a null model with no predictors
+null_model <- glm(donated ~ 1, data = donors, family = "binomial")
+
+# Specify the full model using all of the potential predictors
+full_model <- glm(donated ~ ., data = donors, family = "binomial")
+
+# Use a forward stepwise algorithm to build a parsimonious model
+step_model <- step(null_model, scope = list(lower = null_model, upper = full_model), direction = "forward")
+
+# Estimate the stepwise donation probability
+step_prob <- predict(step_model, type = "response")
+
+# Plot the ROC of the stepwise model
+library(pROC)
+ROC <- roc(donors$donated, step_prob)
+plot(ROC, col = "red")
+auc(ROC)
+```
+
+
+
+
