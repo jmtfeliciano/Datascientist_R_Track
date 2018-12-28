@@ -12,6 +12,10 @@ __What I will show:__  My ability to make a classification tree to create a clas
 #### My data
     
 ```{r}
+# load needed 'rpart' package
+if(require("rpart")) install.packages("rpart")
+library("rpart")
+
 # load loans data
 loans <- read.csv(file="loans.csv")
 
