@@ -15,11 +15,12 @@ __What I will show:__  My ability to make a classification tree to create a clas
 # load loans data
 loans <- read.csv(file="loans.csv")
 
-#check variable names and see some entries.
-head(loans)
-
 #print all the variable names
+colnames(loans)
 
-
+#print variables with some data
+head(loans)
 ```
+
+
 
