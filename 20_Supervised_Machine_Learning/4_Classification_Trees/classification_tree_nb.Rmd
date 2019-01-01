@@ -26,5 +26,93 @@ colnames(loans)
 head(loans)
 ```
 
+#### Predicting
+
+__Note:__ Some of the variables here are missing since they're proprietary and non-extractable from where I learned.  So while it will not run, here's the syntax.
+
+```{r}
+loan_model <- rpart(default ~ loan_amount + credit_score, data = loans, method = "class", control = rpart.control(cp = 0))
+
+# Make a prediction for someone with good credit
+predict(loan_model, good_credit, type = "class")
+
+# Make a prediction for someone with bad credit
+predict(loan_model, bad_credit, type = "class")
+```
+
+#### Plotting the tree
+
+```{r}
+# Examine the loan_model object
+loan_model
+
+# Load the rpart.plot package
+library("rpart.plot")
+
+# Plot the loan_model with default settings
+rpart.plot(loan_model)
+
+# Plot the loan_model with customized settings
+rpart.plot(loan_model, type = 3, box.palette = c("red", "green"), fallen.leaves = TRUE)
+
+```
+
+#### Creating random test datasets
+
+```{r}
+# Determine the number of rows for training
+nrow(loans) * 0.75
+
+# Create a random sample of row IDs
+sample_rows <- sample(11312, 8484)
+
+# Create the training dataset
+loans_train <- loans[sample_rows, ]
+
+# Create the test dataset
+loans_test <- loans[-sample_rows, ]
+```
+
+
+#### Building and evaluating a larger tree
+
+```{r}
+# Grow a tree using all of the available applicant data
+loan_model <- rpart(outcome ~ ., data = loans_train, method = "class", control = rpart.control(cp = 0))
+
+# Make predictions on the test dataset
+loans_test$pred <- predict(loan_model, loans_test, type = "class")
+
+# Examine the confusion matrix
+table(loans_test$pred, loans_test$outcome)
+
+# Compute the accuracy on the test dataset
+mean(loans_test$pred == loans_test$outcome)
+```
+
+
+#### Tending to classification trees:
+1. pre-pruning:
+  - Limiting depth to three levels 
+  - limiting number of observations to split (e.g. min of 10 observations to split)
+2. post-pruning:
+  - look where the error rate curve flattens and cut it there
+
+#### Preventing overgrown trees
+
+```{r}
+# Grow a tree with maxdepth of 6
+loan_model <- rpart(outcome ~ ., data=loans_train, method="class",control = rpart.control(cp = 0),maxdepth=6)
+
+# Make a class prediction on the test set
+loans_test$pred <- predict(loan_model, loans_test, type="class")
+
+# Compute the accuracy of the simpler tree
+mean(loans_test$pred == loans_test$outcome)
+```
+
+__Lesson here:__ Original mean for accuracy was 58.3%, now it is  0.5919378. 
+
+
 
 

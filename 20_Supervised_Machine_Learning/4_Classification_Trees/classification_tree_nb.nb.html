@@ -247,8 +247,8 @@ $(document).ready(function () {
 <h4>My data</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkIHJwYXJ0IHBhY2thZ2VcbmlmKHJlcXVpcmUoXCJycGFydFwiKSkgaW5zdGFsbC5wYWNrYWdlcyhcInJwYXJ0XCIpXG5gYGAifQ== -->
-<pre class="r"><code># load rpart package
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkIG5lZWRlZCAncnBhcnQnIHBhY2thZ2VcbmlmKHJlcXVpcmUoXCJycGFydFwiKSkgaW5zdGFsbC5wYWNrYWdlcyhcInJwYXJ0XCIpXG5gYGAifQ== -->
+<pre class="r"><code># load needed 'rpart' package
 if(require(&quot;rpart&quot;)) install.packages(&quot;rpart&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gaW5zdGFsbC5wYWNrYWdlcyA6IFVwZGF0aW5nIGxvYWRlZCBwYWNrYWdlc1xuIn0= -->
@@ -282,11 +282,123 @@ head(loans)</code></pre>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="predicting" class="section level4">
+<h4>Predicting</h4>
+<p><strong>Note:</strong> Some of the variables here are missing since they’re proprietary and non-extractable from where I learned. So while it will not run, here’s the syntax.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9hbl9tb2RlbCA8LSBycGFydChkZWZhdWx0IH4gbG9hbl9hbW91bnQgKyBjcmVkaXRfc2NvcmUsIGRhdGEgPSBsb2FucywgbWV0aG9kID0gXCJjbGFzc1wiLCBjb250cm9sID0gcnBhcnQuY29udHJvbChjcCA9IDApKVxuXG4jIE1ha2UgYSBwcmVkaWN0aW9uIGZvciBzb21lb25lIHdpdGggZ29vZCBjcmVkaXRcbnByZWRpY3QobG9hbl9tb2RlbCwgZ29vZF9jcmVkaXQsIHR5cGUgPSBcImNsYXNzXCIpXG5cbiMgTWFrZSBhIHByZWRpY3Rpb24gZm9yIHNvbWVvbmUgd2l0aCBiYWQgY3JlZGl0XG5wcmVkaWN0KGxvYW5fbW9kZWwsIGJhZF9jcmVkaXQsIHR5cGUgPSBcImNsYXNzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>loan_model &lt;- rpart(default ~ loan_amount + credit_score, data = loans, method = &quot;class&quot;, control = rpart.control(cp = 0))
+
+# Make a prediction for someone with good credit
+predict(loan_model, good_credit, type = &quot;class&quot;)
+
+# Make a prediction for someone with bad credit
+predict(loan_model, bad_credit, type = &quot;class&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="plotting-the-tree" class="section level4">
+<h4>Plotting the tree</h4>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBFeGFtaW5lIHRoZSBsb2FuX21vZGVsIG9iamVjdFxubG9hbl9tb2RlbFxuXG4jIExvYWQgdGhlIHJwYXJ0LnBsb3QgcGFja2FnZVxubGlicmFyeShcInJwYXJ0LnBsb3RcIilcblxuIyBQbG90IHRoZSBsb2FuX21vZGVsIHdpdGggZGVmYXVsdCBzZXR0aW5nc1xucnBhcnQucGxvdChsb2FuX21vZGVsKVxuXG4jIFBsb3QgdGhlIGxvYW5fbW9kZWwgd2l0aCBjdXN0b21pemVkIHNldHRpbmdzXG5ycGFydC5wbG90KGxvYW5fbW9kZWwsIHR5cGUgPSAzLCBib3gucGFsZXR0ZSA9IGMoXCJyZWRcIiwgXCJncmVlblwiKSwgZmFsbGVuLmxlYXZlcyA9IFRSVUUpXG5cbmBgYCJ9 -->
+<pre class="r"><code># Examine the loan_model object
+loan_model
+
+# Load the rpart.plot package
+library(&quot;rpart.plot&quot;)
+
+# Plot the loan_model with default settings
+rpart.plot(loan_model)
+
+# Plot the loan_model with customized settings
+rpart.plot(loan_model, type = 3, box.palette = c(&quot;red&quot;, &quot;green&quot;), fallen.leaves = TRUE)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="creating-random-test-datasets" class="section level4">
+<h4>Creating random test datasets</h4>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBEZXRlcm1pbmUgdGhlIG51bWJlciBvZiByb3dzIGZvciB0cmFpbmluZ1xubnJvdyhsb2FucykgKiAwLjc1XG5cbiMgQ3JlYXRlIGEgcmFuZG9tIHNhbXBsZSBvZiByb3cgSURzXG5zYW1wbGVfcm93cyA8LSBzYW1wbGUoMTEzMTIsIDg0ODQpXG5cbiMgQ3JlYXRlIHRoZSB0cmFpbmluZyBkYXRhc2V0XG5sb2Fuc190cmFpbiA8LSBsb2Fuc1tzYW1wbGVfcm93cywgXVxuXG4jIENyZWF0ZSB0aGUgdGVzdCBkYXRhc2V0XG5sb2Fuc190ZXN0IDwtIGxvYW5zWy1zYW1wbGVfcm93cywgXVxuYGBgIn0= -->
+<pre class="r"><code># Determine the number of rows for training
+nrow(loans) * 0.75
+
+# Create a random sample of row IDs
+sample_rows &lt;- sample(11312, 8484)
+
+# Create the training dataset
+loans_train &lt;- loans[sample_rows, ]
+
+# Create the test dataset
+loans_test &lt;- loans[-sample_rows, ]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="building-and-evaluating-a-larger-tree" class="section level4">
+<h4>Building and evaluating a larger tree</h4>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHcm93IGEgdHJlZSB1c2luZyBhbGwgb2YgdGhlIGF2YWlsYWJsZSBhcHBsaWNhbnQgZGF0YVxubG9hbl9tb2RlbCA8LSBycGFydChvdXRjb21lIH4gLiwgZGF0YSA9IGxvYW5zX3RyYWluLCBtZXRob2QgPSBcImNsYXNzXCIsIGNvbnRyb2wgPSBycGFydC5jb250cm9sKGNwID0gMCkpXG5cbiMgTWFrZSBwcmVkaWN0aW9ucyBvbiB0aGUgdGVzdCBkYXRhc2V0XG5sb2Fuc190ZXN0JHByZWQgPC0gcHJlZGljdChsb2FuX21vZGVsLCBsb2Fuc190ZXN0LCB0eXBlID0gXCJjbGFzc1wiKVxuXG4jIEV4YW1pbmUgdGhlIGNvbmZ1c2lvbiBtYXRyaXhcbnRhYmxlKGxvYW5zX3Rlc3QkcHJlZCwgbG9hbnNfdGVzdCRvdXRjb21lKVxuXG4jIENvbXB1dGUgdGhlIGFjY3VyYWN5IG9uIHRoZSB0ZXN0IGRhdGFzZXRcbm1lYW4obG9hbnNfdGVzdCRwcmVkID09IGxvYW5zX3Rlc3Qkb3V0Y29tZSlcbmBgYCJ9 -->
+<pre class="r"><code># Grow a tree using all of the available applicant data
+loan_model &lt;- rpart(outcome ~ ., data = loans_train, method = &quot;class&quot;, control = rpart.control(cp = 0))
+
+# Make predictions on the test dataset
+loans_test$pred &lt;- predict(loan_model, loans_test, type = &quot;class&quot;)
+
+# Examine the confusion matrix
+table(loans_test$pred, loans_test$outcome)
+
+# Compute the accuracy on the test dataset
+mean(loans_test$pred == loans_test$outcome)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="tending-to-classification-trees" class="section level4">
+<h4>Tending to classification trees:</h4>
+<ol style="list-style-type: decimal">
+<li>pre-pruning:</li>
+</ol>
+<ul>
+<li>Limiting depth to three levels</li>
+<li>limiting number of observations to split (e.g. min of 10 observations to split)</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>post-pruning:</li>
+</ol>
+<ul>
+<li>look where the error rate curve flattens and cut it there</li>
+</ul>
+</div>
+<div id="preventing-overgrown-trees" class="section level4">
+<h4>Preventing overgrown trees</h4>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHcm93IGEgdHJlZSB3aXRoIG1heGRlcHRoIG9mIDZcbmxvYW5fbW9kZWwgPC0gcnBhcnQob3V0Y29tZSB+IC4sIGRhdGE9bG9hbnNfdHJhaW4sIG1ldGhvZD1cImNsYXNzXCIsY29udHJvbCA9IHJwYXJ0LmNvbnRyb2woY3AgPSAwKSxtYXhkZXB0aD02KVxuXG4jIE1ha2UgYSBjbGFzcyBwcmVkaWN0aW9uIG9uIHRoZSB0ZXN0IHNldFxubG9hbnNfdGVzdCRwcmVkIDwtIHByZWRpY3QobG9hbl9tb2RlbCwgbG9hbnNfdGVzdCwgdHlwZT1cImNsYXNzXCIpXG5cbiMgQ29tcHV0ZSB0aGUgYWNjdXJhY3kgb2YgdGhlIHNpbXBsZXIgdHJlZVxubWVhbihsb2Fuc190ZXN0JHByZWQgPT0gbG9hbnNfdGVzdCRvdXRjb21lKVxuYGBgIn0= -->
+<pre class="r"><code># Grow a tree with maxdepth of 6
+loan_model &lt;- rpart(outcome ~ ., data=loans_train, method=&quot;class&quot;,control = rpart.control(cp = 0),maxdepth=6)
+
+# Make a class prediction on the test set
+loans_test$pred &lt;- predict(loan_model, loans_test, type=&quot;class&quot;)
+
+# Compute the accuracy of the simpler tree
+mean(loans_test$pred == loans_test$outcome)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Lesson here:</strong> Original mean for accuracy was 58.3%, now it is 0.5919378.</p>
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMjIE15IHBvcnRmb2xpbwoKX19QdXJwb3NlOl9fIFRoaXMgcG9ydGZvbGlvIHdpbGwgZGVtb25zdHJhdGUgbXkga25vd2xlZGdlIG9mIGNsYXNzaWZpY2F0aW9uIHRyZWVzLgoKX19XaGF0IEkgd2lsbCBzaG93Ol9fICBNeSBhYmlsaXR5IHRvIG1ha2UgYSBjbGFzc2lmaWNhdGlvbiB0cmVlIHRvIGNyZWF0ZSBhIGNsYXNzaWZpY2F0aW9uIHRyZWUgbW9kZWwgdG8gZGVjaWRlIHdoZXRoZXIgb3Igbm90IHRvIGFwcHJvdmUgYSBsb2FuIGJhc2VkIG9uIGhpc3RvcmljYWwgZGF0YS4gCgojIyMjIE15IGRhdGEKICAgIApgYGB7cn0KIyBsb2FkIG5lZWRlZCAncnBhcnQnIHBhY2thZ2UKaWYocmVxdWlyZSgicnBhcnQiKSkgaW5zdGFsbC5wYWNrYWdlcygicnBhcnQiKQpsaWJyYXJ5KCJycGFydCIpCgojIGxvYWQgbG9hbnMgZGF0YQpsb2FucyA8LSByZWFkLmNzdihmaWxlPSJsb2Fucy5jc3YiKQoKI3ByaW50IGFsbCB0aGUgdmFyaWFibGUgbmFtZXMKY29sbmFtZXMobG9hbnMpCgojcHJpbnQgdmFyaWFibGVzIHdpdGggc29tZSBkYXRhCmhlYWQobG9hbnMpCmBgYAoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMjIE15IHBvcnRmb2xpbwoKX19QdXJwb3NlOl9fIFRoaXMgcG9ydGZvbGlvIHdpbGwgZGVtb25zdHJhdGUgbXkga25vd2xlZGdlIG9mIGNsYXNzaWZpY2F0aW9uIHRyZWVzLgoKX19XaGF0IEkgd2lsbCBzaG93Ol9fICBNeSBhYmlsaXR5IHRvIG1ha2UgYSBjbGFzc2lmaWNhdGlvbiB0cmVlIHRvIGNyZWF0ZSBhIGNsYXNzaWZpY2F0aW9uIHRyZWUgbW9kZWwgdG8gZGVjaWRlIHdoZXRoZXIgb3Igbm90IHRvIGFwcHJvdmUgYSBsb2FuIGJhc2VkIG9uIGhpc3RvcmljYWwgZGF0YS4gCgojIyMjIE15IGRhdGEKICAgIApgYGB7cn0KIyBsb2FkIG5lZWRlZCAncnBhcnQnIHBhY2thZ2UKaWYocmVxdWlyZSgicnBhcnQiKSkgaW5zdGFsbC5wYWNrYWdlcygicnBhcnQiKQpsaWJyYXJ5KCJycGFydCIpCgojIGxvYWQgbG9hbnMgZGF0YQpsb2FucyA8LSByZWFkLmNzdihmaWxlPSJsb2Fucy5jc3YiKQoKI3ByaW50IGFsbCB0aGUgdmFyaWFibGUgbmFtZXMKY29sbmFtZXMobG9hbnMpCgojcHJpbnQgdmFyaWFibGVzIHdpdGggc29tZSBkYXRhCmhlYWQobG9hbnMpCmBgYAoKIyMjIyBQcmVkaWN0aW5nCgpfX05vdGU6X18gU29tZSBvZiB0aGUgdmFyaWFibGVzIGhlcmUgYXJlIG1pc3Npbmcgc2luY2UgdGhleSdyZSBwcm9wcmlldGFyeSBhbmQgbm9uLWV4dHJhY3RhYmxlIGZyb20gd2hlcmUgSSBsZWFybmVkLiAgU28gd2hpbGUgaXQgd2lsbCBub3QgcnVuLCBoZXJlJ3MgdGhlIHN5bnRheC4KCmBgYHtyfQpsb2FuX21vZGVsIDwtIHJwYXJ0KGRlZmF1bHQgfiBsb2FuX2Ftb3VudCArIGNyZWRpdF9zY29yZSwgZGF0YSA9IGxvYW5zLCBtZXRob2QgPSAiY2xhc3MiLCBjb250cm9sID0gcnBhcnQuY29udHJvbChjcCA9IDApKQoKIyBNYWtlIGEgcHJlZGljdGlvbiBmb3Igc29tZW9uZSB3aXRoIGdvb2QgY3JlZGl0CnByZWRpY3QobG9hbl9tb2RlbCwgZ29vZF9jcmVkaXQsIHR5cGUgPSAiY2xhc3MiKQoKIyBNYWtlIGEgcHJlZGljdGlvbiBmb3Igc29tZW9uZSB3aXRoIGJhZCBjcmVkaXQKcHJlZGljdChsb2FuX21vZGVsLCBiYWRfY3JlZGl0LCB0eXBlID0gImNsYXNzIikKYGBgCgojIyMjIFBsb3R0aW5nIHRoZSB0cmVlCgpgYGB7cn0KIyBFeGFtaW5lIHRoZSBsb2FuX21vZGVsIG9iamVjdApsb2FuX21vZGVsCgojIExvYWQgdGhlIHJwYXJ0LnBsb3QgcGFja2FnZQpsaWJyYXJ5KCJycGFydC5wbG90IikKCiMgUGxvdCB0aGUgbG9hbl9tb2RlbCB3aXRoIGRlZmF1bHQgc2V0dGluZ3MKcnBhcnQucGxvdChsb2FuX21vZGVsKQoKIyBQbG90IHRoZSBsb2FuX21vZGVsIHdpdGggY3VzdG9taXplZCBzZXR0aW5ncwpycGFydC5wbG90KGxvYW5fbW9kZWwsIHR5cGUgPSAzLCBib3gucGFsZXR0ZSA9IGMoInJlZCIsICJncmVlbiIpLCBmYWxsZW4ubGVhdmVzID0gVFJVRSkKCmBgYAoKIyMjIyBDcmVhdGluZyByYW5kb20gdGVzdCBkYXRhc2V0cwoKYGBge3J9CiMgRGV0ZXJtaW5lIHRoZSBudW1iZXIgb2Ygcm93cyBmb3IgdHJhaW5pbmcKbnJvdyhsb2FucykgKiAwLjc1CgojIENyZWF0ZSBhIHJhbmRvbSBzYW1wbGUgb2Ygcm93IElEcwpzYW1wbGVfcm93cyA8LSBzYW1wbGUoMTEzMTIsIDg0ODQpCgojIENyZWF0ZSB0aGUgdHJhaW5pbmcgZGF0YXNldApsb2Fuc190cmFpbiA8LSBsb2Fuc1tzYW1wbGVfcm93cywgXQoKIyBDcmVhdGUgdGhlIHRlc3QgZGF0YXNldApsb2Fuc190ZXN0IDwtIGxvYW5zWy1zYW1wbGVfcm93cywgXQpgYGAKCgojIyMjIEJ1aWxkaW5nIGFuZCBldmFsdWF0aW5nIGEgbGFyZ2VyIHRyZWUKCmBgYHtyfQojIEdyb3cgYSB0cmVlIHVzaW5nIGFsbCBvZiB0aGUgYXZhaWxhYmxlIGFwcGxpY2FudCBkYXRhCmxvYW5fbW9kZWwgPC0gcnBhcnQob3V0Y29tZSB+IC4sIGRhdGEgPSBsb2Fuc190cmFpbiwgbWV0aG9kID0gImNsYXNzIiwgY29udHJvbCA9IHJwYXJ0LmNvbnRyb2woY3AgPSAwKSkKCiMgTWFrZSBwcmVkaWN0aW9ucyBvbiB0aGUgdGVzdCBkYXRhc2V0CmxvYW5zX3Rlc3QkcHJlZCA8LSBwcmVkaWN0KGxvYW5fbW9kZWwsIGxvYW5zX3Rlc3QsIHR5cGUgPSAiY2xhc3MiKQoKIyBFeGFtaW5lIHRoZSBjb25mdXNpb24gbWF0cml4CnRhYmxlKGxvYW5zX3Rlc3QkcHJlZCwgbG9hbnNfdGVzdCRvdXRjb21lKQoKIyBDb21wdXRlIHRoZSBhY2N1cmFjeSBvbiB0aGUgdGVzdCBkYXRhc2V0Cm1lYW4obG9hbnNfdGVzdCRwcmVkID09IGxvYW5zX3Rlc3Qkb3V0Y29tZSkKYGBgCgoKIyMjIyBUZW5kaW5nIHRvIGNsYXNzaWZpY2F0aW9uIHRyZWVzOgoxLiBwcmUtcHJ1bmluZzoKICAtIExpbWl0aW5nIGRlcHRoIHRvIHRocmVlIGxldmVscyAKICAtIGxpbWl0aW5nIG51bWJlciBvZiBvYnNlcnZhdGlvbnMgdG8gc3BsaXQgKGUuZy4gbWluIG9mIDEwIG9ic2VydmF0aW9ucyB0byBzcGxpdCkKMi4gcG9zdC1wcnVuaW5nOgogIC0gbG9vayB3aGVyZSB0aGUgZXJyb3IgcmF0ZSBjdXJ2ZSBmbGF0dGVucyBhbmQgY3V0IGl0IHRoZXJlCgojIyMjIFByZXZlbnRpbmcgb3Zlcmdyb3duIHRyZWVzCgpgYGB7cn0KIyBHcm93IGEgdHJlZSB3aXRoIG1heGRlcHRoIG9mIDYKbG9hbl9tb2RlbCA8LSBycGFydChvdXRjb21lIH4gLiwgZGF0YT1sb2Fuc190cmFpbiwgbWV0aG9kPSJjbGFzcyIsY29udHJvbCA9IHJwYXJ0LmNvbnRyb2woY3AgPSAwKSxtYXhkZXB0aD02KQoKIyBNYWtlIGEgY2xhc3MgcHJlZGljdGlvbiBvbiB0aGUgdGVzdCBzZXQKbG9hbnNfdGVzdCRwcmVkIDwtIHByZWRpY3QobG9hbl9tb2RlbCwgbG9hbnNfdGVzdCwgdHlwZT0iY2xhc3MiKQoKIyBDb21wdXRlIHRoZSBhY2N1cmFjeSBvZiB0aGUgc2ltcGxlciB0cmVlCm1lYW4obG9hbnNfdGVzdCRwcmVkID09IGxvYW5zX3Rlc3Qkb3V0Y29tZSkKYGBgCgpfX0xlc3NvbiBoZXJlOl9fIE9yaWdpbmFsIG1lYW4gZm9yIGFjY3VyYWN5IHdhcyA1OC4zJSwgbm93IGl0IGlzICAwLjU5MTkzNzguIAoKCgoK</div>
 
 
 
